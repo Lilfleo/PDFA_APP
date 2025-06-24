@@ -8,6 +8,7 @@ import com.example.pdfa_app.data.repository.FoodRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -17,7 +18,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(app: Context): AppDatabase {
+    fun provideDatabase(@ApplicationContext app: Context): AppDatabase {
         return Room.databaseBuilder(
             app,
             AppDatabase::class.java,

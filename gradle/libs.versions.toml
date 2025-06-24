@@ -1,6 +1,7 @@
 [versions]
 agp = "8.10.1"
 hiltAndroid = "2.56.2"
+hiltNavigationCompose = "1.2.0"
 kotlin = "2.0.21"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -13,6 +14,7 @@ roomTesting = "2.7.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomTesting" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomTesting" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomTesting" }
