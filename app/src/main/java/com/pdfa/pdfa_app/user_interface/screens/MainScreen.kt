@@ -87,6 +87,7 @@ fun MainScreen() {
                 composable(Screen.Shoplist.rout){ ShoplistScreen() }
                 composable(Screen.Recipe.rout) { RecipeScreen() }
                 composable(Screen.Cookbook.rout) { CookbookScreen() }
+                composable (Screen.Food.rout ){ FoodScreen() }
             }
         }
     }

@@ -44,7 +44,8 @@ fun DrawerContent(
             Screen.Fridge,
             Screen.Recipe,
             Screen.Cookbook,
-            Screen.Shoplist
+            Screen.Shoplist,
+            Screen.Food
         )
 
         navigationItems.forEach { screen ->
