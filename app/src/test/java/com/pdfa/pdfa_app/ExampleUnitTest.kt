@@ -1,4 +1,4 @@
-package com.example.pdfa_app
+package com.pdfa.pdfa_app
 
 import org.junit.Test
 

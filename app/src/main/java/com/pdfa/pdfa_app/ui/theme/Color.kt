@@ -1,4 +1,4 @@
-package com.example.pdfa_app.ui.theme
+package com.pdfa.pdfa_app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
