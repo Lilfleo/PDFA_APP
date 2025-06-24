@@ -1,0 +1,34 @@
+package com.example.pdfa_app.di
+
+import android.content.Context
+import androidx.room.Room
+import com.example.pdfa_app.data.dao.FoodDao
+import com.example.pdfa_app.data.database.AppDatabase
+import com.example.pdfa_app.data.repository.FoodRepository
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Context): AppDatabase {
+        return Room.databaseBuilder(
+            app,
+            AppDatabase::class.java,
+            "app_db"
+        ).build()
+    }
+
+    @Provides
+    fun provideFoodDao(db: AppDatabase): FoodDao = db.foodDao()
+
+    @Provides
+    @Singleton
+    fun provideFoodRepository(dao: FoodDao): FoodRepository = FoodRepository(dao)
+}
