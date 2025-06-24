@@ -15,11 +15,14 @@ import androidx.navigation.compose.rememberNavController
 import com.pdfa.pdfa_app.user_interface.component.BottomNavBar
 import com.pdfa.pdfa_app.user_interface.component.DrawerMenu
 import com.pdfa.pdfa_app.user_interface.component.TopBar
+import com.pdfa.pdfa_app.user_interface.rooting.Screen
 import com.pdfa.pdfa_app.user_interface.screens.CookbookScreen
 import com.pdfa.pdfa_app.user_interface.screens.RecipeScreen
 import com.pdfa.pdfa_app.user_interface.screens.FridgeScreen
 import com.pdfa.pdfa_app.user_interface.screens.HomeScreen
 import kotlinx.coroutines.launch
+import com.pdfa.pdfa_app.user_interface.rooting.navigationItems
+import com.pdfa.pdfa_app.user_interface.screens.ShoplistScreen
 
 
 @Composable
@@ -29,7 +32,8 @@ fun MainScreen() {
     val scope = rememberCoroutineScope()
     val selectedIndex = rememberSaveable { mutableIntStateOf(0) }
 
-    val navigationItems = listOf("Home", "Fridge", "Recipe", "Cookbook") // ou ta version NavigationItem
+    //val navigationItems = listOf("Home", "Fridge", "Recipe", "Cookbook") // ou ta version NavigationItem
+
 
     ModalNavigationDrawer(
 
@@ -63,22 +67,26 @@ fun MainScreen() {
                             restoreState = true
                         }
                     },
-                    routes = navigationItems
+                    items = navigationItems // ← très important ici
                 )
+
             }
         ) { padding ->
             NavHost(
                 navController = navController,
-                startDestination = "Home",
+                startDestination = Screen.Home.rout, // ← "home_screen"
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
-            )
-            {
-                composable("Home") { HomeScreen() }
-                composable("Fridge") { FridgeScreen() }
-                composable("Recipe") { RecipeScreen() }
-                composable("Cookbook") { CookbookScreen() }
+            ) {
+                composable(Screen.Home.rout) { HomeScreen() }
+                composable(Screen.Fridge.rout) {
+                    FridgeScreen(onAddClick = {
+                        println("Bouton Add cliqué") })
+                }
+                composable(Screen.Shoplist.rout){ ShoplistScreen() }
+                composable(Screen.Recipe.rout) { RecipeScreen() }
+                composable(Screen.Cookbook.rout) { CookbookScreen() }
             }
         }
     }
