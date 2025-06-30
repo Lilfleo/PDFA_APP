@@ -42,11 +42,6 @@ val navigationItems = listOf(
         title = "Cookbook",
         route = Screen.Cookbook.rout,
         icon = AppIcons.Cookbook
-    ),
-    NavigationItem(
-        title = "Food",
-        route = Screen.Food.rout,
-        icon = AppIcons.Cookbook
     )
 )
 
