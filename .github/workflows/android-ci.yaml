@@ -2,10 +2,11 @@ name: Android CI
 
 on:
   push:
-    branches:
-      - '*'  # Run on all branches except those ignored by default
+    branches-ignore:
+      - main  # Don't run CI for direct pushes or merges to main
   pull_request:
-    branches: [ main ]  # PRs into main must pass CI
+    branches: 
+      - main  # PRs into main must pass CI
 
 jobs:
   build:
