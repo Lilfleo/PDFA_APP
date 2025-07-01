@@ -19,14 +19,14 @@ data class NavigationItem(
 val navigationItems = listOf(
 
     NavigationItem(
-        title = "Recipe",
-        route = Screen.Recipe.rout,
-        icon = AppIcons.Recipe
-    ),
-    NavigationItem(
         title = "Shop-list",
         route = Screen.Shoplist.rout,
         icon = AppIcons.Shoplist
+    ),
+    NavigationItem(
+        title = "Fridge",
+        route = Screen.Fridge.rout,
+        icon = AppIcons.Fridge
     ),
     NavigationItem(
         title = "Home",
@@ -34,9 +34,9 @@ val navigationItems = listOf(
         icon = AppIcons.HOME
     ),
     NavigationItem(
-        title = "Fridge",
-        route = Screen.Fridge.rout,
-        icon = AppIcons.Fridge
+        title = "Recipe",
+        route = Screen.Recipe.rout,
+        icon = AppIcons.Recipe
     ),
     NavigationItem(
         title = "Cookbook",

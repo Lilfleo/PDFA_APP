@@ -30,7 +30,7 @@ fun MainScreen() {
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
-    val selectedIndex = rememberSaveable { mutableIntStateOf(0) }
+    val selectedIndex = rememberSaveable { mutableIntStateOf(2) }
 
     //val navigationItems = listOf("Home", "Fridge", "Recipe", "Cookbook") // ou ta version NavigationItem
 

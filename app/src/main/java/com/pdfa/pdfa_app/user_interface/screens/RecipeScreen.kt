@@ -44,7 +44,7 @@ fun RecipeScreen(){
             modifier = Modifier
                 .fillMaxWidth()
                 .height(70.dp)
-                .background(Color(0xFFF4EEE1))
+                .background(AppColors.NavBackground)
                 .padding(10.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
@@ -69,17 +69,17 @@ fun RecipeScreen(){
                 )
             }
 
-                Box(
-                    modifier = Modifier
-                        .clickable { contenuActuel = 1 }
-                        .weight(1f)
-                        .height(50.dp)
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(
-                            if (contenuActuel == 1 ) AppColors.NavBackgroundHover else AppColors.NavBackground
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
+            Box(
+                modifier = Modifier
+                    .clickable { contenuActuel = 1 }
+                    .weight(1f)
+                    .height(50.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(
+                        if (contenuActuel == 1 ) AppColors.NavBackgroundHover else AppColors.NavBackground
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
                 Text(
                     text = "Pour ma liste",
                     fontWeight = FontWeight.Bold,
