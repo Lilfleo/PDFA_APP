@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pdfa.pdfa_app.ui.theme.AppColors
+import com.pdfa.pdfa_app.ui.theme.AppShapes
 
 @Composable
 fun RecipeScreen(){
@@ -51,34 +52,33 @@ fun RecipeScreen(){
         ) {
             Box(
                 modifier = Modifier
-                    .clickable { contenuActuel = 0 }
                     .weight(1f)
                     .height(50.dp)
-                    .clip(RoundedCornerShape(10.dp))
+                    .clip(AppShapes.CornerL)
                     .background(
                         if (contenuActuel == 0 ) AppColors.NavBackgroundHover else AppColors.NavBackground
-                    ),
-                contentAlignment = Alignment.Center
+                    )
+                    .clickable { contenuActuel = 0 },
+            contentAlignment = Alignment.Center
 
             ) {
                 Text(
                     text = "Pour mes recettes",
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
-
                 )
             }
 
             Box(
                 modifier = Modifier
-                    .clickable { contenuActuel = 1 }
                     .weight(1f)
                     .height(50.dp)
-                    .clip(RoundedCornerShape(10.dp))
+                    .clip(AppShapes.CornerL)
                     .background(
                         if (contenuActuel == 1 ) AppColors.NavBackgroundHover else AppColors.NavBackground
-                    ),
-                contentAlignment = Alignment.Center
+                    )
+                    .clickable { contenuActuel = 1 },
+                        contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "Pour ma liste",

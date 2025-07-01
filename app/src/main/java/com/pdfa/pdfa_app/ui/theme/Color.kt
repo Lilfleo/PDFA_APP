@@ -16,8 +16,16 @@ object AppColors{
     val NavBackground = Color(0xFFF4EEE1)
     val NavBackgroundHover = Color(0xFFECE6DA)
     val MainGreen = Color(0xFF91AB75)
+    val Scrollbar = Color( 0xFF999999)
 
     //TAGSColors
+    //Difficulty
+    val Easy = Color(0xFFA8D696)
+    val Hard = Color(0xFFE68989)
+    val RealyHard = Color(0xFFCF7CAA)
+    //Season
+    val Fresh = Color(0xFF96CED6)
+    val Fat = Color(0xFFE6E389)
 
     //TextColors
 }

@@ -8,9 +8,12 @@ object AppSpacing {
     val XS = 4.dp
     val S = 8.dp
     val M = 10.dp
-    val L = 24.dp
+    val L = 15.dp
     val XL = 32.dp
     val XXL = 48.dp
     val XXXL = 64.dp
+
+    //Element
+    val CardHeight = 110.dp
 
 }
