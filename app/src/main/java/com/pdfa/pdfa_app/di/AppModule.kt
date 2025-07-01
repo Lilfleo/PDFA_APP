@@ -20,13 +20,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext app: Context, foodDaoProvider: Provider<FoodDao>): AppDatabase {
+    fun provideDatabase(@ApplicationContext app: Context, foodDaoProvider: Provider<FoodDao>, allergyDaoProvider: Provider<AllergyDao>): AppDatabase {
         return Room.databaseBuilder(
             app,
             AppDatabase::class.java,
             "app_db"
         )
             .addCallback(AppDatabase.createCallback { foodDaoProvider.get() })
+            .addCallback(AppDatabase.createCallback { allergyDaoProvider.get() })
             .build()
     }
 
@@ -36,4 +37,13 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFoodRepository(dao: FoodDao): FoodRepository = FoodRepository(dao)
+
+    @Provides
+    fun provideAllergyDao(db: AppDatabase): AllergyDao = db.allergyDao()
+
+    @Provides
+    @Singleton
+    fun provideAllergyRepository(dao: AllergyDao): AllergyRepository = AllergyRepository(dao)
+
+
 }

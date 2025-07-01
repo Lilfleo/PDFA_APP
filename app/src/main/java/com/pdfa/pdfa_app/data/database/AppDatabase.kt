@@ -9,11 +9,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
+import com.pdfa.pdfa_app.data.dao.AllergyDao
+import com.pdfa.pdfa_app.data.model.Allergy
 
-@Database(entities = [Food::class], version = 1)
+
+@Database(entities = [Food::class, Allergy::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodDao(): FoodDao
+    abstract fun allergyDao(): AllergyDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
@@ -24,10 +28,18 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "app_db"
-                ).build().also { INSTANCE = it }
+                )
+                .addCallback(
+                    createCallback(
+                        { getInstance(context).foodDao() },
+                        { getInstance(context).allergyDao() }
+                    )
+                )
+                .fallbackToDestructiveMigration()
+                .build().also { INSTANCE = it }
             }
 
-        fun createCallback(foodDaoProvider: () -> FoodDao) = object : Callback() {
+        fun createCallback(foodDaoProvider: () -> FoodDao, allergyDaoProvider: () -> AllergyDao) = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
 
@@ -37,6 +49,10 @@ abstract class AppDatabase : RoomDatabase() {
                         insertFood(Food(name = "Carrot", link = "https://example.com/carrot", caloriesPerKg = 410, caloriesPerUnit = 41, expirationTime = Date()))
                         insertFood(Food(name = "Tomato", link = "https://example.com/tomato", caloriesPerKg = 180, caloriesPerUnit = 18, expirationTime = Date()))
                         insertFood(Food(name = "Pepper", link = "https://example.com/pepper", caloriesPerKg = 200, caloriesPerUnit = 20, expirationTime = Date()))
+                    }
+                    allergyDaoProvider().apply {
+                        insertAllergy(Allergy(foodId = 1))
+                        insertAllergy(Allergy(foodId = 2))
                     }
                 }
             }
