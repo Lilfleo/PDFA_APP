@@ -68,7 +68,6 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
-
-
+    implementation(libs.androidx.material.icons.extended.v178)
+    implementation(libs.androidx.ui.text.google.fonts)
 }
