@@ -31,8 +31,8 @@ abstract class AppDatabase : RoomDatabase() {
                 )
                 .addCallback(
                     createCallback(
-                        { getInstance(context).foodDao() },
-                        { getInstance(context).allergyDao() }
+                        {getInstance(context).foodDao()},
+                        {getInstance(context).allergyDao()}
                     )
                 )
                 .fallbackToDestructiveMigration()

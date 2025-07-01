@@ -3,8 +3,9 @@ package com.pdfa.pdfa_app.di
 import android.content.Context
 import androidx.room.Room
 
-import com.pdfa.pdfa_app.data.dao.FoodDao
+import com.pdfa.pdfa_app.data.dao.*
 import com.pdfa.pdfa_app.data.database.AppDatabase
+import com.pdfa.pdfa_app.data.repository.AllergyRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
 import dagger.Module
 import dagger.Provides
@@ -26,8 +27,7 @@ object AppModule {
             AppDatabase::class.java,
             "app_db"
         )
-            .addCallback(AppDatabase.createCallback { foodDaoProvider.get() })
-            .addCallback(AppDatabase.createCallback { allergyDaoProvider.get() })
+            .addCallback(AppDatabase.createCallback({foodDaoProvider.get()},{allergyDaoProvider.get()}))
             .build()
     }
 
@@ -44,6 +44,5 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAllergyRepository(dao: AllergyDao): AllergyRepository = AllergyRepository(dao)
-
 
 }
