@@ -1,0 +1,84 @@
+[
+    {
+        "id": 1,
+        "name": "Angelica",
+        "link": "angelica.png",
+        "caloriesPerKg": 85,
+        "caloriesPerUnit": 25,
+        "expiration_time":"2019-05-14T18:04:13.000Z"
+
+    },
+    {
+        "id": 2,
+        "name": "Savoy cabbage",
+        "link": "savoy_cabbage.png",
+        "caloriesPerKgPerKg": 54,
+        "caloriesPerUnit": 45,  
+        "expiration_time":"2019-05-14T18:04:13.000Z"
+    },
+    {
+        "id": 3,
+        "name": "Silver linden",
+        "link": "silver_linden.png",
+        "caloriesPerKg": 67,
+        "caloriesPerUnit": 82,
+        "expiration_time":"2019-05-14T18:04:13.000Z"
+    },
+    {
+        "id": 4,
+        "name": "Kiwi",
+        "link": "kiwi.png",
+        "caloriesPerKg": 98,
+        "caloriesPerUnit": 24,
+        "expiration_time":"2019-05-14T18:04:13.000Z"
+    },
+    {
+        "id": 5,
+        "name": "Allium",
+        "link": "allium.png",
+        "caloriesPerKg": 71,
+        "caloriesPerUnit": 35,   
+        "expiration_time":"2019-05-14T18:04:13.000Z"
+    },
+    {
+        "id": 6,
+        "name": "Garden onion",
+        "link": "garden_onion.png",
+        "caloriesPerKg": 28,
+        "caloriesPerUnit": 45,   
+        "expiration_time":"2019-05-14T18:04:13.000Z"
+    },
+    {
+        "id": 7,
+        "name": "Leek",
+        "link": "leek.png",
+        "caloriesPerKg": 54,
+        "caloriesPerUnit": 46,   
+        "expiration_time":"2019-05-14T18:04:13.000Z"
+    },
+    {
+        "id": 8,
+        "name": "Garlic",
+        "link": "garlic.png",
+        "caloriesPerKg": 55,
+        "caloriesPerUnit": 51,
+        "expiration_time":"2019-05-14T18:04:13.000Z"
+    },
+    {
+        "id": 9,
+        "name": "Chives",
+        "link": "chives.png",
+        "caloriesPerKg": 65,
+        "caloriesPerUnit": 45,
+        "expiration_time":"2019-05-14T18:04:13.000Z"
+    },
+    {
+        "id": 10,
+        "name": "Lemon verbena",
+        "link": "lemon_verbena.png",
+        "caloriesPerKg": 24,
+        "caloriesPerUnit": 97,
+        "expiration_time":"2019-05-14T18:04:13.000Z"
+    }
+]
+    
