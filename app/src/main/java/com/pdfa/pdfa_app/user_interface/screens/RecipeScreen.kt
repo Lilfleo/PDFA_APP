@@ -28,11 +28,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 
 @Composable
-fun RecipeScreen(){
+fun RecipeScreen(
+    navController: NavController
+){
 
     var contenuActuel by remember { mutableStateOf(0) }
 
@@ -93,8 +96,8 @@ fun RecipeScreen(){
                 .fillMaxSize()
         ) {
             when (contenuActuel) {
-                0 -> RecipeMakerScreen()
-                1 -> RecipeListScreen()
+                0 -> RecipeMakerScreen(navController)
+                1 -> RecipeListScreen(navController)
             }
         }
 

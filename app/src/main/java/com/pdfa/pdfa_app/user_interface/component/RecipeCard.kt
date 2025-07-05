@@ -1,6 +1,7 @@
 package com.pdfa.pdfa_app.user_interface.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,11 +21,15 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.user_interface.rooting.Screen
 
 @Composable
-fun RecipeCard() {
+fun RecipeCard(
+    navController: NavController
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -35,6 +40,9 @@ fun RecipeCard() {
             )
             .clip(AppShapes.CornerL)
             .background(Color.White)
+            .clickable {
+                navController.navigate(Screen.RecipeDescScreen.rout)
+            }
             .padding(AppSpacing.M),
     ) {
 

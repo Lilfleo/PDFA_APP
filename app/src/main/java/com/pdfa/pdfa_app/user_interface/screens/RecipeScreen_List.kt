@@ -19,13 +19,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.user_interface.component.RecipeCard
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
 
 @Composable
-fun RecipeListScreen(){
+fun RecipeListScreen(
+    navController: NavController
+){
 
     val scrollState = rememberScrollState()
 
@@ -41,11 +44,11 @@ fun RecipeListScreen(){
             verticalArrangement = Arrangement.spacedBy(16.dp)
 
         ) {
-            RecipeCard()
-            RecipeCard()
-            RecipeCard()
-            RecipeCard()
-            RecipeCard()
+            RecipeCard(navController)
+            RecipeCard(navController)
+            RecipeCard(navController)
+            RecipeCard(navController)
+            RecipeCard(navController)
         }
         ScrollbarPersonnalisee(
             modifier = Modifier

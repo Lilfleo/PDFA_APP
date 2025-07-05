@@ -8,6 +8,7 @@ sealed class Screen(val rout: String) {
     object Recipe: Screen("recipe_screen")
     object Cookbook: Screen("cookbook_screen")
     object Food: Screen("food_screen")
+    object RecipeDescScreen: Screen("recipe_main_page")
 }
 
 data class NavigationItem(
@@ -42,6 +43,6 @@ val navigationItems = listOf(
         title = "Cookbook",
         route = Screen.Cookbook.rout,
         icon = AppIcons.Cookbook
-    )
-)
+    ),
 
+)

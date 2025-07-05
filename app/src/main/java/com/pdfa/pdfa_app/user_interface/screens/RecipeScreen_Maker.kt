@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
@@ -31,7 +32,9 @@ import com.pdfa.pdfa_app.user_interface.component.RecipeParameter
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
 
 @Composable
-fun RecipeMakerScreen(){
+fun RecipeMakerScreen(
+    navController : NavController
+){
 
     val scrollState = rememberScrollState()
     var showDialog by remember { mutableStateOf(false) }
@@ -48,11 +51,11 @@ fun RecipeMakerScreen(){
             verticalArrangement = Arrangement.spacedBy(16.dp)
 
         ) {
-            RecipeCard()
-            RecipeCard()
-            RecipeCard()
-            RecipeCard()
-            RecipeCard()
+            RecipeCard(navController)
+            RecipeCard(navController)
+            RecipeCard(navController)
+            RecipeCard(navController)
+            RecipeCard(navController)
 
         }
         ScrollbarPersonnalisee(
