@@ -68,7 +68,7 @@ fun RecipeMakerScreen(
 
         Box(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(0.95f)
                 .height(70.dp)
                 .align(Alignment.BottomCenter)
         ){

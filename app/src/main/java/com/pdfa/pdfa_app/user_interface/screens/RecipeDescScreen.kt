@@ -275,6 +275,5 @@ fun RecipeDetailScreen(
                 }
             }
         }
-
     }
 }
