@@ -41,7 +41,7 @@ fun RecipeCard(
             .clip(AppShapes.CornerL)
             .background(Color.White)
             .clickable {
-                navController.navigate(Screen.RecipeDescScreen.rout)
+                navController.navigate(Screen.RecipeDetailScreen.rout)
             }
             .padding(AppSpacing.M),
     ) {

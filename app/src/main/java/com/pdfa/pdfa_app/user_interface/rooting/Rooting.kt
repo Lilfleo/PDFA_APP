@@ -8,7 +8,7 @@ sealed class Screen(val rout: String) {
     object Recipe: Screen("recipe_screen")
     object Cookbook: Screen("cookbook_screen")
     object Food: Screen("food_screen")
-    object RecipeDescScreen: Screen("recipe_main_page")
+    object RecipeDetailScreen: Screen("recipe_main_page")
 }
 
 data class NavigationItem(

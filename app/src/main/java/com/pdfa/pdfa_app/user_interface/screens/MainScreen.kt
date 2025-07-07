@@ -24,7 +24,7 @@ import com.pdfa.pdfa_app.user_interface.screens.FridgeScreen
 import com.pdfa.pdfa_app.user_interface.screens.HomeScreen
 import kotlinx.coroutines.launch
 import com.pdfa.pdfa_app.user_interface.rooting.navigationItems
-import com.pdfa.pdfa_app.user_interface.screens.RecipeDescScreen
+import com.pdfa.pdfa_app.user_interface.screens.RecipeDetailScreen
 import com.pdfa.pdfa_app.user_interface.screens.ShoplistScreen
 
 
@@ -41,10 +41,10 @@ fun MainScreen() {
     val currentRoute = navBackStackEntry?.destination?.route
 
     val hideBottomBarRoutes = listOf(
-        Screen.RecipeDescScreen.rout
+        Screen.RecipeDetailScreen.rout
     )
     val showBackButtonRoutes = listOf(
-        Screen.RecipeDescScreen.rout
+        Screen.RecipeDetailScreen.rout
     )
 
     ModalNavigationDrawer(
@@ -108,7 +108,7 @@ fun MainScreen() {
                 composable(Screen.Recipe.rout) { RecipeScreen(navController) }
                 composable(Screen.Cookbook.rout) { CookbookScreen() }
                 composable (Screen.Food.rout ){ FoodScreen() }
-                composable(Screen.RecipeDescScreen.rout) { RecipeDescScreen(navController) }
+                composable(Screen.RecipeDetailScreen.rout) { RecipeDetailScreen(navController) }
             }
         }
     }
