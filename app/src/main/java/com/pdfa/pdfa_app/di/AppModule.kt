@@ -3,8 +3,10 @@ package com.pdfa.pdfa_app.di
 import android.content.Context
 import androidx.room.Room
 
-import com.pdfa.pdfa_app.data.dao.FoodDao
+import com.pdfa.pdfa_app.data.dao.*
 import com.pdfa.pdfa_app.data.database.AppDatabase
+import com.pdfa.pdfa_app.data.repository.AllergyRepository
+import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
 import dagger.Module
 import dagger.Provides
@@ -20,13 +22,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext app: Context, foodDaoProvider: Provider<FoodDao>): AppDatabase {
+    fun provideDatabase(@ApplicationContext app: Context, foodDaoProvider: Provider<FoodDao>, allergyDaoProvider: Provider<AllergyDao>): AppDatabase {
         return Room.databaseBuilder(
             app,
             AppDatabase::class.java,
             "app_db"
         )
-            .addCallback(AppDatabase.createCallback { foodDaoProvider.get() })
+            .addCallback(AppDatabase.createCallback({foodDaoProvider.get()},{allergyDaoProvider.get()}))
             .build()
     }
 
@@ -36,4 +38,18 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFoodRepository(dao: FoodDao): FoodRepository = FoodRepository(dao)
+
+    @Provides
+    fun provideAllergyDao(db: AppDatabase): AllergyDao = db.allergyDao()
+
+    @Provides
+    @Singleton
+    fun provideAllergyRepository(dao: AllergyDao): AllergyRepository = AllergyRepository(dao)
+
+    @Provides
+    fun provideFoodDetailDao(db: AppDatabase): FoodDetailDao = db.foodDetailDao()
+
+    @Provides
+    @Singleton
+    fun provideFoodDetailRepository(dao: FoodDetailDao): FoodDetailRepository = FoodDetailRepository(dao)
 }

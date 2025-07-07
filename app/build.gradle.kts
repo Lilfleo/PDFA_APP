@@ -71,4 +71,12 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.material.icons.extended.v178)
     implementation(libs.androidx.ui.text.google.fonts)
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
+    // Unit testing
+    testImplementation(libs.junit)
+    // Kotlin Coroutines Test
+    testImplementation(libs.kotlinx.coroutines.test)
+    // MockK for mocking
+    testImplementation(libs.mockk)
+
 }
