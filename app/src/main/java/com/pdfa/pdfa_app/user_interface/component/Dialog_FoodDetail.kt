@@ -40,6 +40,7 @@ import androidx.compose.ui.window.Dialog
 import com.pdfa.pdfa_app.R
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.window.DialogProperties
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
@@ -61,10 +62,15 @@ fun FoodDetailDialog(
 
 
 
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(
+            usePlatformDefaultWidth = false // Permet d'utiliser toute la largeur
+        )
+    ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(0.90f)
                 .background(
                     color = Color.White,
                     shape = AppShapes.CornerL
