@@ -40,7 +40,6 @@ class SeedingManager(
 
     private fun loadJsonFromAssets(fileName: String): String {
         return context.assets.open(fileName).bufferedReader().use { it.readText() }
-        // doit t'on le placer dans assets ou context?
     }
 
     private fun parseJsonData(jsonString: String): List<FoodSeed> {
