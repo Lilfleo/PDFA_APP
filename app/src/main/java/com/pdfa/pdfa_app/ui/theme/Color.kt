@@ -17,6 +17,7 @@ object AppColors{
     val NavBackgroundHover = Color(0xFFECE6DA)
     val MainGreen = Color(0xFF91AB75)
     val Scrollbar = Color( 0xFF999999)
+    val MainGrey = Color(0xFF656565)
 
     //TAGSColors
     //Difficulty

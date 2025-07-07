@@ -6,6 +6,7 @@ import androidx.compose.ui.unit.dp
 object AppShapes {
     // Formes basiques
     val None = RoundedCornerShape(0.dp)
+    val CornerXS = RoundedCornerShape(4.dp)
     val CornerS = RoundedCornerShape(6.dp)
     val CornerM = RoundedCornerShape(8.dp)
     val CornerL = RoundedCornerShape(12.dp)
