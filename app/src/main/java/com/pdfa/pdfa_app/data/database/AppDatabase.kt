@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import com.pdfa.pdfa_app.data.dao.AllergyDao
 import com.pdfa.pdfa_app.data.model.Allergy
+import com.pdfa.pdfa_app.data.seeding.SeedingManager
 
 
 @Database(entities = [Food::class, Allergy::class], version = 2)
@@ -32,16 +33,18 @@ abstract class AppDatabase : RoomDatabase() {
                 .addCallback(
                     createCallback(
                         {getInstance(context).foodDao()},
-                        {getInstance(context).allergyDao()}
+                        {getInstance(context).allergyDao()},
+                        context
                     )
                 )
                 .fallbackToDestructiveMigration()
                 .build().also { INSTANCE = it }
             }
 
-        fun createCallback(foodDaoProvider: () -> FoodDao, allergyDaoProvider: () -> AllergyDao) = object : Callback() {
+        fun createCallback(foodDaoProvider: () -> FoodDao, allergyDaoProvider: () -> AllergyDao, context: Context) = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
+                SeedingManager(context, foodDaoProvider()).seed()
 
                 // Launch coroutine to insert data
                 CoroutineScope(Dispatchers.IO).launch {

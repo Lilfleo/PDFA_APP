@@ -27,7 +27,7 @@ object AppModule {
             AppDatabase::class.java,
             "app_db"
         )
-            .addCallback(AppDatabase.createCallback({foodDaoProvider.get()},{allergyDaoProvider.get()}))
+            .addCallback(AppDatabase.createCallback({foodDaoProvider.get()},{allergyDaoProvider.get()}, app))
             .build()
     }
 
