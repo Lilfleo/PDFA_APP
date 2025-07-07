@@ -1,5 +1,6 @@
 package com.pdfa.pdfa_app.user_interface.component
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.pdfa.pdfa_app.ui.theme.AppColors
 
+@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 fun ScrollbarPersonnalisee(
     modifier: Modifier = Modifier,

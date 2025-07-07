@@ -1,6 +1,8 @@
 import android.annotation.SuppressLint
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,6 +40,7 @@ import androidx.compose.ui.window.Dialog
 import com.pdfa.pdfa_app.R
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
+import com.pdfa.pdfa_app.user_interface.component.CustomFoodSelector
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -49,6 +52,10 @@ fun FoodDetailDialog(
 ) {
     val context = LocalContext.current
     var selectedDate by remember { mutableStateOf("") }
+    var selectedFood by remember { mutableStateOf("") }
+    var priceText by remember { mutableStateOf("") }
+    val interactionSource = remember { MutableInteractionSource() }
+
 
 
     Dialog(onDismissRequest = onDismiss) {
@@ -80,64 +87,36 @@ fun FoodDetailDialog(
                     )
                 }
                 Spacer(modifier = Modifier.height(8.dp))
-                // Tes champs ici (quantité, date, etc.)
 
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    var isChecked by remember { mutableStateOf(false) }
-                    Checkbox(
-                        checked = isChecked,
-                        onCheckedChange = { isChecked = it }
-                    )
-                    Text("Souhaites-tu l’ajouter au catalogue ?")
-                }
+                CustomFoodSelector(
+                    foodList = listOf("Abricot", "Banane", "Cerise","Test_1","Test_2","Test_3"), // exemple
+                    selectedFood = selectedFood,
+                    onFoodSelected = { selectedFood = it }
+                )
 
                 Spacer(modifier = Modifier.height(8.dp))
-                // Etat de la date
-                var selectedDateText by remember { mutableStateOf("") }
 
-                val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                // Checkbox conditionnelle
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    OutlinedTextField(
-                        value = selectedDateText,
-                        onValueChange = { selectedDateText = it },
-                        label = { Text("Date d'achat") },
-                        modifier = Modifier.weight(1f),
-                        singleLine = true
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    IconButton(
-                        onClick = {
-                            val now = LocalDate.now()
-                            val datePicker = android.app.DatePickerDialog(
-                                context,
-                                { _, year, month, dayOfMonth ->
-                                    val date = LocalDate.of(year, month + 1, dayOfMonth)
-                                    selectedDateText = date.format(formatter)
-                                },
-                                now.year,
-                                now.monthValue - 1,
-                                now.dayOfMonth
-                            )
-                            datePicker.show()
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.DateRange,
-                            contentDescription = "Choisir une date"
+                AnimatedVisibility(visible = selectedFood == "Autre") {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        var isChecked by remember { mutableStateOf(false) }
+                        Checkbox(
+                            checked = isChecked,
+                            onCheckedChange = { isChecked = it }
                         )
+                        Text("Souhaites-tu l’ajouter au catalogue ?")
                     }
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
+
+
                 // Etat quantité
                 var quantityText by remember { mutableStateOf("") }
 
-// Etat unité
+            // Etat unité
                 var selectedUnit by remember { mutableStateOf("Gramme") }
                 val unitOptions = listOf("Gramme", "Pièce")
 
@@ -198,7 +177,104 @@ fun FoodDetailDialog(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
+                // Etat de la date
+                var selectedDateText by remember { mutableStateOf("") }
 
+                val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        value = selectedDateText,
+                        onValueChange = { selectedDateText = it },
+                        label = { Text("Date d'achat") },
+                        modifier = Modifier.weight(1f),
+                        singleLine = true
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    IconButton(
+                        onClick = {
+                            val now = LocalDate.now()
+                            val datePicker = android.app.DatePickerDialog(
+                                context,
+                                { _, year, month, dayOfMonth ->
+                                    val date = LocalDate.of(year, month + 1, dayOfMonth)
+                                    selectedDateText = date.format(formatter)
+                                },
+                                now.year,
+                                now.monthValue - 1,
+                                now.dayOfMonth
+                            )
+                            datePicker.show()
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.DateRange,
+                            contentDescription = "Choisir une date"
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Etat de la date
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OutlinedTextField(
+                        value = selectedDateText,
+                        onValueChange = { selectedDateText = it },
+                        label = { Text("DLC") },
+                        modifier = Modifier.weight(1f),
+                        singleLine = true
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    IconButton(
+                        onClick = {
+                            val now = LocalDate.now()
+                            val datePicker = android.app.DatePickerDialog(
+                                context,
+                                { _, year, month, dayOfMonth ->
+                                    val date = LocalDate.of(year, month + 1, dayOfMonth)
+                                    selectedDateText = date.format(formatter)
+                                },
+                                now.year,
+                                now.monthValue - 1,
+                                now.dayOfMonth
+                            )
+                            datePicker.show()
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.DateRange,
+                            contentDescription = "Choisir une date"
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+
+
+                    OutlinedTextField(
+                        value = priceText,
+                        onValueChange = { priceText = it },
+                        placeholder = { Text("Prix d'achat (optionnel...)") },
+                        singleLine = true,
+                        modifier = Modifier
+                            .weight(1f)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
 
                 Button(
                     onClick = onDismiss, //a changer ici pour sauvegarder et pas quitter
