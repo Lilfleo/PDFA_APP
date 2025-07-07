@@ -6,6 +6,7 @@ import androidx.room.Room
 import com.pdfa.pdfa_app.data.dao.*
 import com.pdfa.pdfa_app.data.database.AppDatabase
 import com.pdfa.pdfa_app.data.repository.AllergyRepository
+import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
 import dagger.Module
 import dagger.Provides
@@ -45,4 +46,10 @@ object AppModule {
     @Singleton
     fun provideAllergyRepository(dao: AllergyDao): AllergyRepository = AllergyRepository(dao)
 
+    @Provides
+    fun provideFoodDetailDao(db: AppDatabase): FoodDetailDao = db.foodDetailDao()
+
+    @Provides
+    @Singleton
+    fun provideFoodDetailRepository(dao: FoodDetailDao): FoodDetailRepository = FoodDetailRepository(dao)
 }
