@@ -10,14 +10,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
 import com.pdfa.pdfa_app.data.dao.AllergyDao
+import com.pdfa.pdfa_app.data.dao.FoodDetailDao
 import com.pdfa.pdfa_app.data.model.Allergy
+import com.pdfa.pdfa_app.data.model.FoodDetail
 
 
-@Database(entities = [Food::class, Allergy::class], version = 2)
+@Database(entities = [Food::class, Allergy::class, FoodDetail::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodDao(): FoodDao
     abstract fun allergyDao(): AllergyDao
+    abstract fun foodDetailDao(): FoodDetailDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
@@ -32,7 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
                 .addCallback(
                     createCallback(
                         {getInstance(context).foodDao()},
-                        {getInstance(context).allergyDao()}
+                        {getInstance(context).allergyDao()},
                     )
                 )
                 .fallbackToDestructiveMigration()
