@@ -15,7 +15,11 @@ import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.data.model.FoodDetail
 
 
-@Database(entities = [Food::class, Allergy::class, FoodDetail::class], version = 2)
+@Database(entities = [
+    Food::class,
+    Allergy::class,
+    FoodDetail::class],
+    version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodDao(): FoodDao
@@ -32,13 +36,13 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "app_db"
                 )
-                .addCallback(
-                    createCallback(
-                        {getInstance(context).foodDao()},
-                        {getInstance(context).allergyDao()},
+                    .addCallback(
+                        createCallback(
+                            {getInstance(context).foodDao()},
+                            {getInstance(context).allergyDao()},
+                        )
                     )
-                )
-                .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration(true)
                 .build().also { INSTANCE = it }
             }
 
