@@ -11,7 +11,9 @@ enum class AppIcons(@DrawableRes val drawableRes: Int) {
     Fridge(R.drawable.ic_nav_fridge),
     Recipe(R.drawable.ic_nav_recipe),
     Cookbook(R.drawable.ic_nav_cookbook),
-    Shoplist(R.drawable.ic_nav_shoplist)
+    Shoplist(R.drawable.ic_nav_shoplist),
+
+    Bag(R.drawable.ic_nav_bag)
 }
 
 @Composable

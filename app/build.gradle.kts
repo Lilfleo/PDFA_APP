@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("com.nomanr.plugin.lumo")
 }
 
 android {
@@ -68,6 +69,8 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.material.icons.extended.v178)
+    implementation(libs.androidx.ui.text.google.fonts)
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
     // Unit testing
     testImplementation(libs.junit)
@@ -75,4 +78,5 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     // MockK for mocking
     testImplementation(libs.mockk)
+
 }

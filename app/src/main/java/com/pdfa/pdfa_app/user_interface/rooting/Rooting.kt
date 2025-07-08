@@ -8,6 +8,8 @@ sealed class Screen(val rout: String) {
     object Recipe: Screen("recipe_screen")
     object Cookbook: Screen("cookbook_screen")
     object Food: Screen("food_screen")
+    object RecipeDetailScreen: Screen("recipe_main_page")
+    object RecipeStepsScreen: Screen("recipe_main_page")
 }
 
 data class NavigationItem(
@@ -19,19 +21,9 @@ data class NavigationItem(
 val navigationItems = listOf(
 
     NavigationItem(
-        title = "Recipe",
-        route = Screen.Recipe.rout,
-        icon = AppIcons.Recipe
-    ),
-    NavigationItem(
         title = "Shop-list",
         route = Screen.Shoplist.rout,
         icon = AppIcons.Shoplist
-    ),
-    NavigationItem(
-        title = "Home",
-        route = Screen.Home.rout,
-        icon = AppIcons.HOME
     ),
     NavigationItem(
         title = "Fridge",
@@ -39,14 +31,19 @@ val navigationItems = listOf(
         icon = AppIcons.Fridge
     ),
     NavigationItem(
+        title = "Home",
+        route = Screen.Home.rout,
+        icon = AppIcons.HOME
+    ),
+    NavigationItem(
+        title = "Recipe",
+        route = Screen.Recipe.rout,
+        icon = AppIcons.Recipe
+    ),
+    NavigationItem(
         title = "Cookbook",
         route = Screen.Cookbook.rout,
         icon = AppIcons.Cookbook
     ),
-    NavigationItem(
-        title = "Food",
-        route = Screen.Food.rout,
-        icon = AppIcons.Cookbook
-    )
-)
 
+)
