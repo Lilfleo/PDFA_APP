@@ -109,9 +109,9 @@ fun RecipeParameter(
 
                 //Tag sélectionné
                 Row {
-                    TagsBox("Facile", "Easy")
-                    TagsBox("Facile", "Easy")
-                    TagsBox("Facile", "Easy")
+                    TagsBox("Facile", "Easy", true)
+                    TagsBox("Facile", "Easy", true)
+                    TagsBox("Facile", "Easy", true)
                 }
 
                 //Autres Tag par catégorie
@@ -124,9 +124,9 @@ fun RecipeParameter(
                         text = "Titre de la catégorie"
                     )
                     Row {
-                        TagsBox("Facile", "Easy")
-                        TagsBox("Facile", "Easy")
-                        TagsBox("Facile", "Easy")
+                        TagsBox("Facile", "Easy", false)
+                        TagsBox("Facile", "Easy", false)
+                        TagsBox("Facile", "Easy", false)
                     }
                 }
 

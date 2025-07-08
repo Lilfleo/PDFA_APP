@@ -79,13 +79,13 @@ fun RecipeCardCheck() {
                     .horizontalScroll(rememberScrollState()),
 
                 ) {
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
 
             }
             //TAG
@@ -96,13 +96,13 @@ fun RecipeCardCheck() {
                     .padding(top = 2.dp, end = 2.dp)
                     .horizontalScroll(rememberScrollState()),
             ) {
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
             }
         }
     }

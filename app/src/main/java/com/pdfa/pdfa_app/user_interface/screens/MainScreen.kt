@@ -25,6 +25,7 @@ import com.pdfa.pdfa_app.user_interface.screens.HomeScreen
 import kotlinx.coroutines.launch
 import com.pdfa.pdfa_app.user_interface.rooting.navigationItems
 import com.pdfa.pdfa_app.user_interface.screens.RecipeDetailScreen
+import com.pdfa.pdfa_app.user_interface.screens.RecipeStepsScreen
 import com.pdfa.pdfa_app.user_interface.screens.ShoplistScreen
 
 
@@ -109,6 +110,7 @@ fun MainScreen() {
                 composable(Screen.Cookbook.rout) { CookbookScreen() }
                 composable (Screen.Food.rout ){ FoodScreen() }
                 composable(Screen.RecipeDetailScreen.rout) { RecipeDetailScreen(navController) }
+                composable(Screen.RecipeStepsScreen.rout) {RecipeStepsScreen()}
             }
         }
     }

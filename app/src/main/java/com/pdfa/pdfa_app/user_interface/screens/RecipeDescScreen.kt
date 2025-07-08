@@ -74,14 +74,14 @@ fun RecipeDetailScreen(
 
             //Tags
             Row {
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
             }
 
             //Régimes
             Row {
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
             }
 
             //Temps
