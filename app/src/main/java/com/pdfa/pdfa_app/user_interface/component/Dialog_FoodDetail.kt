@@ -26,6 +26,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -40,6 +41,7 @@ import androidx.compose.ui.window.Dialog
 import com.pdfa.pdfa_app.R
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
+
 import androidx.compose.ui.window.DialogProperties
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
@@ -52,14 +54,13 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun FoodDetailDialog(
     foodName: String,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    onSnackbarMessage: (String,String) -> Unit
 ) {
     val context = LocalContext.current
     var selectedDate by remember { mutableStateOf("") }
     var selectedFood by remember { mutableStateOf("") }
     var priceText by remember { mutableStateOf("") }
-
-
 
 
     Dialog(
@@ -285,8 +286,14 @@ fun FoodDetailDialog(
 
                 Spacer(modifier = Modifier.height(AppSpacing.S))
 
+
+
+
                 Button(
-                    onClick = onDismiss, //a changer ici pour sauvegarder et pas quitter
+                    onClick = {
+                        onDismiss()
+                        onSnackbarMessage("Test", "waiting")
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = AppColors.MainGreen
@@ -294,8 +301,8 @@ fun FoodDetailDialog(
                 ) {
                     Text("Ajouter")
                 }
-            }
 
+            }
         }
     }
 }
