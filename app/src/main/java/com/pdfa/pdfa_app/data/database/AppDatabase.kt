@@ -38,7 +38,7 @@ abstract class AppDatabase : RoomDatabase() {
                         {getInstance(context).allergyDao()},
                     )
                 )
-                .fallbackToDestructiveMigration()
+                .fallbackToDestructiveMigration(true)
                 .build().also { INSTANCE = it }
             }
 

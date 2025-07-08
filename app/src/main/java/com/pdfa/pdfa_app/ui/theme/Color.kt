@@ -18,6 +18,7 @@ object AppColors{
     val MainGreen = Color(0xFF91AB75)
     val Scrollbar = Color( 0xFF999999)
     val MainGrey = Color(0xFF656565)
+    val LightGrey = Color(0xFFF4F3F0)
     val MainRed = Color(0xFFF68989)
     val MainYellow = Color(0xFFF1EB9B)
 

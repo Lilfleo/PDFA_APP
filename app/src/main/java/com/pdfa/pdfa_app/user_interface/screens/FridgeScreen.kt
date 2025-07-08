@@ -3,6 +3,7 @@ package com.pdfa.pdfa_app.user_interface.screens
 import FoodDetailDialog
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,6 +26,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,19 +38,33 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-
 import androidx.compose.ui.zIndex
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
 import com.pdfa.pdfa_app.data.FridgeItem
+import com.pdfa.pdfa_app.data.model.Food
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.ui.viewmodel.FoodDetailViewModel
+import com.pdfa.pdfa_app.ui.viewmodel.FoodViewModel
 import com.pdfa.pdfa_app.user_interface.component.AddButton
 import com.pdfa.pdfa_app.user_interface.component.CustomSnackbarHost
+import com.pdfa.pdfa_app.user_interface.component.DeleteConfirmationDialog
+import com.pdfa.pdfa_app.user_interface.component.EditFoodDialog
+import com.pdfa.pdfa_app.user_interface.component.FridgeItemActionDialog
 import com.pdfa.pdfa_app.user_interface.component.SearchBar
 
 
+
+
+
 @Composable
-fun FridgeScreen(onAddClick: () -> Unit) {
+fun FridgeScreen(onAddClick: () -> Unit, viewModel: FoodViewModel= hiltViewModel(),foodDetailviewModel: FoodDetailViewModel = hiltViewModel()) {
+
+    val foodList by viewModel.foodList.collectAsState()
+    val foodDetailList by foodDetailviewModel.foodDetail.collectAsState()
+
 
     var searchQuery by remember { mutableStateOf("") }
     var showDialogAdd by remember { mutableStateOf(false) }
@@ -58,33 +74,13 @@ fun FridgeScreen(onAddClick: () -> Unit) {
 
     var snackbarMessage by remember { mutableStateOf<String?>(null) }
     var snackbarType by remember { mutableStateOf<String?>(null) }
+    var selectedItem by remember { mutableStateOf<Food?>(null) }
+    var isEditing by remember { mutableStateOf(false) }
+    var isDeleteConfirmationVisible by remember { mutableStateOf(false) }
 
 
-    // Exemple de données en dur
-    val fridgeItems = listOf(
-        FridgeItem("Carottes", 41),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Épinards", 23),
-        FridgeItem("Farine", 364)
-    )
+    //foodDetailviewModel.addFoodDetail(foodDetail = )
+
 
     // État de scroll de la liste
     val listState = rememberLazyListState()
@@ -97,7 +93,6 @@ fun FridgeScreen(onAddClick: () -> Unit) {
         }
     }
 
-
     // Est-ce qu'on est en bas ?
     val isAtEnd by remember {
         derivedStateOf {
@@ -108,9 +103,6 @@ fun FridgeScreen(onAddClick: () -> Unit) {
     }
 
     // reception du message pour la snackbar
-
-
-
     LaunchedEffect(snackbarMessage) {
         if (snackbarMessage != null && snackbarType != null) {
             val duration = when (snackbarType) {
@@ -130,10 +122,6 @@ fun FridgeScreen(onAddClick: () -> Unit) {
             snackbarType = null
         }
     }
-
-
-
-
 
 
     Box(
@@ -165,7 +153,6 @@ fun FridgeScreen(onAddClick: () -> Unit) {
                 }
             }
         }
-
 
         // TOUT EST DANS UNE SEULE BOX
         Box(
@@ -225,10 +212,11 @@ fun FridgeScreen(onAddClick: () -> Unit) {
                         state = listState,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        items(fridgeItems) { item ->
+                        items(foodList) { item ->
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
+                                    .clickable { selectedItem = item }
                                     .padding(horizontal = AppSpacing.M, AppSpacing.S),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
@@ -244,7 +232,7 @@ fun FridgeScreen(onAddClick: () -> Unit) {
                                     style = MaterialTheme.typography.bodyLarge
                                 )
                                 Text(
-                                    text = "${item.calories} kcal",
+                                    text = "${item.caloriesPerKg} kcal",
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
@@ -300,7 +288,65 @@ fun FridgeScreen(onAddClick: () -> Unit) {
 
         }
     }
+    selectedItem?.let { item ->
+        when {
+            isDeleteConfirmationVisible -> {
+                DeleteConfirmationDialog(
+                    itemName = item.name,
+                    onConfirm = {
+                        //fridgeItems.remove(item) // ou ViewModel etc.
+                        isDeleteConfirmationVisible = false
+                        selectedItem = null
+                    },
+                    onDismiss = {
+                        isDeleteConfirmationVisible = false
+                        selectedItem = null
+                    }
+                )
+            }
+            isEditing -> {
+                EditFoodDialog(
+                    item = item,
+                    onDismiss = {
+                        isEditing = false
+                        selectedItem = null
+                    },
+                    onEditConfirmed = { updatedItem ->
+                        // mise à jour ici
+                    },
+                    onSnackbarMessage = { msg, type -> /* ... */ }
+                )
+            }
+            else -> {
+                FridgeItemActionDialog(
+                    item = item,
+                    onDismiss = { selectedItem = null },
+                    onEditClick = { isEditing = true },
+                    onDeleteClick = {
+                        isDeleteConfirmationVisible = true
+                        isEditing = false
+                    }
+                )
+            }
+        }
+
 }
+    if (isDeleteConfirmationVisible && selectedItem != null) {
+        DeleteConfirmationDialog(
+            itemName = selectedItem!!.name,
+            onConfirm = {
+                // Supprime ici ton item de fridgeItems
+                // Exemple : fridgeItems.remove(selectedItem)
+            },
+            onDismiss = {
+                isDeleteConfirmationVisible = false
+                selectedItem = null
+            }
+        )
+    }
+
+}
+
 
 
 
