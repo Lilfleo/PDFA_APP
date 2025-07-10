@@ -38,8 +38,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
+import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.user_interface.component.RecipeCard
 import com.pdfa.pdfa_app.user_interface.component.TagsBox
+import com.pdfa.pdfa_app.user_interface.rooting.Screen
 
 @Composable
 fun RecipeDetailScreen(
@@ -53,7 +56,7 @@ fun RecipeDetailScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(AppColors.Primary)
-            .padding(10.dp)
+            .padding(AppSpacing.M)
     ){
         Column(
             modifier = Modifier
@@ -63,13 +66,17 @@ fun RecipeDetailScreen(
             //Titre
             Row {
                 Text(
-                    text = "Recipe title"
+                    text = "Recipe title",
+                    style = AppTypo.Title,
+                    color = Color.Black
                 )
 
             }
             //Subtitle
             Text(
-                text = "subtitle"
+                text = "subtitle",
+                style = AppTypo.BodyLight,
+                color = Color.Black
             )
 
             //Tags
@@ -87,15 +94,15 @@ fun RecipeDetailScreen(
             //Temps
             Row(
                 modifier = Modifier
-                    .padding(vertical = 10.dp)
+                    .padding(vertical = AppSpacing.M)
             ) {
                 RecipeCard("20", "time")
 
-                Spacer(modifier = Modifier.padding(10.dp))
+                Spacer(modifier = Modifier.padding(AppSpacing.M))
 
                 RecipeCard("20", "time")
 
-                Spacer(modifier = Modifier.padding(10.dp))
+                Spacer(modifier = Modifier.padding(AppSpacing.M))
 
                 RecipeCard("20", "calories")
             }
@@ -109,12 +116,12 @@ fun RecipeDetailScreen(
                 Text(
                     text = "Pour"
                 )
-                Spacer(Modifier.padding(1.dp))
+                Spacer(Modifier.padding(AppSpacing.XXXXS))
                 Box(
                     modifier = Modifier
                         .width(50.dp)
                         .height(30.dp)
-                        .padding(2.dp)
+                        .padding(AppSpacing.XXXS)
                 ){
                     Row(
                         modifier = Modifier
@@ -208,7 +215,7 @@ fun RecipeDetailScreen(
                     }
                 }
 
-                Spacer(Modifier.padding(1.dp))
+                Spacer(Modifier.padding(AppSpacing.XXXXS))
                 Text(
                     text = "Personnes"
                 )
@@ -218,8 +225,8 @@ fun RecipeDetailScreen(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(500.dp)
-                    .padding(vertical = 10.dp)
+                    .weight(1f)
+                    .padding(vertical = AppSpacing.M)
                     .shadow(
                         elevation = 2.dp,
                         shape = AppShapes.CornerL
@@ -236,8 +243,8 @@ fun RecipeDetailScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp),
-                verticalAlignment = Alignment.Bottom
+                    .height(50.dp),
+                horizontalArrangement = Arrangement.End
             ) {
                 Box(
                     contentAlignment = Alignment.Center,
@@ -251,11 +258,13 @@ fun RecipeDetailScreen(
                         }
                 ) {
                     Text(
-                        text = "Ajouter à la liste"
+                        text = "Ajouter à la liste",
+                        style = AppTypo.SubTitle,
+                        color = Color.White
                     )
                 }
 
-                Spacer(modifier = Modifier.padding(5.dp))
+                Spacer(modifier = Modifier.padding(AppSpacing.XXS))
 
                 Box(
                     contentAlignment = Alignment.Center,
@@ -265,11 +274,13 @@ fun RecipeDetailScreen(
                         .clip(AppShapes.CornerL)
                         .background(AppColors.MainGreen)
                         .clickable {
-
+                            navController.navigate(Screen.RecipeStepsScreen.rout)
                         }
                 ) {
                     Text(
                         text = "Voir la recette",
+                        style = AppTypo.SubTitle,
+                        color = Color.White
 
                     )
                 }

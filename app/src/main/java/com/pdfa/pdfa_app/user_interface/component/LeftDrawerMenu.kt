@@ -31,7 +31,6 @@ fun DrawerContent(
     onDestinationClicked: (String) -> Unit
 ) {
 
-
     Column (
         modifier = Modifier.padding(horizontal = 16.dp)
             .verticalScroll(rememberScrollState())
