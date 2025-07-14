@@ -17,7 +17,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.BookmarkAdd
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.outlined.Bookmark
+import androidx.compose.material.icons.outlined.BookmarkAdd
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -51,6 +55,7 @@ fun RecipeDetailScreen(
 
     var nbPeople by remember { mutableIntStateOf(2) }
     var expanded by remember { mutableStateOf(false) }
+    var addToCookbook by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -64,13 +69,35 @@ fun RecipeDetailScreen(
         ) {
 
             //Titre
-            Row {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Text(
                     text = "Recipe title",
                     style = AppTypo.Title,
                     color = Color.Black
                 )
 
+                Box(
+                    modifier = Modifier
+                        .height(AppSpacing.XXXL)
+                        .width(AppSpacing.XXXL)
+                        .background(
+                            color = Color.White,
+                            shape = AppShapes.CornerXL
+                        )
+                        .clickable {
+                            addToCookbook = !addToCookbook
+                        },
+                    contentAlignment = Alignment.Center
+                ){
+                    Icon(
+                        imageVector = if(addToCookbook) Icons.Default.Bookmark else Icons.Outlined.BookmarkAdd,
+                        contentDescription = "Add to Cookbook"
+                    )
+                }
             }
             //Subtitle
             Text(
