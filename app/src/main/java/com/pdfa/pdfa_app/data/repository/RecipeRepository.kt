@@ -24,7 +24,7 @@ class RecipeRepository(
     }
 
     suspend fun linkRecipeWithTag(recipeId: Int, tagId: Int) {
-        crossRefDao.insertRecipeTagCrossRef(
+        crossRefDao.insertRecipeTag(
             RecipeTagCrossRef(recipeId = recipeId, tagId = tagId)
         )
     }
@@ -39,11 +39,11 @@ class RecipeRepository(
         return recipeId.toLong()
     }
 
-    suspend fun getRecipeWithTags(recipeId: Int): RecipeWithTags {
+    suspend fun getRecipeWithTags(recipeId: Int): RecipeWithTags? {
         return recipeDao.getRecipeWithTags(recipeId)
     }
 
-    suspend fun getTagWithRecipes(tagId: Int): TagWithRecipes {
+    suspend fun getRecipesFromTag(tagId: Int): TagWithRecipes? {
         return tagDao.getTagWithRecipes(tagId)
     }
 }

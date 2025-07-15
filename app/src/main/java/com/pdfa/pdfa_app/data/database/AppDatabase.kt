@@ -11,11 +11,13 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import com.pdfa.pdfa_app.data.dao.AllergyDao
 import com.pdfa.pdfa_app.data.dao.FoodDetailDao
+import com.pdfa.pdfa_app.data.dao.FoodRecipeCrossRefDao
 import com.pdfa.pdfa_app.data.dao.RecipeDao
 import com.pdfa.pdfa_app.data.dao.RecipeTagCrossRefDao
 import com.pdfa.pdfa_app.data.dao.TagDao
 import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.data.model.FoodDetail
+import com.pdfa.pdfa_app.data.model.FoodRecipeCrossRef
 import com.pdfa.pdfa_app.data.model.Recipe
 import com.pdfa.pdfa_app.data.model.RecipeTagCrossRef
 import com.pdfa.pdfa_app.data.model.Tag
@@ -27,7 +29,8 @@ import com.pdfa.pdfa_app.data.model.Tag
     FoodDetail::class,
     Tag::class,
     Recipe::class,
-    RecipeTagCrossRef::class],
+    RecipeTagCrossRef::class,
+    FoodRecipeCrossRef::class],
     version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -37,6 +40,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun tagDao(): TagDao
     abstract fun recipeDao(): RecipeDao
     abstract fun recipeTagCrossRefDao(): RecipeTagCrossRefDao
+    abstract fun  foodRecipeCrossRefDao(): FoodRecipeCrossRefDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
@@ -100,16 +104,17 @@ abstract class AppDatabase : RoomDatabase() {
                             insertAllergy(Allergy(foodId = tomatoId.toInt()))
                         }
 
-//                        database.recipeDao().apply {
-//                            insertRecipe(
-//                                Recipe(
-//                                    name = "Carrottes au thon",
-//                                    description = "Plein de chose a faire",
-//                                    totalCalories = 1000,
-//                                    createdAt = Date()
-//                                )
-//                            )
-//                        }
+                        database.recipeDao().apply {
+                            insertRecipe(
+                                Recipe(
+                                    name = "Carrottes au thon",
+                                    description = "Plein de chose a faire",
+                                    totalCalories = 1000,
+                                    createdAt = Date()
+                                )
+                            )
+                        }
+
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }

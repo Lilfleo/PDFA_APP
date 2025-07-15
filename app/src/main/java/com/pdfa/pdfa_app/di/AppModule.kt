@@ -5,6 +5,7 @@ import androidx.room.Room
 
 import com.pdfa.pdfa_app.data.dao.*
 import com.pdfa.pdfa_app.data.database.AppDatabase
+import com.pdfa.pdfa_app.data.model.FoodRecipeCrossRef
 import com.pdfa.pdfa_app.data.repository.AllergyRepository
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
@@ -59,4 +60,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRecipeRepository(recipeDao: RecipeDao, tagDao: TagDao, crossRefDao: RecipeTagCrossRefDao): RecipeRepository = RecipeRepository(recipeDao, tagDao, crossRefDao)
+
+    @Provides
+    fun provideFoodRecipeCrossRefDao(db: AppDatabase): FoodRecipeCrossRefDao = db.foodRecipeCrossRefDao()
 }
