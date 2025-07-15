@@ -82,12 +82,13 @@ fun RecipeDetailScreen(
 
                 Box(
                     modifier = Modifier
-                        .height(AppSpacing.XXXL)
-                        .width(AppSpacing.XXXL)
+                        .height(AppSpacing.XXXXL)
+                        .width(AppSpacing.XXXXL)
                         .background(
                             color = Color.White,
-                            shape = AppShapes.CornerXL
+                            shape = AppShapes.CornerL
                         )
+                        .clip(shape = AppShapes.CornerL)
                         .clickable {
                             addToCookbook = !addToCookbook
                         },

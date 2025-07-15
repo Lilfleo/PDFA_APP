@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
+import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 
 @Composable
@@ -88,7 +89,7 @@ fun CookbookSection(
                 ) + fadeOut(animationSpec = tween(300))
             ) {
                 Column(
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                    modifier = Modifier.padding(horizontal = AppSpacing.L, vertical = AppSpacing.M),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
 
                 ) {

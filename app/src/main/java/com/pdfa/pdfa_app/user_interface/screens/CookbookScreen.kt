@@ -100,7 +100,7 @@ fun CookbookScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(scrollState),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                verticalArrangement = Arrangement.spacedBy(AppSpacing.XS)
             ) {
                 CookbookSection(navController)
                 CookbookSection(navController)
