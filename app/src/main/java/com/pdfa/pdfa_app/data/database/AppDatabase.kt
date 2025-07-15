@@ -59,47 +59,59 @@ abstract class AppDatabase : RoomDatabase() {
 
                 // Launch coroutine to insert data
                 CoroutineScope(Dispatchers.IO).launch {
-                    val database = INSTANCE ?: return@launch
+                    try {
+                        val database = INSTANCE ?: return@launch
 
-                    val carrotId: Long
-                    val tomatoId: Long
+                        val carrotId: Long
+                        val tomatoId: Long
 
-                    database.foodDao().apply {
-                        carrotId = insertFood(Food(
-                            name = "Carrot",
-                            link = "https://example.com/carrot",
-                            caloriesPerKg = 410,
-                            caloriesPerUnit = 41,
-                            expirationTime = Date()
-                        ))
-                        tomatoId = insertFood(Food(
-                            name = "Tomato",
-                            link = "https://example.com/tomato",
-                            caloriesPerKg = 180,
-                            caloriesPerUnit = 18,
-                            expirationTime = Date()
-                        ))
-                        insertFood(Food(
-                            name = "Pepper",
-                            link = "https://example.com/pepper",
-                            caloriesPerKg = 200,
-                            caloriesPerUnit = 20,
-                            expirationTime = Date()
-                        ))
-                    }
+                        database.foodDao().apply {
+                            carrotId = insertFood(
+                                Food(
+                                    name = "Carrot",
+                                    link = "https://example.com/carrot",
+                                    caloriesPerKg = 410,
+                                    caloriesPerUnit = 41,
+                                    expirationTime = Date()
+                                )
+                            )
+                            tomatoId = insertFood(
+                                Food(
+                                    name = "Tomato",
+                                    link = "https://example.com/tomato",
+                                    caloriesPerKg = 180,
+                                    caloriesPerUnit = 18,
+                                    expirationTime = Date()
+                                )
+                            )
+                            insertFood(
+                                Food(
+                                    name = "Pepper",
+                                    link = "https://example.com/pepper",
+                                    caloriesPerKg = 200,
+                                    caloriesPerUnit = 20,
+                                    expirationTime = Date()
+                                )
+                            )
+                        }
 
-                    database.allergyDao().apply {
-                        insertAllergy(Allergy(foodId = carrotId.toInt()))
-                        insertAllergy(Allergy(foodId = tomatoId.toInt()))
-                    }
+                        database.allergyDao().apply {
+                            insertAllergy(Allergy(foodId = carrotId.toInt()))
+                            insertAllergy(Allergy(foodId = tomatoId.toInt()))
+                        }
 
-                    database.recipeDao().apply {
-                        insertRecipe(Recipe(
-                            name = "Carrottes au thon",
-                            description = "Plein de chose a faire",
-                            totalCalories = 1000,
-                            createdAt = Date()
-                        ))
+//                        database.recipeDao().apply {
+//                            insertRecipe(
+//                                Recipe(
+//                                    name = "Carrottes au thon",
+//                                    description = "Plein de chose a faire",
+//                                    totalCalories = 1000,
+//                                    createdAt = Date()
+//                                )
+//                            )
+//                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
                     }
                 }
             }
