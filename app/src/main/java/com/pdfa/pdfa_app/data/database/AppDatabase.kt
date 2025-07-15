@@ -11,20 +11,32 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import com.pdfa.pdfa_app.data.dao.AllergyDao
 import com.pdfa.pdfa_app.data.dao.FoodDetailDao
+import com.pdfa.pdfa_app.data.dao.RecipeDao
+import com.pdfa.pdfa_app.data.dao.RecipeTagCrossRefDao
+import com.pdfa.pdfa_app.data.dao.TagDao
 import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.data.model.FoodDetail
+import com.pdfa.pdfa_app.data.model.Recipe
+import com.pdfa.pdfa_app.data.model.RecipeTagCrossRef
+import com.pdfa.pdfa_app.data.model.Tag
 
 
 @Database(entities = [
     Food::class,
     Allergy::class,
-    FoodDetail::class],
+    FoodDetail::class,
+    Tag::class,
+    Recipe::class,
+    RecipeTagCrossRef::class],
     version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodDao(): FoodDao
     abstract fun allergyDao(): AllergyDao
     abstract fun foodDetailDao(): FoodDetailDao
+    abstract fun tagDao(): TagDao
+    abstract fun recipeDao(): RecipeDao
+    abstract fun recipeTagCrossRefDao(): RecipeTagCrossRefDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null

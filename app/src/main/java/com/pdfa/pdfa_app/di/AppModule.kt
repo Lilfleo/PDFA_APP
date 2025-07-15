@@ -8,6 +8,7 @@ import com.pdfa.pdfa_app.data.database.AppDatabase
 import com.pdfa.pdfa_app.data.repository.AllergyRepository
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
+import com.pdfa.pdfa_app.data.repository.RecipeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,4 +53,17 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFoodDetailRepository(dao: FoodDetailDao): FoodDetailRepository = FoodDetailRepository(dao)
+
+    @Provides
+    fun provideTagDao(db: AppDatabase): TagDao = db.tagDao()
+
+    @Provides
+    fun provideRecipeTagCrossRefDao(db: AppDatabase): RecipeTagCrossRefDao = db.recipeTagCrossRefDao()
+
+    @Provides
+    fun provideRecipeDao(db: AppDatabase): RecipeDao = db.recipeDao()
+
+    @Provides
+    @Singleton
+    fun provideRecipeRepository(recipeDao: RecipeDao, tagDao: TagDao, crossRefDao: RecipeTagCrossRefDao): RecipeRepository = RecipeRepository(recipeDao, tagDao, crossRefDao)
 }
