@@ -48,30 +48,58 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "app_db"
                 )
-                    .addCallback(
-                        createCallback(
-                            {getInstance(context).foodDao()},
-                            {getInstance(context).allergyDao()},
-                        )
-                    )
+                    .addCallback(createCallback())
                     .fallbackToDestructiveMigration(true)
-                .build().also { INSTANCE = it }
+                    .build().also { INSTANCE = it }
             }
 
-        fun createCallback(foodDaoProvider: () -> FoodDao, allergyDaoProvider: () -> AllergyDao) = object : Callback() {
+        private fun createCallback() = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
 
                 // Launch coroutine to insert data
                 CoroutineScope(Dispatchers.IO).launch {
-                    foodDaoProvider().apply {
-                        insertFood(Food(name = "Carrot", link = "https://example.com/carrot", caloriesPerKg = 410, caloriesPerUnit = 41, expirationTime = Date()))
-                        insertFood(Food(name = "Tomato", link = "https://example.com/tomato", caloriesPerKg = 180, caloriesPerUnit = 18, expirationTime = Date()))
-                        insertFood(Food(name = "Pepper", link = "https://example.com/pepper", caloriesPerKg = 200, caloriesPerUnit = 20, expirationTime = Date()))
+                    val database = INSTANCE ?: return@launch
+
+                    val carrotId: Long
+                    val tomatoId: Long
+
+                    database.foodDao().apply {
+                        carrotId = insertFood(Food(
+                            name = "Carrot",
+                            link = "https://example.com/carrot",
+                            caloriesPerKg = 410,
+                            caloriesPerUnit = 41,
+                            expirationTime = Date()
+                        ))
+                        tomatoId = insertFood(Food(
+                            name = "Tomato",
+                            link = "https://example.com/tomato",
+                            caloriesPerKg = 180,
+                            caloriesPerUnit = 18,
+                            expirationTime = Date()
+                        ))
+                        insertFood(Food(
+                            name = "Pepper",
+                            link = "https://example.com/pepper",
+                            caloriesPerKg = 200,
+                            caloriesPerUnit = 20,
+                            expirationTime = Date()
+                        ))
                     }
-                    allergyDaoProvider().apply {
-                        insertAllergy(Allergy(foodId = 1))
-                        insertAllergy(Allergy(foodId = 2))
+
+                    database.allergyDao().apply {
+                        insertAllergy(Allergy(foodId = carrotId.toInt()))
+                        insertAllergy(Allergy(foodId = tomatoId.toInt()))
+                    }
+
+                    database.recipeDao().apply {
+                        insertRecipe(Recipe(
+                            name = "Carrottes au thon",
+                            description = "Plein de chose a faire",
+                            totalCalories = 1000,
+                            createdAt = Date()
+                        ))
                     }
                 }
             }

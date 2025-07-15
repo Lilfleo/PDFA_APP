@@ -14,7 +14,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -23,14 +22,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext app: Context, foodDaoProvider: Provider<FoodDao>, allergyDaoProvider: Provider<AllergyDao>): AppDatabase {
-        return Room.databaseBuilder(
-            app,
-            AppDatabase::class.java,
-            "app_db"
-        )
-            .addCallback(AppDatabase.createCallback({foodDaoProvider.get()},{allergyDaoProvider.get()}))
-            .build()
+    fun provideDatabase(@ApplicationContext app: Context): AppDatabase {
+        return AppDatabase.getInstance(app)
     }
 
     @Provides
