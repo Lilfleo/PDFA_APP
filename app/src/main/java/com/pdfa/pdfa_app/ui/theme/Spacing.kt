@@ -15,6 +15,7 @@ object AppSpacing {
     val XL = 20.dp
     val XXL = 25.dp
     val XXXL = 30.dp
+    val XXXLLL = 35.dp
     val XXXLL = 40.dp
     val XXXXL = 48.dp
     val XXXXXL = 72.dp

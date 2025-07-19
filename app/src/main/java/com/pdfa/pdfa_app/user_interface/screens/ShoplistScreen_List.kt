@@ -1,5 +1,6 @@
 package com.pdfa.pdfa_app.user_interface.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -23,24 +24,36 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.pdfa.pdfa_app.api.HelloResponse
+import com.pdfa.pdfa_app.data.repository.ApiRepository
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pdfa.pdfa_app.user_interface.component.AddButton
 import com.pdfa.pdfa_app.user_interface.component.ListElement
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
+import kotlinx.coroutines.launch
 
 @Composable
-fun ShoplistListScreen(){
+fun ShoplistListScreen(
+    viewModel: RecipeViewModel = viewModel()
+){
+
+    val connectionStatus by viewModel.connectionStatus
+    val isLoading by viewModel.isLoading
+    val error by viewModel.error
 
     val scrollState = rememberScrollState()
-
 
     Box(
         modifier = Modifier
@@ -88,7 +101,7 @@ fun ShoplistListScreen(){
             scrollState = scrollState
         )
         FloatingActionButton(
-            onClick = {  },
+            onClick = { viewModel.testConnection() },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(AppSpacing.L),
