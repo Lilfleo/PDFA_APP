@@ -15,12 +15,14 @@ import com.pdfa.pdfa_app.data.dao.FoodRecipeCrossRefDao
 import com.pdfa.pdfa_app.data.dao.RecipeDao
 import com.pdfa.pdfa_app.data.dao.RecipeTagCrossRefDao
 import com.pdfa.pdfa_app.data.dao.TagDao
+import com.pdfa.pdfa_app.data.dao.TagPreferenceDao
 import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.data.model.FoodDetail
 import com.pdfa.pdfa_app.data.model.FoodRecipeCrossRef
 import com.pdfa.pdfa_app.data.model.Recipe
 import com.pdfa.pdfa_app.data.model.RecipeTagCrossRef
 import com.pdfa.pdfa_app.data.model.Tag
+import com.pdfa.pdfa_app.data.model.TagPreference
 
 
 @Database(entities = [
@@ -30,7 +32,8 @@ import com.pdfa.pdfa_app.data.model.Tag
     Tag::class,
     Recipe::class,
     RecipeTagCrossRef::class,
-    FoodRecipeCrossRef::class],
+    FoodRecipeCrossRef::class,
+    TagPreference::class],
     version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -40,7 +43,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun tagDao(): TagDao
     abstract fun recipeDao(): RecipeDao
     abstract fun recipeTagCrossRefDao(): RecipeTagCrossRefDao
-    abstract fun  foodRecipeCrossRefDao(): FoodRecipeCrossRefDao
+    abstract fun foodRecipeCrossRefDao(): FoodRecipeCrossRefDao
+    abstract fun tagPreferenceDao(): TagPreferenceDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
