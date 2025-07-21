@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FoodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFood(food: Food)
+    suspend fun insertFood(food: Food): Long
 
     @Query("SELECT * FROM food ORDER BY expirationTime ASC")
     fun getAllFood(): Flow<List<Food>>

@@ -17,7 +17,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.BookmarkAdd
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.outlined.Bookmark
+import androidx.compose.material.icons.outlined.BookmarkAdd
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -38,8 +42,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
+import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.user_interface.component.RecipeCard
 import com.pdfa.pdfa_app.user_interface.component.TagsBox
+import com.pdfa.pdfa_app.user_interface.rooting.Screen
 
 @Composable
 fun RecipeDetailScreen(
@@ -48,12 +55,13 @@ fun RecipeDetailScreen(
 
     var nbPeople by remember { mutableIntStateOf(2) }
     var expanded by remember { mutableStateOf(false) }
+    var addToCookbook by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(AppColors.Primary)
-            .padding(10.dp)
+            .padding(AppSpacing.M)
     ){
         Column(
             modifier = Modifier
@@ -61,41 +69,68 @@ fun RecipeDetailScreen(
         ) {
 
             //Titre
-            Row {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Text(
-                    text = "Recipe title"
+                    text = "Recipe title",
+                    style = AppTypo.Title,
+                    color = Color.Black
                 )
 
+                Box(
+                    modifier = Modifier
+                        .height(AppSpacing.XXXXL)
+                        .width(AppSpacing.XXXXL)
+                        .background(
+                            color = Color.White,
+                            shape = AppShapes.CornerL
+                        )
+                        .clip(shape = AppShapes.CornerL)
+                        .clickable {
+                            addToCookbook = !addToCookbook
+                        },
+                    contentAlignment = Alignment.Center
+                ){
+                    Icon(
+                        imageVector = if(addToCookbook) Icons.Default.Bookmark else Icons.Outlined.BookmarkAdd,
+                        contentDescription = "Add to Cookbook"
+                    )
+                }
             }
             //Subtitle
             Text(
-                text = "subtitle"
+                text = "subtitle",
+                style = AppTypo.BodyLight,
+                color = Color.Black
             )
 
             //Tags
             Row {
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
             }
 
             //Régimes
             Row {
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
             }
 
             //Temps
             Row(
                 modifier = Modifier
-                    .padding(vertical = 10.dp)
+                    .padding(vertical = AppSpacing.M)
             ) {
                 RecipeCard("20", "time")
 
-                Spacer(modifier = Modifier.padding(10.dp))
+                Spacer(modifier = Modifier.padding(AppSpacing.M))
 
                 RecipeCard("20", "time")
 
-                Spacer(modifier = Modifier.padding(10.dp))
+                Spacer(modifier = Modifier.padding(AppSpacing.M))
 
                 RecipeCard("20", "calories")
             }
@@ -109,12 +144,12 @@ fun RecipeDetailScreen(
                 Text(
                     text = "Pour"
                 )
-                Spacer(Modifier.padding(1.dp))
+                Spacer(Modifier.padding(AppSpacing.XXXXS))
                 Box(
                     modifier = Modifier
                         .width(50.dp)
                         .height(30.dp)
-                        .padding(2.dp)
+                        .padding(AppSpacing.XXXS)
                 ){
                     Row(
                         modifier = Modifier
@@ -208,7 +243,7 @@ fun RecipeDetailScreen(
                     }
                 }
 
-                Spacer(Modifier.padding(1.dp))
+                Spacer(Modifier.padding(AppSpacing.XXXXS))
                 Text(
                     text = "Personnes"
                 )
@@ -218,8 +253,8 @@ fun RecipeDetailScreen(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(500.dp)
-                    .padding(vertical = 10.dp)
+                    .weight(1f)
+                    .padding(vertical = AppSpacing.M)
                     .shadow(
                         elevation = 2.dp,
                         shape = AppShapes.CornerL
@@ -236,8 +271,8 @@ fun RecipeDetailScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp),
-                verticalAlignment = Alignment.Bottom
+                    .height(50.dp),
+                horizontalArrangement = Arrangement.End
             ) {
                 Box(
                     contentAlignment = Alignment.Center,
@@ -251,11 +286,13 @@ fun RecipeDetailScreen(
                         }
                 ) {
                     Text(
-                        text = "Ajouter à la liste"
+                        text = "Ajouter à la liste",
+                        style = AppTypo.SubTitle,
+                        color = Color.White
                     )
                 }
 
-                Spacer(modifier = Modifier.padding(5.dp))
+                Spacer(modifier = Modifier.padding(AppSpacing.XXS))
 
                 Box(
                     contentAlignment = Alignment.Center,
@@ -265,11 +302,13 @@ fun RecipeDetailScreen(
                         .clip(AppShapes.CornerL)
                         .background(AppColors.MainGreen)
                         .clickable {
-
+                            navController.navigate(Screen.RecipeStepsScreen.rout)
                         }
                 ) {
                     Text(
                         text = "Voir la recette",
+                        style = AppTypo.SubTitle,
+                        color = Color.White
 
                     )
                 }

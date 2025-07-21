@@ -37,7 +37,7 @@ class FoodRepositoryTest {
         val food = sampleFood()
         repository = FoodRepository(foodDao)
 
-        coEvery { foodDao.insertFood(food) } just Runs
+        coEvery { foodDao.insertFood(food) } returns 1L
 
         repository.insert(food)
 

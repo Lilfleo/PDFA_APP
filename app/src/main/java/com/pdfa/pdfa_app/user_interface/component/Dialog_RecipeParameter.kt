@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
+import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.ui.theme.AppTypo
 
 @Composable
 fun RecipeParameter(
@@ -34,7 +37,7 @@ fun RecipeParameter(
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(
-            usePlatformDefaultWidth = false // Permet d'utiliser toute la largeur
+            usePlatformDefaultWidth = false
         )
     ) {
         Box(
@@ -43,22 +46,24 @@ fun RecipeParameter(
                 .wrapContentHeight()
                 .background(
                     color = Color.White,
-                    shape = RoundedCornerShape(16.dp)
+                    shape = AppShapes.CornerXL
                 ),
-
         ){
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp)
+                    .padding(AppSpacing.XL)
             ) {
 
                 Text(
                     modifier = Modifier
                         .fillMaxWidth(),
                     textAlign = TextAlign.Center,
-                    text = "Modifie les paramètres de création de recettes"
+                    text = "Modifie les paramètres de création de recettes",
+                    style = AppTypo.SubTitle,
+                    color = Color.Black
                 )
+                Spacer(modifier = Modifier.padding(AppSpacing.XXS))
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically
@@ -66,7 +71,9 @@ fun RecipeParameter(
                     Text(
                         modifier = Modifier
                             .weight(3f),
-                        text = "Modifie tes régimes alimentaires"
+                        text = "Modifie tes régimes alimentaires",
+                        style = AppTypo.Body,
+                        color = Color.Black
                     )
                     Box(
                         modifier = Modifier
@@ -83,11 +90,7 @@ fun RecipeParameter(
                                     color = Color.Black,
                                     shape = AppShapes.CornerM
                                 )
-                                .padding(
-                                    start = 2.dp,
-                                    end = 2.dp,
-                                    top = 5.dp,
-                                    bottom = 5.dp)
+                                .padding( horizontal =  2.dp, vertical =  5.dp)
 
                         ){
                             Text(
@@ -95,6 +98,8 @@ fun RecipeParameter(
                                     .fillMaxWidth(),
                                 textAlign = TextAlign.Center,
                                 text = "Mes Régimes",
+                                style = AppTypo.Body,
+                                color = Color.Black
                             )
                         }
                     }
@@ -104,33 +109,39 @@ fun RecipeParameter(
                     modifier = Modifier
                         .fillMaxWidth(),
                     textAlign = TextAlign.Center,
-                    text = "Mes Tags"
+                    text = "Mes Tags",
+                    style = AppTypo.SubTitle,
+                    color = Color.Black
                 )
+
+                Spacer(modifier = Modifier.padding(AppSpacing.XXS))
 
                 //Tag sélectionné
                 Row {
-                    TagsBox("Facile", "Easy")
-                    TagsBox("Facile", "Easy")
-                    TagsBox("Facile", "Easy")
+                    TagsBox("Facile", "Easy", true)
+                    TagsBox("Facile", "Easy", true)
+                    TagsBox("Facile", "Easy", true)
                 }
 
                 //Autres Tag par catégorie
-
                 Column(
                     modifier = Modifier
-                        .padding(vertical = 8.dp)
+                        .padding(vertical = AppSpacing.S)
                 ){
                     Text(
-                        text = "Titre de la catégorie"
+                        text = "Titre de la catégorie",
+                        style = AppTypo.Body,
+                        color = Color.Black
                     )
+                    Spacer(modifier = Modifier.padding(AppSpacing.XXS))
                     Row {
-                        TagsBox("Facile", "Easy")
-                        TagsBox("Facile", "Easy")
-                        TagsBox("Facile", "Easy")
+                        TagsBox("Facile", "Easy", false)
+                        TagsBox("Facile", "Easy", false)
+                        TagsBox("Facile", "Easy", false)
                     }
                 }
 
-                Spacer(modifier = Modifier.padding(10.dp))
+                Spacer(modifier = Modifier.padding(AppSpacing.M))
                 //Bouton
                 Box(
                     contentAlignment = Alignment.Center,
@@ -139,15 +150,17 @@ fun RecipeParameter(
                         .fillMaxWidth()
                         .background(
                             color = AppColors.MainGreen,
-                            shape = AppShapes.CornerS)
+                            shape = AppShapes.CornerM)
                         .clickable {
                             onDismiss()
                         }
-                        .padding(top = 7.dp, bottom = 7.dp)
+                        .padding(vertical = AppSpacing.S)
 
                 ) {
                     Text(
-                        text = "Nouvelle les recettes"
+                        text = "Nouvelle les recettes",
+                        style = AppTypo.SubTitle,
+                        color = Color.White
                     )
                 }
             }

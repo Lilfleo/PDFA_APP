@@ -5,15 +5,23 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.pdfa.pdfa_app.api.CallTags
+import com.pdfa.pdfa_app.api.Ingredient
+import com.pdfa.pdfa_app.api.RecipeWithFood
+import com.pdfa.pdfa_app.api.RecipeWithFoodPrompt
+import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.user_interface.component.BottomNavBar
 import com.pdfa.pdfa_app.user_interface.component.DrawerMenu
 import com.pdfa.pdfa_app.user_interface.component.TopBar
@@ -24,12 +32,42 @@ import com.pdfa.pdfa_app.user_interface.screens.FridgeScreen
 import com.pdfa.pdfa_app.user_interface.screens.HomeScreen
 import kotlinx.coroutines.launch
 import com.pdfa.pdfa_app.user_interface.rooting.navigationItems
+import com.pdfa.pdfa_app.user_interface.screens.ProfilScreen
 import com.pdfa.pdfa_app.user_interface.screens.RecipeDetailScreen
+import com.pdfa.pdfa_app.user_interface.screens.RecipeStepsScreen
 import com.pdfa.pdfa_app.user_interface.screens.ShoplistScreen
 
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    viewModel: RecipeViewModel = viewModel()
+) {
+
+    val recip: RecipeWithFood = RecipeWithFood(
+        prompt = RecipeWithFoodPrompt(
+            title = "Curry de pois chiches",
+            ingredients = listOf(
+                Ingredient("pois chiches", 400.0, "g"),
+                Ingredient("lait de coco", 20.0, "cl"),
+                Ingredient("oignon", 1.0, "pièce")
+            ),
+            utensils = listOf("casserole", "cuillère en bois"),
+            tags = CallTags(
+                diet = listOf("végétarien"),
+                tag = listOf("rapide", "réconfortant"),
+                allergies = listOf("aucune")
+            )
+        ),
+        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
+    )
+
+    //API
+    LaunchedEffect(Unit) {
+//        viewModel.testConnection()
+        viewModel.generateRecipe(recip)
+    }
+    //
+
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -41,24 +79,23 @@ fun MainScreen() {
     val currentRoute = navBackStackEntry?.destination?.route
 
     val hideBottomBarRoutes = listOf(
-        Screen.RecipeDetailScreen.rout
+        Screen.RecipeDetailScreen.rout,
+        Screen.RecipeStepsScreen.rout,
+        Screen.ProfilScreen.rout
     )
     val showBackButtonRoutes = listOf(
-        Screen.RecipeDetailScreen.rout
+        Screen.RecipeDetailScreen.rout,
+        Screen.RecipeStepsScreen.rout,
+        Screen.ProfilScreen.rout
     )
 
     ModalNavigationDrawer(
 
         drawerState = drawerState,
         drawerContent = {
-            DrawerMenu { route ->
-                scope.launch { drawerState.close() }
-                navController.navigate(route) {
-                    popUpTo(navController.graph.startDestinationId) { saveState = true }
-                    launchSingleTop = true
-                    restoreState = true
-                }
-            }
+            DrawerMenu(
+                navController = navController,
+                drawerState = drawerState)
         }
 
     ) {
@@ -106,9 +143,11 @@ fun MainScreen() {
                 }
                 composable(Screen.Shoplist.rout){ ShoplistScreen() }
                 composable(Screen.Recipe.rout) { RecipeScreen(navController) }
-                composable(Screen.Cookbook.rout) { CookbookScreen() }
+                composable(Screen.Cookbook.rout) { CookbookScreen(navController) }
                 composable (Screen.Food.rout ){ FoodScreen() }
                 composable(Screen.RecipeDetailScreen.rout) { RecipeDetailScreen(navController) }
+                composable(Screen.RecipeStepsScreen.rout) {RecipeStepsScreen(navController)}
+                composable(Screen.ProfilScreen.rout) { ProfilScreen(navController)}
             }
         }
     }

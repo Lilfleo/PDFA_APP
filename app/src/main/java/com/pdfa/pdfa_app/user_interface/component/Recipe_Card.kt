@@ -28,7 +28,7 @@ import com.pdfa.pdfa_app.user_interface.rooting.Screen
 
 @Composable
 fun RecipeCard(
-    navController: NavController
+    navController: NavController,
 ) {
     Box(
         modifier = Modifier
@@ -74,17 +74,17 @@ fun RecipeCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
-                    .padding(top = 2.dp, end = 2.dp)
+                    .padding(horizontal = 2.dp)
                     .horizontalScroll(rememberScrollState()),
 
                 ) {
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
 
             }
             //TAG
@@ -92,16 +92,16 @@ fun RecipeCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
-                    .padding(top = 2.dp, end = 2.dp)
+                    .padding(horizontal = 2.dp)
                     .horizontalScroll(rememberScrollState()),
             ) {
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
-                TagsBox("Facile", "Easy")
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
+                TagsBox("Facile", "Easy", true)
             }
         }
     }

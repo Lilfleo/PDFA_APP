@@ -16,8 +16,8 @@ class FoodDetailRepository @Inject constructor(
         return dao.getFoodDetail(foodId)
     }
 
-    suspend fun insert(allergy: FoodDetail) {
-        dao.insertFoodDetail(allergy)
+    suspend fun insert(foodDetail: FoodDetail) {
+        dao.insertFoodDetail(foodDetail)
     }
 
     suspend fun update(foodDetail: FoodDetail) {
