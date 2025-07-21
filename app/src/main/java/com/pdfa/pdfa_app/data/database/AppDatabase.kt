@@ -115,6 +115,15 @@ abstract class AppDatabase : RoomDatabase() {
                             )
                         }
 
+                        database.tagDao().apply {
+                            insertTag(
+                                Tag(
+                                    name = "mexicain",
+                                    color = "blue"
+                                )
+                            )
+                        }
+
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
