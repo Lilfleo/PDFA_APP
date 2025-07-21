@@ -13,16 +13,16 @@ data class HelloResponse(
 @Serializable
 data class RecipeResponse(
     val recipe : Recipe,
-    val unusedIngredients: Array<String>
+    val unusedIngredients: List<String>
 )
 
 @Serializable
 data class Recipe(
-    val titre: String,
+    val title: String,
     val preparationTime: String,
     val totalCookingTime: String,
-    val tags: Array<String>,
-    val ingredients: Array<Ingredient>,
-    val steps: Array<String>
+    val tags: List<String>,
+    val ingredients: List<Ingredient>,
+    val steps: List<String>
 )
 

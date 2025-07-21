@@ -11,11 +11,16 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.pdfa.pdfa_app.api.CallTags
+import com.pdfa.pdfa_app.api.Ingredient
+import com.pdfa.pdfa_app.api.RecipeWithFood
+import com.pdfa.pdfa_app.api.RecipeWithFoodPrompt
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.user_interface.component.BottomNavBar
 import com.pdfa.pdfa_app.user_interface.component.DrawerMenu
@@ -38,9 +43,28 @@ fun MainScreen(
     viewModel: RecipeViewModel = viewModel()
 ) {
 
+    val recip: RecipeWithFood = RecipeWithFood(
+        prompt = RecipeWithFoodPrompt(
+            title = "Curry de pois chiches",
+            ingredients = listOf(
+                Ingredient("pois chiches", 400.0, "g"),
+                Ingredient("lait de coco", 20.0, "cl"),
+                Ingredient("oignon", 1.0, "pièce")
+            ),
+            utensils = listOf("casserole", "cuillère en bois"),
+            tags = CallTags(
+                diet = listOf("végétarien"),
+                tag = listOf("rapide", "réconfortant"),
+                allergies = listOf("aucune")
+            )
+        ),
+        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
+    )
+
     //API
     LaunchedEffect(Unit) {
-        viewModel.testConnection()
+//        viewModel.testConnection()
+        viewModel.generateRecipe(recip)
     }
     //
 

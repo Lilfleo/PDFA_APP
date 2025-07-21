@@ -5,6 +5,8 @@ import android.util.Log
 import io.ktor.client.*
 import io.ktor.client.call.body
 import io.ktor.client.engine.android.*
+import io.ktor.client.plugins.HttpRedirect
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -23,6 +25,16 @@ class ApiClient {
                 ignoreUnknownKeys = true
                 isLenient = true
             })
+        }
+        install(HttpRedirect) {
+            checkHttpMethod = false
+            allowHttpsDowngrade = false
+        }
+
+        install(HttpTimeout) {
+            requestTimeoutMillis = 30000
+            connectTimeoutMillis = 15000
+            socketTimeoutMillis = 15000
         }
     }
 

@@ -6,28 +6,28 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RecipeWithFood(
     val prompt: RecipeWithFoodPrompt,
-    val excluded_titles: Array<String>
+    val excludedTitles: List<String>
 )
 
 @Serializable
 data class RecipeWithFoodPrompt(
-    val titre: String,
-    val ingredient: Array<Ingredient>,
-    val utensils: Array<String>,
+    val title: String,
+    val ingredients: List<Ingredient>,
+    val utensils: List<String>,
     val tags: CallTags,
 )
 
 // Recipe for shoplist
 @Serializable
 data class RecipeForShoplist(
-    val prompt: RecipeForShoplistPrompt,
-    val excluded_titles: Array<String>
+    val prompt: RecipeWithoutFoodPrompt,
+    val excludedTitles: List<String>
 )
 
 @Serializable
-data class RecipeForShoplistPrompt(
-    val titre: String,
-    val utensils: Array<String>,
+data class RecipeWithoutFoodPrompt(
+    val title: String,
+    val utensils: List<String>,
     val tags: CallTags,
 )
 
@@ -35,13 +35,13 @@ data class RecipeForShoplistPrompt(
 @Serializable
 data class Ingredient(
     val name: String,
-    val quantity: Double,
+    val quantity: Double?,
     val unit: String
 )
 
 @Serializable
 data class CallTags(
-    val diet: Array<String>,
-    val tag: Array<String>,
-    val allergies: Array<String>
+    val diet: List<String>,
+    val tag: List<String>,
+    val allergies: List<String>
 )

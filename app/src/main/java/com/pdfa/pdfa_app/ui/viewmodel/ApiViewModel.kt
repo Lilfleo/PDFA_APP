@@ -62,10 +62,15 @@ class RecipeViewModel : ViewModel() {
             _isLoading.value = true
             _error.value = null
 
+            Log.d(TAG, "🔄 Données envoyées: $requestData")
+
             try {
-                _recipe.value = repository.generateRecipe(requestData)
+                val recipeResponse = repository.generateRecipe(requestData)
+                _recipe.value = recipeResponse
+                Log.i(TAG, "✅ Recette générée: ${recipeResponse.recipe.title}")
             } catch (e: Exception) {
-                _error.value = "Erreur lors de la génération: ${e.message}"
+                Log.e(TAG, "❌ Erreur: ${e.message}", e)
+                _error.value = "Erreur: ${e.message}"
             } finally {
                 _isLoading.value = false
             }
