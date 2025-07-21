@@ -14,4 +14,6 @@ interface FoodDao {
 
     @Delete
     suspend fun deleteFood(food: Food)
+
+
 }

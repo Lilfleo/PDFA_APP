@@ -39,7 +39,7 @@ class FoodDetailViewModel @Inject constructor(
 
     fun upsertFoodDetail(foodDetail: FoodDetail) {
         viewModelScope.launch {
-            repository.upsert(foodDetail)
+            repository.upsertFoodDetail(foodDetail)
         }
     }
 

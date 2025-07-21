@@ -16,6 +16,11 @@ import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.data.model.Food
 
 
+import java.text.SimpleDateFormat
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.*
+
 @Composable
 fun FridgeItemActionDialog(
     item: Food,
@@ -47,7 +52,7 @@ fun FridgeItemActionDialog(
                             .align(Alignment.TopEnd)
                             .background(Color.LightGray, shape = AppShapes.CornerS)
                     ) {
-                        // Placeholder image (tu pourras remplacer par un vrai logo)
+                        // Placeholder image
                     }
                 }
 
@@ -58,10 +63,9 @@ fun FridgeItemActionDialog(
                     modifier = Modifier.fillMaxWidth(),
                     verticalArrangement = Arrangement.spacedBy(AppSpacing.XS)
                 ) {
-                   // DialogRow(label = "Quantité", value = "${item.quantity} ${item.unit}")
                     DialogRow(label = "Nombre de kcal", value = "${item.caloriesPerKg} kcal/kg")
-                    //DialogRow(label = "Date d’achat", value = item.purchaseDate)
-                    DialogRow(label = "À manger dans les", value = "${item.expirationTime} jours")
+                    //DialogRow(label = "Date d’achat", value = formatDateDisplay(item.expirationTime))
+                    DialogRow(label = "À manger dans les", value = formatDateDisplay(item.expirationTime))
                 }
 
                 Spacer(modifier = Modifier.height(AppSpacing.M))
@@ -89,6 +93,26 @@ fun FridgeItemActionDialog(
         }
     }
 }
+
+// 🔧 Fonction de formatage
+fun formatDateDisplay(date: Any?): String {
+    return try {
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        when (date) {
+            is Date -> {
+                date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().format(formatter)
+            }
+            is String -> {
+                val parsed = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH).parse(date)
+                parsed?.toInstant()?.atZone(ZoneId.systemDefault())?.toLocalDate()?.format(formatter) ?: ""
+            }
+            else -> ""
+        }
+    } catch (e: Exception) {
+        ""
+    }
+}
+
 
 @Composable
 private fun DialogRow(label: String, value: String) {

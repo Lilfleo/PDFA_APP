@@ -1,6 +1,8 @@
 package com.pdfa.pdfa_app.user_interface.screens
 
-import FoodDetailDialog
+import FoodAddDetailDialog
+
+
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -40,30 +42,40 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModel
-import com.pdfa.pdfa_app.data.FridgeItem
 import com.pdfa.pdfa_app.data.model.Food
+import com.pdfa.pdfa_app.data.model.FoodDetailWithFood
+
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.viewmodel.FoodDetailViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.FoodViewModel
+
 import com.pdfa.pdfa_app.user_interface.component.AddButton
 import com.pdfa.pdfa_app.user_interface.component.CustomSnackbarHost
 import com.pdfa.pdfa_app.user_interface.component.DeleteConfirmationDialog
-import com.pdfa.pdfa_app.user_interface.component.EditFoodDialog
 import com.pdfa.pdfa_app.user_interface.component.FridgeItemActionDialog
 import com.pdfa.pdfa_app.user_interface.component.SearchBar
 
 
 
 
-
 @Composable
-fun FridgeScreen(onAddClick: () -> Unit, viewModel: FoodViewModel= hiltViewModel(),foodDetailviewModel: FoodDetailViewModel = hiltViewModel()) {
+fun FridgeScreen(
+    onAddClick: () -> Unit,
+    foodDetailviewModel: FoodDetailViewModel = hiltViewModel()
+) {
+    val foodDetail by foodDetailviewModel.foodDetail.collectAsState()
+    var selectedFoodId by remember { mutableStateOf<Int?>(null) }
+    var foodToEdit by remember { mutableStateOf<FoodDetailWithFood?>(null) }
+    var showDialogEdit by remember { mutableStateOf(false) }
+    val foodViewModel: FoodViewModel = hiltViewModel()
+    val foodList by foodViewModel.foodList.collectAsState()
 
-    val foodList by viewModel.foodList.collectAsState()
-    val foodDetailList by foodDetailviewModel.foodDetail.collectAsState()
+    var expanded by remember { mutableStateOf(false) }
+    var selectedFoodName by remember { mutableStateOf("") }
+
+
 
 
     var searchQuery by remember { mutableStateOf("") }
@@ -75,11 +87,12 @@ fun FridgeScreen(onAddClick: () -> Unit, viewModel: FoodViewModel= hiltViewModel
     var snackbarMessage by remember { mutableStateOf<String?>(null) }
     var snackbarType by remember { mutableStateOf<String?>(null) }
     var selectedItem by remember { mutableStateOf<Food?>(null) }
-    var isEditing by remember { mutableStateOf(false) }
+
+    var selectedFood by remember { mutableStateOf<Food?>(null) }
+
+
+
     var isDeleteConfirmationVisible by remember { mutableStateOf(false) }
-
-
-    //foodDetailviewModel.addFoodDetail(foodDetail = )
 
 
     // État de scroll de la liste
@@ -102,6 +115,7 @@ fun FridgeScreen(onAddClick: () -> Unit, viewModel: FoodViewModel= hiltViewModel
         }
     }
 
+
     // reception du message pour la snackbar
     LaunchedEffect(snackbarMessage) {
         if (snackbarMessage != null && snackbarType != null) {
@@ -122,6 +136,28 @@ fun FridgeScreen(onAddClick: () -> Unit, viewModel: FoodViewModel= hiltViewModel
             snackbarType = null
         }
     }
+    LaunchedEffect(selectedFoodId, foodDetail) {
+        selectedFoodId?.let { id ->
+            val detail = foodDetail.find { it.food.id == id }
+            if (detail != null) {
+                foodToEdit = detail
+                showDialogEdit = true
+            }
+            selectedFoodId = null // reset pour éviter des doublons
+        }
+    }
+
+    if (showDialogAdd) {
+        FoodAddDetailDialog(
+            foodList = foodList,
+            onDismiss = { showDialogAdd = false },
+            onSnackbarMessage = { msg, type ->
+                snackbarMessage = msg
+                snackbarType = type
+            }
+        )
+    }
+
 
 
     Box(
@@ -212,12 +248,21 @@ fun FridgeScreen(onAddClick: () -> Unit, viewModel: FoodViewModel= hiltViewModel
                         state = listState,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        items(foodList) { item ->
+                        items(
+                            items = foodDetail,
+                            key = { it.foodDetail.id } // 🧠 clé unique et persistante = identifiant en base
+                        ) { detail ->
+                            Log.d("FridgeScreen", "🌀 Recomposition avec : ${detail.food.name}")
+
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .clickable { selectedItem = item }
-                                    .padding(horizontal = AppSpacing.M, AppSpacing.S),
+                                    .clickable {
+                                        selectedFood = detail.food
+                                    }
+
+
+                                    .padding(horizontal = AppSpacing.M, vertical = AppSpacing.S),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Box(
@@ -227,124 +272,106 @@ fun FridgeScreen(onAddClick: () -> Unit, viewModel: FoodViewModel= hiltViewModel
                                 )
                                 Spacer(modifier = Modifier.width(AppSpacing.M))
                                 Text(
-                                    text = item.name,
+                                    text = detail.food.name,
                                     modifier = Modifier.weight(1f),
                                     style = MaterialTheme.typography.bodyLarge
                                 )
                                 Text(
-                                    text = "${item.caloriesPerKg} kcal",
+                                    text = "${detail.food.caloriesPerKg} kcal",
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
                         }
                     }
+
+                    if (!isAtTop) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(AppSpacing.XXXXL)
+                                .align(Alignment.TopCenter)
+                        )
+                    }
+
+                    if (!isAtEnd) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(AppSpacing.XXXXL)
+                                .align(Alignment.BottomCenter)
+                        )
+                    }
                 }
 
-                if (!isAtTop) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(AppSpacing.XXXXL)
-                            .align(Alignment.TopCenter)
-                    )
+                AddButton(
+                    onClick = { showDialogAdd = true },
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(AppSpacing.L)
+                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .zIndex(1f)
+                        .padding(AppSpacing.L),
+                    contentAlignment = Alignment.BottomCenter
+                ) {
+                    CustomSnackbarHost(snackbarHostState)
                 }
 
-                if (!isAtEnd) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(AppSpacing.XXXXL)
-                            .align(Alignment.BottomCenter)
-                    )
-                }
+
             }
-
-            AddButton(
-                onClick = { showDialogAdd = true },
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(AppSpacing.L)
+        }
+        // 🔄 Fenêtre de gestion sur clic d'un aliment
+        selectedFood?.let { food ->
+            FridgeItemActionDialog(
+                item = food,
+                onDismiss = {
+                    selectedFood = null
+                },
+                onEditClick = {
+                    selectedFoodId = food.id
+                    selectedFood = null
+                },
+                onDeleteClick = {
+                    selectedItem = food
+                    isDeleteConfirmationVisible = true
+                }
             )
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .zIndex(1f)
-                    .padding(AppSpacing.L),
-                contentAlignment = Alignment.BottomCenter
-            ) {
-                CustomSnackbarHost(snackbarHostState)
-            }
-
-            if (showDialogAdd) {
-                FoodDetailDialog(
-                    foodName = "",
-                    onDismiss = { showDialogAdd = false },
-                    onSnackbarMessage = { msg, type ->
-                        snackbarMessage = msg
-                        snackbarType = type
-                    }
-                )
-            }
-
-        }
-    }
-    selectedItem?.let { item ->
-        when {
-            isDeleteConfirmationVisible -> {
-                DeleteConfirmationDialog(
-                    itemName = item.name,
-                    onConfirm = {
-                        //fridgeItems.remove(item) // ou ViewModel etc.
-                        isDeleteConfirmationVisible = false
-                        selectedItem = null
-                    },
-                    onDismiss = {
-                        isDeleteConfirmationVisible = false
-                        selectedItem = null
-                    }
-                )
-            }
-            isEditing -> {
-                EditFoodDialog(
-                    item = item,
-                    onDismiss = {
-                        isEditing = false
-                        selectedItem = null
-                    },
-                    onEditConfirmed = { updatedItem ->
-                        // mise à jour ici
-                    },
-                    onSnackbarMessage = { msg, type -> /* ... */ }
-                )
-            }
-            else -> {
-                FridgeItemActionDialog(
-                    item = item,
-                    onDismiss = { selectedItem = null },
-                    onEditClick = { isEditing = true },
-                    onDeleteClick = {
-                        isDeleteConfirmationVisible = true
-                        isEditing = false
-                    }
-                )
-            }
         }
 
-}
-    if (isDeleteConfirmationVisible && selectedItem != null) {
-        DeleteConfirmationDialog(
-            itemName = selectedItem!!.name,
-            onConfirm = {
-                // Supprime ici ton item de fridgeItems
-                // Exemple : fridgeItems.remove(selectedItem)
-            },
-            onDismiss = {
-                isDeleteConfirmationVisible = false
-                selectedItem = null
-            }
-        )
-    }
+// 🗑️ Confirmation de suppression
+        if (isDeleteConfirmationVisible && selectedItem != null) {
+            DeleteConfirmationDialog(
+                itemName = selectedItem!!.name,
+                onConfirm = {
+                    // TODO : suppression réelle ici
+                    isDeleteConfirmationVisible = false
+                    selectedItem = null
+                },
+                onDismiss = {
+                    isDeleteConfirmationVisible = false
+                    selectedItem = null
+                }
+            )
+        }
 
+// ✍️ Dialog de modification
+        if (showDialogEdit && foodToEdit != null) {
+            FoodAddDetailDialog(
+                foodToEdit = foodToEdit,
+                foodList = foodList,
+                onDismiss = {
+                    showDialogEdit = false
+                    foodToEdit = null
+                },
+                onSnackbarMessage = { msg, type ->
+                    snackbarMessage = msg
+                    snackbarType = type
+                }
+            )
+        }
+    }
 }
 
 
