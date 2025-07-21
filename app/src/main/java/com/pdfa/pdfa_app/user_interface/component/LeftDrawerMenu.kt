@@ -81,5 +81,25 @@ fun DrawerContent(
                 color = Color.Black
             )
         }
+
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .height(AppSpacing.XXXXL)
+            .clickable {
+                scope.launch {
+                    drawerState.close()
+                    navController.navigate(Screen.Food.rout)
+                }
+            }
+            .padding(horizontal = AppSpacing.XS)
+            ,
+            contentAlignment = Alignment.CenterStart
+        ){
+            Text(
+                text = "Dev",
+                style = AppTypo.SubTitle2,
+                color = Color.Red
+            )
+        }
     }
 }
