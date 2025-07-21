@@ -25,7 +25,6 @@ fun HorizontalDividerPointille(
         modifier = modifier
             .fillMaxWidth()
             .height(thickness)
-            .padding(vertical = 8.dp)
     ) {
         val pathEffect = PathEffect.dashPathEffect(
             floatArrayOf(dashWidth.toPx(), gapWidth.toPx()),

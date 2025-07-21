@@ -22,11 +22,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.user_interface.component.RecipeCard
 import com.pdfa.pdfa_app.user_interface.component.RecipeParameter
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
@@ -88,7 +90,9 @@ fun RecipeListScreen(
                         }
                 ) {
                     Text(
-                        text = "Plus de recette"
+                        text = "Plus de recette",
+                        style = AppTypo.SubTitle,
+                        color = Color.White
                     )
                 }
             }

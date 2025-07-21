@@ -11,10 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
+import com.pdfa.pdfa_app.ui.theme.AppTypo
 
 @Composable
 fun TagsBox(
@@ -37,6 +39,10 @@ fun TagsBox(
                 .wrapContentWidth()
                 .height(25.dp)
                 .padding(end = 5.dp)
+                .shadow(
+                    elevation = 2.dp,
+                    shape = AppShapes.CornerM
+                )
                 .clip(AppShapes.CornerM)
                 .background(colorTag),
             contentAlignment = Alignment.Center
@@ -44,7 +50,9 @@ fun TagsBox(
             Text(
                 modifier = Modifier
                     .padding(horizontal = 6.dp),
-                text = "#$name"
+                text = "#$name",
+                style = AppTypo.TagBody,
+                color = Color.Black
             )
 
         }
@@ -54,19 +62,20 @@ fun TagsBox(
                 .wrapContentWidth()
                 .height(25.dp)
                 .padding(end = 5.dp)
-                .clip(AppShapes.CornerM)
-                .background(color = Color.White)
-                .border(
-                    width = 1.dp,
-                    color = Color.Black,
+                .shadow(
+                    elevation = 2.dp,
                     shape = AppShapes.CornerM
-                ),
+                )
+                .clip(AppShapes.CornerM)
+                .background(color = Color.White),
             contentAlignment = Alignment.Center
         ){
             Text(
                 modifier = Modifier
                     .padding(horizontal = 6.dp),
-                text = "#$name"
+                text = "#$name",
+                style = AppTypo.TagBody,
+                color = Color.Black
             )
 
         }

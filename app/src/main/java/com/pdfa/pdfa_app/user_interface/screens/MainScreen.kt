@@ -42,10 +42,13 @@ fun MainScreen() {
     val currentRoute = navBackStackEntry?.destination?.route
 
     val hideBottomBarRoutes = listOf(
-        Screen.RecipeDetailScreen.rout
+        Screen.RecipeDetailScreen.rout,
+        Screen.RecipeStepsScreen.rout
     )
     val showBackButtonRoutes = listOf(
-        Screen.RecipeDetailScreen.rout
+        Screen.RecipeDetailScreen.rout,
+        Screen.RecipeStepsScreen.rout
+
     )
 
     ModalNavigationDrawer(
@@ -107,10 +110,10 @@ fun MainScreen() {
                 }
                 composable(Screen.Shoplist.rout){ ShoplistScreen() }
                 composable(Screen.Recipe.rout) { RecipeScreen(navController) }
-                composable(Screen.Cookbook.rout) { CookbookScreen() }
+                composable(Screen.Cookbook.rout) { CookbookScreen(navController) }
                 composable (Screen.Food.rout ){ FoodScreen() }
                 composable(Screen.RecipeDetailScreen.rout) { RecipeDetailScreen(navController) }
-                composable(Screen.RecipeStepsScreen.rout) {RecipeStepsScreen()}
+                composable(Screen.RecipeStepsScreen.rout) {RecipeStepsScreen(navController)}
             }
         }
     }
