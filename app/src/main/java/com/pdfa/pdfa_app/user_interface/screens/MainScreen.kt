@@ -69,7 +69,9 @@ fun MainScreen(
 
         drawerState = drawerState,
         drawerContent = {
-            DrawerMenu(navController)
+            DrawerMenu(
+                navController = navController,
+                drawerState = drawerState)
         }
 
     ) {

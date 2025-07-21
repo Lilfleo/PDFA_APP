@@ -13,7 +13,9 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
 class ApiClient {
-    private val baseUrl = "https://10.0.2.16"
+//    private val baseUrl = "http://10.0.2.2:8000"
+    private val baseUrl = "http://yep-ia.onrender.com"
+
 
     private val httpClient = HttpClient(Android) {
         install(ContentNegotiation) {
