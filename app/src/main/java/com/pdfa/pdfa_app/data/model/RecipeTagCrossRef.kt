@@ -44,8 +44,8 @@ data class RecipeWithTags(
         entityColumn = "id",
         associateBy = Junction(
             value = RecipeTagCrossRef::class,
-            parentColumn = "recipeId",
-            entityColumn = "tagId"
+            parentColumn = "recipe_id",
+            entityColumn = "tag_id"
         )
     )
     val tags: List<Tag>
@@ -58,8 +58,8 @@ data class TagWithRecipes(
         entityColumn = "id",
         associateBy = Junction(
             value = RecipeTagCrossRef::class,
-            parentColumn = "tagId",
-            entityColumn = "recipeId"
+            parentColumn = "tag_id",
+            entityColumn = "recipe_id"
         )
     )
     val recipes: List<Recipe>
