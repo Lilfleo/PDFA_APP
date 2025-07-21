@@ -9,7 +9,7 @@ import androidx.room.Junction
 import androidx.room.Relation
 
 @Entity(tableName = "recipe_tag",
-    primaryKeys = ["recipeId", "tagId"],
+    primaryKeys = ["recipe_id", "tag_id"],
     foreignKeys = [
         ForeignKey(
             entity = Recipe::class,
@@ -44,8 +44,8 @@ data class RecipeWithTags(
         entityColumn = "id",
         associateBy = Junction(
             value = RecipeTagCrossRef::class,
-            parentColumn = "recipe_id",
-            entityColumn = "tag_id"
+            parentColumn = "recipeId",
+            entityColumn = "tagId"
         )
     )
     val tags: List<Tag>
@@ -58,8 +58,8 @@ data class TagWithRecipes(
         entityColumn = "id",
         associateBy = Junction(
             value = RecipeTagCrossRef::class,
-            parentColumn = "tag_id",
-            entityColumn = "recipe_id"
+            parentColumn = "tagId",
+            entityColumn = "recipeId"
         )
     )
     val recipes: List<Recipe>
