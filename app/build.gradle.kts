@@ -7,6 +7,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("com.nomanr.plugin.lumo")
+    kotlin("plugin.serialization") version "1.9.23"
 }
 
 android {
@@ -78,5 +79,9 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     // MockK for mocking
     testImplementation(libs.mockk)
-
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.ktor.serialization.kotlinx.json)
 }

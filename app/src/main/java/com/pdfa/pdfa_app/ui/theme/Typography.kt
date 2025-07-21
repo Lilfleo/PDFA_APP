@@ -40,6 +40,13 @@ object AppTypo {
         lineHeight = 24.sp
     )
 
+    val SubTitle2 = TextStyle(
+        fontFamily = InterFontFamily,
+        fontSize = 30.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 24.sp
+    )
+
     val BodyLight = TextStyle(
         fontFamily = InterFontFamily,
         fontSize = 20.sp,

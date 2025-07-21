@@ -28,7 +28,7 @@ import com.pdfa.pdfa_app.user_interface.rooting.Screen
 
 @Composable
 fun RecipeCard(
-    navController: NavController
+    navController: NavController,
 ) {
     Box(
         modifier = Modifier
