@@ -10,6 +10,7 @@ import com.pdfa.pdfa_app.data.repository.AllergyRepository
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
 import com.pdfa.pdfa_app.data.repository.RecipeRepository
+import com.pdfa.pdfa_app.data.repository.TagPreferenceRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -63,4 +64,11 @@ object AppModule {
 
     @Provides
     fun provideFoodRecipeCrossRefDao(db: AppDatabase): FoodRecipeCrossRefDao = db.foodRecipeCrossRefDao()
+
+    @Provides
+    fun provideTagPreferenceDao(db: AppDatabase): TagPreferenceDao = db.tagPreferenceDao()
+
+    @Provides
+    @Singleton
+    fun proviceTagPreferenceRepository(tagPreferenceDao: TagPreferenceDao): TagPreferenceRepository = TagPreferenceRepository(tagPreferenceDao)
 }
