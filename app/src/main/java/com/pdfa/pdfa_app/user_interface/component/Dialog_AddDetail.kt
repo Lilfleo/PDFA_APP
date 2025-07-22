@@ -53,6 +53,7 @@ import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.viewmodel.FoodDetailViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.FoodViewModel
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -372,18 +373,22 @@ fun FoodAddDetailDialog(
 
 
 
+                val scope = rememberCoroutineScope()
+
                 Button(
                     onClick = {
-                        if (selectedFoodId != null &&
+                        if (
+                            selectedFoodId != null &&
                             quantityText.isNotBlank() &&
                             expirationDateText.isNotBlank() &&
                             buyingDateText.isNotBlank()
                         ) {
                             val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                            val foodId = selectedFoodId!!
 
                             val newDetail = FoodDetail(
                                 id = 0,
-                                foodId = selectedFoodId!!,
+                                foodId = foodId,
                                 quantity = quantityText.toFloatOrNull() ?: 0f,
                                 price = priceText.toFloatOrNull(),
                                 isWeight = selectedUnit == "Gramme",
@@ -391,9 +396,26 @@ fun FoodAddDetailDialog(
                                 expirationTime = sdf.parse(expirationDateText) ?: Date()
                             )
 
-                            detailViewModel.addFoodDetail(newDetail)
-                            onDismiss()
-                            onSnackbarMessage("Aliment ajouté au frigo !", "success")
+                            scope.launch {
+                                val existing = detailViewModel.getByFoodId(foodId)
+
+                                if (existing != null) {
+                                    val mergedDetail = existing.copy(
+                                        quantity = existing.quantity + newDetail.quantity,
+                                        price = newDetail.price ?: existing.price,
+                                        isWeight = newDetail.isWeight,
+                                        buyingTime = newDetail.buyingTime,
+                                        expirationTime = newDetail.expirationTime
+                                    )
+                                    detailViewModel.upsertFoodDetail(mergedDetail)
+                                    onSnackbarMessage("Quantité mise à jour !", "success")
+                                } else {
+                                    detailViewModel.addFoodDetail(newDetail)
+                                    onSnackbarMessage("Aliment ajouté au frigo !", "success")
+                                }
+
+                                onDismiss()
+                            }
 
                         } else {
                             onSnackbarMessage("Veuillez compléter tous les champs requis.", "error")
@@ -406,6 +428,7 @@ fun FoodAddDetailDialog(
                 ) {
                     Text("Ajouter")
                 }
+
 
             }
         }

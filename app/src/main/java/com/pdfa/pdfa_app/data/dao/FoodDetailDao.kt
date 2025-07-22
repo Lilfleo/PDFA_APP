@@ -1,6 +1,7 @@
 package com.pdfa.pdfa_app.data.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
@@ -34,5 +35,12 @@ interface FoodDetailDao {
 
     @Upsert
     suspend fun upsertFoodDetail(foodDetail: FoodDetail)
+
+    @Delete
+    suspend fun deleteFoodDetail(foodDetail: FoodDetail)
+
+
+
+
 }
 

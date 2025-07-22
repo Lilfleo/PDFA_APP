@@ -46,4 +46,15 @@ class FoodDetailViewModel @Inject constructor(
     fun getFoodDetail(foodId: Int): Flow<FoodDetailWithFood> {
         return repository.getFoodDetail(foodId)
     }
+
+    fun deleteFoodDetail(detail: FoodDetail) {
+        viewModelScope.launch {
+            repository.delete(detail)
+        }
+    }
+    suspend fun getByFoodId(foodId: Int): FoodDetail? {
+        return repository.getByFoodId(foodId)
+    }
+
+
 }

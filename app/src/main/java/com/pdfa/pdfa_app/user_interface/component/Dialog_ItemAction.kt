@@ -14,6 +14,7 @@ import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.data.model.Food
+import com.pdfa.pdfa_app.data.model.FoodDetail
 
 
 import java.text.SimpleDateFormat
@@ -27,6 +28,7 @@ fun FridgeItemActionDialog(
     onDismiss: () -> Unit,
     onEditClick: () -> Unit,
     onDeleteClick: () -> Unit
+
 ) {
     Dialog(
         onDismissRequest = onDismiss,

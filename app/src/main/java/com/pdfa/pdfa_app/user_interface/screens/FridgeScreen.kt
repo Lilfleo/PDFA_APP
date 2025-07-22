@@ -1,6 +1,7 @@
 package com.pdfa.pdfa_app.user_interface.screens
 
 import FoodAddDetailDialog
+import FoodModifDialog
 
 
 import android.util.Log
@@ -244,43 +245,58 @@ fun FridgeScreen(
                         .clip(AppShapes.CornerXL)
                         .background(Color.White)
                 ) {
-                    LazyColumn(
-                        state = listState,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        items(
-                            items = foodDetail,
-                            key = { it.foodDetail.id } // 🧠 clé unique et persistante = identifiant en base
-                        ) { detail ->
-                            Log.d("FridgeScreen", "🌀 Recomposition avec : ${detail.food.name}")
+                    if (foodDetail.isNotEmpty()) {
+                        LazyColumn(
+                            state = listState,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            items(
+                                items = foodDetail,
+                                key = { it.foodDetail.id } // 🧠 clé unique et persistante = identifiant en base
+                            ) { detail ->
+                                Log.d("FridgeScreen", "🌀 Recomposition avec : ${detail.food.name}")
 
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clickable {
-                                        selectedFood = detail.food
-                                    }
-
-
-                                    .padding(horizontal = AppSpacing.M, vertical = AppSpacing.S),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Box(
+                                Row(
                                     modifier = Modifier
-                                        .size(AppSpacing.XXXXL)
-                                        .background(Color.LightGray, shape = AppShapes.CornerXS)
-                                )
-                                Spacer(modifier = Modifier.width(AppSpacing.M))
-                                Text(
-                                    text = detail.food.name,
-                                    modifier = Modifier.weight(1f),
-                                    style = MaterialTheme.typography.bodyLarge
-                                )
-                                Text(
-                                    text = "${detail.food.caloriesPerKg} kcal",
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
+                                        .fillMaxWidth()
+                                        .clickable {
+                                            selectedFood = detail.food
+                                        }
+
+
+                                        .padding(
+                                            horizontal = AppSpacing.M,
+                                            vertical = AppSpacing.S
+                                        ),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .size(AppSpacing.XXXXL)
+                                            .background(Color.LightGray, shape = AppShapes.CornerXS)
+                                    )
+                                    Spacer(modifier = Modifier.width(AppSpacing.M))
+                                    Text(
+                                        text = detail.food.name,
+                                        modifier = Modifier.weight(1f),
+                                        style = MaterialTheme.typography.bodyLarge
+                                    )
+                                    Text(
+                                        text = "${detail.food.caloriesPerKg} kcal",
+                                        style = MaterialTheme.typography.bodyMedium
+                                    )
+                                }
                             }
+                        }
+                    } else {
+                        // éventuellement un message "Frigo vide 🍽️"
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(AppSpacing.L),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("Ton frigo est vide pour l’instant")
                         }
                     }
 
@@ -332,9 +348,11 @@ fun FridgeScreen(
                 onEditClick = {
                     selectedFoodId = food.id
                     selectedFood = null
+                    showDialogEdit = true
                 },
                 onDeleteClick = {
                     selectedItem = food
+                    selectedFood = null
                     isDeleteConfirmationVisible = true
                 }
             )
@@ -342,25 +360,37 @@ fun FridgeScreen(
 
 // 🗑️ Confirmation de suppression
         if (isDeleteConfirmationVisible && selectedItem != null) {
-            DeleteConfirmationDialog(
-                itemName = selectedItem!!.name,
-                onConfirm = {
-                    // TODO : suppression réelle ici
-                    isDeleteConfirmationVisible = false
-                    selectedItem = null
-                },
-                onDismiss = {
-                    isDeleteConfirmationVisible = false
-                    selectedItem = null
-                }
-            )
+            val foodDetailToDelete = foodDetail.find { it.food.id == selectedItem!!.id }?.foodDetail
+
+            if (foodDetailToDelete != null) {
+                DeleteConfirmationDialog(
+                    itemName = selectedItem!!.name,
+                    foodDetail = foodDetailToDelete, // 👈 nouveau paramètre
+                    onConfirm = {
+                        isDeleteConfirmationVisible = false
+                        selectedItem = null
+                    },
+                    onDismiss = {
+                        isDeleteConfirmationVisible = false
+                        selectedItem = null
+                    },
+                    onDelete = {
+                        foodDetailviewModel.deleteFoodDetail(it)
+                        snackbarMessage = "Supprimé"
+                        snackbarType = "success"
+                        isDeleteConfirmationVisible = false  // 👈 indispensable
+                        selectedItem = null                  // 👈 sinon ça se relance
+                    }
+                )
+            }
         }
+
 
 // ✍️ Dialog de modification
         if (showDialogEdit && foodToEdit != null) {
-            FoodAddDetailDialog(
+            FoodModifDialog(
                 foodToEdit = foodToEdit,
-                foodList = foodList,
+                foodList = foodList, // ✅ fourni depuis ton viewmodel
                 onDismiss = {
                     showDialogEdit = false
                     foodToEdit = null

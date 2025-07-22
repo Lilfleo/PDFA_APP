@@ -35,6 +35,16 @@ class FoodDetailRepository @Inject constructor(
         }
     }
 
+    suspend fun delete(foodDetail: FoodDetail) {
+        dao.deleteFoodDetail(foodDetail)
+    }
+
+    suspend fun getByFoodId(foodId: Int): FoodDetail? {
+        return dao.getByFoodId(foodId)
+    }
+
+
+
 }
 
 

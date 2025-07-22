@@ -17,15 +17,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.pdfa.pdfa_app.data.model.FoodDetail
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 
 @Composable
 fun DeleteConfirmationDialog(
+    foodDetail: FoodDetail,
     itemName: String,
     onConfirm: () -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    onDelete: (FoodDetail) -> Unit
+
 ) {
     Dialog(
         onDismissRequest = onDismiss,
@@ -66,7 +70,7 @@ fun DeleteConfirmationDialog(
                 // Bouton Supprimer
                 Button(
                     onClick = {
-                        onConfirm()
+                        onDelete(foodDetail)
                         onDismiss()
                     },
                     modifier = Modifier.fillMaxWidth(),
