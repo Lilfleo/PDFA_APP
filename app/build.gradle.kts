@@ -79,6 +79,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     // MockK for mocking
     testImplementation(libs.mockk)
+    implementation(project(":ui-components"))
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.content.negotiation)

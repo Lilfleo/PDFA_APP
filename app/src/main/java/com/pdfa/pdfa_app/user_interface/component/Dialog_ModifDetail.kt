@@ -1,31 +1,31 @@
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
-
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -40,24 +40,80 @@ import androidx.compose.ui.window.Dialog
 import com.pdfa.pdfa_app.R
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
+
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.pdfa.pdfa_app.data.model.Food
+import com.pdfa.pdfa_app.data.model.FoodDetail
+import com.pdfa.pdfa_app.data.model.FoodDetailWithFood
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
-import com.pdfa.pdfa_app.user_interface.component.CustomFoodSelector
+import com.pdfa.pdfa_app.ui.viewmodel.FoodDetailViewModel
+import com.pdfa.pdfa_app.ui.viewmodel.FoodViewModel
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("DefaultLocale")
 @Composable
-fun FoodDetailDialog(
-    foodName: String,
-    onDismiss: () -> Unit
+fun FoodModifDialog(
+    foodToEdit: FoodDetailWithFood? = null,
+    onDismiss: () -> Unit,
+    foodList: List<Food>,
+    onSnackbarMessage: (String, String) -> Unit,
+    existingDetail: FoodDetail? = null
 ) {
     val context = LocalContext.current
-    var selectedDate by remember { mutableStateOf("") }
     var selectedFood by remember { mutableStateOf("") }
+
+    val foodViewModel: FoodViewModel = hiltViewModel()
+    val detailViewModel: FoodDetailViewModel = hiltViewModel()
+
+
+    val foodList by foodViewModel.foodList.collectAsState()
+    var selectedFoodName by remember { mutableStateOf("") }
+    var selectedFoodId by remember { mutableStateOf<Int?>(null) }
+
+    var expanded by remember { mutableStateOf(false) }
+
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
+
+    var quantityText by remember { mutableStateOf("") }
+
     var priceText by remember { mutableStateOf("") }
+    var buyingDateText by remember {
+        mutableStateOf(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+    }
+    var expirationDateText by remember { mutableStateOf("") }
+    var selectedUnit by remember { mutableStateOf("Gramme") }
+    var selectedDateText by remember { mutableStateOf("") }
+
+
+    LaunchedEffect(Unit) {
+        snapshotFlow { quantityText }
+            .collect { Log.d("DEBUG", "TextField shows quantity = $it") }
+    }
+
+    LaunchedEffect(foodToEdit) {
+        foodToEdit?.let { detail ->
+            val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+            quantityText = foodToEdit.foodDetail.quantity.toString()
+            selectedFoodId = detail.foodDetail.foodId
+            selectedFoodName = detail.food.name
+            priceText = detail.foodDetail.price.toString()
+            selectedUnit = if (detail.foodDetail.isWeight) "Gramme" else "Pièce"
+            buyingDateText = formatter.format(detail.foodDetail.buyingTime)
+            expirationDateText = formatter.format(detail.foodDetail.expirationTime)
+        }
+    }
+
 
 
 
@@ -78,6 +134,7 @@ fun FoodDetailDialog(
                 .padding(AppSpacing.L)
         ) {
             Column {
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -91,19 +148,12 @@ fun FoodDetailDialog(
                     )
                     Spacer(modifier = Modifier.width(AppSpacing.S))
                     Text(
-                        text = "Ajoute un aliment à ton frigo",
+                        text = "Modification : $selectedFoodName",
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
                 Spacer(modifier = Modifier.height(AppSpacing.S))
 
-                CustomFoodSelector(
-                    foodList = listOf("Abricot", "Banane", "Cerise","Test_1","Test_2","Test_3"), // exemple
-                    selectedFood = selectedFood,
-                    onFoodSelected = { selectedFood = it }
-                )
-
-                Spacer(modifier = Modifier.height(AppSpacing.S))
 
                 // Checkbox conditionnelle
 
@@ -120,12 +170,7 @@ fun FoodDetailDialog(
 
                 Spacer(modifier = Modifier.height(AppSpacing.S))
 
-
-
-                // Etat quantité
-                var quantityText by remember { mutableStateOf("") }
-
-            // Etat unité
+                // Etat unité
                 var selectedUnit by remember { mutableStateOf("Gramme") }
                 val unitOptions = listOf("Gramme", "Pièce")
 
@@ -134,20 +179,27 @@ fun FoodDetailDialog(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     // Champ quantité à gauche
-                    OutlinedTextField(
-                        value = quantityText,
-                        onValueChange = { quantityText = it },
-                        label = { Text("Quantité") },
-                        singleLine = true,
-                        modifier = Modifier.weight(1f),
-                        shape = AppShapes.CornerM,
-                        colors = TextFieldDefaults.colors(
-                            focusedIndicatorColor = AppColors.MainGreen,
-                            unfocusedIndicatorColor = Color.LightGray,
-                            focusedLabelColor = AppColors.MainGreen,
-                            unfocusedLabelColor = Color.Gray
+                    key(foodToEdit?.foodDetail?.id ?: 0) {
+                        OutlinedTextField(
+                            value = quantityText.also {
+                                Log.d(
+                                    "UI",
+                                    "TextField shows quantity = $it"
+                                )
+                            },
+                            onValueChange = { quantityText = it },
+                            label = { Text("Quantité") },
+                            singleLine = true,
+                            modifier = Modifier.weight(1f),
+                            shape = AppShapes.CornerM,
+                            colors = TextFieldDefaults.colors(
+                                focusedIndicatorColor = AppColors.MainGreen,
+                                unfocusedIndicatorColor = Color.LightGray,
+                                focusedLabelColor = AppColors.MainGreen,
+                                unfocusedLabelColor = Color.Gray
+                            )
                         )
-                    )
+                    }
 
                     Spacer(modifier = Modifier.width(AppSpacing.S))
 
@@ -196,7 +248,7 @@ fun FoodDetailDialog(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     OutlinedTextField(
-                        value = selectedDateText,
+                        value = buyingDateText,
                         onValueChange = { selectedDateText = it },
                         label = { Text("Date d'achat") },
                         modifier = Modifier.weight(1f),
@@ -206,7 +258,7 @@ fun FoodDetailDialog(
                     IconButton(
                         onClick = {
                             val now = LocalDate.now()
-                            val datePicker = android.app.DatePickerDialog(
+                            val datePicker = DatePickerDialog(
                                 context,
                                 { _, year, month, dayOfMonth ->
                                     val date = LocalDate.of(year, month + 1, dayOfMonth)
@@ -235,8 +287,8 @@ fun FoodDetailDialog(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     OutlinedTextField(
-                        value = selectedDateText,
-                        onValueChange = { selectedDateText = it },
+                        value = expirationDateText,
+                        onValueChange = { expirationDateText = it },
                         label = { Text("DLC") },
                         modifier = Modifier.weight(1f),
                         singleLine = true
@@ -245,11 +297,11 @@ fun FoodDetailDialog(
                     IconButton(
                         onClick = {
                             val now = LocalDate.now()
-                            val datePicker = android.app.DatePickerDialog(
+                            val datePicker = DatePickerDialog(
                                 context,
                                 { _, year, month, dayOfMonth ->
                                     val date = LocalDate.of(year, month + 1, dayOfMonth)
-                                    selectedDateText = date.format(formatter)
+                                    expirationDateText = date.format(formatter)
                                 },
                                 now.year,
                                 now.monthValue - 1,
@@ -285,17 +337,54 @@ fun FoodDetailDialog(
 
                 Spacer(modifier = Modifier.height(AppSpacing.S))
 
+
+
+
                 Button(
-                    onClick = onDismiss, //a changer ici pour sauvegarder et pas quitter
+                    onClick = {
+                        if (selectedFoodId != null &&
+                            quantityText.isNotBlank() &&
+                            expirationDateText.isNotBlank() &&
+                            buyingDateText.isNotBlank()
+                        ) {
+                            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+                            val newDetail = FoodDetail(
+                                id = foodToEdit?.foodDetail?.id ?: 0, // garde l'id existant si on modifie
+                                foodId = selectedFoodId!!,
+                                quantity = quantityText.toIntOrNull() ?: 0,
+                                price = priceText.toFloatOrNull(),
+                                isWeight = selectedUnit == "Gramme",
+                                buyingTime = sdf.parse(buyingDateText) ?: Date(),
+                                expirationTime = sdf.parse(expirationDateText) ?: Date()
+                            )
+
+                            detailViewModel.upsertFoodDetail(newDetail)
+                            onDismiss()
+                            onSnackbarMessage("Détail mis à jour avec succès !", "success")
+
+                        } else {
+                            coroutineScope.launch {
+                                snackbarHostState.showSnackbar("Veuillez compléter tous les champs requis.")
+                            }
+                        }
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = AppColors.MainGreen
                     )
                 ) {
-                    Text("Ajouter")
+                    Text("Modifier")
                 }
-            }
 
+            }
+            // ✅ Snackbar intégrée à la Dialog
+            SnackbarHost(
+                hostState = snackbarHostState,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = AppSpacing.S)
+            )
         }
     }
 }

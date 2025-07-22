@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "PDFA_APP"
-include(":app")
+include(":app", ":ui-components")
