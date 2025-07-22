@@ -11,6 +11,7 @@ import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
 import com.pdfa.pdfa_app.data.repository.RecipeRepository
 import com.pdfa.pdfa_app.data.repository.TagPreferenceRepository
+import com.pdfa.pdfa_app.data.repository.UtensilPreferenceRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,4 +72,14 @@ object AppModule {
     @Provides
     @Singleton
     fun proviceTagPreferenceRepository(tagPreferenceDao: TagPreferenceDao): TagPreferenceRepository = TagPreferenceRepository(tagPreferenceDao)
+
+    @Provides
+    fun provideUtensilDao(db: AppDatabase): UtensilDao = db.utensilDao()
+
+    @Provides
+    fun provideUtensilPreferenceDao(db: AppDatabase): UtensilPreferenceDao = db.utensilPreferenceDao()
+
+    @Provides
+    @Singleton
+    fun provideUtensilPreferenceRepository(utensilPreferenceDao: UtensilPreferenceDao): UtensilPreferenceRepository = UtensilPreferenceRepository(utensilPreferenceDao)
 }
