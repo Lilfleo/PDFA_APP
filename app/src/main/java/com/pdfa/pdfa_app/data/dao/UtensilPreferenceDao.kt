@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import com.pdfa.pdfa_app.data.model.Utensil
+import com.pdfa.pdfa_app.data.model.UtensilPreference
 import com.pdfa.pdfa_app.data.model.UtensilPreferenceWithUtensil
 import kotlinx.coroutines.flow.Flow
 
@@ -14,11 +15,11 @@ import kotlinx.coroutines.flow.Flow
 interface UtensilPreferenceDao {
     @Transaction
     @Query("SELECT * FROM utensil_preference")
-    fun getAllUtensils(): Flow<List<UtensilPreferenceWithUtensil>>
+    fun getAllUtensilPreferences(): Flow<List<UtensilPreferenceWithUtensil>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUtensil(utensil: Utensil): Long
+    suspend fun insertUtensilPreference(utensilPreference: UtensilPreference): Long
 
     @Delete
-    suspend fun deleteUtensil(utensil: Utensil)
+    suspend fun deleteUtensilPreference(utensil: UtensilPreference)
 }
