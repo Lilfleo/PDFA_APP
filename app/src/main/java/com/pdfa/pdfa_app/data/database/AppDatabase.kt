@@ -13,6 +13,7 @@ import com.pdfa.pdfa_app.data.dao.AllergyDao
 import com.pdfa.pdfa_app.data.dao.FoodDetailDao
 import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.data.model.FoodDetail
+import com.pdfa.pdfa_app.data.seeding.SeedingAllergy
 
 
 @Database(entities = [Food::class, Allergy::class, FoodDetail::class], version = 2)
@@ -42,9 +43,10 @@ abstract class AppDatabase : RoomDatabase() {
                 .build().also { INSTANCE = it }
             }
 
-        fun createCallback(foodDaoProvider: () -> FoodDao, allergyDaoProvider: () -> AllergyDao) = object : Callback() {
+        fun createCallback(foodDaoProvider: () -> FoodDao, allergyDaoProvider: () -> AllergyDao, context: Context) = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
+                SeedingAllergy(context, allergyDaoProvider()).seed()
 
                 // Launch coroutine to insert data
                 CoroutineScope(Dispatchers.IO).launch {
