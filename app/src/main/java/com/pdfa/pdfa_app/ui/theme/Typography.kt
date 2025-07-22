@@ -61,6 +61,13 @@ object AppTypo {
         lineHeight = 24.sp
     )
 
+    val BodySteps = TextStyle(
+        fontFamily = InterFontFamily,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 24.sp
+    )
+
     val TagBody = TextStyle(
         fontFamily = InterFontFamily,
         fontSize = 16.sp,

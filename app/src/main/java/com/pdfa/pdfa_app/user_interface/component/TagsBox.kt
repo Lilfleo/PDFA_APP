@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
+import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 
 @Composable
@@ -28,8 +29,10 @@ fun TagsBox(
     val colorTag: Color =
         when (type) {
             "Easy" -> AppColors.Easy
+            "Allergy" -> AppColors.Hard
+            "Diet" -> AppColors.Diet
             else -> {
-                AppColors.Primary
+                Color.White
             }
         }
 
@@ -37,47 +40,47 @@ fun TagsBox(
         Box(
             modifier = Modifier
                 .wrapContentWidth()
-                .height(25.dp)
-                .padding(end = 5.dp)
+                .height(32.dp) // Légèrement plus haut pour matcher l'image
+                .padding(end = AppSpacing.S)
                 .shadow(
-                    elevation = 2.dp,
-                    shape = AppShapes.CornerM
+                    elevation = 3.dp, // Ombre plus prononcée
+                    shape = AppShapes.CornerM // Coins plus arrondis
                 )
                 .clip(AppShapes.CornerM)
-                .background(colorTag),
-            contentAlignment = Alignment.Center
+                .background(colorTag)
         ){
+            // Texte principal
             Text(
                 modifier = Modifier
-                    .padding(horizontal = 6.dp),
-                text = "#$name",
+                    .align(Alignment.Center)
+                    .padding(horizontal = 12.dp, vertical = 6.dp),
+                text = name,
                 style = AppTypo.TagBody,
-                color = Color.Black
+                color = Color.Black,
             )
-
         }
     } else {
         Box(
             modifier = Modifier
                 .wrapContentWidth()
-                .height(25.dp)
-                .padding(end = 5.dp)
+                .height(32.dp)
+                .padding(end = AppSpacing.S)
                 .shadow(
-                    elevation = 2.dp,
+                    elevation = 3.dp,
                     shape = AppShapes.CornerM
                 )
                 .clip(AppShapes.CornerM)
-                .background(color = Color.White),
-            contentAlignment = Alignment.Center
+                .background(Color.White)
         ){
+            // Texte principal
             Text(
                 modifier = Modifier
-                    .padding(horizontal = 6.dp),
-                text = "#$name",
+                    .align(Alignment.Center)
+                    .padding(horizontal = 12.dp, vertical = 6.dp),
+                text = name,
                 style = AppTypo.TagBody,
-                color = Color.Black
+                color = Color.Black,
             )
-
         }
     }
 

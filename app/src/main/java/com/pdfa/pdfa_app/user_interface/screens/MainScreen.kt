@@ -17,10 +17,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.pdfa.pdfa_app.api.CallTags
 import com.pdfa.pdfa_app.api.Ingredient
+import com.pdfa.pdfa_app.api.RecipeForShoplist
 import com.pdfa.pdfa_app.api.RecipeWithFood
 import com.pdfa.pdfa_app.api.RecipeWithFoodPrompt
+import com.pdfa.pdfa_app.api.RecipeWithoutFoodPrompt
+import com.pdfa.pdfa_app.api.Tags
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.user_interface.component.BottomNavBar
 import com.pdfa.pdfa_app.user_interface.component.DrawerMenu
@@ -39,23 +41,42 @@ import com.pdfa.pdfa_app.user_interface.screens.ShoplistScreen
 
 
 @Composable
-fun MainScreen(
-    viewModel: RecipeViewModel = viewModel()
-) {
+fun MainScreen() {
 
-    val recip: RecipeWithFood = RecipeWithFood(
+    val sharedViewModel: RecipeViewModel = hiltViewModel()
+
+    val recipWithFood: RecipeWithFood = RecipeWithFood(
         prompt = RecipeWithFoodPrompt(
             title = "Curry de pois chiches",
             ingredients = listOf(
                 Ingredient("pois chiches", 400.0, "g"),
+                Ingredient("echalote", 5.0, "pièce"),
+                Ingredient("tortilla", 8.0, "pièce"),
+                Ingredient("yahourt grec", 4.0, "pièce"),
+                Ingredient("riz thai", 500.0, "g"),
+                Ingredient("paprika", 25.0, "g"),
+                Ingredient("curry", 25.0, "g"),
                 Ingredient("lait de coco", 20.0, "cl"),
                 Ingredient("oignon", 1.0, "pièce")
             ),
             utensils = listOf("casserole", "cuillère en bois"),
-            tags = CallTags(
-                diet = listOf("végétarien"),
-                tag = listOf("rapide", "réconfortant"),
-                allergies = listOf("aucune")
+            tags = Tags(
+                diet = listOf("Végétarien"),
+                tag = listOf("Rapide", "Réconfortant"),
+                allergies = null
+            )
+        ),
+        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
+    )
+
+    val recipWithoutFood: RecipeForShoplist = RecipeForShoplist(
+        prompt = RecipeWithoutFoodPrompt(
+            title = "Curry de pois chiches",
+            utensils = listOf("casserole", "cuillère en bois"),
+            tags = Tags(
+                diet = listOf("Végétarien"),
+                tag = listOf("Rapide", "Réconfortant"),
+                allergies = null
             )
         ),
         excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
@@ -63,8 +84,8 @@ fun MainScreen(
 
     //API
     LaunchedEffect(Unit) {
-//        viewModel.testConnection()
-        viewModel.generateRecipe(recip)
+        sharedViewModel.generateMultipleRecipWithFood(recipWithFood)
+        sharedViewModel.generateMultipleRecipWithoutFood(recipWithoutFood)
     }
     //
 
@@ -142,11 +163,11 @@ fun MainScreen(
                         println("Bouton Add cliqué") })
                 }
                 composable(Screen.Shoplist.rout){ ShoplistScreen() }
-                composable(Screen.Recipe.rout) { RecipeScreen(navController) }
+                composable(Screen.Recipe.rout) { RecipeScreen(navController, sharedViewModel) }
                 composable(Screen.Cookbook.rout) { CookbookScreen(navController) }
                 composable (Screen.Food.rout ){ FoodScreen() }
-                composable(Screen.RecipeDetailScreen.rout) { RecipeDetailScreen(navController) }
-                composable(Screen.RecipeStepsScreen.rout) {RecipeStepsScreen(navController)}
+                composable(Screen.RecipeDetailScreen.rout) { RecipeDetailScreen(navController, sharedViewModel) }
+                composable(Screen.RecipeStepsScreen.rout) {RecipeStepsScreen( navController, sharedViewModel)}
                 composable(Screen.ProfilScreen.rout) { ProfilScreen(navController)}
             }
         }

@@ -10,6 +10,9 @@ import kotlinx.coroutines.launch
 import com.pdfa.pdfa_app.data.repository.ApiRepository
 import com.pdfa.pdfa_app.api.RecipeResponse
 import com.pdfa.pdfa_app.api.HelloResponse
+import com.pdfa.pdfa_app.api.Recipe
+import com.pdfa.pdfa_app.api.RecipeForShoplist
+import com.pdfa.pdfa_app.api.RecipeMultipleResponse
 import com.pdfa.pdfa_app.api.RecipeWithFood
 
 class RecipeViewModel : ViewModel() {
@@ -19,15 +22,30 @@ class RecipeViewModel : ViewModel() {
     private val _connectionStatus = mutableStateOf<HelloResponse?>(null)
     val connectionStatus: State<HelloResponse?> = _connectionStatus
 
-    // États pour les recettes
+    // États pour les recettes with food
     private val _recipe = mutableStateOf<RecipeResponse?>(null)
     val recipe: State<RecipeResponse?> = _recipe
+
+    // États pour les multiples recettes with food
+    private val _multipleRecipeWithFood = mutableStateOf<RecipeMultipleResponse?>(null)
+    val multipleRecipeWithFood: State<RecipeMultipleResponse?> = _multipleRecipeWithFood
+
+    // États pour les multiples recettes without food
+    private val _multipleRecipeWithoutFood = mutableStateOf<RecipeMultipleResponse?>(null)
+    val multipleRecipeWithoutFood: State<RecipeMultipleResponse?> = _multipleRecipeWithoutFood
 
     private val _isLoading = mutableStateOf(false)
     val isLoading: State<Boolean> = _isLoading
 
     private val _error = mutableStateOf<String?>(null)
     val error: State<String?> = _error
+
+    //Recette selectionner
+    private val _selectedRecipe = mutableStateOf<Recipe?>(null)
+    val selectedRecipe: State<Recipe?> = _selectedRecipe
+    fun selectRecipe(recipe: Recipe) {
+        _selectedRecipe.value = recipe
+    }
 
     fun testConnection() {
         viewModelScope.launch {
@@ -68,6 +86,46 @@ class RecipeViewModel : ViewModel() {
                 val recipeResponse = repository.generateRecipe(requestData)
                 _recipe.value = recipeResponse
                 Log.i(TAG, "✅ Recette générée: ${recipeResponse.recipe.title}")
+            } catch (e: Exception) {
+                Log.e(TAG, "❌ Erreur: ${e.message}", e)
+                _error.value = "Erreur: ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun generateMultipleRecipWithFood(requestData: RecipeWithFood) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _error.value = null
+
+            Log.d(TAG, "🔄 Données envoyées: $requestData")
+
+            try {
+                val recipeResponse = repository.generateMultipleRecipWithFood(requestData)
+                _multipleRecipeWithFood.value = recipeResponse
+                Log.i(TAG, "✅ Recette générée: ${recipeResponse.recipes.size}")
+            } catch (e: Exception) {
+                Log.e(TAG, "❌ Erreur: ${e.message}", e)
+                _error.value = "Erreur: ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun generateMultipleRecipWithoutFood(requestData: RecipeForShoplist) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _error.value = null
+
+            Log.d(TAG, "🔄 Données envoyées: $requestData")
+
+            try {
+                val recipeResponse = repository.generateMultipleRecipWithoutFood(requestData)
+                _multipleRecipeWithoutFood.value = recipeResponse
+                Log.i(TAG, "✅ Recette générée: ${recipeResponse.recipes.size}")
             } catch (e: Exception) {
                 Log.e(TAG, "❌ Erreur: ${e.message}", e)
                 _error.value = "Erreur: ${e.message}"
