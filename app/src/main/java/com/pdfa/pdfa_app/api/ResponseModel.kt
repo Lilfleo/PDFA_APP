@@ -11,17 +11,22 @@ data class HelloResponse(
 
 //Recette Reponse
 @Serializable
+data class RecipeMultipleResponse(
+    val recipes: List<Recipe>,
+)
+
+@Serializable
 data class RecipeResponse(
     val recipe : Recipe,
-    val unusedIngredients: List<String>
 )
 
 @Serializable
 data class Recipe(
     val title: String,
+    val subTitle: String,
     val preparationTime: String,
     val totalCookingTime: String,
-    val tags: List<String>,
+    val tags: Tags,
     val ingredients: List<Ingredient>,
     val steps: List<String>
 )

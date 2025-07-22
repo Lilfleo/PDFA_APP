@@ -25,15 +25,64 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.pdfa.pdfa_app.api.Ingredient
+import com.pdfa.pdfa_app.api.RecipeForShoplist
+import com.pdfa.pdfa_app.api.RecipeWithFood
+import com.pdfa.pdfa_app.api.RecipeWithFoodPrompt
+import com.pdfa.pdfa_app.api.RecipeWithoutFoodPrompt
+import com.pdfa.pdfa_app.api.Tags
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 
 @Composable
 fun RecipeParameter(
-    onDismiss: () -> Unit
+    isWithIngredient: Boolean,
+    onDismiss: () -> Unit,
+    viewModel: RecipeViewModel,
 ){
+
+    //Temporary
+    val recipWithFood: RecipeWithFood = RecipeWithFood(
+        prompt = RecipeWithFoodPrompt(
+            title = "Curry de pois chiches",
+            ingredients = listOf(
+                Ingredient("pois chiches", 400.0, "g"),
+                Ingredient("echalote", 5.0, "pièce"),
+                Ingredient("tortilla", 8.0, "pièce"),
+                Ingredient("yahourt grec", 4.0, "pièce"),
+                Ingredient("riz thai", 500.0, "g"),
+                Ingredient("paprika", 25.0, "g"),
+                Ingredient("curry", 25.0, "g"),
+                Ingredient("lait de coco", 20.0, "cl"),
+                Ingredient("oignon", 1.0, "pièce")
+            ),
+            utensils = listOf("casserole", "cuillère en bois"),
+            tags = Tags(
+                diet = listOf("Végétarien"),
+                tag = listOf("Rapide", "Réconfortant"),
+                allergies = null
+            )
+        ),
+        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
+    )
+
+    val recipWithoutFood: RecipeForShoplist = RecipeForShoplist(
+        prompt = RecipeWithoutFoodPrompt(
+            title = "Curry de pois chiches",
+            utensils = listOf("casserole", "cuillère en bois"),
+            tags = Tags(
+                diet = listOf("Végétarien"),
+                tag = listOf("Rapide", "Réconfortant"),
+                allergies = null
+            )
+        ),
+        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
+    )
+
+
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(
@@ -153,6 +202,11 @@ fun RecipeParameter(
                             shape = AppShapes.CornerM)
                         .clickable {
                             onDismiss()
+                            if (isWithIngredient) {
+                                viewModel.generateMultipleRecipWithFood(recipWithFood)
+                            } else {
+                                viewModel.generateMultipleRecipWithoutFood(recipWithoutFood)
+                            }
                         }
                         .padding(vertical = AppSpacing.S)
 

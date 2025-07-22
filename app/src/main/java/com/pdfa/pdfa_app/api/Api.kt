@@ -31,11 +31,11 @@ class ApiClient {
             allowHttpsDowngrade = false
         }
 
-        install(HttpTimeout) {
-            requestTimeoutMillis = 30000
-            connectTimeoutMillis = 15000
-            socketTimeoutMillis = 15000
-        }
+//        install(HttpTimeout) {
+//            requestTimeoutMillis = 30000
+//            connectTimeoutMillis = 15000
+//            socketTimeoutMillis = 15000
+//        }
     }
 
     suspend fun testConnection(): Result<HelloResponse> {
@@ -69,6 +69,42 @@ class ApiClient {
 
             if (response.status.isSuccess()) {
                 val recipeResponse = response.body<RecipeResponse>()
+                Result.success(recipeResponse)
+            } else {
+                Result.failure(Exception("Erreur lors de la génération de recette: ${response.status}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun getMultipleRecipeWithFood(requestData: RecipeWithFood): Result<RecipeMultipleResponse> {
+        return try {
+            val response: HttpResponse = httpClient.post("$baseUrl/recipes-batch/generate-multiple") {
+                contentType(ContentType.Application.Json)
+                setBody(requestData)
+            }
+
+            if (response.status.isSuccess()) {
+                val recipeResponse = response.body<RecipeMultipleResponse>()
+                Result.success(recipeResponse)
+            } else {
+                Result.failure(Exception("Erreur lors de la génération de recette: ${response.status}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun getMultipleRecipeWithoutFood(requestData: RecipeForShoplist): Result<RecipeMultipleResponse> {
+        return try {
+            val response: HttpResponse = httpClient.post("${baseUrl}/recipes-batch/generate-multiple-without-ingredients") {
+                contentType(ContentType.Application.Json)
+                setBody(requestData)
+            }
+
+            if (response.status.isSuccess()) {
+                val recipeResponse = response.body<RecipeMultipleResponse>()
                 Result.success(recipeResponse)
             } else {
                 Result.failure(Exception("Erreur lors de la génération de recette: ${response.status}"))

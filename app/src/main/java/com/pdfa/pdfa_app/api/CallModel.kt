@@ -11,10 +11,10 @@ data class RecipeWithFood(
 
 @Serializable
 data class RecipeWithFoodPrompt(
-    val title: String,
+    val title: String? = null,
     val ingredients: List<Ingredient>,
     val utensils: List<String>,
-    val tags: CallTags,
+    val tags: Tags,
 )
 
 // Recipe for shoplist
@@ -26,9 +26,9 @@ data class RecipeForShoplist(
 
 @Serializable
 data class RecipeWithoutFoodPrompt(
-    val title: String,
+    val title: String? = null,
     val utensils: List<String>,
-    val tags: CallTags,
+    val tags: Tags,
 )
 
 //General
@@ -40,8 +40,8 @@ data class Ingredient(
 )
 
 @Serializable
-data class CallTags(
-    val diet: List<String>,
-    val tag: List<String>,
-    val allergies: List<String>
+data class Tags(
+    val diet: List<String>? = null,
+    val tag: List<String>? = null,
+    val allergies: List<String>? = null
 )

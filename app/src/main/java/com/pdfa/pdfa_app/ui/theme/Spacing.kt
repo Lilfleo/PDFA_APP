@@ -21,6 +21,6 @@ object AppSpacing {
     val XXXXXL = 72.dp
 
     //Element
-    val CardHeight = 120.dp
+    val CardHeight = 130.dp
 
 }
