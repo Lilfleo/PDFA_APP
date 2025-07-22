@@ -76,9 +76,6 @@ fun FridgeScreen(
     var expanded by remember { mutableStateOf(false) }
     var selectedFoodName by remember { mutableStateOf("") }
 
-
-
-
     var searchQuery by remember { mutableStateOf("") }
     var showDialogAdd by remember { mutableStateOf(false) }
 
@@ -89,10 +86,7 @@ fun FridgeScreen(
     var snackbarType by remember { mutableStateOf<String?>(null) }
     var selectedItem by remember { mutableStateOf<Food?>(null) }
 
-    var selectedFood by remember { mutableStateOf<Food?>(null) }
-
-
-
+    var selectedFoodDetail by remember { mutableStateOf<FoodDetailWithFood?>(null) }
     var isDeleteConfirmationVisible by remember { mutableStateOf(false) }
 
 
@@ -260,10 +254,8 @@ fun FridgeScreen(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .clickable {
-                                            selectedFood = detail.food
+                                            selectedFoodDetail = detail
                                         }
-
-
                                         .padding(
                                             horizontal = AppSpacing.M,
                                             vertical = AppSpacing.S
@@ -282,7 +274,7 @@ fun FridgeScreen(
                                         style = MaterialTheme.typography.bodyLarge
                                     )
                                     Text(
-                                        text = "${detail.food.caloriesPerKg} kcal",
+                                        text = "${detail.foodDetail.quantity} ${if (detail.foodDetail.isWeight) "g" else "Pce"}",
                                         style = MaterialTheme.typography.bodyMedium
                                     )
                                 }
@@ -339,20 +331,20 @@ fun FridgeScreen(
             }
         }
         // 🔄 Fenêtre de gestion sur clic d'un aliment
-        selectedFood?.let { food ->
+        selectedFoodDetail?.let { detail ->
             FridgeItemActionDialog(
-                item = food,
+                item = detail,
                 onDismiss = {
-                    selectedFood = null
+                    selectedFoodDetail = null
                 },
                 onEditClick = {
-                    selectedFoodId = food.id
-                    selectedFood = null
+                    foodToEdit = detail
+                    selectedFoodDetail = null
                     showDialogEdit = true
                 },
                 onDeleteClick = {
-                    selectedItem = food
-                    selectedFood = null
+                    selectedItem = detail.food
+                    selectedFoodDetail = null
                     isDeleteConfirmationVisible = true
                 }
             )

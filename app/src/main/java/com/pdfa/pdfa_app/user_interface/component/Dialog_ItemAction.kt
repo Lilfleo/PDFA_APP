@@ -1,6 +1,7 @@
 package com.pdfa.pdfa_app.user_interface.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -13,8 +14,8 @@ import androidx.compose.ui.window.DialogProperties
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
-import com.pdfa.pdfa_app.data.model.Food
-import com.pdfa.pdfa_app.data.model.FoodDetail
+import com.pdfa.pdfa_app.data.model.FoodDetailWithFood
+import com.pdfa.pdfa_app.ui.theme.AppTypo
 
 
 import java.text.SimpleDateFormat
@@ -24,12 +25,13 @@ import java.util.*
 
 @Composable
 fun FridgeItemActionDialog(
-    item: Food,
+    item: FoodDetailWithFood,
     onDismiss: () -> Unit,
     onEditClick: () -> Unit,
     onDeleteClick: () -> Unit
-
 ) {
+    val unit = if (item.foodDetail.isWeight) "gramme${if (item.foodDetail.quantity > 1) "s" else ""}" else if (item.foodDetail.quantity > 1) "pièces" else "pièce"
+
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(usePlatformDefaultWidth = false)
@@ -40,63 +42,112 @@ fun FridgeItemActionDialog(
                 .background(color = Color.White, shape = AppShapes.CornerL)
                 .padding(AppSpacing.L)
         ) {
-            Column {
-                // Titre + image en haut à droite
-                Box(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(AppSpacing.S)
+            ){
+                // Titre + image
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Text(
-                        text = item.name,
-                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                        modifier = Modifier.align(Alignment.TopStart)
+                        text = item.food.name,
+                        style = AppTypo.SubTitle2
                     )
                     Box(
                         modifier = Modifier
                             .size(AppSpacing.XXXXL)
-                            .align(Alignment.TopEnd)
                             .background(Color.LightGray, shape = AppShapes.CornerS)
-                    ) {
-                        // Placeholder image
-                    }
+                    )
                 }
 
-                Spacer(modifier = Modifier.height(AppSpacing.XL))
+                Spacer(modifier = Modifier.height(AppSpacing.S))
 
-                // Données en 2 colonnes
+                // Infos
                 Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(AppSpacing.XS)
+                    verticalArrangement = Arrangement.spacedBy(AppSpacing.XS),
+                    modifier = Modifier.fillMaxWidth()
                 ) {
-                    DialogRow(label = "Nombre de kcal", value = "${item.caloriesPerKg} kcal/kg")
-                    //DialogRow(label = "Date d’achat", value = formatDateDisplay(item.expirationTime))
-                    DialogRow(label = "À manger dans les", value = formatDateDisplay(item.expirationTime))
+                    DialogRow(
+                        label = "Quantité",
+                        value = "${item.foodDetail.quantity} $unit"
+                    )
+                    DialogRow(
+                        label = "Nombre de kcal",
+                        value = "${item.food.caloriesPerKg} kcal/kg"
+                    )
+                    DialogRow(
+                        label = "Date d’achat",
+                        value = formatDateDisplay(item.foodDetail.buyingTime)
+                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "À manger dans les",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        DaysLeftLabel(expirationTime = item.foodDetail.expirationTime)
+                    }
+
                 }
 
                 Spacer(modifier = Modifier.height(AppSpacing.M))
 
-                // Bouton Modifier (gris clair)
-                Button(
-                    onClick = onEditClick,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = AppColors.LightGrey)
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .background(
+                            color = AppColors.LightGrey,
+                            shape = AppShapes.CornerM
+                        )
+                        .clickable {
+                            onEditClick
+                        }
+                        .padding(vertical = AppSpacing.S)
+
                 ) {
-                    Text("Modifier", color = Color.Black)
+                    Text(
+                        text = "Modifier",
+                        style = AppTypo.SubTitle,
+                        color = Color.Black
+                    )
                 }
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .background(
+                            color = AppColors.MainRed,
+                            shape = AppShapes.CornerM
+                        )
+                        .clickable {
+                            onDeleteClick
+                        }
+                        .padding(vertical = AppSpacing.S)
 
-                Spacer(modifier = Modifier.height(AppSpacing.M))
-
-                // Bouton Supprimer (rouge)
-                Button(
-                    onClick = onDeleteClick,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
                 ) {
-                    Text("Supprimer", color = Color.White)
+                    Text(
+                        text = "Supprimer",
+                        style = AppTypo.SubTitle,
+                        color = Color.Black
+                    )
                 }
             }
         }
     }
 }
 
+
 // 🔧 Fonction de formatage
+
+
+
 fun formatDateDisplay(date: Any?): String {
     return try {
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
@@ -114,6 +165,7 @@ fun formatDateDisplay(date: Any?): String {
         ""
     }
 }
+
 
 
 @Composable

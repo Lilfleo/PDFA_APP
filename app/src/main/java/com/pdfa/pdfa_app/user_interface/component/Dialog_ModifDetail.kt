@@ -352,7 +352,7 @@ fun FoodModifDialog(
                             val newDetail = FoodDetail(
                                 id = foodToEdit?.foodDetail?.id ?: 0, // garde l'id existant si on modifie
                                 foodId = selectedFoodId!!,
-                                quantity = quantityText.toFloatOrNull() ?: 0f,
+                                quantity = quantityText.toIntOrNull() ?: 0,
                                 price = priceText.toFloatOrNull(),
                                 isWeight = selectedUnit == "Gramme",
                                 buyingTime = sdf.parse(buyingDateText) ?: Date(),
