@@ -22,6 +22,15 @@ class FoodViewModel @Inject constructor(
             SharingStarted.WhileSubscribed(5000),
             emptyList()
         )
+    init {
+        // 🔍 Log pour débogage
+        viewModelScope.launch {
+            repository.allFood.collect { list ->
+                println("⚠️ FOOD_VIEWMODEL : reçu ${list.size} aliments")
+                list.forEach { println("🍎 ${it.name}") }
+            }
+        }
+    }
 
     fun addFood(food: Food) {
         viewModelScope.launch {

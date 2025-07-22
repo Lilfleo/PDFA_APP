@@ -16,6 +16,8 @@ import com.pdfa.pdfa_app.data.dao.RecipeDao
 import com.pdfa.pdfa_app.data.dao.RecipeTagCrossRefDao
 import com.pdfa.pdfa_app.data.dao.TagDao
 import com.pdfa.pdfa_app.data.dao.TagPreferenceDao
+import com.pdfa.pdfa_app.data.dao.UtensilDao
+import com.pdfa.pdfa_app.data.dao.UtensilPreferenceDao
 import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.data.model.FoodDetail
 import com.pdfa.pdfa_app.data.model.FoodRecipeCrossRef
@@ -23,6 +25,8 @@ import com.pdfa.pdfa_app.data.model.Recipe
 import com.pdfa.pdfa_app.data.model.RecipeTagCrossRef
 import com.pdfa.pdfa_app.data.model.Tag
 import com.pdfa.pdfa_app.data.model.TagPreference
+import com.pdfa.pdfa_app.data.model.Utensil
+import com.pdfa.pdfa_app.data.model.UtensilPreference
 
 
 @Database(entities = [
@@ -33,7 +37,9 @@ import com.pdfa.pdfa_app.data.model.TagPreference
     Recipe::class,
     RecipeTagCrossRef::class,
     FoodRecipeCrossRef::class,
-    TagPreference::class],
+    TagPreference::class,
+    Utensil::class,
+    UtensilPreference::class],
     version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -45,6 +51,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun recipeTagCrossRefDao(): RecipeTagCrossRefDao
     abstract fun foodRecipeCrossRefDao(): FoodRecipeCrossRefDao
     abstract fun tagPreferenceDao(): TagPreferenceDao
+    abstract fun utensilDao(): UtensilDao
+    abstract fun utensilPreferenceDao(): UtensilPreferenceDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null

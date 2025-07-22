@@ -1,6 +1,7 @@
 package com.pdfa.pdfa_app.data.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
@@ -19,6 +20,12 @@ interface FoodDetailDao {
     @Query("SELECT * FROM food_detail")
     fun getFoodDetails(): Flow<List<FoodDetailWithFood>>
 
+    @Query("SELECT * FROM food_detail WHERE id = :id")
+    suspend fun getById(id: Int): FoodDetail?
+
+    @Query("SELECT * FROM food_detail WHERE food_id = :foodId")
+    suspend fun getByFoodId(foodId: Int): FoodDetail?
+
     @Transaction
     @Query("SELECT * FROM food_detail WHERE food_id = :foodId")
     fun getFoodDetail(foodId: Int): Flow<FoodDetailWithFood>
@@ -27,6 +34,13 @@ interface FoodDetailDao {
     suspend fun updateFoodDetail(foodDetail: FoodDetail)
 
     @Upsert
-    suspend fun upsertFoodDetail(foodDetail: FoodDetail): Long
+    suspend fun upsertFoodDetail(foodDetail: FoodDetail)
+
+    @Delete
+    suspend fun deleteFoodDetail(foodDetail: FoodDetail)
+
+
+
+
 }
 
