@@ -27,6 +27,7 @@ import com.pdfa.pdfa_app.data.model.Tag
 import com.pdfa.pdfa_app.data.model.TagPreference
 import com.pdfa.pdfa_app.data.model.Utensil
 import com.pdfa.pdfa_app.data.model.UtensilPreference
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 
 @Database(entities = [
@@ -64,12 +65,12 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "app_db"
                 )
-                    .addCallback(createCallback())
+                    .addCallback(createCallback(context.applicationContext))
                     .fallbackToDestructiveMigration(true)
                     .build().also { INSTANCE = it }
             }
 
-        private fun createCallback() = object : Callback() {
+        private fun createCallback(ctx: Context) = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
 
@@ -77,64 +78,8 @@ abstract class AppDatabase : RoomDatabase() {
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
                         val database = INSTANCE ?: return@launch
-
-                        val carrotId: Long
-                        val tomatoId: Long
-
-                        database.foodDao().apply {
-                            carrotId = insertFood(
-                                Food(
-                                    name = "Carrot",
-                                    link = "https://example.com/carrot",
-                                    caloriesPerKg = 410,
-                                    caloriesPerUnit = 41,
-                                    expirationTime = Date()
-                                )
-                            )
-                            tomatoId = insertFood(
-                                Food(
-                                    name = "Tomato",
-                                    link = "https://example.com/tomato",
-                                    caloriesPerKg = 180,
-                                    caloriesPerUnit = 18,
-                                    expirationTime = Date()
-                                )
-                            )
-                            insertFood(
-                                Food(
-                                    name = "Pepper",
-                                    link = "https://example.com/pepper",
-                                    caloriesPerKg = 200,
-                                    caloriesPerUnit = 20,
-                                    expirationTime = Date()
-                                )
-                            )
-                        }
-
-                        database.allergyDao().apply {
-                            insertAllergy(Allergy(foodId = carrotId.toInt()))
-                            insertAllergy(Allergy(foodId = tomatoId.toInt()))
-                        }
-
-                        database.recipeDao().apply {
-                            insertRecipe(
-                                Recipe(
-                                    name = "Carrottes au thon",
-                                    description = "Plein de chose a faire",
-                                    totalCalories = 1000,
-                                    createdAt = Date()
-                                )
-                            )
-                        }
-
-                        database.tagDao().apply {
-                            insertTag(
-                                Tag(
-                                    name = "mexicain",
-                                    color = "blue"
-                                )
-                            )
-                        }
+                        val dbSeeder = DatabaseSeeder(database, ctx)
+                        dbSeeder.seedDev()
 
                     } catch (e: Exception) {
                         e.printStackTrace()
