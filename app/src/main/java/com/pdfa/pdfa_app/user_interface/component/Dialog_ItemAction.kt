@@ -106,7 +106,7 @@ fun FridgeItemActionDialog(
                             shape = AppShapes.CornerM
                         )
                         .clickable {
-                            onEditClick
+                            onEditClick()
                         }
                         .padding(vertical = AppSpacing.S)
 
@@ -127,7 +127,7 @@ fun FridgeItemActionDialog(
                             shape = AppShapes.CornerM
                         )
                         .clickable {
-                            onDeleteClick
+                            onDeleteClick()
                         }
                         .padding(vertical = AppSpacing.S)
 

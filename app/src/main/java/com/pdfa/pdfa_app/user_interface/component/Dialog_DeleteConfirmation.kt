@@ -1,17 +1,18 @@
 package com.pdfa.pdfa_app.user_interface.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -21,6 +22,7 @@ import com.pdfa.pdfa_app.data.model.FoodDetail
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.ui.theme.AppTypo
 
 @Composable
 fun DeleteConfirmationDialog(
@@ -57,27 +59,54 @@ fun DeleteConfirmationDialog(
                 Spacer(modifier = Modifier.height(AppSpacing.L))
 
                 // Bouton Annuler
-                Button(
-                    onClick = onDismiss,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = AppColors.LightGrey)
+
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .background(
+                            color = AppColors.MainGrey,
+                            shape = AppShapes.CornerM)
+                        .clickable {
+                            onDismiss()
+                        }
+                        .padding(vertical = AppSpacing.S)
+
                 ) {
-                    Text("Annuler", color = Color.Black)
+                    Text(
+                        text = "Annuler",
+                        style = AppTypo.SubTitle,
+                        color = Color.White
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(AppSpacing.S))
 
                 // Bouton Supprimer
-                Button(
-                    onClick = {
-                        onDelete(foodDetail)
-                        onDismiss()
-                    },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .background(
+                            color = AppColors.MainRed,
+                            shape = AppShapes.CornerM)
+                        .clickable {
+                            onDelete(foodDetail)
+                            onDismiss()
+                        }
+                        .padding(vertical = AppSpacing.S)
+
                 ) {
-                    Text("Supprimer", color = Color.White)
+                    Text(
+                        text = "Supprimer",
+                        style = AppTypo.SubTitle,
+                        color = Color.White
+                    )
                 }
+
             }
         }
     }

@@ -14,11 +14,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -40,13 +39,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-
 import androidx.compose.ui.window.Dialog
 import com.pdfa.pdfa_app.R
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
-
 import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pdfa.pdfa_app.data.model.Food
@@ -55,9 +52,9 @@ import com.pdfa.pdfa_app.data.model.FoodDetailWithFood
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.FoodDetailViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.FoodViewModel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -71,8 +68,8 @@ import java.util.Locale
 fun FoodAddDetailDialog(
     foodToEdit: FoodDetailWithFood? = null,
     onDismiss: () -> Unit,
-    foodList: List<Food>,
     onSnackbarMessage: (String, String) -> Unit,
+    foodList: List<Food>,
     existingDetail: FoodDetail? = null
 ) {
     val context = LocalContext.current
@@ -80,16 +77,11 @@ fun FoodAddDetailDialog(
 
     val foodViewModel: FoodViewModel = hiltViewModel()
     val detailViewModel: FoodDetailViewModel = hiltViewModel()
-
-
     val foodList by foodViewModel.foodList.collectAsState()
     var selectedFoodName by remember { mutableStateOf("") }
     var selectedFoodId by remember { mutableStateOf<Int?>(null) }
     var isWeight by remember { mutableStateOf(true) }
-
-
     var expanded by remember { mutableStateOf(false) }
-
     var quantityText by remember { mutableStateOf("") }
 
     var priceText by remember { mutableStateOf("") }
@@ -98,12 +90,11 @@ fun FoodAddDetailDialog(
     }
     var expirationDateText by remember { mutableStateOf("") }
     var selectedUnit by remember { mutableStateOf(if (isWeight) "Gramme" else "Pièce") }
-    var selectedDateText by remember { mutableStateOf("") }
 
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
-
+    var selectedDateText by remember { mutableStateOf("") }
     LaunchedEffect(Unit) {
         snapshotFlow { quantityText }
             .collect { Log.d("DEBUG", "TextField shows quantity = $it") }
@@ -123,10 +114,6 @@ fun FoodAddDetailDialog(
             expirationDateText = formatter.format(detail.foodDetail.expirationTime)
         }
     }
-
-
-
-
 
     Dialog(
         onDismissRequest = onDismiss,
@@ -155,10 +142,12 @@ fun FoodAddDetailDialog(
                         contentDescription = null,
                         modifier = Modifier.size(AppSpacing.XXXL)
                     )
+
                     Spacer(modifier = Modifier.width(AppSpacing.S))
+
                     Text(
                         text = "Ajoute un aliment à ton frigo",
-                        style = MaterialTheme.typography.titleMedium
+                        style = AppTypo.SubTitle
                     )
                 }
                 Spacer(modifier = Modifier.height(AppSpacing.S))
@@ -395,61 +384,71 @@ fun FoodAddDetailDialog(
 
                 val scope = rememberCoroutineScope()
 
-                Button(
-                    onClick = {
-                        if (
-                            selectedFoodId != null &&
-                            quantityText.isNotBlank() &&
-                            expirationDateText.isNotBlank() &&
-                            buyingDateText.isNotBlank()
-                        ) {
-                            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                            val foodId = selectedFoodId!!
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .background(
+                            color = AppColors.MainGreen,
+                            shape = AppShapes.CornerM)
+                        .clickable {
+                                if (
+                                    selectedFoodId != null &&
+                                    quantityText.isNotBlank() &&
+                                    expirationDateText.isNotBlank() &&
+                                    buyingDateText.isNotBlank()
+                                ) {
+                                    val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                                    val foodId = selectedFoodId!!
 
-                            val newDetail = FoodDetail(
-                                id = 0,
-                                foodId = foodId,
-                                quantity = quantityText.toIntOrNull() ?: 0,
-                                price = priceText.toFloatOrNull(),
-                                isWeight = isWeight,
-                                buyingTime = sdf.parse(buyingDateText) ?: Date(),
-                                expirationTime = sdf.parse(expirationDateText) ?: Date()
-                            )
-
-                            scope.launch {
-                                val existing = detailViewModel.getByFoodId(foodId)
-
-                                if (existing != null) {
-                                    val mergedDetail = existing.copy(
-                                        quantity = existing.quantity + newDetail.quantity,
-                                        price = newDetail.price ?: existing.price,
-                                        isWeight = newDetail.isWeight,
-                                        buyingTime = newDetail.buyingTime,
-                                        expirationTime = newDetail.expirationTime
+                                    val newDetail = FoodDetail(
+                                        id = 0,
+                                        foodId = foodId,
+                                        quantity = quantityText.toIntOrNull() ?: 0,
+                                        price = priceText.toFloatOrNull(),
+                                        isWeight = isWeight,
+                                        buyingTime = sdf.parse(buyingDateText) ?: Date(),
+                                        expirationTime = sdf.parse(expirationDateText) ?: Date()
                                     )
-                                    detailViewModel.upsertFoodDetail(mergedDetail)
-                                    onSnackbarMessage("Quantité mise à jour !", "success")
+
+                                    scope.launch {
+                                        val existing = detailViewModel.getByFoodId(foodId)
+
+                                        if (existing != null) {
+                                            val mergedDetail = existing.copy(
+                                                quantity = existing.quantity + newDetail.quantity,
+                                                price = newDetail.price ?: existing.price,
+                                                isWeight = newDetail.isWeight,
+                                                buyingTime = newDetail.buyingTime,
+                                                expirationTime = newDetail.expirationTime
+                                            )
+                                            detailViewModel.upsertFoodDetail(mergedDetail)
+                                            onSnackbarMessage("Quantité mise à jour !", "success")
+                                        } else {
+                                            detailViewModel.addFoodDetail(newDetail)
+                                            onSnackbarMessage("Aliment ajouté au frigo !", "success")
+                                        }
+
+                                        onDismiss()
+                                    }
+
                                 } else {
-                                    detailViewModel.addFoodDetail(newDetail)
-                                    onSnackbarMessage("Aliment ajouté au frigo !", "success")
+                                    coroutineScope.launch {
+                                        snackbarHostState.showSnackbar("Veuillez compléter tous les champs requis.")
+                                    }
                                 }
-
-                                onDismiss()
-                            }
-
-                        } else {
-                            coroutineScope.launch {
-                                snackbarHostState.showSnackbar("Veuillez compléter tous les champs requis.")
-                            }
                         }
-                    },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = AppColors.MainGreen
-                    )
+                        .padding(vertical = AppSpacing.S)
+
                 ) {
-                    Text("Ajouter")
+                    Text(
+                        text = "Ajouter",
+                        style = AppTypo.SubTitle,
+                        color = Color.White
+                    )
                 }
+
             }
             // ✅ Snackbar intégrée à la Dialog
             SnackbarHost(
