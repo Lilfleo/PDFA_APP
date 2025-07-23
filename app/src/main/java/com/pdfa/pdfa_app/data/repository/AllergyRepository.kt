@@ -15,4 +15,7 @@ class AllergyRepository @Inject constructor(
     suspend fun insert(allergy: Allergy) {
         dao.insertAllergy(allergy)
     }
+    suspend fun deleteAllergy(allergy: Allergy) {
+        dao.deleteAllergy(allergy)
+    }
 }
