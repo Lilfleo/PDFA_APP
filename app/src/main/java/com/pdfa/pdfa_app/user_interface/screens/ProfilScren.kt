@@ -24,34 +24,45 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.toInt
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.AllergyViewModel
 import com.pdfa.pdfa_app.user_interface.component.AllergiesDialog
 import com.pdfa.pdfa_app.user_interface.component.DietDialog
 import com.pdfa.pdfa_app.user_interface.component.RecipeParameter
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
 import com.pdfa.pdfa_app.user_interface.component.TagsBoxProfil
 import com.pdfa.pdfa_app.user_interface.component.UstensilDialog
+import com.pdfa.pdfa_app.data.model.Allergy
+import com.pdfa.pdfa_app.ui.viewmodel.FoodViewModel
+
 
 @Composable
 fun ProfilScreen(
     navController: NavController
 ){
+
     val scrollState = rememberScrollState()
+    val allergyViewModel: AllergyViewModel = hiltViewModel()
+    val foodViewModel: FoodViewModel = hiltViewModel()
+
 
     Box(
         modifier = Modifier.fillMaxSize().padding(vertical = AppSpacing.M).background(AppColors.Primary)
@@ -91,7 +102,13 @@ fun ProfilScreen(
                 }
             }
 
-            AllergiesSection()
+            AllergiesSection(
+                allergyViewModel = allergyViewModel,
+                foodViewModel = foodViewModel,
+                onAddAllergy = { foodId ->
+                    allergyViewModel.insertAllergy(Allergy(foodId = foodId.toInt()))
+                }
+            )
             DietSection()
             UstensilSection()
 
@@ -107,8 +124,13 @@ fun ProfilScreen(
 }
 
 @Composable
-fun AllergiesSection() {
-
+fun AllergiesSection(
+    allergyViewModel: AllergyViewModel,
+    foodViewModel: FoodViewModel, // ✅ Ajouté
+    onAddAllergy: (Long) -> Unit
+)
+ {
+    val allergyList by allergyViewModel.allAllergy.collectAsState()
     var showAllergyDialog by remember { mutableStateOf(false) }
     val listeTags = remember { mutableStateListOf<String>() }
 
@@ -119,7 +141,7 @@ fun AllergiesSection() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical =  AppSpacing.S),
+                .padding(vertical = AppSpacing.S),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -159,22 +181,24 @@ fun AllergiesSection() {
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(AppSpacing.XXS)
         ) {
-            listeTags.forEach { tag ->
+            allergyList.forEach { allergyWithFood ->
                 TagsBoxProfil(
-                    name = tag,
+                    name = allergyWithFood.food.name,
                     type = "Allergy",
                     onRemove = {
-                        listeTags.remove(tag)
+                        allergyViewModel.deleteAllergy(allergyWithFood.allergy)
                     }
                 )
             }
+
             if (showAllergyDialog) {
                 AllergiesDialog(
                     onDismiss = { showAllergyDialog = false },
-                    addAllergy = { selectedTag ->
-                        listeTags.add(selectedTag)
+                    addAllergy = { foodId ->
+                        allergyViewModel.insertAllergy(Allergy(foodId=foodId.toInt()))
                         showAllergyDialog = false
-                    }
+                    },
+                    foodViewModel = foodViewModel
                 )
             }
         }

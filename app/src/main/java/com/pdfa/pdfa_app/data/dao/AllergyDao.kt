@@ -14,4 +14,7 @@ interface AllergyDao {
     @Transaction
     @Query("SELECT * FROM allergy")
     fun getAllergiesWithFood(): Flow<List<AllergyWithFood>>
+
+    @Delete
+    suspend fun deleteAllergy(allergy: Allergy)
 }
