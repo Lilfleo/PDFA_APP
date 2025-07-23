@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -93,8 +92,8 @@ fun CookbookSection(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
 
                 ) {
-                    RecipeCard(navController)
-                    RecipeCard(navController)
+//                    RecipeTimeCard(navController)
+//                    RecipeTimeCard(navController)
                 }
             }
         }

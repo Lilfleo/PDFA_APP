@@ -15,7 +15,7 @@ import com.pdfa.pdfa_app.ui.theme.AppShapes
 
 
 @Composable
-fun RecipeCard(
+fun RecipeTimeCard(
     data: String,
     type: String
 ){

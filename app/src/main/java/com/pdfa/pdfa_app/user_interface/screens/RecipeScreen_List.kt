@@ -6,15 +6,18 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,25 +27,26 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
-import com.pdfa.pdfa_app.user_interface.component.RecipeCard
+import com.pdfa.pdfa_app.user_interface.component.RecipeItemCard
 import com.pdfa.pdfa_app.user_interface.component.RecipeParameter
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
 
 @Composable
 fun RecipeListScreen(
     navController: NavController,
-    viewModel: RecipeViewModel = hiltViewModel()
+    viewModel: RecipeViewModel
 ){
-    val recipe by viewModel.recipe
+    val recipes by viewModel.multipleRecipeWithoutFood
+    val isLoading by viewModel.isLoading
+    val error by viewModel.error
 
     val scrollState = rememberScrollState()
     var showDialog by remember { mutableStateOf(false) }
@@ -52,19 +56,84 @@ fun RecipeListScreen(
             .fillMaxSize()
             .background(AppColors.Primary),
     ){
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(scrollState)
-            .padding(AppSpacing.L),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+        when {
+            isLoading -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(AppSpacing.XXXLL),
+                            color = AppColors.MainGreen,
+                            strokeWidth = 4.dp
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = "Génération de vos recettes...",
+                            style = AppTypo.SubTitle,
+                            color = AppColors.LightGrey
+                        )
+                    }
+                }
+            }
 
-        ) {
-            RecipeCard(navController)
-            RecipeCard(navController)
-            RecipeCard(navController)
-            RecipeCard(navController)
-            RecipeCard(navController)
+            error != null -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(32.dp)
+                    ) {
+                        Text(
+                            text = "❌ Erreur",
+                            style = AppTypo.Title,
+                            color = Color.Red
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = error!!,
+                            style = AppTypo.Body,
+                            color = Color.Red,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+
+            recipes != null -> {
+                // ✅ Affichage du contenu avec la recette
+                Column(modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scrollState)
+                    .padding(AppSpacing.L),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    recipes!!.recipes.forEach { recipeResponse ->
+                        RecipeItemCard(navController, recipeResponse, viewModel)
+                    }
+                }
+            }
+
+            else -> {
+                // État initial - ne devrait pas arriver car on lance la requête au démarrage
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Aucune recette disponible",
+                        style = AppTypo.SubTitle,
+                        color = AppColors.MainGreen
+                    )
+                }
+            }
         }
+
         ScrollbarPersonnalisee(
             modifier = Modifier
                 .align(Alignment.CenterEnd)
@@ -81,10 +150,9 @@ fun RecipeListScreen(
         ){
             Box(
                 modifier = Modifier
-                    .background(AppColors.Primary)
+//                    .background(AppColors.Primary)
                     .padding(bottom = AppSpacing.L, start = AppSpacing.L, end = AppSpacing.L),
-
-                ){
+            ){
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
@@ -93,13 +161,6 @@ fun RecipeListScreen(
                         .background(AppColors.MainGreen)
                         .clickable {
                             showDialog = true
-                            recipe?.let { rcp ->
-                                println("🍽️ Titre de la recette: ${rcp.recipe.title}")
-                                Log.d("RecipeListScreen", "Recette trouvée: ${rcp.recipe.title}")
-                            } ?: run {
-                                println("❌ Aucune recette disponible")
-                                Log.d("RecipeListScreen", "Aucune recette dans le ViewModel")
-                            }
                         }
                 ) {
                     Text(
@@ -110,8 +171,14 @@ fun RecipeListScreen(
                 }
             }
         }
+
     }
+
     if (showDialog) {
-        RecipeParameter(onDismiss = { showDialog = false })
+        RecipeParameter(
+            isWithIngredient = false,
+            onDismiss = { showDialog = false },
+            viewModel = viewModel
+            )
     }
 }
