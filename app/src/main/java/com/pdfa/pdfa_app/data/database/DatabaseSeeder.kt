@@ -23,6 +23,7 @@ class DatabaseSeeder(
         private const val TAG = "DatabaseSeeder"
         private const val FOOD_FILE_NAME = "data/food_100.json"
         private const val UTENSILS_FILE_NAME = "data/utensils.json"
+        private const val TAGS_FILE_NAME = "data/tags.json"
     }
 
     suspend fun seedDev() = withContext(Dispatchers.IO) {
@@ -87,14 +88,6 @@ class DatabaseSeeder(
                 )
             )
 
-            // Insert tag
-            db.tagDao().insertTag(
-                Tag(
-                    name = "mexicain",
-                    color = "blue"
-                )
-            )
-
             Log.d(TAG, "Development seed completed ✅")
 
         } catch (e: Exception) {
@@ -109,11 +102,13 @@ class DatabaseSeeder(
         try {
             val foodString = loadFoodFromAssets()
             val utensilString = loadUtensilsFromAssets()
+            val tagString = loadTagsFromAssets()
 
             val foodList: List<Food> = parseJsonData(foodString)
             val utensilsList: List<Utensil> = parseJsonData(utensilString)
+            val tagList : List<Tag> = parseJsonData(tagString)
 
-            insertSeedData(foodList, utensilsList)
+            insertSeedData(foodList, utensilsList, tagList)
             Log.d(TAG, "Seeding completed ! ✅")
         } catch (e: Exception) {
             Log.e(TAG, "Seeding failed: ${e.message}", e)
@@ -139,6 +134,15 @@ class DatabaseSeeder(
         }
     }
 
+    private suspend fun loadTagsFromAssets(): String = withContext(Dispatchers.IO) {
+        try {
+            context.assets.open(TAGS_FILE_NAME).bufferedReader().use { it.readText() }
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to load tags JSON from assets: ${e.message}")
+            throw e
+        }
+    }
+
     private inline fun <reified T : Any> parseJsonData(jsonString: String): List<T> {
         val json = Json {
             ignoreUnknownKeys = true
@@ -155,8 +159,8 @@ class DatabaseSeeder(
         }
     }
 
-    private suspend fun insertSeedData(foods: List<Food>, utensils: List<Utensil>) = withContext(Dispatchers.IO) {
-        Log.d(TAG, "Inserting ${foods.size} foods and ${utensils.size} utensils...")
+    private suspend fun insertSeedData(foods: List<Food>, utensils: List<Utensil>, tags: List<Tag>) = withContext(Dispatchers.IO) {
+        Log.d(TAG, "Inserting ${foods.size} foods, ${utensils.size} utensils and ${tags.size} tags...")
 
         try {
             // Use batch insertion if available, otherwise insert individually
@@ -176,6 +180,16 @@ class DatabaseSeeder(
                         db.utensilDao().insertUtensil(utensil)
                     } catch (insertException: Exception) {
                         Log.w(TAG, "Failed to insert utensil: ${utensil.name}, error: ${insertException.message}")
+                    }
+                }
+            }
+
+            if (tags.isNotEmpty()) {
+                tags.forEach { tag ->
+                    try {
+                        db.tagDao().insertTag(tag)
+                    } catch (insertException: Exception) {
+                        Log.w(TAG, "Failed to insert utensil: ${tag.name}, error: ${insertException.message}")
                     }
                 }
             }
