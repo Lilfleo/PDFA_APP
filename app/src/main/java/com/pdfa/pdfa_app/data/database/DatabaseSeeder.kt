@@ -6,6 +6,7 @@ import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.data.model.Food
 import com.pdfa.pdfa_app.data.model.Recipe
 import com.pdfa.pdfa_app.data.model.Tag
+import com.pdfa.pdfa_app.data.model.Utensil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
@@ -20,21 +21,24 @@ class DatabaseSeeder(
 ) {
     companion object {
         private const val TAG = "DatabaseSeeder"
-        private const val JSON_FILE_NAME = "food_100.json"
+        private const val FOOD_FILE_NAME = "data/food_100.json"
+        private const val UTENSILS_FILE_NAME = "data/utensils.json"
     }
 
     suspend fun seedDev() = withContext(Dispatchers.IO) {
         Log.d(TAG, "Starting development seed...")
 
-        val calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_MONTH, 30)
-        val expirationDate = calendar.time
+        try {
+            // seed prod first
+            seed()
 
-        val carrotId: Long
-        val tomatoId: Long
+            // seed some extra data
+            val calendar = Calendar.getInstance()
+            calendar.add(Calendar.DAY_OF_MONTH, 30)
+            val expirationDate = calendar.time
 
-        db.foodDao().apply {
-            carrotId = insertFood(
+            // Insert foods and get their IDs
+            val carrotId = db.foodDao().insertFood(
                 Food(
                     name = "Carrot",
                     link = "https://example.com/carrot",
@@ -43,7 +47,8 @@ class DatabaseSeeder(
                     expirationTime = expirationDate
                 )
             )
-            tomatoId = insertFood(
+
+            val tomatoId = db.foodDao().insertFood(
                 Food(
                     name = "Tomato",
                     link = "https://example.com/tomato",
@@ -52,7 +57,8 @@ class DatabaseSeeder(
                     expirationTime = expirationDate
                 )
             )
-            insertFood(
+
+            db.foodDao().insertFood(
                 Food(
                     name = "Pepper",
                     link = "https://example.com/pepper",
@@ -61,16 +67,18 @@ class DatabaseSeeder(
                     expirationTime = expirationDate
                 )
             )
-        }
 
-        // Use Int for food IDs as per your Allergy model
-        db.allergyDao().apply {
-            insertAllergy(Allergy(foodId = carrotId.toInt()))
-            insertAllergy(Allergy(foodId = tomatoId.toInt()))
-        }
+            // Insert allergies using the food IDs
+            val allergies = listOf(
+                Allergy(foodId = carrotId.toInt()),
+                Allergy(foodId = tomatoId.toInt())
+            )
+            allergies.forEach { allergy ->
+                db.allergyDao().insertAllergy(allergy)
+            }
 
-        db.recipeDao().apply {
-            insertRecipe(
+            // Insert recipe
+            db.recipeDao().insertRecipe(
                 Recipe(
                     name = "Carrottes au thon",
                     description = "Plein de chose a faire",
@@ -78,28 +86,34 @@ class DatabaseSeeder(
                     createdAt = Date()
                 )
             )
-        }
 
-        db.tagDao().apply {
-            insertTag(
+            // Insert tag
+            db.tagDao().insertTag(
                 Tag(
                     name = "mexicain",
                     color = "blue"
                 )
             )
-        }
-        seed()
-        Log.d(TAG, "Development seed completed ✅")
 
+            Log.d(TAG, "Development seed completed ✅")
+
+        } catch (e: Exception) {
+            Log.e(TAG, "Development seed failed: ${e.message}", e)
+            throw e
+        }
     }
 
     suspend fun seed() {
         Log.d(TAG, "Seeding begin...")
 
         try {
-            val jsonString = loadJsonFromAssets()
-            val foodList = parseJsonData(jsonString)
-            insertSeedData(foodList)
+            val foodString = loadFoodFromAssets()
+            val utensilString = loadUtensilsFromAssets()
+
+            val foodList: List<Food> = parseJsonData(foodString)
+            val utensilsList: List<Utensil> = parseJsonData(utensilString)
+
+            insertSeedData(foodList, utensilsList)
             Log.d(TAG, "Seeding completed ! ✅")
         } catch (e: Exception) {
             Log.e(TAG, "Seeding failed: ${e.message}", e)
@@ -107,16 +121,25 @@ class DatabaseSeeder(
         }
     }
 
-    private suspend fun loadJsonFromAssets(): String = withContext(Dispatchers.IO) {
-        return@withContext try {
-            context.assets.open(JSON_FILE_NAME).bufferedReader().use { it.readText() }
+    private suspend fun loadFoodFromAssets(): String = withContext(Dispatchers.IO) {
+        try {
+            context.assets.open(FOOD_FILE_NAME).bufferedReader().use { it.readText() }
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to load JSON from assets: ${e.message}")
+            Log.e(TAG, "Failed to load food JSON from assets: ${e.message}")
             throw e
         }
     }
 
-    private fun parseJsonData(jsonString: String): List<Food> {
+    private suspend fun loadUtensilsFromAssets(): String = withContext(Dispatchers.IO) {
+        try {
+            context.assets.open(UTENSILS_FILE_NAME).bufferedReader().use { it.readText() }
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to load utensils JSON from assets: ${e.message}")
+            throw e
+        }
+    }
+
+    private inline fun <reified T : Any> parseJsonData(jsonString: String): List<T> {
         val json = Json {
             ignoreUnknownKeys = true
             isLenient = true
@@ -127,23 +150,39 @@ class DatabaseSeeder(
         return try {
             json.decodeFromString(jsonString)
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to parse JSON data: ${e.message}")
+            Log.e(TAG, "Failed to parse JSON data for ${T::class.simpleName}: ${e.message}")
             throw e
         }
     }
 
-    private suspend fun insertSeedData(foods: List<Food>) = withContext(Dispatchers.IO) {
-        Log.d(TAG, "Inserting ${foods.size} food...")
+    private suspend fun insertSeedData(foods: List<Food>, utensils: List<Utensil>) = withContext(Dispatchers.IO) {
+        Log.d(TAG, "Inserting ${foods.size} foods and ${utensils.size} utensils...")
 
         try {
-            foods.forEach { food ->
-                db.foodDao().apply {
-                    insertFood(food)
+            // Use batch insertion if available, otherwise insert individually
+            if (foods.isNotEmpty()) {
+                foods.forEach { food ->
+                    try {
+                            db.foodDao().insertFood(food)
+                    } catch (insertException: Exception) {
+                        Log.w(TAG, "Failed to insert food: ${food.name}, error: ${insertException.message}")
+                    }
                 }
             }
-            Log.d(TAG, "Insertion success!")
+
+            if (utensils.isNotEmpty()) {
+                utensils.forEach { utensil ->
+                    try {
+                        db.utensilDao().insertUtensil(utensil)
+                    } catch (insertException: Exception) {
+                        Log.w(TAG, "Failed to insert utensil: ${utensil.name}, error: ${insertException.message}")
+                    }
+                }
+            }
+
+            Log.d(TAG, "Seed data insertion completed!")
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to insert seed data: ${e.message}")
+            Log.e(TAG, "Failed to insert seed data: ${e.message}", e)
             throw e
         }
     }
