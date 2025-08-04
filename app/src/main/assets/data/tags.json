@@ -1,0 +1,217 @@
+[
+  {
+    "id": 1,
+    "name": "mexicain",
+    "color": "red"
+  },
+  {
+    "id": 2,
+    "name": "italien",
+    "color": "green"
+  },
+  {
+    "id": 3,
+    "name": "japonais",
+    "color": "white"
+  },
+  {
+    "id": 4,
+    "name": "chinois",
+    "color": "yellow"
+  },
+  {
+    "id": 5,
+    "name": "indien",
+    "color": "orange"
+  },
+  {
+    "id": 6,
+    "name": "végétarien",
+    "color": "lightgreen"
+  },
+  {
+    "id": 7,
+    "name": "vegan",
+    "color": "darkgreen"
+  },
+  {
+    "id": 8,
+    "name": "rapide",
+    "color": "blue"
+  },
+  {
+    "id": 9,
+    "name": "dessert",
+    "color": "pink"
+  },
+  {
+    "id": 10,
+    "name": "entrée",
+    "color": "purple"
+  },
+  {
+    "id": 11,
+    "name": "plat principal",
+    "color": "brown"
+  },
+  {
+    "id": 12,
+    "name": "grillades",
+    "color": "darkred"
+  },
+  {
+    "id": 13,
+    "name": "asiatique",
+    "color": "gold"
+  },
+  {
+    "id": 14,
+    "name": "healthy",
+    "color": "teal"
+  },
+  {
+    "id": 15,
+    "name": "soupe",
+    "color": "lightblue"
+  },
+  {
+    "id": 16,
+    "name": "pâtes",
+    "color": "beige"
+  },
+  {
+    "id": 17,
+    "name": "riz",
+    "color": "ivory"
+  },
+  {
+    "id": 18,
+    "name": "tapas",
+    "color": "maroon"
+  },
+  {
+    "id": 19,
+    "name": "français",
+    "color": "bluewhite"
+  },
+  {
+    "id": 20,
+    "name": "grec",
+    "color": "lightblue"
+  },
+  {
+    "id": 21,
+    "name": "espagnol",
+    "color": "crimson"
+  },
+  {
+    "id": 22,
+    "name": "libanais",
+    "color": "olive"
+  },
+  {
+    "id": 23,
+    "name": "marocain",
+    "color": "sienna"
+  },
+  {
+    "id": 24,
+    "name": "thaï",
+    "color": "limegreen"
+  },
+  {
+    "id": 25,
+    "name": "coréen",
+    "color": "steelblue"
+  },
+  {
+    "id": 26,
+    "name": "fusion",
+    "color": "silver"
+  },
+  {
+    "id": 27,
+    "name": "pique-nique",
+    "color": "forestgreen"
+  },
+  {
+    "id": 28,
+    "name": "brunch",
+    "color": "peachpuff"
+  },
+  {
+    "id": 29,
+    "name": "apéritif",
+    "color": "salmon"
+  },
+  {
+    "id": 30,
+    "name": "boulangerie",
+    "color": "wheat"
+  },
+  {
+    "id": 31,
+    "name": "snack",
+    "color": "khaki"
+  },
+  {
+    "id": 32,
+    "name": "fromage",
+    "color": "goldenrod"
+  },
+  {
+    "id": 33,
+    "name": "chocolat",
+    "color": "chocolate"
+  },
+  {
+    "id": 34,
+    "name": "gâteau",
+    "color": "orchid"
+  },
+  {
+    "id": 35,
+    "name": "biscuit",
+    "color": "tan"
+  },
+  {
+    "id": 36,
+    "name": "tarte",
+    "color": "burlywood"
+  },
+  {
+    "id": 37,
+    "name": "crème",
+    "color": "floralwhite"
+  },
+  {
+    "id": 38,
+    "name": "comfort food",
+    "color": "lightcoral"
+  },
+  {
+    "id": 39,
+    "name": "street food",
+    "color": "lightgoldenrodyellow"
+  },
+  {
+    "id": 40,
+    "name": "bio",
+    "color": "lavender"
+  },
+  {
+    "id": 41,
+    "name": "gourmand",
+    "color": "plum"
+  },
+  {
+    "id": 42,
+    "name": "gluten-free",
+    "color": "plum"
+  },
+  {
+    "id": 43,
+    "name": "lactose-free",
+    "color": "lavender"
+  }
+]
