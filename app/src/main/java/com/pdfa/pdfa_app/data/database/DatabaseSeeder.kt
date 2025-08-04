@@ -88,8 +88,9 @@ class DatabaseSeeder(
                 )
             )
         }
-
+        seed()
         Log.d(TAG, "Development seed completed ✅")
+
     }
 
     suspend fun seed() {
