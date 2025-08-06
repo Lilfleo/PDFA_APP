@@ -46,6 +46,7 @@ import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
+import com.pdfa.pdfa_app.user_interface.component.AddToCookbook
 import com.pdfa.pdfa_app.user_interface.component.RecipeTimeCard
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
 import com.pdfa.pdfa_app.user_interface.component.TagsBox
@@ -60,6 +61,7 @@ fun RecipeDetailScreen(
     var nbPeople by remember { mutableIntStateOf(1) }
     var expanded by remember { mutableStateOf(false) }
     var addToCookbook by remember { mutableStateOf(false) }
+    var openAddToCookbookDialog by remember { mutableStateOf(false) }
     val selectedRecipe by viewModel.selectedRecipe
     val scrollState = rememberScrollState()
 
@@ -100,6 +102,7 @@ fun RecipeDetailScreen(
                             .clip(shape = AppShapes.CornerL)
                             .clickable {
                                 addToCookbook = !addToCookbook
+                                openAddToCookbookDialog = true
                             },
                         contentAlignment = Alignment.Center
                     ){
@@ -291,15 +294,16 @@ fun RecipeDetailScreen(
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
+                                    .height(AppSpacing.XXXXL)
                                     .padding(horizontal = AppSpacing.M, AppSpacing.S),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(AppSpacing.XXXXL)
-                                        .background(Color.LightGray, shape = AppShapes.CornerXS)
-                                )
-                                Spacer(modifier = Modifier.width(AppSpacing.M))
+//                                Box(
+//                                    modifier = Modifier
+//                                        .size(AppSpacing.XXXXL)
+//                                        .background(Color.LightGray, shape = AppShapes.CornerXS)
+//                                )
+//                                Spacer(modifier = Modifier.width(AppSpacing.M))
                                 Text(
                                     text = ingredient.name,
                                     modifier = Modifier.weight(1f),
@@ -366,6 +370,10 @@ fun RecipeDetailScreen(
                         )
                     }
                 }
+            }
+
+            if (openAddToCookbookDialog) {
+                AddToCookbook( onDismiss = { openAddToCookbookDialog = false })
             }
         }
     }
