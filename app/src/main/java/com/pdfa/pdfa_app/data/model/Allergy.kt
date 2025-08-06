@@ -20,7 +20,7 @@ import com.pdfa.pdfa_app.data.model.Food
 
 data class Allergy(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Long = 0,
     @ColumnInfo(name = "food_id", index = true)
     val foodId: Int
 )
