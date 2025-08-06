@@ -81,4 +81,11 @@ object AppTypo {
         fontWeight = FontWeight.Light,
         lineHeight = 24.sp
     )
+
+    val CookbookSection = TextStyle(
+        fontFamily = InterFontFamily,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 24.sp,
+    )
 }
