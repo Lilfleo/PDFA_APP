@@ -27,7 +27,8 @@ import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.user_interface.component.CookbookSection
-import com.pdfa.pdfa_app.user_interface.component.CustomTextField
+import com.pdfa.pdfa_app.user_interface.component.CustomCookbookSearchBar
+import com.pdfa.pdfa_app.user_interface.component.EditCookbook
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
 
 @Composable
@@ -36,6 +37,7 @@ fun CookbookScreen(
 ){
     val scrollState = rememberScrollState()
     var searchQuery by remember { mutableStateOf("") }
+    var openEditCookbookDialog by remember { mutableStateOf(false) }
 
     Column (modifier = Modifier
         .fillMaxSize()
@@ -60,11 +62,12 @@ fun CookbookScreen(
                     ),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                CustomTextField(
+                CustomCookbookSearchBar(
                     value = searchQuery,
                     onValueChange = { searchQuery = it },
                     placeholder = "Search...",
-                    onFilterClick = {
+                    onEditClick = {
+                        openEditCookbookDialog = true
                     }
                 )
             }
@@ -97,7 +100,11 @@ fun CookbookScreen(
             )
         }
 
-
+        if (openEditCookbookDialog) {
+            EditCookbook(
+                onDismiss = { openEditCookbookDialog = false }
+            )
+        }
 
     }
 }
