@@ -108,7 +108,6 @@ fun EditCookbook(
                         EditSection("Section 1")
                         EditSection("Section 2")
                         EditSection("Section 3")
-
                     }
                     ScrollbarPersonnalisee(
                         modifier = Modifier
