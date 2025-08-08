@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -55,6 +56,7 @@ import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.FoodDetailViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.FoodViewModel
+import com.pdfa.pdfa_app.user_interface.component.CustomDropdown
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -152,39 +154,48 @@ fun FoodAddDetailDialog(
                 }
                 Spacer(modifier = Modifier.height(AppSpacing.S))
 
-                ExposedDropdownMenuBox(
-                    expanded = expanded,
-                    onExpandedChange = { expanded = !expanded }
-                ) {
-                    OutlinedTextField(
-                        value = selectedFoodName,
-                        onValueChange = {},
-                        readOnly = true,
-                        label = { Text("Choisir un aliment") },
-                        trailingIcon = {
-                            ExposedDropdownMenuDefaults.TrailingIcon(expanded)
-                        },
-                        modifier = Modifier
-                            .menuAnchor()
-                            .fillMaxWidth()
-                    )
+                CustomDropdown(
+                    selectedValue = selectedFoodName,
+                    placeholder = "Type d'aliment",
+                    onItemSelected = { item ->
+                        selectedFoodName = item
+                    },
+                    foods = foodList
+                )
 
-                    DropdownMenu(
-                        expanded = expanded,
-                        onDismissRequest = { expanded = false }
-                    ) {
-                        foodList.forEach { food ->
-                            DropdownMenuItem(
-                                text = { Text(food.name) },
-                                onClick = {
-                                    selectedFoodName = food.name
-                                    selectedFoodId = food.id
-                                    expanded = false
-                                }
-                            )
-                        }
-                    }
-                }
+//                ExposedDropdownMenuBox(
+//                    expanded = expanded,
+//                    onExpandedChange = { expanded = !expanded }
+//                ) {
+//                    OutlinedTextField(
+//                        value = selectedFoodName,
+//                        onValueChange = {},
+//                        readOnly = true,
+//                        label = { Text("Choisir un aliment") },
+//                        trailingIcon = {
+//                            ExposedDropdownMenuDefaults.TrailingIcon(expanded)
+//                        },
+//                        modifier = Modifier
+//                            .menuAnchor()
+//                            .fillMaxWidth()
+//                    )
+//
+//                    DropdownMenu(
+//                        expanded = expanded,
+//                        onDismissRequest = { expanded = false }
+//                    ) {
+//                        foodList.forEach { food ->
+//                            DropdownMenuItem(
+//                                text = { Text(food.name) },
+//                                onClick = {
+//                                    selectedFoodName = food.name
+//                                    selectedFoodId = food.id
+//                                    expanded = false
+//                                }
+//                            )
+//                        }
+//                    }
+//                }
 
                 Spacer(modifier = Modifier.height(AppSpacing.S))
 
