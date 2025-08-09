@@ -10,16 +10,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -39,10 +35,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.zIndex
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppTypo
@@ -52,14 +46,14 @@ import com.pdfa.pdfa_app.data.model.Food
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 
 @Composable
-fun CustomDropdown(
+fun CustomFoodDropdown(
     selectedValue: String = "",
     placeholder: String = "Type d'aliment",
     onItemSelected: (String) -> Unit,
     foods: List<Food> = emptyList() // Ajoute ta liste de foods ici
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var searchQuery by remember { mutableStateOf("coucou") }
+    var searchQuery by remember { mutableStateOf("") }
 
     // Box pour le champ principal uniquement
     Box {

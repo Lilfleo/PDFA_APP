@@ -56,7 +56,7 @@ import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.FoodDetailViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.FoodViewModel
-import com.pdfa.pdfa_app.user_interface.component.CustomDropdown
+import com.pdfa.pdfa_app.user_interface.component.CustomFoodDropdown
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -154,7 +154,7 @@ fun FoodAddDetailDialog(
                 }
                 Spacer(modifier = Modifier.height(AppSpacing.S))
 
-                CustomDropdown(
+                CustomFoodDropdown(
                     selectedValue = selectedFoodName,
                     placeholder = "Type d'aliment",
                     onItemSelected = { item ->

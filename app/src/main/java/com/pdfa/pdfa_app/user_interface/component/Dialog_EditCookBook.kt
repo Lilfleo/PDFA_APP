@@ -134,7 +134,7 @@ fun EditCookbook(
                         .clickable {  },
                     contentAlignment = Alignment.Center
                 ){
-                    Icon(Icons.Default.Add, contentDescription = "Add", modifier = Modifier.size(AppSpacing.XXXXXL))
+                    Icon(Icons.Default.Add, contentDescription = "Add")
                 }
 
                 Box(
