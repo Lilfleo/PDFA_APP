@@ -45,7 +45,7 @@ fun RecipeMakerScreen(
     viewModel: RecipeViewModel
 ){
 
-    val recipes by viewModel.multipleRecipeWithFood
+    val recipes by viewModel.multipleRecipeWithoutFood
     val isLoading by viewModel.isLoading
     val error by viewModel.error
 
