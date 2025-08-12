@@ -176,6 +176,7 @@ fun RecipeMakerScreen(
 
     if (showDialog) {
         RecipeParameter(
+            navController = navController,
             isWithIngredient = true,
             onDismiss = { showDialog = false },
             viewModel = viewModel
