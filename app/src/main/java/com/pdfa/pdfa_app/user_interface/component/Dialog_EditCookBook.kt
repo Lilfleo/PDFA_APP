@@ -5,6 +5,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,11 +20,16 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,6 +49,8 @@ fun EditCookbook(
 ) {
 
     val scrollState = rememberScrollState()
+    var addSection by remember { mutableStateOf(false) }
+    var sectionName by remember { mutableStateOf("") }
 
     Dialog(
         onDismissRequest = onDismiss,
@@ -121,7 +130,7 @@ fun EditCookbook(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(AppSpacing.XXXXLL)
+                        .wrapContentHeight()
                         .padding(vertical = AppSpacing.M)
                         .shadow(
                             elevation = 2.dp,
@@ -131,10 +140,39 @@ fun EditCookbook(
                             color = Color.White,
                             shape = AppShapes.CornerM
                         )
-                        .clickable {  },
+                        .clickable { addSection = true }
+                        .padding(AppSpacing.M),
                     contentAlignment = Alignment.Center
                 ){
-                    Icon(Icons.Default.Add, contentDescription = "Add")
+                    if (addSection) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            CustomTextFiel(
+                                value = sectionName,
+                                onValueChange = { sectionName = it },
+                                placeholder = "Nom de la Section",
+                                modifier = Modifier.weight(1f)
+                            )
+                            Spacer(modifier = Modifier.padding(AppSpacing.XXS))
+                            IconButton(
+                                onClick = { addSection = false },
+                                modifier = Modifier
+                                    .size(AppSpacing.XXXXL)
+                                    .background(
+                                        color = AppColors.Easy,
+                                        shape = AppShapes.CornerL
+                                    )
+                            ) {
+                                Icon(Icons.Default.Check, contentDescription = "Validate")
+                            }
+                        }
+                    } else {
+                        Icon(Icons.Default.Add, contentDescription = "Add")
+                    }
                 }
 
                 Box(
