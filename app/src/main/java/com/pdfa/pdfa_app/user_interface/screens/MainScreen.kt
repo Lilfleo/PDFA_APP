@@ -62,7 +62,7 @@ fun MainScreen() {
             utensils = listOf("casserole", "cuillère en bois"),
             tags = Tags(
                 diet = listOf("Végétarien"),
-                tag = listOf("Rapide", "Réconfortant"),
+                tag = listOf("italien", "healthy"),
                 allergies = null
             )
         ),
@@ -75,7 +75,7 @@ fun MainScreen() {
             utensils = listOf("casserole", "cuillère en bois"),
             tags = Tags(
                 diet = listOf("Végétarien"),
-                tag = listOf("Rapide", "Réconfortant"),
+                tag = listOf("italien", "healthy"),
                 allergies = null
             )
         ),

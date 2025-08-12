@@ -13,6 +13,8 @@ class TagRepository @Inject constructor(
 
     suspend fun getTagById(id: Int): Tag? = dao.getTagById(id)
 
+    suspend fun getTagByName(name: String): Tag? = dao.getTagByName(name)
+
     suspend fun insertTag(tag: Tag): Long = dao.insertTag(tag)
 
     suspend fun updateTag(tag: Tag) = dao.updateTag(tag)

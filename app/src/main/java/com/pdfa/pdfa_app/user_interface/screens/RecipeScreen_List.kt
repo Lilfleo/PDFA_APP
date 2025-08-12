@@ -45,7 +45,7 @@ fun RecipeListScreen(
     viewModel: RecipeViewModel
 ){
     val recipes by viewModel.multipleRecipeWithoutFood
-    val isLoading by viewModel.isLoading
+    val isLoading by viewModel.isLoadingWithFood
     val error by viewModel.error
 
     val scrollState = rememberScrollState()
