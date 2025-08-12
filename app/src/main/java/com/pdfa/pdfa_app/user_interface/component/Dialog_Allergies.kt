@@ -36,8 +36,7 @@ fun AllergiesDialog(
 ){
     val foodList by foodViewModel.foodList.collectAsState()
     var selectedFood by remember { mutableStateOf<Food?>(null) } // ✅ type Food
-
-
+    var selectedFoodName by remember { mutableStateOf("") }
 
     Dialog(
         onDismissRequest = onDismiss,
@@ -68,12 +67,21 @@ fun AllergiesDialog(
                     color = Color.Black
                 )
 
-                CustomFoodSelector(
-                    foodList = foodList.map { it.name },
-                    selectedFood = selectedFood?.name?:"",
-                    onFoodSelected = { foodName ->
-                        selectedFood = foodList.find { it.name == foodName }
-                    }
+//                CustomFoodSelector(
+//                    foodList = foodList.map { it.name },
+//                    selectedFood = selectedFood?.name?:"",
+//                    onFoodSelected = { foodName ->
+//                        selectedFood = foodList.find { it.name == foodName }
+//                    }
+//                )
+                CustomFoodDropdown(
+                    selectedValue = selectedFoodName,
+                    placeholder = "Type d'aliment",
+                    onItemSelected = { item ->
+                        selectedFood = item
+                        selectedFoodName = item.name
+                    },
+                    foods = foodList
                 )
                 Box(
                     modifier = Modifier

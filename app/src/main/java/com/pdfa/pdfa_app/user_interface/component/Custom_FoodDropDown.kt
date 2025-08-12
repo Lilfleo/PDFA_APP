@@ -49,7 +49,7 @@ import com.pdfa.pdfa_app.ui.theme.AppSpacing
 fun CustomFoodDropdown(
     selectedValue: String = "",
     placeholder: String = "Type d'aliment",
-    onItemSelected: (String) -> Unit,
+    onItemSelected: (Food) -> Unit,
     foods: List<Food> = emptyList() // Ajoute ta liste de foods ici
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -72,7 +72,7 @@ fun CustomFoodDropdown(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = if (selectedValue.isEmpty()) placeholder else selectedValue,
+                text = if ( selectedValue.isEmpty() ) placeholder else selectedValue,
                 style = AppTypo.Body,
                 color = if (selectedValue.isEmpty()) AppColors.LightGrey else Color.Black
             )
@@ -100,7 +100,7 @@ fun CustomFoodDropdown(
                 Card(
                     modifier = Modifier
                         .fillMaxWidth(.825f)
-                        .heightIn(max = 250.dp)
+                        .heightIn(max = 500.dp)
                         .background(
                             color = AppColors.Primary,
                             shape = AppShapes.CornerM
@@ -198,7 +198,7 @@ fun CustomFoodDropdown(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .clickable {
-                                            onItemSelected(food.name)
+                                            onItemSelected(food)
                                             expanded = false
                                             searchQuery = ""
                                         }

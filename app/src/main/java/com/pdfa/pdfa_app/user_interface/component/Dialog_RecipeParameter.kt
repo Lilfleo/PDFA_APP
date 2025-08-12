@@ -3,19 +3,26 @@ package com.pdfa.pdfa_app.user_interface.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,6 +32,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.pdfa.pdfa_app.api.Ingredient
 import com.pdfa.pdfa_app.api.RecipeForShoplist
 import com.pdfa.pdfa_app.api.RecipeWithFood
@@ -36,12 +45,18 @@ import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
+import com.pdfa.pdfa_app.ui.viewmodel.TagPreferenceViewModel
+import com.pdfa.pdfa_app.ui.viewmodel.TagViewModel
+import com.pdfa.pdfa_app.user_interface.rooting.Screen
 
 @Composable
 fun RecipeParameter(
+    navController: NavController,
     isWithIngredient: Boolean,
     onDismiss: () -> Unit,
     viewModel: RecipeViewModel,
+    tagViewModel: TagViewModel = hiltViewModel(),
+    tagPreferenceViewModel: TagPreferenceViewModel = hiltViewModel()
 ){
 
     //Temporary
@@ -62,7 +77,7 @@ fun RecipeParameter(
             utensils = listOf("casserole", "cuillère en bois"),
             tags = Tags(
                 diet = listOf("Végétarien"),
-                tag = listOf("Rapide", "Réconfortant"),
+                tag = listOf("indien", "végétarien"),
                 allergies = null
             )
         ),
@@ -75,12 +90,21 @@ fun RecipeParameter(
             utensils = listOf("casserole", "cuillère en bois"),
             tags = Tags(
                 diet = listOf("Végétarien"),
-                tag = listOf("Rapide", "Réconfortant"),
+                tag = listOf("italien", "vegan"),
                 allergies = null
             )
         ),
         excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
     )
+
+    val allTags by tagViewModel.tags.collectAsState()
+    val tagPreferences by tagPreferenceViewModel.tagPreferenceList.collectAsState()
+
+    // Séparer les tags en deux listes
+    val preferredTags = tagPreferences.map { it.tag }
+    val otherTags = allTags.filter { tag ->
+        !preferredTags.any { it.id == tag.id }
+    }
 
 
     Dialog(
@@ -139,6 +163,10 @@ fun RecipeParameter(
                                     color = Color.Black,
                                     shape = AppShapes.CornerM
                                 )
+                                .clickable{
+                                    navController.navigate(Screen.ProfilScreen.rout)
+                                    onDismiss()
+                                }
                                 .padding( horizontal =  2.dp, vertical =  5.dp)
 
                         ){
@@ -166,10 +194,20 @@ fun RecipeParameter(
                 Spacer(modifier = Modifier.padding(AppSpacing.XXS))
 
                 //Tag sélectionné
-                Row {
-                    TagsBox("Facile", "Easy", true)
-                    TagsBox("Facile", "Easy", true)
-                    TagsBox("Facile", "Easy", true)
+                FlowRow(
+                    verticalArrangement = Arrangement.spacedBy(AppSpacing.S)
+                ) {
+                    if (preferredTags.isNotEmpty()) {
+
+                        preferredTags.forEach { tag ->
+                            TagsBox(
+                                tag = tag,
+                                onRemove = {
+                                    tagPreferenceViewModel.removeTagPreferenceByTagId(tag.id)
+                                }
+                            )
+                        }
+                    }
                 }
 
                 //Autres Tag par catégorie
@@ -183,10 +221,25 @@ fun RecipeParameter(
                         color = Color.Black
                     )
                     Spacer(modifier = Modifier.padding(AppSpacing.XXS))
-                    Row {
-                        TagsBox("Facile", "Easy", false)
-                        TagsBox("Facile", "Easy", false)
-                        TagsBox("Facile", "Easy", false)
+
+                    FlowRow(
+                        modifier = Modifier
+                            .heightIn(max = 250.dp)
+                            .verticalScroll(rememberScrollState()),
+                        verticalArrangement = Arrangement.spacedBy(AppSpacing.S)
+                    ) {
+                        if (otherTags.isNotEmpty()) {
+
+                            otherTags.forEach { tag ->
+                                TagsBox(
+                                    tag = tag,
+                                    isSelected = false,
+                                    onClick = {
+                                        tagPreferenceViewModel.addTagPreference(tag.id)
+                                    }
+                                )
+                            }
+                        }
                     }
                 }
 
@@ -203,9 +256,10 @@ fun RecipeParameter(
                         .clickable {
                             onDismiss()
                             if (isWithIngredient) {
-                                viewModel.generateMultipleRecipWithFood(recipWithFood)
-                            } else {
                                 viewModel.generateMultipleRecipWithoutFood(recipWithoutFood)
+                            } else {
+                                viewModel.generateMultipleRecipWithFood(recipWithFood)
+
                             }
                         }
                         .padding(vertical = AppSpacing.S)

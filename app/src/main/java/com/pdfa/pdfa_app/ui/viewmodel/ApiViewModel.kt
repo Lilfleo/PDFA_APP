@@ -37,6 +37,12 @@ class RecipeViewModel : ViewModel() {
     private val _isLoading = mutableStateOf(false)
     val isLoading: State<Boolean> = _isLoading
 
+    private val _isLoadingWithFood = mutableStateOf(false)
+    val isLoadingWithFood: State<Boolean> = _isLoadingWithFood
+
+    private val _isLoadingWithoutFood = mutableStateOf(false)
+    val isLoadingWithoutFood: State<Boolean> = _isLoadingWithoutFood
+
     private val _error = mutableStateOf<String?>(null)
     val error: State<String?> = _error
 
@@ -97,7 +103,7 @@ class RecipeViewModel : ViewModel() {
 
     fun generateMultipleRecipWithFood(requestData: RecipeWithFood) {
         viewModelScope.launch {
-            _isLoading.value = true
+            _isLoadingWithFood.value = true
             _error.value = null
 
             Log.d(TAG, "🔄 Données envoyées: $requestData")
@@ -110,14 +116,14 @@ class RecipeViewModel : ViewModel() {
                 Log.e(TAG, "❌ Erreur: ${e.message}", e)
                 _error.value = "Erreur: ${e.message}"
             } finally {
-                _isLoading.value = false
+                _isLoadingWithFood.value = false
             }
         }
     }
 
     fun generateMultipleRecipWithoutFood(requestData: RecipeForShoplist) {
         viewModelScope.launch {
-            _isLoading.value = true
+            _isLoadingWithoutFood.value = true
             _error.value = null
 
             Log.d(TAG, "🔄 Données envoyées: $requestData")
@@ -130,7 +136,7 @@ class RecipeViewModel : ViewModel() {
                 Log.e(TAG, "❌ Erreur: ${e.message}", e)
                 _error.value = "Erreur: ${e.message}"
             } finally {
-                _isLoading.value = false
+                _isLoadingWithoutFood.value = false
             }
         }
     }

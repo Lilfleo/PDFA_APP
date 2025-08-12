@@ -61,10 +61,19 @@ fun DietDialog(
                     color = Color.Black
                 )
 
-                CustomFoodSelector(
-                    foodList = listOf("Sans Gluten", "Sans Lactose", "Végétarien", "Flexitarien","Vegan","Pesco-Végétarien", "Pollotarisme", "Macrobiotique", "Ovo-Végétarien", "Lacto-Végétarien"), // exemple
-                    selectedFood = selectedFood,
-                    onFoodSelected = { selectedFood = it }
+//                CustomFoodSelector(
+//                    foodList = listOf("Sans Gluten", "Sans Lactose", "Végétarien", "Flexitarien","Vegan","Pesco-Végétarien", "Pollotarisme", "Macrobiotique", "Ovo-Végétarien", "Lacto-Végétarien"), // exemple
+//                    selectedFood = selectedFood,
+//                    onFoodSelected = { selectedFood = it }
+//                )
+
+                CustomDropdown(
+                    selectedValue = selectedFood,
+                    placeholder = "Les régimes alimentaires",
+                    onItemSelected = { item ->
+                        selectedFood = item
+                    },
+                    elements = listOf("Sans Gluten", "Sans Lactose", "Végétarien", "Flexitarien","Vegan","Pesco-Végétarien", "Pollotarisme", "Macrobiotique", "Ovo-Végétarien", "Lacto-Végétarien")
                 )
                 Box(
                     modifier = Modifier

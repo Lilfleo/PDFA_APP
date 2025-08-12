@@ -1,9 +1,6 @@
 package com.pdfa.pdfa_app.data.repository
 
-import com.pdfa.pdfa_app.data.dao.AllergyDao
 import com.pdfa.pdfa_app.data.dao.TagPreferenceDao
-import com.pdfa.pdfa_app.data.model.Allergy
-import com.pdfa.pdfa_app.data.model.AllergyWithFood
 import com.pdfa.pdfa_app.data.model.TagPreference
 import com.pdfa.pdfa_app.data.model.TagPreferenceWithTag
 import kotlinx.coroutines.flow.Flow
