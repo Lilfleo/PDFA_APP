@@ -93,7 +93,7 @@ fun RecipeItemCard(
                 ) {
 
                 recipe.tags.tag?.forEach { x ->
-                    TagsBox(x, "Easy", true)
+                    OldTagsBox(x, "Easy", true)
                 }
             }
             //TAG
@@ -105,10 +105,10 @@ fun RecipeItemCard(
                     .horizontalScroll(rememberScrollState()),
             ) {
                 recipe.tags.diet?.forEach { x ->
-                    TagsBox(x, "Diet", true)
+                    OldTagsBox(x, "Diet", true)
                 }
                 recipe.tags.allergies?.forEach { x ->
-                    TagsBox(x, "Allergy", true)
+                    OldTagsBox(x, "Allergy", true)
                 }
             }
         }

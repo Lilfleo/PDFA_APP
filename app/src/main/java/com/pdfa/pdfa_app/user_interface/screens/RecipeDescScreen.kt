@@ -47,6 +47,7 @@ import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.user_interface.component.AddToCookbook
+import com.pdfa.pdfa_app.user_interface.component.OldTagsBox
 import com.pdfa.pdfa_app.user_interface.component.RecipeTimeCard
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
 import com.pdfa.pdfa_app.user_interface.component.TagsBox
@@ -124,7 +125,7 @@ fun RecipeDetailScreen(
                 //Tags
                 Row {
                     recipe.tags.tag?.forEach { x ->
-                        TagsBox(x, "Easy", true)
+                        OldTagsBox(x, "Easy", true)
                     }
                 }
 
@@ -133,10 +134,10 @@ fun RecipeDetailScreen(
                 //Régimes
                 Row {
                     recipe.tags.diet?.forEach { x ->
-                        TagsBox(x, "Diet", true)
+                        OldTagsBox(x, "Diet", true)
                     }
                     recipe.tags.allergies?.forEach { x ->
-                        TagsBox(x, "Allergy", true)
+                        OldTagsBox(x, "Allergy", true)
                     }
                 }
 

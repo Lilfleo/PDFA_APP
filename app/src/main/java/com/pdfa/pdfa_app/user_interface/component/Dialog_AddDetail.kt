@@ -158,7 +158,8 @@ fun FoodAddDetailDialog(
                     selectedValue = selectedFoodName,
                     placeholder = "Type d'aliment",
                     onItemSelected = { item ->
-                        selectedFoodName = item
+                        selectedFoodName = item.name
+                        selectedFoodId = item.id
                     },
                     foods = foodList
                 )
@@ -236,12 +237,12 @@ fun FoodAddDetailDialog(
                             singleLine = true,
                             modifier = Modifier.weight(1f),
                             shape = AppShapes.CornerM,
-                            colors = TextFieldDefaults.colors(
-                                focusedIndicatorColor = AppColors.MainGreen,
-                                unfocusedIndicatorColor = Color.LightGray,
-                                focusedLabelColor = AppColors.MainGreen,
-                                unfocusedLabelColor = Color.Gray
-                            )
+//                            colors = TextFieldDefaults.colors(
+//                                focusedIndicatorColor = AppColors.MainGreen,
+//                                unfocusedIndicatorColor = Color.LightGray,
+//                                focusedLabelColor = AppColors.MainGreen,
+//                                unfocusedLabelColor = Color.Gray
+//                            )
                         )
                     }
 
