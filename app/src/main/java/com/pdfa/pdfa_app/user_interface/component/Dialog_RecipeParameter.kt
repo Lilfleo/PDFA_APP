@@ -77,7 +77,7 @@ fun RecipeParameter(
             utensils = listOf("casserole", "cuillère en bois"),
             tags = Tags(
                 diet = listOf("Végétarien"),
-                tag = listOf("Rapide", "Réconfortant"),
+                tag = listOf("indien", "végétarien"),
                 allergies = null
             )
         ),
@@ -90,7 +90,7 @@ fun RecipeParameter(
             utensils = listOf("casserole", "cuillère en bois"),
             tags = Tags(
                 diet = listOf("Végétarien"),
-                tag = listOf("Rapide", "Réconfortant"),
+                tag = listOf("italien", "vegan"),
                 allergies = null
             )
         ),
@@ -256,9 +256,10 @@ fun RecipeParameter(
                         .clickable {
                             onDismiss()
                             if (isWithIngredient) {
-                                viewModel.generateMultipleRecipWithFood(recipWithFood)
-                            } else {
                                 viewModel.generateMultipleRecipWithoutFood(recipWithoutFood)
+                            } else {
+                                viewModel.generateMultipleRecipWithFood(recipWithFood)
+
                             }
                         }
                         .padding(vertical = AppSpacing.S)

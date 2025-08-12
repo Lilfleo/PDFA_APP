@@ -47,6 +47,13 @@ class TagViewModel @Inject constructor(
         }
     }
 
+    fun getTagByName(name: String, onResult: (Tag?) -> Unit) {
+        viewModelScope.launch {
+            val tag = repository.getTagByName(name)
+            onResult(tag)
+        }
+    }
+
     private fun loadAllTags() {
         viewModelScope.launch {
             val allTags = repository.getAllTags()
