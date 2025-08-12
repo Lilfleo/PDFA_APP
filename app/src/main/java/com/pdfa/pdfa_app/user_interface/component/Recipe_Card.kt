@@ -16,6 +16,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,21 +28,42 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.api.Recipe
 import com.pdfa.pdfa_app.api.RecipeResponse
+import com.pdfa.pdfa_app.data.model.Tag
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
+import com.pdfa.pdfa_app.ui.viewmodel.TagViewModel
 import com.pdfa.pdfa_app.user_interface.rooting.Screen
 
 @Composable
 fun RecipeItemCard(
     navController: NavController,
     recipe: Recipe,
-    viewModel: RecipeViewModel
-) {
+    viewModel: RecipeViewModel,
+    tagViewModel: TagViewModel = hiltViewModel(),
+    ) {
+
+    var recipeTags by remember { mutableStateOf(listOf<Tag>()) }
+
+    LaunchedEffect(recipe) {
+        val tags = mutableListOf<Tag>()
+        recipe.tags.tag?.forEach { tagList ->
+            tagViewModel.getTagByName(
+                name = tagList
+            ) { convertedTags ->
+                if (convertedTags != null) {
+                    tags.add(convertedTags)
+                    recipeTags = tags.toList()
+                }
+            }
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -92,8 +118,11 @@ fun RecipeItemCard(
 
                 ) {
 
-                recipe.tags.tag?.forEach { x ->
-                    TagsBox(x, "Easy", true)
+                recipeTags.forEach { x ->
+                    TagsBox(
+                        tag = x,
+                        isSelected = true
+                    )
                 }
             }
             //TAG
@@ -105,10 +134,10 @@ fun RecipeItemCard(
                     .horizontalScroll(rememberScrollState()),
             ) {
                 recipe.tags.diet?.forEach { x ->
-                    TagsBox(x, "Diet", true)
+                    OldTagsBox(x, "Diet", true)
                 }
                 recipe.tags.allergies?.forEach { x ->
-                    TagsBox(x, "Allergy", true)
+                    OldTagsBox(x, "Allergy", true)
                 }
             }
         }

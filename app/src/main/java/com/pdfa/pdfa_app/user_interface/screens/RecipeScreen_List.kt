@@ -45,7 +45,7 @@ fun RecipeListScreen(
     viewModel: RecipeViewModel
 ){
     val recipes by viewModel.multipleRecipeWithoutFood
-    val isLoading by viewModel.isLoading
+    val isLoading by viewModel.isLoadingWithFood
     val error by viewModel.error
 
     val scrollState = rememberScrollState()
@@ -176,6 +176,7 @@ fun RecipeListScreen(
 
     if (showDialog) {
         RecipeParameter(
+            navController = navController,
             isWithIngredient = false,
             onDismiss = { showDialog = false },
             viewModel = viewModel
