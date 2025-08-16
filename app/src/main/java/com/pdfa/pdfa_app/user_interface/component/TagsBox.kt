@@ -27,6 +27,7 @@ import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.utilz.toComposeColor
 
 
 @Composable
@@ -36,19 +37,6 @@ fun TagsBox(
     onRemove: (() -> Unit)? = null,
     onClick: (() -> Unit)? = null
 ){
-    val colorTag: Color =
-        if (isSelected) {
-            when (tag.color) {
-                "Easy" -> AppColors.Easy
-                "Allergy" -> AppColors.Hard
-                "Diet" -> AppColors.Diet
-                else -> {
-                    Color.White
-                }
-            }
-        } else {
-            Color.White
-        }
 
     Box(
         modifier = Modifier
@@ -64,7 +52,7 @@ fun TagsBox(
                     shape = AppShapes.CornerM // Coins plus arrondis
                 )
                 .clip(AppShapes.CornerM)
-                .background(colorTag)
+                .background(color = tag.color.toComposeColor())
                 .clickable { onClick?.let { onClick() } }
         ){
             // Texte principal

@@ -44,7 +44,7 @@ fun RecipeListScreen(
     navController: NavController,
     viewModel: RecipeViewModel
 ){
-    val recipes by viewModel.multipleRecipeWithoutFood
+    val recipes by viewModel.multipleRecipeWithFood
     val isLoading by viewModel.isLoadingWithFood
     val error by viewModel.error
 

@@ -25,8 +25,7 @@ import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 
 @Composable
-fun DeleteConfirmationGeneral(
-    itemName: String,
+fun Confirmation(
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
     onDelete: () -> Unit
@@ -43,15 +42,15 @@ fun DeleteConfirmationGeneral(
         ) {
             Column {
                 Text(
-                    text = "Supprimer cette section ?",
+                    text = "Supprimer ces aliments ?",
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
                 )
 
                 Spacer(modifier = Modifier.height(AppSpacing.M))
 
                 Text(
-                    text = "Es-tu sûr de vouloir supprimer \"$itemName\" ? Cette action est irréversible.",
-                    style = MaterialTheme.typography.bodyMedium
+                    text = "Vous allez retirer tous les ingrédients de cette recette de votre frigo. Avez vous bien réalisé cette recette ?",
+                    style = AppTypo.Body
                 )
 
                 Spacer(modifier = Modifier.height(AppSpacing.L))
@@ -89,7 +88,7 @@ fun DeleteConfirmationGeneral(
                         .wrapContentHeight()
                         .fillMaxWidth()
                         .background(
-                            color = AppColors.MainRed,
+                            color = AppColors.MainGreen,
                             shape = AppShapes.CornerM)
                         .clickable {
                             onDelete()
