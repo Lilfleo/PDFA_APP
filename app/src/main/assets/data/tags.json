@@ -1,217 +1,56 @@
 [
-  {
-    "id": 1,
-    "name": "mexicain",
-    "color": "red"
-  },
-  {
-    "id": 2,
-    "name": "italien",
-    "color": "green"
-  },
-  {
-    "id": 3,
-    "name": "japonais",
-    "color": "white"
-  },
-  {
-    "id": 4,
-    "name": "chinois",
-    "color": "yellow"
-  },
-  {
-    "id": 5,
-    "name": "indien",
-    "color": "orange"
-  },
-  {
-    "id": 6,
-    "name": "végétarien",
-    "color": "lightgreen"
-  },
-  {
-    "id": 7,
-    "name": "vegan",
-    "color": "darkgreen"
-  },
-  {
-    "id": 8,
-    "name": "rapide",
-    "color": "blue"
-  },
-  {
-    "id": 9,
-    "name": "dessert",
-    "color": "pink"
-  },
-  {
-    "id": 10,
-    "name": "entrée",
-    "color": "purple"
-  },
-  {
-    "id": 11,
-    "name": "plat principal",
-    "color": "brown"
-  },
-  {
-    "id": 12,
-    "name": "grillades",
-    "color": "darkred"
-  },
-  {
-    "id": 13,
-    "name": "asiatique",
-    "color": "gold"
-  },
-  {
-    "id": 14,
-    "name": "healthy",
-    "color": "teal"
-  },
-  {
-    "id": 15,
-    "name": "soupe",
-    "color": "lightblue"
-  },
-  {
-    "id": 16,
-    "name": "pâtes",
-    "color": "beige"
-  },
-  {
-    "id": 17,
-    "name": "riz",
-    "color": "ivory"
-  },
-  {
-    "id": 18,
-    "name": "tapas",
-    "color": "maroon"
-  },
-  {
-    "id": 19,
-    "name": "français",
-    "color": "bluewhite"
-  },
-  {
-    "id": 20,
-    "name": "grec",
-    "color": "lightblue"
-  },
-  {
-    "id": 21,
-    "name": "espagnol",
-    "color": "crimson"
-  },
-  {
-    "id": 22,
-    "name": "libanais",
-    "color": "olive"
-  },
-  {
-    "id": 23,
-    "name": "marocain",
-    "color": "sienna"
-  },
-  {
-    "id": 24,
-    "name": "thaï",
-    "color": "limegreen"
-  },
-  {
-    "id": 25,
-    "name": "coréen",
-    "color": "steelblue"
-  },
-  {
-    "id": 26,
-    "name": "fusion",
-    "color": "silver"
-  },
-  {
-    "id": 27,
-    "name": "pique-nique",
-    "color": "forestgreen"
-  },
-  {
-    "id": 28,
-    "name": "brunch",
-    "color": "peachpuff"
-  },
-  {
-    "id": 29,
-    "name": "apéritif",
-    "color": "salmon"
-  },
-  {
-    "id": 30,
-    "name": "boulangerie",
-    "color": "wheat"
-  },
-  {
-    "id": 31,
-    "name": "snack",
-    "color": "khaki"
-  },
-  {
-    "id": 32,
-    "name": "fromage",
-    "color": "goldenrod"
-  },
-  {
-    "id": 33,
-    "name": "chocolat",
-    "color": "chocolate"
-  },
-  {
-    "id": 34,
-    "name": "gâteau",
-    "color": "orchid"
-  },
-  {
-    "id": 35,
-    "name": "biscuit",
-    "color": "tan"
-  },
-  {
-    "id": 36,
-    "name": "tarte",
-    "color": "burlywood"
-  },
-  {
-    "id": 37,
-    "name": "crème",
-    "color": "floralwhite"
-  },
-  {
-    "id": 38,
-    "name": "comfort food",
-    "color": "lightcoral"
-  },
-  {
-    "id": 39,
-    "name": "street food",
-    "color": "lightgoldenrodyellow"
-  },
-  {
-    "id": 40,
-    "name": "bio",
-    "color": "lavender"
-  },
-  {
-    "id": 41,
-    "name": "gourmand",
-    "color": "plum"
-  },
-  {
-    "id": 42,
-    "name": "gluten-free",
-    "color": "plum"
-  },
-  {
-    "id": 43,
-    "name": "lactose-free",
-    "color": "lavender"
-  }
+  { "id": 1, "name": "Italien", "color": "0xFFE6B896" },
+  { "id": 2, "name": "Français", "color": "0xFFC4B3E6" },
+  { "id": 3, "name": "Américain", "color": "0xFFE6C470" },
+  { "id": 4, "name": "Mexicain", "color": "0xFFE6A299" },
+  { "id": 5, "name": "Chinois", "color": "0xFFB3D4E6" },
+  { "id": 6, "name": "Japonais", "color": "0xFF9DCCC7" },
+  { "id": 7, "name": "Thaï", "color": "0xFFE6C49E" },
+  { "id": 8, "name": "Indien", "color": "0xFFE6C575" },
+  { "id": 9, "name": "Libanais", "color": "0xFFA8D696" },
+  { "id": 10, "name": "Marocain", "color": "0xFFE6B894" },
+  { "id": 11, "name": "Espagnol", "color": "0xFFE6B8B5" },
+  { "id": 12, "name": "Grec", "color": "0xFF9FC7E6" },
+  { "id": 13, "name": "Turc", "color": "0xFFD6B3E6" },
+  { "id": 14, "name": "Vietnamien", "color": "0xFF96CED6" },
+  { "id": 15, "name": "Coréen", "color": "0xFFB8D4E6" },
+  { "id": 16, "name": "Portugais", "color": "0xFFE6C096" },
+  { "id": 17, "name": "Asiatique", "color": "0xFFC7E3E6" },
+  { "id": 18, "name": "Méditerranéen", "color": "0xFFB8D6C4" },
+  { "id": 19, "name": "Moyen-Orient", "color": "0xFFE0B8E6" },
+
+  { "id": 20, "name": "Entrée", "color": "0xFFB3D9F7" },
+  { "id": 21, "name": "Plat", "color": "0xFFE6D699" },
+  { "id": 22, "name": "Dessert", "color": "0xFFE6B8D1" },
+  { "id": 23, "name": "Petit déjeuner", "color": "0xFFE6D1A8" },
+  { "id": 24, "name": "Brunch", "color": "0xFFC4E3E6" },
+  { "id": 25, "name": "Snack", "color": "0xFFD6C7E6" },
+  { "id": 26, "name": "Apéritif", "color": "0xFFB3E6D1" },
+  { "id": 27, "name": "Accompagnement", "color": "0xFFE0D6B8" },
+  { "id": 28, "name": "Sauce", "color": "0xFFC7D9E6" },
+  { "id": 29, "name": "Boisson", "color": "0xFF9FE1E6" },
+  { "id": 30, "name": "Street food", "color": "0xFFE6C7A8" },
+
+  { "id": 31, "name": "Facile", "color": "0xFFB8E6C7" },
+  { "id": 32, "name": "Difficile", "color": "0xFFE6D1A3" },
+  { "id": 33, "name": "Très difficile", "color": "0xFFE6B8B8" },
+
+  { "id": 34, "name": "Frais", "color": "0xFF96CED6" },
+  { "id": 35, "name": "Gourmand", "color": "0xFFE6B8D6" },
+  { "id": 36, "name": "Salade", "color": "0xFFA8D6BC" },
+  { "id": 37, "name": "Soupe", "color": "0xFFB8D1E6" },
+  { "id": 38, "name": "Rôti", "color": "0xFFE6C4A8" },
+  { "id": 39, "name": "Gratin", "color": "0xFFE6D499" },
+  { "id": 40, "name": "Vapeur", "color": "0xFFB8E1E6" },
+  { "id": 41, "name": "Four", "color": "0xFFE0CDB8" },
+  { "id": 42, "name": "Poêlé", "color": "0xFFD6C7B8" },
+  { "id": 43, "name": "Frit", "color": "0xFFE6B8A3" },
+  { "id": 44, "name": "Léger", "color": "0xFFC7E6D1" },
+  { "id": 45, "name": "Confort", "color": "0xFFE6C7B5" },
+  { "id": 46, "name": "Épicé", "color": "0xFFE6B8A8" },
+  { "id": 47, "name": "Protéiné", "color": "0xFFB3D1E6" },
+  { "id": 48, "name": "Printemps", "color": "0xFFD1E6C7" },
+  { "id": 49, "name": "Été", "color": "0xFFE6DBA3" },
+  { "id": 50, "name": "Automne", "color": "0xFFE6C7A8" },
+  { "id": 51, "name": "Hiver", "color": "0xFFB8D4E6" }
 ]
