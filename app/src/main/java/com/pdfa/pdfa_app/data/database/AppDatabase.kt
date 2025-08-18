@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
 import com.pdfa.pdfa_app.data.dao.AllergyDao
+import com.pdfa.pdfa_app.data.dao.DietDao
 import com.pdfa.pdfa_app.data.dao.FoodDetailDao
 import com.pdfa.pdfa_app.data.dao.FoodRecipeCrossRefDao
 import com.pdfa.pdfa_app.data.dao.RecipeDao
@@ -28,7 +29,7 @@ import com.pdfa.pdfa_app.data.model.TagPreference
 import com.pdfa.pdfa_app.data.model.Utensil
 import com.pdfa.pdfa_app.data.model.UtensilPreference
 import dagger.hilt.android.qualifiers.ApplicationContext
-
+import com.pdfa.pdfa_app.data.model.Diet
 
 @Database(entities = [
     Food::class,
@@ -40,7 +41,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
     FoodRecipeCrossRef::class,
     TagPreference::class,
     Utensil::class,
-    UtensilPreference::class],
+    UtensilPreference::class,
+    Diet::class],
     version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -54,6 +56,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun tagPreferenceDao(): TagPreferenceDao
     abstract fun utensilDao(): UtensilDao
     abstract fun utensilPreferenceDao(): UtensilPreferenceDao
+    abstract fun dietDao(): DietDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
@@ -73,7 +76,6 @@ abstract class AppDatabase : RoomDatabase() {
         private fun createCallback(ctx: Context) = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
-
                 // Launch coroutine to insert data
                 CoroutineScope(Dispatchers.IO).launch {
                     try {

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,16 +21,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.DietViewModel
 
 @Composable
 fun DietDialog(
     onDismiss: () -> Unit,
-    addDiet: (String) -> Unit,
+//    addDiet: (String) -> Unit,
+    dietViewModel: DietViewModel = hiltViewModel()
 ){
+
+    val dietNames by dietViewModel.dietNames.collectAsState()
+
     var selectedFood by remember { mutableStateOf("") }
 
     Dialog(
@@ -61,19 +68,13 @@ fun DietDialog(
                     color = Color.Black
                 )
 
-//                CustomFoodSelector(
-//                    foodList = listOf("Sans Gluten", "Sans Lactose", "Végétarien", "Flexitarien","Vegan","Pesco-Végétarien", "Pollotarisme", "Macrobiotique", "Ovo-Végétarien", "Lacto-Végétarien"), // exemple
-//                    selectedFood = selectedFood,
-//                    onFoodSelected = { selectedFood = it }
-//                )
-
                 CustomDropdown(
                     selectedValue = selectedFood,
                     placeholder = "Les régimes alimentaires",
                     onItemSelected = { item ->
                         selectedFood = item
                     },
-                    elements = listOf("Sans Gluten", "Sans Lactose", "Végétarien", "Flexitarien","Vegan","Pesco-Végétarien", "Pollotarisme", "Macrobiotique", "Ovo-Végétarien", "Lacto-Végétarien")
+                    elements = dietNames
                 )
                 Box(
                     modifier = Modifier
@@ -83,7 +84,7 @@ fun DietDialog(
                             if (selectedFood == "") {
                                 Modifier
                             }else {
-                                Modifier.clickable { addDiet(selectedFood) }
+                                Modifier.clickable {  }
                             }
                         )
                         .background(

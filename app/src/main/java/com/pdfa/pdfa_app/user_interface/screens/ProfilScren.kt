@@ -191,16 +191,16 @@ fun AllergiesSection(
                 )
             }
 
-            if (showAllergyDialog) {
-                AllergiesDialog(
-                    onDismiss = { showAllergyDialog = false },
-                    addAllergy = { foodId ->
-                        allergyViewModel.insertAllergy(Allergy(foodId=foodId.toInt()))
-                        showAllergyDialog = false
-                    },
-                    foodViewModel = foodViewModel
-                )
-            }
+//            if (showAllergyDialog) {
+//                AllergiesDialog(
+//                    onDismiss = { showAllergyDialog = false },
+//                    addAllergy = { foodId ->
+//                        allergyViewModel.insertAllergy(Allergy(foodId=foodId.toInt()))
+//                        showAllergyDialog = false
+//                    },
+//                    foodViewModel = foodViewModel
+//                )
+//            }
         }
     }
 }
@@ -272,10 +272,10 @@ fun DietSection() {
         if (showDietDialog) {
             DietDialog(
                 onDismiss = { showDietDialog = false },
-                addDiet = { selectedTag ->
-                    listeTags.add(selectedTag)
-                    showDietDialog = false
-                }
+//                addDiet = { selectedTag ->
+//                    listeTags.add(selectedTag)
+//                    showDietDialog = false
+//                }
             )
         }
 

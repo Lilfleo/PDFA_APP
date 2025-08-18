@@ -50,52 +50,11 @@ import com.pdfa.pdfa_app.ui.viewmodel.TagViewModel
 import com.pdfa.pdfa_app.user_interface.rooting.Screen
 
 @Composable
-fun RecipeParameter(
-    navController: NavController,
-    isWithIngredient: Boolean,
+fun EditTag(
     onDismiss: () -> Unit,
-    viewModel: RecipeViewModel,
     tagViewModel: TagViewModel = hiltViewModel(),
     tagPreferenceViewModel: TagPreferenceViewModel = hiltViewModel()
 ){
-
-    //Temporary
-    val recipWithFood: RecipeWithFood = RecipeWithFood(
-        prompt = RecipeWithFoodPrompt(
-            title = "Curry de pois chiches",
-            ingredients = listOf(
-                Ingredient("pois chiches", 400.0, "g"),
-                Ingredient("echalote", 5.0, "pièce"),
-                Ingredient("tortilla", 8.0, "pièce"),
-                Ingredient("yahourt grec", 4.0, "pièce"),
-                Ingredient("riz thai", 500.0, "g"),
-                Ingredient("paprika", 25.0, "g"),
-                Ingredient("curry", 25.0, "g"),
-                Ingredient("lait de coco", 20.0, "cl"),
-                Ingredient("oignon", 1.0, "pièce")
-            ),
-            utensils = listOf("casserole", "cuillère en bois"),
-            tags = Tags(
-                diet = listOf("Végétarien"),
-                tag = listOf("indien", "végétarien"),
-                allergies = null
-            )
-        ),
-        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
-    )
-
-    val recipWithoutFood: RecipeForShoplist = RecipeForShoplist(
-        prompt = RecipeWithoutFoodPrompt(
-            title = "Curry de pois chiches",
-            utensils = listOf("casserole", "cuillère en bois"),
-            tags = Tags(
-                diet = listOf("Végétarien"),
-                tag = listOf("italien", "vegan"),
-                allergies = null
-            )
-        ),
-        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
-    )
 
     val allTags by tagViewModel.tags.collectAsState()
     val tagPreferences by tagPreferenceViewModel.tagPreferenceList.collectAsState()
@@ -132,55 +91,12 @@ fun RecipeParameter(
                     modifier = Modifier
                         .fillMaxWidth(),
                     textAlign = TextAlign.Center,
-                    text = "Modifie les paramètres de création de recettes",
+                    text = "Modifie tes Tags",
                     style = AppTypo.SubTitle,
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.padding(AppSpacing.XXS))
 
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        modifier = Modifier
-                            .weight(3f),
-                        text = "Modifie tes régimes alimentaires",
-                        style = AppTypo.Body,
-                        color = Color.Black
-                    )
-                    Box(
-                        modifier = Modifier
-                            .weight(2f)
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .background(
-                                    color = Color.White,
-                                    shape = AppShapes.CornerM
-                                )
-                                .border(
-                                    width =  1.dp,
-                                    color = Color.Black,
-                                    shape = AppShapes.CornerM
-                                )
-                                .clickable{
-                                    navController.navigate(Screen.ProfilScreen.rout)
-                                    onDismiss()
-                                }
-                                .padding( horizontal =  2.dp, vertical =  5.dp)
-
-                        ){
-                            Text(
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                textAlign = TextAlign.Center,
-                                text = "Mes Régimes",
-                                style = AppTypo.Body,
-                                color = Color.Black
-                            )
-                        }
-                    }
-                }
                 //Tags
                 Text(
                     modifier = Modifier
@@ -216,7 +132,7 @@ fun RecipeParameter(
                         .padding(vertical = AppSpacing.S)
                 ){
                     Text(
-                        text = "Les autres tags disponibles",
+                        text = "Les Tags disponibles",
                         style = AppTypo.Body,
                         color = Color.Black
                     )
@@ -255,18 +171,12 @@ fun RecipeParameter(
                             shape = AppShapes.CornerM)
                         .clickable {
                             onDismiss()
-                            if (isWithIngredient) {
-                                viewModel.generateMultipleRecipWithoutFood(recipWithoutFood)
-                            } else {
-                                viewModel.generateMultipleRecipWithFood(recipWithFood)
-
-                            }
                         }
                         .padding(vertical = AppSpacing.S)
 
                 ) {
                     Text(
-                        text = "Nouvelle les recettes",
+                        text = "Sauvegarder",
                         style = AppTypo.SubTitle,
                         color = Color.White
                     )

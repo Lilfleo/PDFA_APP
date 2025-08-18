@@ -45,8 +45,8 @@ fun RecipeMakerScreen(
     viewModel: RecipeViewModel
 ){
 
-    val recipes by viewModel.multipleRecipeWithoutFood
-    val isLoading by viewModel.isLoadingWithoutFood
+    val recipes by viewModel.multipleRecipeWithFood
+    val isLoading by viewModel.isLoadingWithFood
     val error by viewModel.error
 
     val scrollState = rememberScrollState()
