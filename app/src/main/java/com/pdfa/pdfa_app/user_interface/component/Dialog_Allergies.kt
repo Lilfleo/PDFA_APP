@@ -80,7 +80,7 @@ fun AllergiesDialog(
                     placeholder = "Type d'aliment",
                     onItemSelected = { item ->
                         selectedFood = item
-                        selectedFoodName = item.name
+//                        selectedFoodName = item.name
                         allergyViewModel.insertAllergy(Allergy(foodId=item.id))
                     },
                     foods = foodList

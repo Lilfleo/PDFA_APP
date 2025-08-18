@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import com.pdfa.pdfa_app.data.dao.AllergyDao
 import com.pdfa.pdfa_app.data.dao.DietDao
+import com.pdfa.pdfa_app.data.dao.DietPreferenceDao
 import com.pdfa.pdfa_app.data.dao.FoodDetailDao
 import com.pdfa.pdfa_app.data.dao.FoodRecipeCrossRefDao
 import com.pdfa.pdfa_app.data.dao.RecipeDao
@@ -30,6 +31,7 @@ import com.pdfa.pdfa_app.data.model.Utensil
 import com.pdfa.pdfa_app.data.model.UtensilPreference
 import dagger.hilt.android.qualifiers.ApplicationContext
 import com.pdfa.pdfa_app.data.model.Diet
+import com.pdfa.pdfa_app.data.model.DietPreference
 
 @Database(entities = [
     Food::class,
@@ -42,7 +44,8 @@ import com.pdfa.pdfa_app.data.model.Diet
     TagPreference::class,
     Utensil::class,
     UtensilPreference::class,
-    Diet::class],
+    Diet::class,
+    DietPreference::class],
     version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -57,6 +60,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun utensilDao(): UtensilDao
     abstract fun utensilPreferenceDao(): UtensilPreferenceDao
     abstract fun dietDao(): DietDao
+    abstract fun dietPreferenceDao(): DietPreferenceDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null

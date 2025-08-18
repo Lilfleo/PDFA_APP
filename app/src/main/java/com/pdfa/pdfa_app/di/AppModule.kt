@@ -91,5 +91,7 @@ object AppModule {
     @Singleton
     fun provideDietRepository(dietDao: DietDao): DietRepository = DietRepository(dietDao)
 
+    @Provides
+    fun provideDietPreferenceDao(db: AppDatabase): DietPreferenceDao = db.dietPreferenceDao()
 
 }
