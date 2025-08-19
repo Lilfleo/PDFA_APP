@@ -17,6 +17,9 @@ interface ShoplistDao {
     @Query("SELECT * FROM shoplist")
     fun getShoplist(): Flow<List<ShoplistWithFood>>
 
+    @Query("SELECT * FROM shoplist WHERE food_id = :foodId LIMIT 1")
+    suspend fun findByFoodId(foodId: Int): Shoplist?
+
     @Insert
     suspend fun insertSholist(shoplist: Shoplist)
 

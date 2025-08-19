@@ -11,6 +11,7 @@ import com.pdfa.pdfa_app.data.repository.DietRepository
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
 import com.pdfa.pdfa_app.data.repository.RecipeRepository
+import com.pdfa.pdfa_app.data.repository.RecipeToShoplistService
 import com.pdfa.pdfa_app.data.repository.ShoplistRepository
 import com.pdfa.pdfa_app.data.repository.TagPreferenceRepository
 import com.pdfa.pdfa_app.data.repository.UtensilPreferenceRepository
@@ -102,4 +103,12 @@ object AppModule {
     @Singleton
     fun provideShoplistRepository(shoplistDao: ShoplistDao) = ShoplistRepository(shoplistDao)
 
+    @Provides
+    @Singleton
+    fun provideRecipeToShoplistService(
+        foodRepository: FoodRepository,
+        shoplistRepository: ShoplistRepository
+    ): RecipeToShoplistService {
+        return RecipeToShoplistService(foodRepository, shoplistRepository)
+    }
 }
