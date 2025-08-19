@@ -202,6 +202,7 @@ fun RecipeParameter(
                         preferredTags.forEach { tag ->
                             TagsBox(
                                 tag = tag,
+                                isSelected = true,
                                 onRemove = {
                                     tagPreferenceViewModel.removeTagPreferenceByTagId(tag.id)
                                 }

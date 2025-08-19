@@ -11,6 +11,7 @@ import com.pdfa.pdfa_app.data.repository.DietRepository
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
 import com.pdfa.pdfa_app.data.repository.RecipeRepository
+import com.pdfa.pdfa_app.data.repository.ShoplistRepository
 import com.pdfa.pdfa_app.data.repository.TagPreferenceRepository
 import com.pdfa.pdfa_app.data.repository.UtensilPreferenceRepository
 import dagger.Module
@@ -93,5 +94,12 @@ object AppModule {
 
     @Provides
     fun provideDietPreferenceDao(db: AppDatabase): DietPreferenceDao = db.dietPreferenceDao()
+
+    @Provides
+    fun provideShoplistDao(db: AppDatabase): ShoplistDao = db.shoplistDao()
+
+    @Provides
+    @Singleton
+    fun provideShoplistRepository(shoplistDao: ShoplistDao) = ShoplistRepository(shoplistDao)
 
 }

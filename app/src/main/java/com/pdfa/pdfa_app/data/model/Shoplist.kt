@@ -19,5 +19,10 @@ data class Shoplist(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = "food_id", index = true)
-    val foodId: Int
+    val foodId: Int,
+    @ColumnInfo(name = "quantity", index = true)
+    val quantity: Int,
+    @ColumnInfo(name = "quantity_type", index = true)
+    val quantityType: String,
 )
+

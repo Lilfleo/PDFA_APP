@@ -17,6 +17,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,10 +33,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.api.Recipe
 import com.pdfa.pdfa_app.api.RecipeResponse
+import com.pdfa.pdfa_app.data.model.Diet
 import com.pdfa.pdfa_app.data.model.Tag
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.DietViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.TagViewModel
 import com.pdfa.pdfa_app.user_interface.rooting.Screen
@@ -46,8 +49,11 @@ fun RecipeItemCard(
     recipe: Recipe,
     viewModel: RecipeViewModel,
     tagViewModel: TagViewModel = hiltViewModel(),
+    dietViewModel: DietViewModel = hiltViewModel()
     ) {
 
+    val allDiet by dietViewModel.diets.collectAsState()
+    var recipeDiets by remember { mutableStateOf(listOf<String>()) }
     var recipeTags by remember { mutableStateOf(listOf<Tag>()) }
 
     LaunchedEffect(recipe) {
@@ -62,6 +68,14 @@ fun RecipeItemCard(
                 }
             }
         }
+
+        recipe.tags.diet?.let { recipeDietList ->
+            val dietNames = allDiet.map { it.name }.toSet() // Convertir en Set pour une recherche plus rapide
+            recipeDiets = recipeDietList.filter { dietName ->
+                dietNames.contains(dietName)
+            }
+        }
+
     }
 
     Box(
@@ -103,7 +117,7 @@ fun RecipeItemCard(
                 )
                 Spacer(modifier = Modifier.width(2.dp))
                 Text(
-                    text = "~${recipe.totalCookingTime}mn",
+                    text = "~${recipe.totalCookingTime + recipe.preparationTime}mn",
                     style = AppTypo.Body
                 )
             }
@@ -133,7 +147,7 @@ fun RecipeItemCard(
                     .padding(horizontal = 2.dp)
                     .horizontalScroll(rememberScrollState()),
             ) {
-                recipe.tags.diet?.forEach { x ->
+                recipeDiets.forEach { x ->
                     OldTagsBox(x, "Diet", true)
                 }
                 recipe.tags.allergies?.forEach { x ->
