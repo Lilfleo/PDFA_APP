@@ -7,6 +7,7 @@ import com.pdfa.pdfa_app.data.dao.*
 import com.pdfa.pdfa_app.data.database.AppDatabase
 import com.pdfa.pdfa_app.data.model.FoodRecipeCrossRef
 import com.pdfa.pdfa_app.data.repository.AllergyRepository
+import com.pdfa.pdfa_app.data.repository.DietRepository
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
 import com.pdfa.pdfa_app.data.repository.RecipeRepository
@@ -82,4 +83,15 @@ object AppModule {
     @Provides
     @Singleton
     fun provideUtensilPreferenceRepository(utensilPreferenceDao: UtensilPreferenceDao): UtensilPreferenceRepository = UtensilPreferenceRepository(utensilPreferenceDao)
+
+    @Provides
+    fun provideDietDao(db: AppDatabase): DietDao = db.dietDao()
+
+    @Provides
+    @Singleton
+    fun provideDietRepository(dietDao: DietDao): DietRepository = DietRepository(dietDao)
+
+    @Provides
+    fun provideDietPreferenceDao(db: AppDatabase): DietPreferenceDao = db.dietPreferenceDao()
+
 }

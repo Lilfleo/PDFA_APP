@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,27 +17,34 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.toInt
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.data.model.Food
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.AllergyViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.FoodViewModel
 
 @Composable
 fun AllergiesDialog(
     onDismiss: () -> Unit,
-    addAllergy: (Long) -> Unit,
-    foodViewModel: FoodViewModel
+    foodViewModel: FoodViewModel = hiltViewModel(),
+    allergyViewModel: AllergyViewModel = hiltViewModel()
 ){
     val foodList by foodViewModel.foodList.collectAsState()
     var selectedFood by remember { mutableStateOf<Food?>(null) } // ✅ type Food
     var selectedFoodName by remember { mutableStateOf("") }
+
+    val allergyList by allergyViewModel.allAllergy.collectAsState()
 
     Dialog(
         onDismissRequest = onDismiss,
@@ -67,37 +75,44 @@ fun AllergiesDialog(
                     color = Color.Black
                 )
 
-//                CustomFoodSelector(
-//                    foodList = foodList.map { it.name },
-//                    selectedFood = selectedFood?.name?:"",
-//                    onFoodSelected = { foodName ->
-//                        selectedFood = foodList.find { it.name == foodName }
-//                    }
-//                )
                 CustomFoodDropdown(
                     selectedValue = selectedFoodName,
                     placeholder = "Type d'aliment",
                     onItemSelected = { item ->
                         selectedFood = item
-                        selectedFoodName = item.name
+//                        selectedFoodName = item.name
+                        allergyViewModel.insertAllergy(Allergy(foodId=item.id))
                     },
                     foods = foodList
                 )
+
+                FlowRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = AppSpacing.S),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(AppSpacing.XXS)
+                ) {
+                    allergyList.forEach { allergyWithFood ->
+                        TagsBoxProfil(
+                            name = allergyWithFood.food.name,
+                            type = "Allergy",
+                            onRemove = {
+                                allergyViewModel.deleteAllergy(allergyWithFood.allergy)
+                            }
+                        )
+                    }
+                }
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(AppSpacing.XXXXL)
-                        .then(
-                            if (selectedFood == null) {
-                                Modifier
-                            } else {
-                                Modifier.clickable {
-                                    selectedFood?.let { addAllergy(it.id.toLong()) } // ✅ maintenant ça compile
-                                }
-                            }
-                        )
+                        .clickable {
+                            onDismiss()
+                        }
                         .background(
-                            color = if (selectedFood == null) AppColors.LightGrey else AppColors.MainGreen,
+                            color =  AppColors.MainGreen,
                             shape = AppShapes.CornerL
                         ),
                     contentAlignment = Alignment.Center
