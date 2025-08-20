@@ -33,5 +33,5 @@ data class FoodDetail(
     @ColumnInfo(name = "buying_time")
     val buyingTime: Date,
     @ColumnInfo(name = "expiration_time")
-    val expirationTime: Date
+    val expirationTime: Date?
 )
