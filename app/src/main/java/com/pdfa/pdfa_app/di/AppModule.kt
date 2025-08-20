@@ -10,6 +10,7 @@ import com.pdfa.pdfa_app.data.repository.AllergyRepository
 import com.pdfa.pdfa_app.data.repository.DietRepository
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
+import com.pdfa.pdfa_app.data.repository.ProfilRepository
 import com.pdfa.pdfa_app.data.repository.RecipeRepository
 import com.pdfa.pdfa_app.data.repository.RecipeToShoplistService
 import com.pdfa.pdfa_app.data.repository.ShoplistRepository
@@ -51,40 +52,50 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideFoodDetailRepository(dao: FoodDetailDao): FoodDetailRepository = FoodDetailRepository(dao)
+    fun provideFoodDetailRepository(dao: FoodDetailDao): FoodDetailRepository =
+        FoodDetailRepository(dao)
 
     @Provides
     fun provideTagDao(db: AppDatabase): TagDao = db.tagDao()
 
     @Provides
-    fun provideRecipeTagCrossRefDao(db: AppDatabase): RecipeTagCrossRefDao = db.recipeTagCrossRefDao()
+    fun provideRecipeTagCrossRefDao(db: AppDatabase): RecipeTagCrossRefDao =
+        db.recipeTagCrossRefDao()
 
     @Provides
     fun provideRecipeDao(db: AppDatabase): RecipeDao = db.recipeDao()
 
     @Provides
     @Singleton
-    fun provideRecipeRepository(recipeDao: RecipeDao, tagDao: TagDao, crossRefDao: RecipeTagCrossRefDao): RecipeRepository = RecipeRepository(recipeDao, tagDao, crossRefDao)
+    fun provideRecipeRepository(
+        recipeDao: RecipeDao,
+        tagDao: TagDao,
+        crossRefDao: RecipeTagCrossRefDao
+    ): RecipeRepository = RecipeRepository(recipeDao, tagDao, crossRefDao)
 
     @Provides
-    fun provideFoodRecipeCrossRefDao(db: AppDatabase): FoodRecipeCrossRefDao = db.foodRecipeCrossRefDao()
+    fun provideFoodRecipeCrossRefDao(db: AppDatabase): FoodRecipeCrossRefDao =
+        db.foodRecipeCrossRefDao()
 
     @Provides
     fun provideTagPreferenceDao(db: AppDatabase): TagPreferenceDao = db.tagPreferenceDao()
 
     @Provides
     @Singleton
-    fun proviceTagPreferenceRepository(tagPreferenceDao: TagPreferenceDao): TagPreferenceRepository = TagPreferenceRepository(tagPreferenceDao)
+    fun proviceTagPreferenceRepository(tagPreferenceDao: TagPreferenceDao): TagPreferenceRepository =
+        TagPreferenceRepository(tagPreferenceDao)
 
     @Provides
     fun provideUtensilDao(db: AppDatabase): UtensilDao = db.utensilDao()
 
     @Provides
-    fun provideUtensilPreferenceDao(db: AppDatabase): UtensilPreferenceDao = db.utensilPreferenceDao()
+    fun provideUtensilPreferenceDao(db: AppDatabase): UtensilPreferenceDao =
+        db.utensilPreferenceDao()
 
     @Provides
     @Singleton
-    fun provideUtensilPreferenceRepository(utensilPreferenceDao: UtensilPreferenceDao): UtensilPreferenceRepository = UtensilPreferenceRepository(utensilPreferenceDao)
+    fun provideUtensilPreferenceRepository(utensilPreferenceDao: UtensilPreferenceDao): UtensilPreferenceRepository =
+        UtensilPreferenceRepository(utensilPreferenceDao)
 
     @Provides
     fun provideDietDao(db: AppDatabase): DietDao = db.dietDao()
@@ -111,4 +122,11 @@ object AppModule {
     ): RecipeToShoplistService {
         return RecipeToShoplistService(foodRepository, shoplistRepository)
     }
+
+    @Provides
+    fun provideProfil(db: AppDatabase): ProfilDao = db.profilDao()
+
+    @Provides
+    @Singleton
+    fun provideProfilRepository(profilDao: ProfilDao) = ProfilRepository(profilDao)
 }
