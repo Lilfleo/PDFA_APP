@@ -14,6 +14,7 @@ import com.pdfa.pdfa_app.data.dao.DietDao
 import com.pdfa.pdfa_app.data.dao.DietPreferenceDao
 import com.pdfa.pdfa_app.data.dao.FoodDetailDao
 import com.pdfa.pdfa_app.data.dao.FoodRecipeCrossRefDao
+import com.pdfa.pdfa_app.data.dao.ProfilDao
 import com.pdfa.pdfa_app.data.dao.RecipeDao
 import com.pdfa.pdfa_app.data.dao.RecipeTagCrossRefDao
 import com.pdfa.pdfa_app.data.dao.ShoplistDao
@@ -33,6 +34,7 @@ import com.pdfa.pdfa_app.data.model.UtensilPreference
 import dagger.hilt.android.qualifiers.ApplicationContext
 import com.pdfa.pdfa_app.data.model.Diet
 import com.pdfa.pdfa_app.data.model.DietPreference
+import com.pdfa.pdfa_app.data.model.Profil
 import com.pdfa.pdfa_app.data.model.Shoplist
 
 @Database(entities = [
@@ -48,8 +50,9 @@ import com.pdfa.pdfa_app.data.model.Shoplist
     UtensilPreference::class,
     Diet::class,
     DietPreference::class,
-    Shoplist::class],
-    version = 3)
+    Shoplist::class,
+    Profil::class],
+    version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodDao(): FoodDao
@@ -64,8 +67,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun utensilPreferenceDao(): UtensilPreferenceDao
     abstract fun dietDao(): DietDao
     abstract fun dietPreferenceDao(): DietPreferenceDao
-
     abstract fun shoplistDao(): ShoplistDao
+    abstract fun profilDao(): ProfilDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null

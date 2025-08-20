@@ -433,7 +433,7 @@ fun FoodAddDetailDialog(
                                                 price = newDetail.price ?: existing.price,
                                                 isWeight = newDetail.isWeight,
                                                 buyingTime = newDetail.buyingTime,
-                                                expirationTime = newDetail.expirationTime
+                                                expirationTime = newDetail?.expirationTime
                                             )
                                             detailViewModel.upsertFoodDetail(mergedDetail)
                                             onSnackbarMessage("Quantité mise à jour !", "success")

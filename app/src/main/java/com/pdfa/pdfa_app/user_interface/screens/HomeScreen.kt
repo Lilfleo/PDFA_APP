@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,21 +29,30 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.ui.theme.AppColors
+import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.ui.viewmodel.ProfilViewModel
 import com.pdfa.pdfa_app.user_interface.component.AllergiesDialog
 import com.pdfa.pdfa_app.user_interface.component.DietDialog
+import com.pdfa.pdfa_app.user_interface.component.EditProfil
 import com.pdfa.pdfa_app.user_interface.component.EditTag
 import com.pdfa.pdfa_app.user_interface.component.UstensilDialog
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen(
+    profilViewModel: ProfilViewModel = hiltViewModel()
+){
 
     var openTagDialog by remember { mutableStateOf(false) }
     var showAllergyDialog by remember { mutableStateOf(false) }
     var showUtensilDialog by remember { mutableStateOf(false) }
     var showDietDialog by remember { mutableStateOf(false) }
+
+    val profil by profilViewModel.profil.collectAsState(initial = null)
+    var showProfilDialog by remember { mutableStateOf(false) }
 
     LazyColumn(
         modifier = Modifier
@@ -63,12 +75,14 @@ fun HomeScreen(){
                 Column(
                     modifier = Modifier.padding(24.dp)
                 ) {
-                    Text(
-                        text = "Bonjour Antoine,",
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color.White
-                    )
+                    profil?.let { currentProfil ->
+                        Text(
+                            text = "Bonjour ${currentProfil.name},",
+                            fontSize = 28.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = Color.White
+                        )
+                    }
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = "De votre frigo à votre assiette, l'IA fait le reste",
@@ -76,6 +90,30 @@ fun HomeScreen(){
                         color = Color.White,
                         lineHeight = 20.sp
                     )
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.BottomEnd
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(AppSpacing.XXXLL)
+                                .clickable{ showProfilDialog = true }
+                                .background(
+                                    color = AppColors.MainGreen,
+                                    shape = AppShapes.CornerS
+                                ),
+                            contentAlignment = Alignment.Center
+                        ){
+                            Icon(
+                                imageVector = Icons.Default.Edit,
+                                contentDescription = "Edit Profil",
+                                tint = Color.White,
+                                modifier = Modifier.size(AppSpacing.XXL)
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -228,6 +266,12 @@ fun HomeScreen(){
                 }
             }
         }
+    }
+
+    if (showProfilDialog) {
+        EditProfil(
+            onDismiss = {showProfilDialog = false}
+        )
     }
 
     if (openTagDialog) {

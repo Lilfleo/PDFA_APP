@@ -27,6 +27,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -49,6 +50,7 @@ import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
+import com.pdfa.pdfa_app.ui.viewmodel.ShoplistViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.TagViewModel
 import com.pdfa.pdfa_app.user_interface.component.AddToCookbook
 import com.pdfa.pdfa_app.user_interface.component.OldTagsBox
@@ -61,7 +63,8 @@ import com.pdfa.pdfa_app.user_interface.rooting.Screen
 fun RecipeDetailScreen(
     navController: NavController,
     viewModel: RecipeViewModel,
-    tagViewModel: TagViewModel = hiltViewModel()
+    tagViewModel: TagViewModel = hiltViewModel(),
+    shoplistViewModel: ShoplistViewModel = hiltViewModel()
 ){
 
     var nbPeople by remember { mutableIntStateOf(1) }
@@ -70,6 +73,10 @@ fun RecipeDetailScreen(
     var openAddToCookbookDialog by remember { mutableStateOf(false) }
     val selectedRecipe by viewModel.selectedRecipe
     val scrollState = rememberScrollState()
+
+    val recipe by viewModel.selectedRecipe
+    val isAddingToShoplist by shoplistViewModel.isAddingToShoplist.collectAsState()
+    val addResult by shoplistViewModel.addToShoplistResult.collectAsState()
 
     selectedRecipe?.let { recipe ->
 
@@ -363,7 +370,7 @@ fun RecipeDetailScreen(
                             .clip(AppShapes.CornerL)
                             .background(AppColors.MainGreen)
                             .clickable {
-
+                                shoplistViewModel.addRecipeToShoplist(recipe)
                             }
                     ) {
                         Text(

@@ -117,7 +117,7 @@ fun RecipeItemCard(
                 )
                 Spacer(modifier = Modifier.width(2.dp))
                 Text(
-                    text = "~${recipe.totalCookingTime + recipe.preparationTime}mn",
+                    text = "~${recipe.totalCookingTime}mn",
                     style = AppTypo.Body
                 )
             }
