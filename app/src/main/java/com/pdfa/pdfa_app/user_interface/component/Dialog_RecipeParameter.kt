@@ -257,9 +257,9 @@ fun RecipeParameter(
                         .clickable {
                             onDismiss()
                             if (isWithIngredient) {
-                                viewModel.generateMultipleRecipWithoutFood(recipWithoutFood)
+                                viewModel.launchRecipeWithFoodCall()
                             } else {
-                                viewModel.generateMultipleRecipWithFood(recipWithFood)
+                                viewModel.launchRecipeWithoutFood()
 
                             }
                         }

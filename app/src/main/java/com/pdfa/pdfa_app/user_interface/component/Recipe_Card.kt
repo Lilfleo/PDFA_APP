@@ -1,5 +1,7 @@
 package com.pdfa.pdfa_app.user_interface.component
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -75,6 +77,8 @@ fun RecipeItemCard(
                 dietNames.contains(dietName)
             }
         }
+
+        Log.d(TAG, "🔄 Données envoyées: $recipe")
 
     }
 
