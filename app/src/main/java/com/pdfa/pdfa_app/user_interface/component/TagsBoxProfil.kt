@@ -39,6 +39,7 @@ fun TagsBoxProfil(
             "Easy" -> AppColors.Easy
             "Allergy" -> AppColors.Hard
             "Diet" -> AppColors.Diet
+            "Utensil" -> AppColors.Fresh // ✅ AJOUTER CETTE LIGNE
             else -> {
                 Color.White
             }

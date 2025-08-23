@@ -37,6 +37,7 @@ import com.pdfa.pdfa_app.data.model.DietPreference
 import com.pdfa.pdfa_app.data.model.Profil
 import com.pdfa.pdfa_app.data.model.Shoplist
 
+
 @Database(entities = [
     Food::class,
     Allergy::class,

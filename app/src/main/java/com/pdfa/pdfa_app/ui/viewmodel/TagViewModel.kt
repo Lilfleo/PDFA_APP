@@ -27,10 +27,12 @@ class TagViewModel @Inject constructor(
         // 🔍 Log pour débogage
         loadAllTags()
         viewModelScope.launch {
+
 //            _tags.collect { list ->
 //                println("⚠️ TAG_VIEWMODEL : reçu ${list.size} tags")
 //                list.forEach { println("🏷️ ${it.name}") }
 //            }
+
         }
     }
 

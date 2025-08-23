@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.data.model.Diet
+
 import com.pdfa.pdfa_app.data.model.Food
 import com.pdfa.pdfa_app.data.model.Recipe
 import com.pdfa.pdfa_app.data.model.Tag
@@ -25,6 +26,7 @@ class DatabaseSeeder(
         private const val FOOD_FILE_NAME = "data/food_100.json"
         private const val UTENSILS_FILE_NAME = "data/utensils.json"
         private const val TAGS_FILE_NAME = "data/tags.json"
+
         private const val DIET_FILE_NAME = "data/diet.json"
     }
 
@@ -107,13 +109,19 @@ class DatabaseSeeder(
             val tagString = loadTagsFromAssets()
             val dietSting = loadDietsFromAssets()
 
+
             val foodList: List<Food> = parseJsonData(foodString)
             val utensilsList: List<Utensil> = parseJsonData(utensilString)
             val tagList : List<Tag> = parseJsonData(tagString)
+
+
+            insertSeedData(foodList, utensilsList, tagList)
+
             val dietList: List<Diet> = parseJsonData(dietSting)
 
             insertSeedData(foodList, utensilsList, tagList, dietList
             )
+
             Log.d(TAG, "Seeding completed ! ✅")
         } catch (e: Exception) {
             Log.e(TAG, "Seeding failed: ${e.message}", e)
@@ -148,6 +156,8 @@ class DatabaseSeeder(
         }
     }
 
+
+
     private suspend fun loadDietsFromAssets(): String = withContext(Dispatchers.IO) {
         try {
             context.assets.open(DIET_FILE_NAME).bufferedReader().use { it.readText() }
@@ -156,6 +166,7 @@ class DatabaseSeeder(
             throw e
         }
     }
+
 
     private inline fun <reified T : Any> parseJsonData(jsonString: String): List<T> {
         val json = Json {
@@ -173,7 +184,10 @@ class DatabaseSeeder(
         }
     }
 
+
+
     private suspend fun insertSeedData(foods: List<Food>, utensils: List<Utensil>, tags: List<Tag>, diets: List<Diet>) = withContext(Dispatchers.IO) {
+
         Log.d(TAG, "Inserting ${foods.size} foods, ${utensils.size} utensils and ${tags.size} tags...")
 
         try {
@@ -217,6 +231,7 @@ class DatabaseSeeder(
                     }
                 }
             }
+
 
             Log.d(TAG, "Seed data insertion completed!")
         } catch (e: Exception) {
