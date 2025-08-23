@@ -52,7 +52,9 @@ fun TagsBox(
                     shape = AppShapes.CornerM // Coins plus arrondis
                 )
                 .clip(AppShapes.CornerM)
-                .background(color = tag.color.toComposeColor())
+
+                .background(color = if (isSelected) tag.color.toComposeColor() else Color.White)
+
                 .clickable { onClick?.let { onClick() } }
         ){
             // Texte principal

@@ -10,10 +10,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
 import com.pdfa.pdfa_app.data.dao.AllergyDao
+import com.pdfa.pdfa_app.data.dao.DietDao
+import com.pdfa.pdfa_app.data.dao.DietPreferenceDao
 import com.pdfa.pdfa_app.data.dao.FoodDetailDao
 import com.pdfa.pdfa_app.data.dao.FoodRecipeCrossRefDao
+import com.pdfa.pdfa_app.data.dao.ProfilDao
 import com.pdfa.pdfa_app.data.dao.RecipeDao
 import com.pdfa.pdfa_app.data.dao.RecipeTagCrossRefDao
+import com.pdfa.pdfa_app.data.dao.ShoplistDao
 import com.pdfa.pdfa_app.data.dao.TagDao
 import com.pdfa.pdfa_app.data.dao.TagPreferenceDao
 import com.pdfa.pdfa_app.data.dao.UtensilDao
@@ -28,6 +32,10 @@ import com.pdfa.pdfa_app.data.model.TagPreference
 import com.pdfa.pdfa_app.data.model.Utensil
 import com.pdfa.pdfa_app.data.model.UtensilPreference
 import dagger.hilt.android.qualifiers.ApplicationContext
+import com.pdfa.pdfa_app.data.model.Diet
+import com.pdfa.pdfa_app.data.model.DietPreference
+import com.pdfa.pdfa_app.data.model.Profil
+import com.pdfa.pdfa_app.data.model.Shoplist
 
 
 @Database(entities = [
@@ -40,8 +48,12 @@ import dagger.hilt.android.qualifiers.ApplicationContext
     FoodRecipeCrossRef::class,
     TagPreference::class,
     Utensil::class,
-    UtensilPreference::class],
-    version = 2)
+    UtensilPreference::class,
+    Diet::class,
+    DietPreference::class,
+    Shoplist::class,
+    Profil::class],
+    version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodDao(): FoodDao
@@ -54,6 +66,10 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun tagPreferenceDao(): TagPreferenceDao
     abstract fun utensilDao(): UtensilDao
     abstract fun utensilPreferenceDao(): UtensilPreferenceDao
+    abstract fun dietDao(): DietDao
+    abstract fun dietPreferenceDao(): DietPreferenceDao
+    abstract fun shoplistDao(): ShoplistDao
+    abstract fun profilDao(): ProfilDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null
@@ -73,7 +89,6 @@ abstract class AppDatabase : RoomDatabase() {
         private fun createCallback(ctx: Context) = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
-
                 // Launch coroutine to insert data
                 CoroutineScope(Dispatchers.IO).launch {
                     try {

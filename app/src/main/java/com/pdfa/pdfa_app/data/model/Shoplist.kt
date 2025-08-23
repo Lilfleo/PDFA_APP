@@ -3,12 +3,10 @@ package com.pdfa.pdfa_app.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.Index
 import androidx.room.PrimaryKey
-import java.util.Date
 
 @Entity(
-    tableName = "food_detail",
+    tableName = "shoplist",
     foreignKeys = [
         ForeignKey(
             entity = Food::class,
@@ -16,22 +14,15 @@ import java.util.Date
             childColumns = ["food_id"],
             onDelete = ForeignKey.CASCADE
         )
-    ],
-    indices = [Index(value = ["food_id"], unique = true)] // ✅ garantit un seul détail par aliment
-)
-
-
-data class FoodDetail(
+    ])
+data class Shoplist(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    @ColumnInfo(name = "food_id")
+    @ColumnInfo(name = "food_id", index = true)
     val foodId: Int,
+    @ColumnInfo(name = "quantity", index = true)
     val quantity: Int,
-    @ColumnInfo(name = "is_weight")
-    val isWeight: Boolean,
-    val price: Float?,
-    @ColumnInfo(name = "buying_time")
-    val buyingTime: Date,
-    @ColumnInfo(name = "expiration_time")
-    val expirationTime: Date?
+    @ColumnInfo(name = "quantity_type", index = true)
+    val quantityType: String,
 )
+
