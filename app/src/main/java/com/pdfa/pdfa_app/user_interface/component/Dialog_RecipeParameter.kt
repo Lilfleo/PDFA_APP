@@ -23,6 +23,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -59,43 +62,7 @@ fun RecipeParameter(
     tagPreferenceViewModel: TagPreferenceViewModel = hiltViewModel()
 ){
 
-    //Temporary
-    val recipWithFood: RecipeWithFood = RecipeWithFood(
-        prompt = RecipeWithFoodPrompt(
-            title = "Curry de pois chiches",
-            ingredients = listOf(
-                Ingredient("pois chiches", 400.0, "g"),
-                Ingredient("echalote", 5.0, "pièce"),
-                Ingredient("tortilla", 8.0, "pièce"),
-                Ingredient("yahourt grec", 4.0, "pièce"),
-                Ingredient("riz thai", 500.0, "g"),
-                Ingredient("paprika", 25.0, "g"),
-                Ingredient("curry", 25.0, "g"),
-                Ingredient("lait de coco", 20.0, "cl"),
-                Ingredient("oignon", 1.0, "pièce")
-            ),
-            utensils = listOf("casserole", "cuillère en bois"),
-            tags = Tags(
-                diet = listOf("Végétarien"),
-                tag = listOf("indien", "végétarien"),
-                allergies = null
-            )
-        ),
-        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
-    )
-
-    val recipWithoutFood: RecipeForShoplist = RecipeForShoplist(
-        prompt = RecipeWithoutFoodPrompt(
-            title = "Curry de pois chiches",
-            utensils = listOf("casserole", "cuillère en bois"),
-            tags = Tags(
-                diet = listOf("Végétarien"),
-                tag = listOf("italien", "vegan"),
-                allergies = null
-            )
-        ),
-        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
-    )
+    var showDietDialog by remember { mutableStateOf(false) }
 
     val allTags by tagViewModel.tags.collectAsState()
     val tagPreferences by tagPreferenceViewModel.tagPreferenceList.collectAsState()
@@ -159,15 +126,15 @@ fun RecipeParameter(
                                     shape = AppShapes.CornerM
                                 )
                                 .border(
-                                    width =  1.dp,
+                                    width = 1.dp,
                                     color = Color.Black,
                                     shape = AppShapes.CornerM
                                 )
-                                .clickable{
-                                    navController.navigate(Screen.ProfilScreen.rout)
-                                    onDismiss()
+                                .clickable {
+                                    showDietDialog = true
+//                                    onDismiss()
                                 }
-                                .padding( horizontal =  2.dp, vertical =  5.dp)
+                                .padding(horizontal = 2.dp, vertical = 5.dp)
 
                         ){
                             Text(
@@ -253,7 +220,8 @@ fun RecipeParameter(
                         .fillMaxWidth()
                         .background(
                             color = AppColors.MainGreen,
-                            shape = AppShapes.CornerM)
+                            shape = AppShapes.CornerM
+                        )
                         .clickable {
                             onDismiss()
                             if (isWithIngredient) {
@@ -273,6 +241,11 @@ fun RecipeParameter(
                     )
                 }
             }
+        }
+        if (showDietDialog) {
+            DietDialog(
+                onDismiss = { showDietDialog = false }
+            )
         }
     }
 }

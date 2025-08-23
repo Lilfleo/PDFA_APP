@@ -39,12 +39,15 @@ import com.pdfa.pdfa_app.user_interface.rooting.Screen
 @Composable
 fun RecipeStepsScreen(
     navController: NavController,
-    viewModel: RecipeViewModel
+    viewModel: RecipeViewModel,
+
 ){
 
     val selectedRecipe by viewModel.selectedRecipe
     val scrollState = rememberScrollState()
     var openConfirmation by remember { mutableStateOf(false) }
+
+
 
     selectedRecipe?.let { recipe ->
 
@@ -123,11 +126,16 @@ fun RecipeStepsScreen(
 
     if (openConfirmation) {
         Confirmation(
+            title = "Supprimer ces aliments ?",
+            desc = "Vous allez retirer tous les ingrédients de cette recette de votre frigo. Avez vous bien réalisé cette recette ?",
+            cancelButton = "Annuler",
+            validateButton = "Retirer",
             onConfirm = {
                 openConfirmation = false
             },
             onDelete = {
                 openConfirmation = false
+                navController.navigate(Screen.Recipe.rout)
             },
             onDismiss = {
                 openConfirmation = false

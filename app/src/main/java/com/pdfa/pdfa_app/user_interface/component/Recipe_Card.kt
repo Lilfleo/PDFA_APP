@@ -58,28 +58,27 @@ fun RecipeItemCard(
     var recipeDiets by remember { mutableStateOf(listOf<String>()) }
     var recipeTags by remember { mutableStateOf(listOf<Tag>()) }
 
-    LaunchedEffect(recipe) {
-        val tags = mutableListOf<Tag>()
-        recipe.tags.tag?.forEach { tagList ->
-            tagViewModel.getTagByName(
-                name = tagList
-            ) { convertedTags ->
-                if (convertedTags != null) {
-                    tags.add(convertedTags)
-                    recipeTags = tags.toList()
+    LaunchedEffect(recipe, allDiet) {
+        if (allDiet.isNotEmpty()) {
+            val tags = mutableListOf<Tag>()
+            recipe.tags.tag?.forEach { tagList ->
+                tagViewModel.getTagByName(
+                    name = tagList
+                ) { convertedTags ->
+                    if (convertedTags != null) {
+                        tags.add(convertedTags)
+                        recipeTags = tags.toList()
+                    }
+                }
+            }
+
+            recipe.tags.diet?.let { recipeDietList ->
+                val dietNames = allDiet.map { it.name }.toSet()
+                recipeDiets = recipeDietList.filter { dietName ->
+                    dietNames.contains(dietName)
                 }
             }
         }
-
-        recipe.tags.diet?.let { recipeDietList ->
-            val dietNames = allDiet.map { it.name }.toSet() // Convertir en Set pour une recherche plus rapide
-            recipeDiets = recipeDietList.filter { dietName ->
-                dietNames.contains(dietName)
-            }
-        }
-
-        Log.d(TAG, "🔄 Données envoyées: $recipe")
-
     }
 
     Box(

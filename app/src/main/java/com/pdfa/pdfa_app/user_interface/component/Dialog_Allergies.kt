@@ -120,7 +120,7 @@ fun AllergiesDialog(
                     Text(
                         text = "Ajouter",
                         style = AppTypo.SubTitle,
-                        color = if (selectedFood == null) Color.Black else Color.White,
+                        color = Color.White,
                     )
                 }
 

@@ -39,8 +39,7 @@ fun RecipeScreen(
     navController: NavController,
     viewModel: RecipeViewModel
 ){
-
-    var contenuActuel by remember { mutableIntStateOf(0) }
+    val contenuActuel by viewModel.currentTab
 
     Column(
         modifier = Modifier
@@ -64,9 +63,8 @@ fun RecipeScreen(
                     .background(
                         if (contenuActuel == 0 ) AppColors.NavBackgroundHover else AppColors.NavBackground
                     )
-                    .clickable { contenuActuel = 0 },
-            contentAlignment = Alignment.Center
-
+                    .clickable { viewModel.setCurrentTab(0) },
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "Pour mes recettes",
@@ -83,8 +81,8 @@ fun RecipeScreen(
                     .background(
                         if (contenuActuel == 1 ) AppColors.NavBackgroundHover else AppColors.NavBackground
                     )
-                    .clickable { contenuActuel = 1 },
-                        contentAlignment = Alignment.Center
+                    .clickable { viewModel.setCurrentTab(1) },
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "Pour ma liste",
@@ -103,6 +101,5 @@ fun RecipeScreen(
                 1 -> RecipeListScreen(navController, viewModel)
             }
         }
-
     }
 }

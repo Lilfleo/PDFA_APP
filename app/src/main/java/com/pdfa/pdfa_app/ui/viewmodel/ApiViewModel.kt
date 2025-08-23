@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
 import com.pdfa.pdfa_app.data.repository.ApiRepository
@@ -38,6 +39,14 @@ class RecipeViewModel @Inject constructor(
     private val utensilRepository: UtensilPreferenceRepository,
     private val foodDetailRepository: FoodDetailRepository
 ) : ViewModel() {
+
+    //Etat page recette
+    private val _currentTab = mutableIntStateOf(0)
+    val currentTab: State<Int> = _currentTab
+
+    fun setCurrentTab(tab: Int) {
+        _currentTab.intValue = tab
+    }
     private val repository = ApiRepository()
 
     // États pour la connexion
