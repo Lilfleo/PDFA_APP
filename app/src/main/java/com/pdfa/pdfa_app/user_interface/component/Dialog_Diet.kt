@@ -88,6 +88,7 @@ fun DietDialog(
                     color = Color.Black
                 )
 
+
                 CustomDropdown(
                     selectedValue = selectedDiet,
                     placeholder = "Les régimes alimentaires",
@@ -107,6 +108,7 @@ fun DietDialog(
                     text = "Mes régimes",
                     style = AppTypo.SubTitle,
                     color = Color.Black
+
                 )
 
                 Spacer(modifier = Modifier.padding(AppSpacing.XXS))

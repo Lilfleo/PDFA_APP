@@ -19,7 +19,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+
 import androidx.compose.runtime.collectAsState
+
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,12 +37,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.api.Recipe
 import com.pdfa.pdfa_app.api.RecipeResponse
+
 import com.pdfa.pdfa_app.data.model.Diet
+
 import com.pdfa.pdfa_app.data.model.Tag
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+
 import com.pdfa.pdfa_app.ui.viewmodel.DietViewModel
+
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.TagViewModel
 import com.pdfa.pdfa_app.user_interface.rooting.Screen
@@ -51,6 +57,7 @@ fun RecipeItemCard(
     recipe: Recipe,
     viewModel: RecipeViewModel,
     tagViewModel: TagViewModel = hiltViewModel(),
+
     dietViewModel: DietViewModel = hiltViewModel()
     ) {
 

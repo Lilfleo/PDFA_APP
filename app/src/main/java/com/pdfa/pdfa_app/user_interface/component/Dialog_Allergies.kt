@@ -46,6 +46,7 @@ fun AllergiesDialog(
 
     val allergyList by allergyViewModel.allAllergy.collectAsState()
 
+
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(
@@ -74,6 +75,16 @@ fun AllergiesDialog(
                     style = AppTypo.SubTitle,
                     color = Color.Black
                 )
+
+
+//                CustomFoodSelector(
+//                    foodList = foodList.map { it.name },
+//                    selectedFood = selectedFood?.name?:"",
+//                    onFoodSelected = { foodName ->
+//                        selectedFood = foodList.find { it.name == foodName }
+//                    }
+//                )
+
 
                 CustomFoodDropdown(
                     selectedValue = selectedFoodName,

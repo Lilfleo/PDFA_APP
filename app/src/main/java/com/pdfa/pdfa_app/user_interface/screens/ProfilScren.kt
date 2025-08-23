@@ -52,6 +52,7 @@ import com.pdfa.pdfa_app.user_interface.component.TagsBoxProfil
 import com.pdfa.pdfa_app.user_interface.component.UstensilDialog
 import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.ui.viewmodel.FoodViewModel
+import com.pdfa.pdfa_app.ui.viewmodel.UtensilViewModel
 
 
 @Composable
@@ -283,10 +284,11 @@ fun DietSection() {
 }
 
 @Composable
-fun UstensilSection() {
-
+fun UstensilSection(
+    utensilViewModel: UtensilViewModel = hiltViewModel() // ✅ Ajouter le ViewModel
+) {
+    val utensilPreferences by utensilViewModel.utensilPreferences.collectAsState(initial = emptyList()) // ✅ Observer les ustensiles
     var showUstensilDialog by remember { mutableStateOf(false) }
-
 
     Column(
         modifier = Modifier
@@ -295,7 +297,7 @@ fun UstensilSection() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical =  AppSpacing.S),
+                .padding(vertical = AppSpacing.S),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -318,19 +320,39 @@ fun UstensilSection() {
                         shape = AppShapes.CornerS
                     ),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add Allergies",
+                    contentDescription = "Add Utensil",
                     tint = Color.Black,
                     modifier = Modifier.size(20.dp)
                 )
             }
         }
-    }
-    if (showUstensilDialog) {
-        UstensilDialog (
-            onDismiss = { showUstensilDialog = false },
-        )
+
+        // ✅ AJOUTER CETTE PARTIE pour afficher les tags
+        FlowRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = AppSpacing.S),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(AppSpacing.XXS)
+        ) {
+            utensilPreferences.forEach { utensilPref ->
+                TagsBoxProfil(
+                    name = utensilPref.utensil.name,
+                    type = "Utensil", // ✅ Nouveau type
+                    onRemove = {
+                        utensilViewModel.toggleUtensilSelection(utensilPref.utensil.id)
+                    }
+                )
+            }
+        }
+
+        if (showUstensilDialog) {
+            UstensilDialog(
+                onDismiss = { showUstensilDialog = false },
+            )
+        }
     }
 }
