@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,12 +17,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -31,86 +27,39 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.UtensilViewModel
 
 @Composable
 fun UstensilDialog(
-    onDismiss: () -> Unit
-){
-
-    val listeUstensil = remember { mutableStateListOf(    "couteau de chef",
-        "couteau d'office",
-        "économe",
-        "cuillère en bois",
-        "spatule",
-        "fouet",
-        "louche",
-        "écumoire",
-        "pinces de cuisine",
-        "planche à découper",
-        "râpe",
-        "passoire",
-        "chinois",
-        "presse-ail",
-        "ouvre-boîte",
-        "ouvre-bouteille",
-        "tire-bouchon",
-        "rouleau à pâtisserie",
-        "balance de cuisine",
-        "verre doseur",
-        "mixeur plongeant",
-        "saladier",
-        "ciseaux de cuisine",
-        "pinceau de cuisine",
-        "pelle à tarte",
-        "zesteur",
-        "casserole",
-        "poêle",
-        "faitout",
-        "marmite",
-        "cocotte en fonte",
-        "cuiseur vapeur",
-        "mixeur",
-        "blender",
-        "robot multifonction",
-        "presse-agrumes",
-        "bouilloire",
-        "grille-pain",
-        "batteur électrique",
-        "moule à gâteau",
-        "plat à gratin",
-        "tamis",
-        "poche à douille",
-        "minuteur",
-        "spatule maryse",
-        "emporte-pièces",
-        "siphon",
-        "planche à pain",
-        "mortier et pilon",
-        "torchon",
-        "gant de cuisine" ) }
-
-    val listeUstensilSelected = remember { mutableStateListOf<String>() }
-    var isSelected by remember { mutableStateOf(false) }
+    onDismiss: () -> Unit,
+    viewModel: UtensilViewModel = hiltViewModel()
+) {
     val scrollState = rememberScrollState()
+
+    // Observer les données
+// LIGNE 51 - CORRIGÉE
+    val allUtensils by viewModel.utensils.collectAsState(initial = emptyList())
+    val utensilPreferences by viewModel.utensilPreferences.collectAsState(initial = emptyList())
+
+    // IDs sélectionnés
+    val selectedUtensilIds = remember(utensilPreferences) {
+        utensilPreferences.map { it.utensilPreference.utensilId }.toSet()
+    }
 
     Dialog(
         onDismissRequest = onDismiss,
-        properties = DialogProperties(
-            usePlatformDefaultWidth = false
-        )
+        properties = DialogProperties(usePlatformDefaultWidth = false)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.90f)
                 .wrapContentHeight()
-                .background(
-                    color = Color.White,
-                    shape = AppShapes.CornerXL
-                ),
+                .background(color = Color.White, shape = AppShapes.CornerXL),
         ){
             Column(
                 modifier = Modifier
@@ -119,13 +68,13 @@ fun UstensilDialog(
                     .padding(AppSpacing.M),
                 verticalArrangement = Arrangement.spacedBy(AppSpacing.S)
             ) {
-
+                // Titre (inchangé)
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(AppSpacing.M),
                     contentAlignment = Alignment.Center
-                    ){
+                ){
                     Text(
                         text = "Mes Ustensiles",
                         style = AppTypo.SubTitle2,
@@ -133,6 +82,7 @@ fun UstensilDialog(
                     )
                 }
 
+                // Zone des ustensiles
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -141,15 +91,11 @@ fun UstensilDialog(
                     contentAlignment = Alignment.TopCenter
                 ){
                     FlowRow(
-                        modifier = Modifier
-                            .fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
-                        listeUstensil.forEach { tag ->
-                            isSelected = if (listeUstensilSelected.contains(tag)){
-                                true
-                            } else {
-                                false
-                            }
+                        allUtensils.forEach { utensil ->
+                            val isSelected = selectedUtensilIds.contains(utensil.id)
+
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth(0.5f)
@@ -161,17 +107,9 @@ fun UstensilDialog(
                                     modifier = Modifier
                                         .fillMaxSize()
                                         .clickable {
-                                            isSelected = !isSelected
-                                            if (listeUstensilSelected.contains(tag)) {
-                                                listeUstensilSelected.remove(tag)
-                                            } else {
-                                                listeUstensilSelected.add(tag)
-                                            }
+                                            viewModel.toggleUtensilSelection(utensil.id)
                                         }
-                                        .shadow(
-                                            elevation = 2.dp,
-                                            shape = AppShapes.CornerM
-                                        )
+                                        .shadow(elevation = 2.dp, shape = AppShapes.CornerM)
                                         .background(
                                             color = if (isSelected) {
                                                 AppColors.MainGreen
@@ -183,18 +121,15 @@ fun UstensilDialog(
                                     contentAlignment = Alignment.Center
                                 ){
                                     Text(
-                                        text = tag,
+                                        text = utensil.name,
                                         style = AppTypo.Body,
-                                        color = if (isSelected) {
-                                            Color.White
-                                        } else {
-                                            Color.Black
-                                        }
+                                        color = if (isSelected) Color.White else Color.Black
                                     )
                                 }
                             }
                         }
                     }
+
                     ScrollbarPersonnalisee(
                         modifier = Modifier
                             .align(Alignment.CenterEnd)
@@ -204,15 +139,13 @@ fun UstensilDialog(
                     )
                 }
 
+                // Bouton sauvegarder (inchangé)
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(AppSpacing.XXXLL)
                         .clickable { onDismiss() }
-                        .background(
-                            color = AppColors.MainGreen,
-                            shape = AppShapes.CornerM
-                        ),
+                        .background(color = AppColors.MainGreen, shape = AppShapes.CornerM),
                     contentAlignment = Alignment.Center
                 ){
                     Text(
