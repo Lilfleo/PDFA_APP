@@ -107,20 +107,15 @@ class DatabaseSeeder(
             val foodString = loadFoodFromAssets()
             val utensilString = loadUtensilsFromAssets()
             val tagString = loadTagsFromAssets()
-            val dietSting = loadDietsFromAssets()
-
+            val dietString = loadDietsFromAssets() // Corrigé le nom de variable aussi
 
             val foodList: List<Food> = parseJsonData(foodString)
             val utensilsList: List<Utensil> = parseJsonData(utensilString)
-            val tagList : List<Tag> = parseJsonData(tagString)
+            val tagList: List<Tag> = parseJsonData(tagString)
+            val dietList: List<Diet> = parseJsonData(dietString)
 
-
-            insertSeedData(foodList, utensilsList, tagList)
-
-            val dietList: List<Diet> = parseJsonData(dietSting)
-
-            insertSeedData(foodList, utensilsList, tagList, dietList
-            )
+            // Un seul appel avec tous les paramètres
+            insertSeedData(foodList, utensilsList, tagList, dietList)
 
             Log.d(TAG, "Seeding completed ! ✅")
         } catch (e: Exception) {
@@ -128,6 +123,7 @@ class DatabaseSeeder(
             throw e
         }
     }
+
 
     private suspend fun loadFoodFromAssets(): String = withContext(Dispatchers.IO) {
         try {
