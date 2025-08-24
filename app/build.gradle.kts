@@ -114,10 +114,4 @@ dependencies {
     // ✅ DEBUG
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    androidTestUtil("androidx.test:orchestrator:1.6.1")
-    // Mock server pour tester les appels API
-    testImplementation("io.ktor:ktor-client-mock:3.2.3")
-    testImplementation("io.ktor:ktor-client-okhttp:3.2.3")
-    testImplementation("com.squareup.okhttp3:mockwebserver:5.1.0")
 }
