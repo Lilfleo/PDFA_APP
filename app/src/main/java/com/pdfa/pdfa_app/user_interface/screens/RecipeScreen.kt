@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -31,13 +32,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
+import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 
 @Composable
 fun RecipeScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: RecipeViewModel
 ){
-
-    var contenuActuel by remember { mutableStateOf(0) }
+    val contenuActuel by viewModel.currentTab
 
     Column(
         modifier = Modifier
@@ -61,9 +63,8 @@ fun RecipeScreen(
                     .background(
                         if (contenuActuel == 0 ) AppColors.NavBackgroundHover else AppColors.NavBackground
                     )
-                    .clickable { contenuActuel = 0 },
-            contentAlignment = Alignment.Center
-
+                    .clickable { viewModel.setCurrentTab(0) },
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "Pour mes recettes",
@@ -80,8 +81,8 @@ fun RecipeScreen(
                     .background(
                         if (contenuActuel == 1 ) AppColors.NavBackgroundHover else AppColors.NavBackground
                     )
-                    .clickable { contenuActuel = 1 },
-                        contentAlignment = Alignment.Center
+                    .clickable { viewModel.setCurrentTab(1) },
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "Pour ma liste",
@@ -96,10 +97,9 @@ fun RecipeScreen(
                 .fillMaxSize()
         ) {
             when (contenuActuel) {
-                0 -> RecipeMakerScreen(navController)
-                1 -> RecipeListScreen(navController)
+                0 -> RecipeMakerScreen(navController, viewModel)
+                1 -> RecipeListScreen(navController, viewModel)
             }
         }
-
     }
 }

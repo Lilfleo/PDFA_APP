@@ -24,4 +24,10 @@ class AllergyViewModel @Inject constructor(
             repository.insert(allergy)
         }
     }
+
+    fun deleteAllergy(allergy: Allergy) {
+        viewModelScope.launch {
+            repository.deleteAllergy(allergy)
+        }
+    }
 }

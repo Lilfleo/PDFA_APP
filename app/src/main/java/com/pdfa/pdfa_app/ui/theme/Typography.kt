@@ -40,6 +40,13 @@ object AppTypo {
         lineHeight = 24.sp
     )
 
+    val SubTitle2 = TextStyle(
+        fontFamily = InterFontFamily,
+        fontSize = 30.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 24.sp
+    )
+
     val BodyLight = TextStyle(
         fontFamily = InterFontFamily,
         fontSize = 20.sp,
@@ -51,6 +58,13 @@ object AppTypo {
         fontFamily = InterFontFamily,
         fontSize = 16.sp,
         fontWeight = FontWeight.Normal,
+        lineHeight = 24.sp
+    )
+
+    val BodySteps = TextStyle(
+        fontFamily = InterFontFamily,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Medium,
         lineHeight = 24.sp
     )
 
@@ -66,5 +80,12 @@ object AppTypo {
         fontSize = 10.sp,
         fontWeight = FontWeight.Light,
         lineHeight = 24.sp
+    )
+
+    val CookbookSection = TextStyle(
+        fontFamily = InterFontFamily,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.SemiBold,
+        lineHeight = 24.sp,
     )
 }

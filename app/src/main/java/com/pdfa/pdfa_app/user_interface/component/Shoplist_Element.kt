@@ -27,9 +27,11 @@ import com.pdfa.pdfa_app.ui.theme.AppTypo
 
 @Composable
 fun ShoplistElement(
-    elementName: String,
-    elementQte: Int,
-    elementQteName: String
+    name: String,
+    quantity: Int,
+    unit: String,
+    isSelected: Boolean = false,
+    onSelectionChanged: (Boolean) -> Unit = {},
 ){
 
     var isChecked by remember { mutableStateOf(false) }
@@ -50,7 +52,7 @@ fun ShoplistElement(
                 contentAlignment = Alignment.CenterStart
             ){
                 Text(
-                    text = elementName,
+                    text = name,
                     style = AppTypo.Body,
                     color = Color.Black,
                     overflow = TextOverflow.Ellipsis,
@@ -62,13 +64,13 @@ fun ShoplistElement(
             ){
                 Row(){
                     Text(
-                        text = elementQte.toString(),
+                        text = quantity.toString(),
                         style = AppTypo.Body,
                         color = Color.Black,
                         overflow = TextOverflow.Ellipsis,
                         )
                     Text(
-                        text = elementQteName,
+                        text = unit,
                         style = AppTypo.LightQte,
                         color = Color.Black,
 
@@ -81,8 +83,8 @@ fun ShoplistElement(
                 contentAlignment = Alignment.CenterEnd
             ){
                 Checkbox(
-                    checked = isChecked,
-                    onCheckedChange = { isChecked = it }
+                    checked = isSelected,
+                    onCheckedChange = onSelectionChanged
                 )
             }
         }
