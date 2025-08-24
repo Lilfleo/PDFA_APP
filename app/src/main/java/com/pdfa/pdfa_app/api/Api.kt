@@ -14,28 +14,28 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
-class ApiClient {
-//    private val baseUrl = "http://10.0.2.2:8000"
-    private val baseUrl = "http://yep-ia.onrender.com"
+class ApiClient(
+    private val baseUrl: String = "http://yep-ia.onrender.com",
+    private val httpClient: HttpClient = createDefaultHttpClient()
+) {
 
+    companion object {
+        private const val TAG = "ApiClient"
 
-    private val httpClient = HttpClient(Android) {
-        install(ContentNegotiation) {
-            json(Json {
-                ignoreUnknownKeys = true
-                isLenient = true
-            })
+        fun createDefaultHttpClient(): HttpClient {
+            return HttpClient(Android) {
+                install(ContentNegotiation) {
+                    json(Json {
+                        ignoreUnknownKeys = true
+                        isLenient = true
+                    })
+                }
+                install(HttpRedirect) {
+                    checkHttpMethod = false
+                    allowHttpsDowngrade = false
+                }
+            }
         }
-        install(HttpRedirect) {
-            checkHttpMethod = false
-            allowHttpsDowngrade = false
-        }
-
-//        install(HttpTimeout) {
-//            requestTimeoutMillis = 30000
-//            connectTimeoutMillis = 15000
-//            socketTimeoutMillis = 15000
-//        }
     }
 
     suspend fun testConnection(): Result<HelloResponse> {
