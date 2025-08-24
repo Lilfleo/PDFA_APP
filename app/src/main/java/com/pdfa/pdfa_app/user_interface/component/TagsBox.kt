@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.pdfa.pdfa_app.data.model.Tag
 import com.pdfa.pdfa_app.ui.theme.AppColors
@@ -128,6 +129,8 @@ fun OldTagsBox(
                 text = name,
                 style = AppTypo.TagBody,
                 color = Color.Black,
+                textDecoration = if (type === "Allergy"){ TextDecoration.LineThrough } else {
+                    TextDecoration.None}
             )
         }
     } else {

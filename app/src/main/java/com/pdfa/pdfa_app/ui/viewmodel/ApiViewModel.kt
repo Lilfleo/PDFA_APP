@@ -274,20 +274,25 @@ class RecipeViewModel @Inject constructor(
             _isLoadingWithFood.value = true
             _errorWithFood.value = null
 
-            Log.d(TAG, "🔄 Données envoyées: $requestData")
-
-            try {
-                val recipeResponse = repository.generateMultipleRecipWithFood(requestData)
-                _multipleRecipeWithFood.value = recipeResponse
-                recipeResponse.recipes.forEach { recipe ->
-                    addExcludedTitle(recipe.title)
-                }
-                Log.i(TAG, "✅ Recette générée: ${recipeResponse.recipes.size}")
-            } catch (e: Exception) {
-                Log.e(TAG, "❌ Erreur: ${e.message}", e)
-                _errorWithFood.value = "Erreur: ${e.message}"
-            } finally {
+            if(requestData.prompt.ingredients.isEmpty()){
+                _errorWithFood.value = "Votre frigo est vide. Remplis le!"
                 _isLoadingWithFood.value = false
+            } else {
+                Log.d(TAG, "🔄 Données envoyées: $requestData")
+
+                try {
+                    val recipeResponse = repository.generateMultipleRecipWithFood(requestData)
+                    _multipleRecipeWithFood.value = recipeResponse
+                    recipeResponse.recipes.forEach { recipe ->
+                        addExcludedTitle(recipe.title)
+                    }
+                    Log.i(TAG, "✅ Recette générée: ${recipeResponse.recipes.size}")
+                } catch (e: Exception) {
+                    Log.e(TAG, "❌ Erreur: ${e.message}", e)
+                    _errorWithFood.value = "Erreur interne veuiller réessayer"
+                } finally {
+                    _isLoadingWithFood.value = false
+                }
             }
         }
     }
