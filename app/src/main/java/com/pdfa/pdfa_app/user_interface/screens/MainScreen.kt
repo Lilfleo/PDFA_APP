@@ -23,6 +23,8 @@ import com.pdfa.pdfa_app.api.RecipeWithFood
 import com.pdfa.pdfa_app.api.RecipeWithFoodPrompt
 import com.pdfa.pdfa_app.api.RecipeWithoutFoodPrompt
 import com.pdfa.pdfa_app.api.Tags
+import com.pdfa.pdfa_app.data.model.Profil
+import com.pdfa.pdfa_app.ui.viewmodel.ProfilViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.user_interface.component.BottomNavBar
 import com.pdfa.pdfa_app.user_interface.component.DrawerMenu
@@ -43,51 +45,19 @@ import com.pdfa.pdfa_app.user_interface.screens.ShoplistScreen
 @Composable
 fun MainScreen() {
 
-    val sharedViewModel: RecipeViewModel = hiltViewModel()
-
-    val recipWithFood: RecipeWithFood = RecipeWithFood(
-        prompt = RecipeWithFoodPrompt(
-            title = "Curry de pois chiches",
-            ingredients = listOf(
-                Ingredient("pois chiches", 400.0, "g"),
-                Ingredient("echalote", 5.0, "pièce"),
-                Ingredient("tortilla", 8.0, "pièce"),
-                Ingredient("yahourt grec", 4.0, "pièce"),
-                Ingredient("riz thai", 500.0, "g"),
-                Ingredient("paprika", 25.0, "g"),
-                Ingredient("curry", 25.0, "g"),
-                Ingredient("lait de coco", 20.0, "cl"),
-                Ingredient("oignon", 1.0, "pièce")
-            ),
-            utensils = listOf("casserole", "cuillère en bois"),
-            tags = Tags(
-                diet = listOf("Végétarien"),
-                tag = listOf("Italien", "Frais"),
-                allergies = null
-            )
-        ),
-        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
-    )
-
-    val recipWithoutFood: RecipeForShoplist = RecipeForShoplist(
-        prompt = RecipeWithoutFoodPrompt(
-            title = "Curry de pois chiches",
-            utensils = listOf("casserole", "cuillère en bois"),
-            tags = Tags(
-                diet = listOf("Végétarien"),
-                tag = listOf("Italien", "Frais"),
-                allergies = null
-            )
-        ),
-        excludedTitles = listOf("Curry de lentilles", "Soupe thaï")
-    )
+    val recipViewModel: RecipeViewModel = hiltViewModel()
 
     //API
     LaunchedEffect(Unit) {
-        sharedViewModel.generateMultipleRecipWithFood(recipWithFood)
-        sharedViewModel.generateMultipleRecipWithoutFood(recipWithoutFood)
+        recipViewModel.launchRecipeWithFoodCall()
+        recipViewModel.launchRecipeWithoutFood()
     }
-    //
+
+//    val profilViewModel: ProfilViewModel = hiltViewModel()
+//    val profil: Profil = Profil(name = "Antoine", age = 25)
+//    LaunchedEffect(Unit) {
+//        profilViewModel.insertProfil(profil)
+//    }
 
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -163,11 +133,11 @@ fun MainScreen() {
                         println("Bouton Add cliqué") })
                 }
                 composable(Screen.Shoplist.rout){ ShoplistScreen() }
-                composable(Screen.Recipe.rout) { RecipeScreen(navController, sharedViewModel) }
+                composable(Screen.Recipe.rout) { RecipeScreen(navController, recipViewModel) }
                 composable(Screen.Cookbook.rout) { CookbookScreen(navController) }
                 composable (Screen.Food.rout ){ FoodScreen() }
-                composable(Screen.RecipeDetailScreen.rout) { RecipeDetailScreen(navController, sharedViewModel) }
-                composable(Screen.RecipeStepsScreen.rout) {RecipeStepsScreen( navController, sharedViewModel)}
+                composable(Screen.RecipeDetailScreen.rout) { RecipeDetailScreen(navController, recipViewModel) }
+                composable(Screen.RecipeStepsScreen.rout) {RecipeStepsScreen( navController, recipViewModel)}
                 composable(Screen.ProfilScreen.rout) { ProfilScreen(navController)}
             }
         }

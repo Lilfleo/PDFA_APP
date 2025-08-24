@@ -11,6 +11,7 @@ import com.pdfa.pdfa_app.data.repository.FoodRepository
 import com.pdfa.pdfa_app.data.repository.ShoplistRepository
 import com.pdfa.pdfa_app.api.Recipe
 import com.pdfa.pdfa_app.data.model.FoodDetail
+import com.pdfa.pdfa_app.data.model.Shoplist
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.RecipeToShoplistService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -58,13 +59,13 @@ class ShoplistViewModel @Inject constructor(
     }
 
     // Autres méthodes utiles pour la shoplist
-    fun removeFromShoplist(shoplistItem: com.pdfa.pdfa_app.data.model.Shoplist) {
+    fun removeFromShoplist(shoplistItem: Shoplist) {
         viewModelScope.launch {
             shoplistRepository.deleteShoplist(shoplistItem)
         }
     }
 
-    fun updateQuantity(shoplistItem: com.pdfa.pdfa_app.data.model.Shoplist, newQuantity: Int) {
+    fun updateQuantity(shoplistItem: Shoplist, newQuantity: Int) {
         viewModelScope.launch {
             val updatedItem = shoplistItem.copy(quantity = newQuantity)
             shoplistRepository.updateShoplist(updatedItem)

@@ -1,5 +1,7 @@
 package com.pdfa.pdfa_app.user_interface.component
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -63,15 +65,24 @@ fun RecipeItemCard(
     var recipeDiets by remember { mutableStateOf(listOf<String>()) }
     var recipeTags by remember { mutableStateOf(listOf<Tag>()) }
 
-    LaunchedEffect(recipe) {
-        val tags = mutableListOf<Tag>()
-        recipe.tags.tag?.forEach { tagList ->
-            tagViewModel.getTagByName(
-                name = tagList
-            ) { convertedTags ->
-                if (convertedTags != null) {
-                    tags.add(convertedTags)
-                    recipeTags = tags.toList()
+    LaunchedEffect(recipe, allDiet) {
+        if (allDiet.isNotEmpty()) {
+            val tags = mutableListOf<Tag>()
+            recipe.tags.tag?.forEach { tagList ->
+                tagViewModel.getTagByName(
+                    name = tagList
+                ) { convertedTags ->
+                    if (convertedTags != null) {
+                        tags.add(convertedTags)
+                        recipeTags = tags.toList()
+                    }
+                }
+            }
+
+            recipe.tags.diet?.let { recipeDietList ->
+                val dietNames = allDiet.map { it.name }.toSet()
+                recipeDiets = recipeDietList.filter { dietName ->
+                    dietNames.contains(dietName)
                 }
             }
         }

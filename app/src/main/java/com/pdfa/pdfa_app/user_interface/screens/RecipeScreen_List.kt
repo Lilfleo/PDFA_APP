@@ -44,11 +44,9 @@ fun RecipeListScreen(
     navController: NavController,
     viewModel: RecipeViewModel
 ){
-
     val recipes by viewModel.multipleRecipeWithoutFood
     val isLoading by viewModel.isLoadingWithoutFood
-
-    val error by viewModel.error
+    val error by viewModel.errorWithoutFood
 
     val scrollState = rememberScrollState()
     var showDialog by remember { mutableStateOf(false) }

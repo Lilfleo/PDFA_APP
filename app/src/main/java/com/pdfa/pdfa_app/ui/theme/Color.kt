@@ -34,5 +34,7 @@ object AppColors{
     //Diet
     val Diet = Color(0xFFF1EB9B)
 
+    val TopBarColor = Color(0xFFF1EEE4)
+
     //TextColors
 }

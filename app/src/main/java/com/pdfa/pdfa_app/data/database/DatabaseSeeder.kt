@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.Log
 import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.data.model.Diet
-
 import com.pdfa.pdfa_app.data.model.Food
+import com.pdfa.pdfa_app.data.model.Profil
 import com.pdfa.pdfa_app.data.model.Recipe
 import com.pdfa.pdfa_app.data.model.Tag
 import com.pdfa.pdfa_app.data.model.Utensil
@@ -26,8 +26,8 @@ class DatabaseSeeder(
         private const val FOOD_FILE_NAME = "data/food_100.json"
         private const val UTENSILS_FILE_NAME = "data/utensils.json"
         private const val TAGS_FILE_NAME = "data/tags.json"
-
         private const val DIET_FILE_NAME = "data/diet.json"
+        private const val PROFIL_FILE_NAME = "data/profil.json"
     }
 
     suspend fun seedDev() = withContext(Dispatchers.IO) {
@@ -108,20 +108,16 @@ class DatabaseSeeder(
             val utensilString = loadUtensilsFromAssets()
             val tagString = loadTagsFromAssets()
             val dietSting = loadDietsFromAssets()
-
+            val profilString = loadProfilFromAssets()
 
             val foodList: List<Food> = parseJsonData(foodString)
             val utensilsList: List<Utensil> = parseJsonData(utensilString)
             val tagList : List<Tag> = parseJsonData(tagString)
-
-
-            insertSeedData(foodList, utensilsList, tagList)
-
             val dietList: List<Diet> = parseJsonData(dietSting)
+            val profilList: List<Profil> = parseJsonData(profilString)
 
-            insertSeedData(foodList, utensilsList, tagList, dietList
+            insertSeedData(foodList, utensilsList, tagList, dietList, profilList
             )
-
             Log.d(TAG, "Seeding completed ! ✅")
         } catch (e: Exception) {
             Log.e(TAG, "Seeding failed: ${e.message}", e)
@@ -156,8 +152,6 @@ class DatabaseSeeder(
         }
     }
 
-
-
     private suspend fun loadDietsFromAssets(): String = withContext(Dispatchers.IO) {
         try {
             context.assets.open(DIET_FILE_NAME).bufferedReader().use { it.readText() }
@@ -167,6 +161,14 @@ class DatabaseSeeder(
         }
     }
 
+    private suspend fun loadProfilFromAssets(): String = withContext(Dispatchers.IO) {
+        try {
+            context.assets.open(PROFIL_FILE_NAME).bufferedReader().use { it.readText() }
+        } catch (e: Exception) {
+            Log.e(TAG,"Failed to load profil JSON from assets: ${e.message}" )
+            throw e
+        }
+    }
 
     private inline fun <reified T : Any> parseJsonData(jsonString: String): List<T> {
         val json = Json {
@@ -184,11 +186,8 @@ class DatabaseSeeder(
         }
     }
 
-
-
-    private suspend fun insertSeedData(foods: List<Food>, utensils: List<Utensil>, tags: List<Tag>, diets: List<Diet>) = withContext(Dispatchers.IO) {
-
-        Log.d(TAG, "Inserting ${foods.size} foods, ${utensils.size} utensils and ${tags.size} tags...")
+    private suspend fun insertSeedData(foods: List<Food>, utensils: List<Utensil>, tags: List<Tag>, diets: List<Diet>, profils: List<Profil>) = withContext(Dispatchers.IO) {
+        Log.d(TAG, "Inserting ${foods.size} foods, ${utensils.size} utensils, ${tags.size} tags and ${profils.size}")
 
         try {
             // Use batch insertion if available, otherwise insert individually
@@ -232,6 +231,15 @@ class DatabaseSeeder(
                 }
             }
 
+            if (profils.isNotEmpty()) {
+                profils.forEach { profil ->
+                    try {
+                        db.profilDao().insertProfil(profil)
+                    } catch (insertException: Exception) {
+                        Log.w(TAG, "Failed to insert diet: ${profil.name}, error: ${insertException.message}")
+                    }
+                }
+            }
 
             Log.d(TAG, "Seed data insertion completed!")
         } catch (e: Exception) {

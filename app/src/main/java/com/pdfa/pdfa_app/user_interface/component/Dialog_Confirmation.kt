@@ -26,6 +26,10 @@ import com.pdfa.pdfa_app.ui.theme.AppTypo
 
 @Composable
 fun Confirmation(
+    title: String,
+    desc: String,
+    cancelButton: String,
+    validateButton: String,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
     onDelete: () -> Unit
@@ -42,14 +46,14 @@ fun Confirmation(
         ) {
             Column {
                 Text(
-                    text = "Supprimer ces aliments ?",
+                    text = title,
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
                 )
 
                 Spacer(modifier = Modifier.height(AppSpacing.M))
 
                 Text(
-                    text = "Vous allez retirer tous les ingrédients de cette recette de votre frigo. Avez vous bien réalisé cette recette ?",
+                    text = desc,
                     style = AppTypo.Body
                 )
 
@@ -72,7 +76,7 @@ fun Confirmation(
 
                 ) {
                     Text(
-                        text = "Annuler",
+                        text = cancelButton,
                         style = AppTypo.SubTitle,
                         color = Color.White
                     )
@@ -98,7 +102,7 @@ fun Confirmation(
 
                 ) {
                     Text(
-                        text = "Supprimer",
+                        text = validateButton,
                         style = AppTypo.SubTitle,
                         color = Color.White
                     )

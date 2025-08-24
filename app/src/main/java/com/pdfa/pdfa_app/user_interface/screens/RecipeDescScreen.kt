@@ -28,7 +28,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -51,9 +50,7 @@ import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
-
 import com.pdfa.pdfa_app.ui.viewmodel.ShoplistViewModel
-
 import com.pdfa.pdfa_app.ui.viewmodel.TagViewModel
 import com.pdfa.pdfa_app.user_interface.component.AddToCookbook
 import com.pdfa.pdfa_app.user_interface.component.OldTagsBox
@@ -68,7 +65,6 @@ fun RecipeDetailScreen(
     viewModel: RecipeViewModel,
     tagViewModel: TagViewModel = hiltViewModel(),
     shoplistViewModel: ShoplistViewModel = hiltViewModel()
-
 ){
 
     var nbPeople by remember { mutableIntStateOf(1) }
@@ -77,10 +73,10 @@ fun RecipeDetailScreen(
     var openAddToCookbookDialog by remember { mutableStateOf(false) }
     val selectedRecipe by viewModel.selectedRecipe
     val scrollState = rememberScrollState()
+
     val recipe by viewModel.selectedRecipe
     val isAddingToShoplist by shoplistViewModel.isAddingToShoplist.collectAsState()
     val addResult by shoplistViewModel.addToShoplistResult.collectAsState()
-
 
     selectedRecipe?.let { recipe ->
 
@@ -323,7 +319,6 @@ fun RecipeDetailScreen(
                     ) {
                         recipe.ingredients.forEach { ingredient ->
 
-
                             val ingredientQte = ingredient.quantity?.times(nbPeople)
 
                             Row(
@@ -375,7 +370,8 @@ fun RecipeDetailScreen(
                             .clip(AppShapes.CornerL)
                             .background(AppColors.MainGreen)
                             .clickable {
-                     shoplistViewModel.addRecipeToShoplist(recipe)
+                                shoplistViewModel.addRecipeToShoplist(recipe)
+                                navController.navigate(Screen.Recipe.rout)
                             }
                     ) {
                         Text(
@@ -384,7 +380,6 @@ fun RecipeDetailScreen(
                             color = Color.White
                         )
                     }
-
 
                     Spacer(modifier = Modifier.padding(AppSpacing.XXS))
 

@@ -47,7 +47,7 @@ fun RecipeMakerScreen(
 
     val recipes by viewModel.multipleRecipeWithFood
     val isLoading by viewModel.isLoadingWithFood
-    val error by viewModel.error
+    val error by viewModel.errorWithFood
 
     val scrollState = rememberScrollState()
     var showDialog by remember { mutableStateOf(false) }

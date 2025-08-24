@@ -35,6 +35,7 @@ import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.viewmodel.ProfilViewModel
+import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.user_interface.component.AllergiesDialog
 import com.pdfa.pdfa_app.user_interface.component.DietDialog
 import com.pdfa.pdfa_app.user_interface.component.EditProfil
@@ -43,7 +44,7 @@ import com.pdfa.pdfa_app.user_interface.component.UstensilDialog
 
 @Composable
 fun HomeScreen(
-    profilViewModel: ProfilViewModel = hiltViewModel()
+    profilViewModel: ProfilViewModel = hiltViewModel(),
 ){
 
     var openTagDialog by remember { mutableStateOf(false) }
@@ -267,7 +268,6 @@ fun HomeScreen(
             }
         }
     }
-
     if (showProfilDialog) {
         EditProfil(
             onDismiss = {showProfilDialog = false}

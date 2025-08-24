@@ -53,7 +53,7 @@ fun DietDialog(
     fun findDietId(dietName: String): Int? {
         println(dietName)
         val diet = allDiet.find { diet ->
-            diet.name == dietName // ⚠️ Utilise == au lieu de ===
+            diet.name == dietName
         }
         return diet?.id
     }
@@ -137,7 +137,8 @@ fun DietDialog(
                         .background(
                             color = AppColors.MainGreen,
                             shape = AppShapes.CornerL
-                        ),
+                        )
+                        .clickable{ onDismiss() },
                     contentAlignment = Alignment.Center
                 ){
                     Text(

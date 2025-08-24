@@ -30,6 +30,16 @@ interface FoodDetailDao {
     @Query("SELECT * FROM food_detail WHERE food_id = :foodId")
     fun getFoodDetail(foodId: Int): Flow<FoodDetailWithFood>
 
+    @Query("""
+        SELECT * FROM food_detail fd 
+        JOIN food f ON fd.food_id = f.id 
+        WHERE LOWER(f.name) = LOWER(:foodName)
+        """)
+    suspend fun getFoodByName(foodName: String): FoodDetailWithFood?
+
+    @Query("DELETE FROM food_detail WHERE id = :id")
+    suspend fun deleteFoodDetail(id: Int)
+
     @Update
     suspend fun updateFoodDetail(foodDetail: FoodDetail)
 
