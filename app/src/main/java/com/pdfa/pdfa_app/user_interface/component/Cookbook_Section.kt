@@ -31,13 +31,18 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.pdfa.pdfa_app.data.model.Recipe
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 
 @Composable
 fun CookbookSection(
-    navController: NavController
+    navController: NavController,
+    cookbookName: String,
+    recipes: List<Recipe>,
+    recipeViewModel: RecipeViewModel
 ){
 
     var isExpanded by remember { mutableStateOf(false) }
@@ -62,7 +67,7 @@ fun CookbookSection(
                         contentDescription = "Icon",
                     )
                     Text(
-                        text = "Favoris",
+                        text = cookbookName,
                         style = AppTypo.SubTitle,
                         color = Color.Black
                     )
@@ -92,8 +97,9 @@ fun CookbookSection(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
 
                 ) {
-//                    RecipeTimeCard(navController)
-//                    RecipeTimeCard(navController)
+                    recipes.forEach { recipe ->
+                        RecipeItemCard(navController, recipe, recipeViewModel)
+                    }
                 }
             }
         }

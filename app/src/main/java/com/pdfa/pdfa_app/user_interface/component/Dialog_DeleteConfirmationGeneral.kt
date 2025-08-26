@@ -26,7 +26,8 @@ import com.pdfa.pdfa_app.ui.theme.AppTypo
 
 @Composable
 fun DeleteConfirmationGeneral(
-    itemName: String,
+    title: String,
+    desc: String,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
     onDelete: () -> Unit
@@ -43,14 +44,14 @@ fun DeleteConfirmationGeneral(
         ) {
             Column {
                 Text(
-                    text = "Supprimer cette section ?",
+                    text = title,
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
                 )
 
                 Spacer(modifier = Modifier.height(AppSpacing.M))
 
                 Text(
-                    text = "Es-tu sûr de vouloir supprimer \"$itemName\" ? Cette action est irréversible.",
+                    text = desc,
                     style = MaterialTheme.typography.bodyMedium
                 )
 

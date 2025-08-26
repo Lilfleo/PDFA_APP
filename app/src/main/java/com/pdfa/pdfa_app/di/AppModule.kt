@@ -7,6 +7,7 @@ import com.pdfa.pdfa_app.data.dao.*
 import com.pdfa.pdfa_app.data.database.AppDatabase
 import com.pdfa.pdfa_app.data.model.FoodRecipeCrossRef
 import com.pdfa.pdfa_app.data.repository.AllergyRepository
+import com.pdfa.pdfa_app.data.repository.CookbookRepository
 import com.pdfa.pdfa_app.data.repository.DietRepository
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.FoodRepository
@@ -69,9 +70,7 @@ object AppModule {
     @Singleton
     fun provideRecipeRepository(
         recipeDao: RecipeDao,
-        tagDao: TagDao,
-        crossRefDao: RecipeTagCrossRefDao
-    ): RecipeRepository = RecipeRepository(recipeDao, tagDao, crossRefDao)
+    ): RecipeRepository = RecipeRepository(recipeDao)
 
     @Provides
     fun provideFoodRecipeCrossRefDao(db: AppDatabase): FoodRecipeCrossRefDao =
@@ -118,15 +117,24 @@ object AppModule {
     @Singleton
     fun provideRecipeToShoplistService(
         foodRepository: FoodRepository,
-        shoplistRepository: ShoplistRepository
+        shoplistRepository: ShoplistRepository,
+        cookbookRepository: CookbookRepository
     ): RecipeToShoplistService {
-        return RecipeToShoplistService(foodRepository, shoplistRepository)
+        return RecipeToShoplistService(foodRepository, shoplistRepository, cookbookRepository)
     }
 
     @Provides
-    fun provideProfil(db: AppDatabase): ProfilDao = db.profilDao()
+    fun provideProfilDao(db: AppDatabase): ProfilDao = db.profilDao()
 
     @Provides
     @Singleton
     fun provideProfilRepository(profilDao: ProfilDao) = ProfilRepository(profilDao)
+
+    @Provides
+    fun provideCookbookDao(db: AppDatabase): CookbookDao = db.cookbookDao()
+
+
+    @Provides
+    @Singleton
+    fun provideCookbookRepository(cookbookDao: CookbookDao, recipeDao: RecipeDao) = CookbookRepository(cookbookDao, recipeDao)
 }

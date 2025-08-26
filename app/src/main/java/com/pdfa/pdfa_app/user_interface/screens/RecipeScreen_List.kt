@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -20,6 +21,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,6 +32,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
@@ -44,12 +48,21 @@ fun RecipeListScreen(
     navController: NavController,
     viewModel: RecipeViewModel
 ){
-    val recipes by viewModel.multipleRecipeWithoutFood
+    // 🔄 Changer pour utiliser les nouvelles propriétés
+    val recipesFromCookbook by viewModel.recipesWithoutFoodFromCookbook.collectAsState()
     val isLoading by viewModel.isLoadingWithoutFood
+    val isGeneratingMore by viewModel.isGeneratingMoreWithoutFood.collectAsState()
     val error by viewModel.errorWithoutFood
 
     val scrollState = rememberScrollState()
     var showDialog by remember { mutableStateOf(false) }
+
+    // 🎯 Effet pour scroller vers le bas quand de nouvelles recettes arrivent
+    LaunchedEffect(recipesFromCookbook.size) {
+        if (isGeneratingMore && recipesFromCookbook.isNotEmpty()) {
+            scrollState.animateScrollTo(scrollState.maxValue)
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -57,7 +70,8 @@ fun RecipeListScreen(
             .background(AppColors.Primary),
     ){
         when {
-            isLoading -> {
+            // 🔄 Loading initial (première génération)
+            isLoading && recipesFromCookbook.isEmpty() -> {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -80,7 +94,8 @@ fun RecipeListScreen(
                 }
             }
 
-            error != null -> {
+            // ❌ Erreur ET pas de recettes existantes
+            error != null && recipesFromCookbook.isEmpty() -> {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -105,43 +120,105 @@ fun RecipeListScreen(
                 }
             }
 
-            recipes != null -> {
-                // ✅ Affichage du contenu avec la recette
-                Column(modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(scrollState)
-                    .padding(AppSpacing.L),
+            // ✅ Affichage des recettes (même s'il y a une erreur mais qu'on a des recettes)
+            recipesFromCookbook.isNotEmpty() -> {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(scrollState)
+                        .padding(AppSpacing.L),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    recipes!!.recipes.forEach { recipeResponse ->
-                        RecipeItemCard(navController, recipeResponse, viewModel)
+                    // 📋 Afficher toutes les recettes du cookbook
+                    recipesFromCookbook.forEach { recipe ->
+                        RecipeItemCard(navController, recipe, viewModel)
+                    }
+
+                    // 🔄 Indicateur de génération en cours (en bas)
+                    if (isGeneratingMore) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                CircularProgressIndicator(
+                                    modifier = Modifier.size(32.dp),
+                                    color = AppColors.MainGreen,
+                                    strokeWidth = 3.dp
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = "Génération de nouvelles recettes...",
+                                    style = AppTypo.SubTitle,
+                                    color = AppColors.LightGrey
+                                )
+                            }
+                        }
+                    }
+
+                    // Espace pour le bouton flottant
+                    Spacer(modifier = Modifier.height(80.dp))
+                }
+
+                // 🚨 Afficher l'erreur en Snackbar si il y a des recettes existantes
+                error?.let { errorMessage ->
+                    LaunchedEffect(errorMessage) {
+                        // Tu peux utiliser un SnackbarHost ou un Toast ici
+                        Log.e("RecipeListScreen", "Erreur: $errorMessage")
+                        // Optionnel: afficher un toast ou snackbar
                     }
                 }
             }
 
+            // 🔍 État vide (pas de recettes, pas de loading)
             else -> {
-                // État initial - ne devrait pas arriver car on lance la requête au démarrage
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = "Aucune recette disponible",
-                        style = AppTypo.SubTitle,
-                        color = AppColors.MainGreen
-                    )
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(32.dp)
+                    ) {
+                        Text(
+                            text = "🍳",
+                            style = AppTypo.Title.copy(fontSize = 48.sp)
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = "Aucune recette disponible",
+                            style = AppTypo.SubTitle,
+                            color = AppColors.MainGreen,
+                            textAlign = TextAlign.Center
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Ajouter des ustensiles, modifier vos régimes alimentaires et configurer vos tags !",
+                            style = AppTypo.Body,
+                            color = AppColors.LightGrey,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             }
         }
 
-        ScrollbarPersonnalisee(
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .fillMaxHeight()
-                .width(10.dp),
-            scrollState = scrollState
-        )
+        // 📜 Scrollbar (seulement si on a des recettes)
+        if (recipesFromCookbook.isNotEmpty()) {
+            ScrollbarPersonnalisee(
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .fillMaxHeight()
+                    .width(10.dp),
+                scrollState = scrollState
+            )
+        }
 
+        // ➕ Bouton pour plus de recettes
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.95f)
@@ -150,7 +227,6 @@ fun RecipeListScreen(
         ){
             Box(
                 modifier = Modifier
-//                    .background(AppColors.Primary)
                     .padding(bottom = AppSpacing.L, start = AppSpacing.L, end = AppSpacing.L),
             ){
                 Box(
@@ -158,20 +234,41 @@ fun RecipeListScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .clip(AppShapes.CornerL)
-                        .background(AppColors.MainGreen)
-                        .clickable {
+                        .background(
+                            if (isGeneratingMore) AppColors.MainGreen.copy(alpha = 0.7f)
+                            else AppColors.MainGreen
+                        )
+                        .clickable(enabled = !isGeneratingMore) {
                             showDialog = true
                         }
                 ) {
-                    Text(
-                        text = "Plus de recette",
-                        style = AppTypo.SubTitle,
-                        color = Color.White
-                    )
+                    if (isGeneratingMore) {
+                        Row(
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(20.dp),
+                                color = Color.White,
+                                strokeWidth = 2.dp
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "Génération...",
+                                style = AppTypo.SubTitle,
+                                color = Color.White
+                            )
+                        }
+                    } else {
+                        Text(
+                            text = if (recipesFromCookbook.isEmpty()) "Créer des recettes" else "Plus de recettes",
+                            style = AppTypo.SubTitle,
+                            color = Color.White
+                        )
+                    }
                 }
             }
         }
-
     }
 
     if (showDialog) {
@@ -180,6 +277,6 @@ fun RecipeListScreen(
             isWithIngredient = false,
             onDismiss = { showDialog = false },
             viewModel = viewModel
-            )
+        )
     }
 }

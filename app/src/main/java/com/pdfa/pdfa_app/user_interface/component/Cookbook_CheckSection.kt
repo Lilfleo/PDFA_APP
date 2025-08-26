@@ -22,11 +22,9 @@ import com.pdfa.pdfa_app.ui.theme.AppTypo
 @Composable
 fun CheckSection(
     name: String,
-//    isChecked: Boolean,
-//    onCheckedChange: (Boolean) -> Unit
+    isChecked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
 ){
-    var isChecked by remember { mutableStateOf(false) }
-
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -45,7 +43,9 @@ fun CheckSection(
             )
             Checkbox(
                 checked = isChecked,
-                onCheckedChange = { isChecked = it }
+                onCheckedChange = { newValue ->
+                    onCheckedChange(newValue)
+                }
             )
         }
     }

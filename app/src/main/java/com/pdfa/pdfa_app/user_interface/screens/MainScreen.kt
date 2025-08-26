@@ -132,9 +132,9 @@ fun MainScreen() {
                     FridgeScreen(onAddClick = {
                         println("Bouton Add cliqué") })
                 }
-                composable(Screen.Shoplist.rout){ ShoplistScreen() }
+                composable(Screen.Shoplist.rout){ ShoplistScreen(navController, recipViewModel) }
                 composable(Screen.Recipe.rout) { RecipeScreen(navController, recipViewModel) }
-                composable(Screen.Cookbook.rout) { CookbookScreen(navController) }
+                composable(Screen.Cookbook.rout) { CookbookScreen(navController, recipViewModel) }
                 composable (Screen.Food.rout ){ FoodScreen() }
                 composable(Screen.RecipeDetailScreen.rout) { RecipeDetailScreen(navController, recipViewModel) }
                 composable(Screen.RecipeStepsScreen.rout) {RecipeStepsScreen( navController, recipViewModel)}

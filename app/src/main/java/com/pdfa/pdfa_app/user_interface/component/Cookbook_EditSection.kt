@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
@@ -35,8 +36,8 @@ import com.pdfa.pdfa_app.ui.theme.AppTypo
 @Composable
 fun EditSection(
     name: String,
-//    isChecked: Boolean,
-//    onCheckedChange: (Boolean) -> Unit
+    onDelete: () -> Unit,
+    onValidate: (String) -> Unit
 ){
     var isEditMode by remember { mutableStateOf(false) }
     var sectionName by remember { mutableStateOf(name) }
@@ -57,7 +58,9 @@ fun EditSection(
                 Text(
                     text = sectionName,
                     style = AppTypo.CookbookSection,
-                    color = AppColors.MediumGrey
+                    color = AppColors.MediumGrey,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             } else {
                 CustomTextFiel(
@@ -88,7 +91,10 @@ fun EditSection(
                     }
                 } else {
                     IconButton(
-                        onClick = { isEditMode = false },
+                        onClick = {
+                            isEditMode = false
+                            onValidate(sectionName)
+                                  },
                         modifier = Modifier
                             .size(AppSpacing.XXXXL)
                             .background(
@@ -118,15 +124,18 @@ fun EditSection(
 
         if (openDeleteDialog) {
             DeleteConfirmationGeneral(
-                itemName = sectionName,
+                title = "Supprimer cette section ?",
+                desc = "Es-tu sûr de vouloir supprimer \"$sectionName\" ? Cette action est irréversible.",
                 onConfirm = {
                     openDeleteDialog = false
+
                 },
                 onDismiss = {
                     openDeleteDialog = false
                 },
                 onDelete = {
                     openDeleteDialog = false
+                    onDelete()
                 }
             )
         }

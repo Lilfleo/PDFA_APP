@@ -2,6 +2,7 @@ package com.pdfa.pdfa_app.user_interface.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -137,7 +138,7 @@ fun RecipeDetailScreen(
                         contentAlignment = Alignment.Center
                     ){
                         Icon(
-                            imageVector = if(addToCookbook) Icons.Default.Bookmark else Icons.Outlined.BookmarkAdd,
+                            imageVector = Icons.Default.Bookmark ,
                             contentDescription = "Add to Cookbook"
                         )
                     }
@@ -152,7 +153,10 @@ fun RecipeDetailScreen(
                 Spacer(modifier = Modifier.padding(AppSpacing.XXS))
 
                 //Tags
-                Row {
+                Row(
+                    modifier = Modifier
+                        .horizontalScroll(rememberScrollState()),
+                ) {
                     recipeTags.forEach { x ->
                         TagsBox(x, true)
                     }
@@ -161,7 +165,9 @@ fun RecipeDetailScreen(
                 Spacer(modifier = Modifier.padding(AppSpacing.XXXS))
 
                 //Régimes
-                Row {
+                Row( modifier = Modifier
+                    .horizontalScroll(rememberScrollState()),
+                ) {
                     recipe.tags.diet?.forEach { x ->
                         OldTagsBox(x, "Diet", true)
                     }
@@ -180,7 +186,6 @@ fun RecipeDetailScreen(
 
                     RecipeTimeCard(recipe.totalCookingTime, "time")
 
-//                    RecipeTimeCard("20", "calories")
                 }
 
                 Text(
@@ -404,7 +409,10 @@ fun RecipeDetailScreen(
             }
 
             if (openAddToCookbookDialog) {
-                AddToCookbook( onDismiss = { openAddToCookbookDialog = false })
+                AddToCookbook(
+                    recipe = recipe,
+                    onDismiss = { openAddToCookbookDialog = false }
+                )
             }
         }
     }
