@@ -11,11 +11,18 @@ import javax.inject.Inject
 
 class RecipeToShoplistService @Inject constructor(
     private val foodRepository: FoodRepository,
-    private val shoplistRepository: ShoplistRepository
+    private val shoplistRepository: ShoplistRepository,
+    private val cookbookRepository: CookbookRepository
 ) {
 
     suspend fun addRecipeToShoplist(recipe: com.pdfa.pdfa_app.data.model.Recipe) {
         Log.d("RecipeToShoplist", "🔄 Ajout de ${recipe.ingredients.size} ingrédients à la liste")
+
+        val cookbookShoplist = cookbookRepository.getCookbookByName("RecipeShoplist")
+        Log.d("RecipeToShoplist", "ajout à la liste RecipeToShoplist: $cookbookShoplist")
+        cookbookShoplist?.let { cb ->
+            cookbookRepository.addRecipeToCookbook(cb.id, recipe.id)
+        }
 
         recipe.ingredients.forEach { ingredient ->
             try {

@@ -197,7 +197,7 @@ fun RecipeListScreen(
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Créez vos premières recettes !",
+                            text = "Ajouter des ustensiles, modifier vos régimes alimentaires et configurer vos tags !",
                             style = AppTypo.Body,
                             color = AppColors.LightGrey,
                             textAlign = TextAlign.Center

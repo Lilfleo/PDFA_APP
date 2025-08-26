@@ -25,12 +25,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
+import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 
 @Composable
-fun ShoplistScreen(){
-    var contenuActuel by remember { mutableStateOf(0) }
+fun ShoplistScreen(
+    navController: NavController,
+    recipeViewModel: RecipeViewModel
+){
+    val contenuActuel by recipeViewModel.currentTabShoplist
 
     Column(
         modifier = Modifier
@@ -54,7 +59,7 @@ fun ShoplistScreen(){
                     .background(
                         if (contenuActuel == 0 ) AppColors.NavBackgroundHover else AppColors.NavBackground
                     )
-                    .clickable { contenuActuel = 0 },
+                    .clickable { recipeViewModel.setCurrentTabShoplist(0) },
                 contentAlignment = Alignment.Center
 
             ) {
@@ -74,7 +79,7 @@ fun ShoplistScreen(){
                     .background(
                         if (contenuActuel == 1 ) AppColors.NavBackgroundHover else AppColors.NavBackground
                     )
-                    .clickable { contenuActuel = 1 },
+                    .clickable { recipeViewModel.setCurrentTabShoplist(1) },
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -91,7 +96,7 @@ fun ShoplistScreen(){
         ) {
             when (contenuActuel) {
                 0 -> ShoplistListScreen()
-                1 -> ShoplistRecipeScreen()
+                1 -> ShoplistRecipeScreen(navController, recipeViewModel)
             }
         }
     }

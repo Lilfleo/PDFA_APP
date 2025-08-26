@@ -1,9 +1,12 @@
 package com.pdfa.pdfa_app.ui.viewmodel
 
+import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pdfa.pdfa_app.data.model.*
 import com.pdfa.pdfa_app.data.repository.CookbookRepository
+import com.pdfa.pdfa_app.data.repository.FoodRepository
+import com.pdfa.pdfa_app.data.repository.ShoplistRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -11,7 +14,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CookbookViewModel @Inject constructor(
-    private val cookbookRepository: CookbookRepository
+    private val cookbookRepository: CookbookRepository,
+    private val shoplistRepository: ShoplistRepository,
+    private val foodRepository: FoodRepository
 ) : ViewModel() {
 
     // État des cookbooks utilisateur (pas isInternal)
@@ -199,17 +204,40 @@ class CookbookViewModel @Inject constructor(
         }
     }
 
-    // Sélectionner un cookbook pour voir les détails
-    fun selectCookbook(cookbookId: Int) {
+    fun removeRecipeAndIngredientFromCookbook(cookbookId: Int, recipe: Recipe) {
         viewModelScope.launch {
             try {
-                val cookbook = cookbookRepository.getCookbookWithRecipes(cookbookId)
-                _selectedCookbook.value = cookbook
+                cookbookRepository.removeRecipeFromCookbook(cookbookId, recipe.id)
+                val ingredients = recipe.ingredients
+
+                ingredients.forEach { ingredient ->
+                    val food = foodRepository.findByName(ingredient.name)
+
+                    food?.let { foundFood ->
+                        val existingShoplistItem = shoplistRepository.findByFoodId(foundFood.id)
+
+                        existingShoplistItem?.let { shoplistItem ->
+                            val ingredientQuantity = ingredient.quantity ?: 0.0
+                            val newQuantity = shoplistItem.quantity - ingredientQuantity
+
+                            if (newQuantity <= 0) {
+                                // Si la nouvelle quantité est 0 ou négative, supprimer l'item
+                                shoplistRepository.deleteShoplist(shoplistItem)
+                            } else {
+                                // Sinon, mettre à jour avec la nouvelle quantité
+                                val updatedItem = shoplistItem.copy(quantity = newQuantity.toInt())
+                                shoplistRepository.updateShoplist(updatedItem)
+                            }
+                        }
+                    }
+                }
+
             } catch (e: Exception) {
-                _error.value = "Erreur lors du chargement du cookbook: ${e.message}"
+                _error.value = "Erreur lors de la suppression de la recette: ${e.message}"
             }
         }
     }
+
 
 //    fun isRecipeInCookbook(cookbookId: Int, recipeId: Int): Boolean {
 //        viewModelScope.launch {

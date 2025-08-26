@@ -117,9 +117,10 @@ object AppModule {
     @Singleton
     fun provideRecipeToShoplistService(
         foodRepository: FoodRepository,
-        shoplistRepository: ShoplistRepository
+        shoplistRepository: ShoplistRepository,
+        cookbookRepository: CookbookRepository
     ): RecipeToShoplistService {
-        return RecipeToShoplistService(foodRepository, shoplistRepository)
+        return RecipeToShoplistService(foodRepository, shoplistRepository, cookbookRepository)
     }
 
     @Provides

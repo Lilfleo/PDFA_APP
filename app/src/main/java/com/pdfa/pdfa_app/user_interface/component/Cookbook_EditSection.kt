@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
@@ -57,7 +58,9 @@ fun EditSection(
                 Text(
                     text = sectionName,
                     style = AppTypo.CookbookSection,
-                    color = AppColors.MediumGrey
+                    color = AppColors.MediumGrey,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             } else {
                 CustomTextFiel(
@@ -121,7 +124,8 @@ fun EditSection(
 
         if (openDeleteDialog) {
             DeleteConfirmationGeneral(
-                itemName = sectionName,
+                title = "Supprimer cette section ?",
+                desc = "Es-tu sûr de vouloir supprimer \"$sectionName\" ? Cette action est irréversible.",
                 onConfirm = {
                     openDeleteDialog = false
 
