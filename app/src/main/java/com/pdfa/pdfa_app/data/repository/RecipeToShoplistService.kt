@@ -14,7 +14,7 @@ class RecipeToShoplistService @Inject constructor(
     private val shoplistRepository: ShoplistRepository
 ) {
 
-    suspend fun addRecipeToShoplist(recipe: Recipe) {
+    suspend fun addRecipeToShoplist(recipe: com.pdfa.pdfa_app.data.model.Recipe) {
         Log.d("RecipeToShoplist", "🔄 Ajout de ${recipe.ingredients.size} ingrédients à la liste")
 
         recipe.ingredients.forEach { ingredient ->

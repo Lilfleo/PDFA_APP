@@ -21,7 +21,7 @@ class TagRepository @Inject constructor(
 
     suspend fun deleteTag(tag: Tag) = dao.deleteTag(tag)
 
-    suspend fun getTagsForRecipe(recipeId: Int): List<Tag> = dao.getTagsForRecipe(recipeId)
-
-    suspend fun getTagWithRecipes(tagId: Int): TagWithRecipes? = dao.getTagWithRecipes(tagId)
+//    suspend fun getTagsForRecipe(recipeId: Int): List<Tag> = dao.getTagsForRecipe(recipeId)
+//
+//    suspend fun getTagWithRecipes(tagId: Int): TagWithRecipes? = dao.getTagWithRecipes(tagId)
 }

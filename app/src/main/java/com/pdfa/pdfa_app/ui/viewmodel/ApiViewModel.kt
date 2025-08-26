@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
 import com.pdfa.pdfa_app.data.repository.ApiRepository
 import com.pdfa.pdfa_app.api.RecipeResponse
@@ -22,6 +20,7 @@ import com.pdfa.pdfa_app.api.RecipeWithFoodPrompt
 import com.pdfa.pdfa_app.api.RecipeWithoutFoodPrompt
 import com.pdfa.pdfa_app.api.Tags
 import com.pdfa.pdfa_app.data.repository.AllergyRepository
+import com.pdfa.pdfa_app.data.repository.CookbookRepository
 import com.pdfa.pdfa_app.data.repository.DietPreferenceRepository
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.TagPreferenceRepository
@@ -30,6 +29,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 @HiltViewModel
 class RecipeViewModel @Inject constructor(
@@ -37,7 +39,8 @@ class RecipeViewModel @Inject constructor(
     private val dietRepository: DietPreferenceRepository,
     private val allergyRepository: AllergyRepository,
     private val utensilRepository: UtensilPreferenceRepository,
-    private val foodDetailRepository: FoodDetailRepository
+    private val foodDetailRepository: FoodDetailRepository,
+    private val cookbookRepository: CookbookRepository
 ) : ViewModel() {
 
     //Etat page recette
@@ -81,8 +84,50 @@ class RecipeViewModel @Inject constructor(
     val errorWithoutFood: State<String?> = _errorWithoutFood
 
     //Recette selectionner
-    private val _selectedRecipe = mutableStateOf<Recipe?>(null)
-    val selectedRecipe: State<Recipe?> = _selectedRecipe
+    private val _selectedRecipe = mutableStateOf<com.pdfa.pdfa_app.data.model.Recipe?>(null)
+    val selectedRecipe: State<com.pdfa.pdfa_app.data.model.Recipe?> = _selectedRecipe
+
+    private val _recipesWithoutFoodFromCookbook = MutableStateFlow<List<com.pdfa.pdfa_app.data.model.Recipe>>(emptyList())
+    val recipesWithoutFoodFromCookbook: StateFlow<List<com.pdfa.pdfa_app.data.model.Recipe>> = _recipesWithoutFoodFromCookbook.asStateFlow()
+
+    private val _recipesWithFoodFromCookbook = MutableStateFlow<List<com.pdfa.pdfa_app.data.model.Recipe>>(emptyList())
+    val recipesWithFoodFromCookbook: StateFlow<List<com.pdfa.pdfa_app.data.model.Recipe>> = _recipesWithFoodFromCookbook.asStateFlow()
+
+    // Pour différencier loading initial vs génération supplémentaire
+    private val _isGeneratingMoreWithoutFood = MutableStateFlow(false)
+    val isGeneratingMoreWithoutFood: StateFlow<Boolean> = _isGeneratingMoreWithoutFood.asStateFlow()
+
+    private val _isGeneratingMoreWithFood = MutableStateFlow(false)
+    val isGeneratingMoreWithFood: StateFlow<Boolean> = _isGeneratingMoreWithFood.asStateFlow()
+
+    init {
+        // Charger les recettes sauvegardées au démarrage
+        loadRecipesFromCookbook()
+    }
+
+    // 🆕 Charger les recettes depuis le cookbook "RecipeWithoutFood"
+    fun loadRecipesFromCookbook() {
+        viewModelScope.launch {
+            try {
+                val cookbookWhithoutFood = cookbookRepository.getCookbookByName("RecipeWithoutFood")
+                cookbookWhithoutFood?.let { cb ->
+                    cookbookRepository.getRecipesFromInternalCookbook(cb.name).collect { recipes ->
+                        _recipesWithoutFoodFromCookbook.value = recipes
+                        Log.d(TAG, "✅ ${recipes.size} recettes chargées depuis RecipeWithoutFood")
+                    }
+                }
+                val cookbookWithFood = cookbookRepository.getCookbookByName("RecipeWithFood")
+                cookbookWithFood?.let { cb ->
+                    cookbookRepository.getRecipesFromInternalCookbook(cb.name).collect { recipes ->
+                        _recipesWithFoodFromCookbook.value = recipes
+                        Log.d(TAG, "✅ ${recipes.size} recettes chargées depuis RecipeWithFood")
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "❌ Erreur chargement recettes cookbook: ${e.message}", e)
+            }
+        }
+    }
 
     //Collect pour envoi
     val tagPreferenceWithTags = tagRepository.allTagPreferences
@@ -212,7 +257,7 @@ class RecipeViewModel @Inject constructor(
             )
 
             delay(2000L)
-            generateMultipleRecipWithFood(recipeCall)
+            generateAndSaveMultipleRecipeWithFood(recipeCall)
         }
     }
 
@@ -241,11 +286,11 @@ class RecipeViewModel @Inject constructor(
 
 
             delay(2000L)
-            generateMultipleRecipWithoutFood(recipeCall)
+            generateAndSaveMultipleRecipeWithoutFood(recipeCall)
         }
     }
 
-    fun selectRecipe(recipe: Recipe) {
+    fun selectRecipe(recipe: com.pdfa.pdfa_app.data.model.Recipe) {
         _selectedRecipe.value = recipe
     }
 
@@ -269,7 +314,15 @@ class RecipeViewModel @Inject constructor(
         }
     }
 
-    fun generateMultipleRecipWithFood(requestData: RecipeWithFood) {
+    fun generateAndSaveMultipleRecipeWithFood(requestData: RecipeWithFood) {
+        val isFirstGeneration = _recipesWithFoodFromCookbook.value.isEmpty()
+
+        if (!isFirstGeneration) {
+            _isGeneratingMoreWithFood.value = true
+        } else {
+            _isLoadingWithFood.value = true
+        }
+
         viewModelScope.launch {
             _isLoadingWithFood.value = true
             _errorWithFood.value = null
@@ -277,27 +330,46 @@ class RecipeViewModel @Inject constructor(
             if(requestData.prompt.ingredients.isEmpty()){
                 _errorWithFood.value = "Votre frigo est vide. Remplis le!"
                 _isLoadingWithFood.value = false
+            } else if (requestData.prompt.utensils.isEmpty()) {
+                _errorWithFood.value = "Vous n'avez pas d'ustensile. Difficile pour cuisiner!"
+                _isLoadingWithFood.value = false
             } else {
                 Log.d(TAG, "🔄 Données envoyées: $requestData")
 
                 try {
                     val recipeResponse = repository.generateMultipleRecipWithFood(requestData)
                     _multipleRecipeWithFood.value = recipeResponse
+
+                    // Sauvegarder toutes les recettes dans le cookbook "RecipeWithFood"
+                    cookbookRepository.saveMultipleRecipesToInternalCookbook(
+                        recipeResponse.recipes,
+                        "RecipeWithFood"
+                    )
+
                     recipeResponse.recipes.forEach { recipe ->
                         addExcludedTitle(recipe.title)
                     }
-                    Log.i(TAG, "✅ Recette générée: ${recipeResponse.recipes.size}")
+                    Log.i(TAG, "✅ Recettes générées et sauvegardées: ${recipeResponse.recipes.size}")
                 } catch (e: Exception) {
                     Log.e(TAG, "❌ Erreur: ${e.message}", e)
                     _errorWithFood.value = "Erreur interne veuiller réessayer"
                 } finally {
                     _isLoadingWithFood.value = false
+                    _isGeneratingMoreWithFood.value = false
                 }
             }
         }
     }
 
-    fun generateMultipleRecipWithoutFood(requestData: RecipeForShoplist) {
+    fun generateAndSaveMultipleRecipeWithoutFood(requestData: RecipeForShoplist) {
+        val isFirstGeneration = _recipesWithoutFoodFromCookbook.value.isEmpty()
+
+        if (!isFirstGeneration) {
+            _isGeneratingMoreWithoutFood.value = true
+        } else {
+            _isLoadingWithoutFood.value = true
+        }
+
         viewModelScope.launch {
             _isLoadingWithoutFood.value = true
             _errorWithoutFood.value = null
@@ -307,18 +379,27 @@ class RecipeViewModel @Inject constructor(
             try {
                 val recipeResponse = repository.generateMultipleRecipWithoutFood(requestData)
                 _multipleRecipeWithoutFood.value = recipeResponse
+
+                // Sauvegarder toutes les recettes dans le cookbook "RecipeWithoutFood"
+                cookbookRepository.saveMultipleRecipesToInternalCookbook(
+                    recipeResponse.recipes,
+                    "RecipeWithoutFood"
+                )
+
                 recipeResponse.recipes.forEach { recipe ->
                     addExcludedTitle(recipe.title)
                 }
-                Log.i(TAG, "✅ Recette générée: ${recipeResponse.recipes.size}")
+                Log.i(TAG, "✅ Recettes générées et sauvegardées: ${recipeResponse.recipes.size}")
             } catch (e: Exception) {
                 Log.e(TAG, "❌ Erreur: ${e.message}", e)
                 _errorWithoutFood.value = "Erreur: ${e.message}"
             } finally {
                 _isLoadingWithoutFood.value = false
+                _isGeneratingMoreWithoutFood.value = false
             }
         }
     }
+
 
     override fun onCleared() {
         super.onCleared()

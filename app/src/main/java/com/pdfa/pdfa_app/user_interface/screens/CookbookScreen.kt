@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,10 +23,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.ui.viewmodel.CookbookViewModel
+import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.user_interface.component.CookbookSection
 import com.pdfa.pdfa_app.user_interface.component.CustomCookbookSearchBar
 import com.pdfa.pdfa_app.user_interface.component.EditCookbook
@@ -33,8 +37,12 @@ import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
 
 @Composable
 fun CookbookScreen(
-    navController: NavController
+    navController: NavController,
+    recipeViewModel: RecipeViewModel,
+    cookbookViewModel: CookbookViewModel = hiltViewModel()
 ){
+    val cookbooks by cookbookViewModel.userCookbooks.collectAsState()
+
     val scrollState = rememberScrollState()
     var searchQuery by remember { mutableStateOf("") }
     var openEditCookbookDialog by remember { mutableStateOf(false) }
@@ -83,12 +91,14 @@ fun CookbookScreen(
                     .verticalScroll(scrollState),
                 verticalArrangement = Arrangement.spacedBy(AppSpacing.XS)
             ) {
-                CookbookSection(navController)
-                CookbookSection(navController)
-                CookbookSection(navController)
-                CookbookSection(navController)
-                CookbookSection(navController)
-                CookbookSection(navController)
+                cookbooks.forEach { (cookbook, recipes) ->
+                    CookbookSection(
+                        navController =  navController,
+                        cookbookName = cookbook.name,
+                        recipes = recipes,
+                        recipeViewModel = recipeViewModel
+                    )
+                }
             }
 
             ScrollbarPersonnalisee(

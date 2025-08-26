@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
 import com.pdfa.pdfa_app.data.dao.AllergyDao
+import com.pdfa.pdfa_app.data.dao.CookbookDao
 import com.pdfa.pdfa_app.data.dao.DietDao
 import com.pdfa.pdfa_app.data.dao.DietPreferenceDao
 import com.pdfa.pdfa_app.data.dao.FoodDetailDao
@@ -23,10 +24,10 @@ import com.pdfa.pdfa_app.data.dao.TagPreferenceDao
 import com.pdfa.pdfa_app.data.dao.UtensilDao
 import com.pdfa.pdfa_app.data.dao.UtensilPreferenceDao
 import com.pdfa.pdfa_app.data.model.Allergy
+import com.pdfa.pdfa_app.data.model.Cookbook
+import com.pdfa.pdfa_app.data.model.CookbookRecipeCrossRef
 import com.pdfa.pdfa_app.data.model.FoodDetail
-import com.pdfa.pdfa_app.data.model.FoodRecipeCrossRef
 import com.pdfa.pdfa_app.data.model.Recipe
-import com.pdfa.pdfa_app.data.model.RecipeTagCrossRef
 import com.pdfa.pdfa_app.data.model.Tag
 import com.pdfa.pdfa_app.data.model.TagPreference
 import com.pdfa.pdfa_app.data.model.Utensil
@@ -34,7 +35,9 @@ import com.pdfa.pdfa_app.data.model.UtensilPreference
 import dagger.hilt.android.qualifiers.ApplicationContext
 import com.pdfa.pdfa_app.data.model.Diet
 import com.pdfa.pdfa_app.data.model.DietPreference
+import com.pdfa.pdfa_app.data.model.FoodRecipeCrossRef
 import com.pdfa.pdfa_app.data.model.Profil
+import com.pdfa.pdfa_app.data.model.RecipeTagCrossRef
 import com.pdfa.pdfa_app.data.model.Shoplist
 
 
@@ -52,8 +55,10 @@ import com.pdfa.pdfa_app.data.model.Shoplist
     Diet::class,
     DietPreference::class,
     Shoplist::class,
-    Profil::class],
-    version = 1)
+    Profil::class,
+    Cookbook::class,
+    CookbookRecipeCrossRef::class],
+    version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodDao(): FoodDao
@@ -70,6 +75,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun dietPreferenceDao(): DietPreferenceDao
     abstract fun shoplistDao(): ShoplistDao
     abstract fun profilDao(): ProfilDao
+    abstract fun cookbookDao(): CookbookDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null

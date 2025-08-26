@@ -1,0 +1,30 @@
+[
+  {
+    "name": "RecipeWithFood",
+    "isInternal": true
+  },
+  {
+    "name": "RecipeWithoutFood",
+    "isInternal": true
+  },
+  {
+    "name": "RecipeShoplist",
+    "isInternal": true
+  },
+  {
+    "name": "History",
+    "isInternal": false
+  },
+  {
+    "name": "Favories",
+    "isInternal": false
+  },
+  {
+    "name": "Mes repas de la semaines",
+    "isInternal": false
+  },
+  {
+    "name": "Mes Desserts",
+    "isInternal": false
+  }
+]

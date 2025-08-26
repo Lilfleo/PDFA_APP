@@ -2,19 +2,17 @@ package com.pdfa.pdfa_app.data.dao
 
 import androidx.room.*
 import com.pdfa.pdfa_app.data.model.Recipe
-import com.pdfa.pdfa_app.data.model.RecipeWithFoodQuantities
-import com.pdfa.pdfa_app.data.model.RecipeWithTags
-import com.pdfa.pdfa_app.data.model.TagWithRecipes
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecipeDao {
     @Query("SELECT * FROM recipe")
-    suspend fun getAllRecipes(): List<Recipe>
+    fun getAllRecipes(): Flow<List<Recipe>>
 
     @Query("SELECT * FROM recipe WHERE id = :id")
     suspend fun getRecipeById(id: Int): Recipe?
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insertRecipe(recipe: Recipe): Long
 
     @Update
@@ -23,24 +21,14 @@ interface RecipeDao {
     @Delete
     suspend fun deleteRecipe(recipe: Recipe)
 
-    // Get recipe with its foods
-    @Transaction
-    @Query("SELECT * FROM recipe WHERE id = :recipeId")
-    suspend fun getRecipeWithFoods(recipeId: Int): RecipeWithFoodQuantities?
+    @Query("""
+    SELECT r.* FROM recipe r 
+    INNER JOIN cookbook_recipe_cross_ref cr ON r.id = cr.recipeId 
+    INNER JOIN cookbook c ON cr.cookbookId = c.id
+    WHERE c.name = :cookbookName 
+""")
+    fun getRecipesFromCookbookByName(cookbookName: String): Flow<List<Recipe>>
 
-    // Get recipe with food details (including quantities)
-    @Transaction
-    @Query("SELECT * FROM recipe WHERE id = :recipeId")
-    suspend fun getRecipeWithFoodDetails(recipeId: Int): RecipeWithFoodQuantities?
 
-    // Get recipe with tags
-    @Transaction
-    @Query("SELECT * FROM recipe WHERE id = :recipeId")
-    suspend fun getRecipeWithTags(recipeId: Int): RecipeWithTags?
-
-    // Get recipes for a specific food
-    @Transaction
-    @Query("SELECT * FROM recipe WHERE id IN (SELECT recipe_id FROM food_recipe WHERE food_id = :foodId)")
-    suspend fun getRecipesForFood(foodId: Int): List<Recipe>
 }
 

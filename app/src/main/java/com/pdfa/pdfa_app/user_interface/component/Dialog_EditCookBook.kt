@@ -26,6 +26,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,15 +39,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.CookbookViewModel
 
 @Composable
 fun EditCookbook(
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    cookbookViewModel: CookbookViewModel = hiltViewModel()
 ) {
+
+    val cookbooks by cookbookViewModel.userCookbooks.collectAsState()
 
     val scrollState = rememberScrollState()
     var addSection by remember { mutableStateOf(false) }
@@ -111,12 +117,17 @@ fun EditCookbook(
                             .padding(AppSpacing.M),
                         verticalArrangement = Arrangement.spacedBy(AppSpacing.XS)
                     ) {
-                        EditSection("Section 1")
-                        EditSection("Section 2")
-                        EditSection("Section 3")
-                        EditSection("Section 1")
-                        EditSection("Section 2")
-                        EditSection("Section 3")
+                        cookbooks.forEach { (cookbook, recipes) ->
+                            EditSection(
+                                name = cookbook.name,
+                                onDelete = {
+                                    cookbookViewModel.deleteCookbook(cookbook)
+                                },
+                                onValidate = { newName ->
+                                    cookbookViewModel.updateCookbook(cookbook, newName)
+                                },
+                                )
+                        }
                     }
                     ScrollbarPersonnalisee(
                         modifier = Modifier
@@ -159,7 +170,10 @@ fun EditCookbook(
                             )
                             Spacer(modifier = Modifier.padding(AppSpacing.XXS))
                             IconButton(
-                                onClick = { addSection = false },
+                                onClick = {
+                                    addSection = false
+                                    cookbookViewModel.createCookbook(sectionName)
+                                          },
                                 modifier = Modifier
                                     .size(AppSpacing.XXXXL)
                                     .background(

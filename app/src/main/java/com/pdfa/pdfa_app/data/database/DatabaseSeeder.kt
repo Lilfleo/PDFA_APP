@@ -3,6 +3,7 @@ package com.pdfa.pdfa_app.data.database
 import android.content.Context
 import android.util.Log
 import com.pdfa.pdfa_app.data.model.Allergy
+import com.pdfa.pdfa_app.data.model.Cookbook
 import com.pdfa.pdfa_app.data.model.Diet
 import com.pdfa.pdfa_app.data.model.Food
 import com.pdfa.pdfa_app.data.model.Profil
@@ -28,6 +29,7 @@ class DatabaseSeeder(
         private const val TAGS_FILE_NAME = "data/tags.json"
         private const val DIET_FILE_NAME = "data/diet.json"
         private const val PROFIL_FILE_NAME = "data/profil.json"
+        private const val COOKBOOK_FILE_NAME = "data/cookbook.json"
     }
 
     suspend fun seedDev() = withContext(Dispatchers.IO) {
@@ -42,55 +44,55 @@ class DatabaseSeeder(
             calendar.add(Calendar.DAY_OF_MONTH, 30)
             val expirationDate = calendar.time
 
-            // Insert foods and get their IDs
-            val carrotId = db.foodDao().insertFood(
-                Food(
-                    name = "Carrot",
-                    link = "https://example.com/carrot",
-                    caloriesPerKg = 410,
-                    caloriesPerUnit = 41,
-                    expirationTime = expirationDate
-                )
-            )
+//            // Insert foods and get their IDs
+//            val carrotId = db.foodDao().insertFood(
+//                Food(
+//                    name = "Carrot",
+//                    link = "https://example.com/carrot",
+//                    caloriesPerKg = 410,
+//                    caloriesPerUnit = 41,
+//                    expirationTime = expirationDate
+//                )
+//            )
+//
+//            val tomatoId = db.foodDao().insertFood(
+//                Food(
+//                    name = "Tomato",
+//                    link = "https://example.com/tomato",
+//                    caloriesPerKg = 180,
+//                    caloriesPerUnit = 18,
+//                    expirationTime = expirationDate
+//                )
+//            )
+//
+//            db.foodDao().insertFood(
+//                Food(
+//                    name = "Pepper",
+//                    link = "https://example.com/pepper",
+//                    caloriesPerKg = 200,
+//                    caloriesPerUnit = 20,
+//                    expirationTime = expirationDate
+//                )
+//            )
 
-            val tomatoId = db.foodDao().insertFood(
-                Food(
-                    name = "Tomato",
-                    link = "https://example.com/tomato",
-                    caloriesPerKg = 180,
-                    caloriesPerUnit = 18,
-                    expirationTime = expirationDate
-                )
-            )
+//            // Insert allergies using the food IDs
+//            val allergies = listOf(
+//                Allergy(foodId = carrotId.toInt()),
+//                Allergy(foodId = tomatoId.toInt())
+//            )
+//            allergies.forEach { allergy ->
+//                db.allergyDao().insertAllergy(allergy)
+//            }
 
-            db.foodDao().insertFood(
-                Food(
-                    name = "Pepper",
-                    link = "https://example.com/pepper",
-                    caloriesPerKg = 200,
-                    caloriesPerUnit = 20,
-                    expirationTime = expirationDate
-                )
-            )
-
-            // Insert allergies using the food IDs
-            val allergies = listOf(
-                Allergy(foodId = carrotId.toInt()),
-                Allergy(foodId = tomatoId.toInt())
-            )
-            allergies.forEach { allergy ->
-                db.allergyDao().insertAllergy(allergy)
-            }
-
-            // Insert recipe
-            db.recipeDao().insertRecipe(
-                Recipe(
-                    name = "Carrottes au thon",
-                    description = "Plein de chose a faire",
-                    totalCalories = 1000,
-                    createdAt = Date()
-                )
-            )
+//            // Insert recipe
+//            db.recipeDao().insertRecipe(
+//                Recipe(
+//                    name = "Carrottes au thon",
+//                    description = "Plein de chose a faire",
+//                    totalCalories = 1000,
+//                    createdAt = Date()
+//                )
+//            )
 
             Log.d(TAG, "Development seed completed ✅")
 
@@ -109,14 +111,16 @@ class DatabaseSeeder(
             val tagString = loadTagsFromAssets()
             val dietSting = loadDietsFromAssets()
             val profilString = loadProfilFromAssets()
+            val cookbookString = loadCookbookAssets()
 
             val foodList: List<Food> = parseJsonData(foodString)
             val utensilsList: List<Utensil> = parseJsonData(utensilString)
             val tagList : List<Tag> = parseJsonData(tagString)
             val dietList: List<Diet> = parseJsonData(dietSting)
             val profilList: List<Profil> = parseJsonData(profilString)
+            val cookbookList: List<Cookbook> = parseJsonData(cookbookString)
 
-            insertSeedData(foodList, utensilsList, tagList, dietList, profilList
+            insertSeedData(foodList, utensilsList, tagList, dietList, profilList, cookbookList
             )
             Log.d(TAG, "Seeding completed ! ✅")
         } catch (e: Exception) {
@@ -170,6 +174,15 @@ class DatabaseSeeder(
         }
     }
 
+    private suspend fun loadCookbookAssets(): String = withContext(Dispatchers.IO) {
+        try {
+            context.assets.open(COOKBOOK_FILE_NAME).bufferedReader().use { it.readText() }
+        } catch (e: Exception) {
+            Log.e(TAG,"Failed to load cookbook JSON from assets: ${e.message}" )
+            throw e
+        }
+    }
+
     private inline fun <reified T : Any> parseJsonData(jsonString: String): List<T> {
         val json = Json {
             ignoreUnknownKeys = true
@@ -186,7 +199,7 @@ class DatabaseSeeder(
         }
     }
 
-    private suspend fun insertSeedData(foods: List<Food>, utensils: List<Utensil>, tags: List<Tag>, diets: List<Diet>, profils: List<Profil>) = withContext(Dispatchers.IO) {
+    private suspend fun insertSeedData(foods: List<Food>, utensils: List<Utensil>, tags: List<Tag>, diets: List<Diet>, profils: List<Profil>, cookbooks: List<Cookbook>) = withContext(Dispatchers.IO) {
         Log.d(TAG, "Inserting ${foods.size} foods, ${utensils.size} utensils, ${tags.size} tags and ${profils.size}")
 
         try {
@@ -236,7 +249,18 @@ class DatabaseSeeder(
                     try {
                         db.profilDao().insertProfil(profil)
                     } catch (insertException: Exception) {
-                        Log.w(TAG, "Failed to insert diet: ${profil.name}, error: ${insertException.message}")
+                        Log.w(TAG, "Failed to insert profil: ${profil.name}, error: ${insertException.message}")
+                    }
+                }
+            }
+
+            if (cookbooks.isNotEmpty()) {
+                cookbooks.forEach { cookbook ->
+                    try {
+                        db.cookbookDao().insertCookbook(cookbook)
+                    } catch (insertException: Exception) {
+                        Log.w(TAG, "Failed to insert cookbook: ${cookbook.name}, error: ${insertException.message}")
+
                     }
                 }
             }

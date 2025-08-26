@@ -35,8 +35,8 @@ import com.pdfa.pdfa_app.ui.theme.AppTypo
 @Composable
 fun EditSection(
     name: String,
-//    isChecked: Boolean,
-//    onCheckedChange: (Boolean) -> Unit
+    onDelete: () -> Unit,
+    onValidate: (String) -> Unit
 ){
     var isEditMode by remember { mutableStateOf(false) }
     var sectionName by remember { mutableStateOf(name) }
@@ -88,7 +88,10 @@ fun EditSection(
                     }
                 } else {
                     IconButton(
-                        onClick = { isEditMode = false },
+                        onClick = {
+                            isEditMode = false
+                            onValidate(sectionName)
+                                  },
                         modifier = Modifier
                             .size(AppSpacing.XXXXL)
                             .background(
@@ -121,12 +124,14 @@ fun EditSection(
                 itemName = sectionName,
                 onConfirm = {
                     openDeleteDialog = false
+
                 },
                 onDismiss = {
                     openDeleteDialog = false
                 },
                 onDelete = {
                     openDeleteDialog = false
+                    onDelete()
                 }
             )
         }
