@@ -135,7 +135,7 @@ fun MainScreen() {
                 composable(Screen.Shoplist.rout){ ShoplistScreen(navController, recipViewModel) }
                 composable(Screen.Recipe.rout) { RecipeScreen(navController, recipViewModel) }
                 composable(Screen.Cookbook.rout) { CookbookScreen(navController, recipViewModel) }
-                composable (Screen.Food.rout ){ FoodScreen() }
+//                composable (Screen.Food.rout ){ FoodScreen() }
                 composable(Screen.RecipeDetailScreen.rout) { RecipeDetailScreen(navController, recipViewModel) }
                 composable(Screen.RecipeStepsScreen.rout) {RecipeStepsScreen( navController, recipViewModel)}
                 composable(Screen.ProfilScreen.rout) { ProfilScreen(navController)}

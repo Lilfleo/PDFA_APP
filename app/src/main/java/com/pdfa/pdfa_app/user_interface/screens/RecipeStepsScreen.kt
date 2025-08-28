@@ -16,6 +16,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,11 +27,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.FoodDetailViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.user_interface.component.Confirmation
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
@@ -40,16 +43,24 @@ import com.pdfa.pdfa_app.user_interface.rooting.Screen
 fun RecipeStepsScreen(
     navController: NavController,
     viewModel: RecipeViewModel,
-
 ){
 
     val selectedRecipe by viewModel.selectedRecipe
     val scrollState = rememberScrollState()
     var openConfirmation by remember { mutableStateOf(false) }
 
+    val foodDetailViewModel: FoodDetailViewModel = hiltViewModel()
+    var canMakeRecipe by remember { mutableStateOf(false) }
+    var isChecking by remember { mutableStateOf(true) }
 
 
     selectedRecipe?.let { recipe ->
+
+        LaunchedEffect(recipe.ingredients) {
+            isChecking = true
+            canMakeRecipe = foodDetailViewModel.canMakeRecipe(recipe.ingredients)
+            isChecking = false
+        }
 
         Box(
             modifier = Modifier
@@ -110,11 +121,19 @@ fun RecipeStepsScreen(
                         modifier = Modifier
                             .fillMaxSize()
                             .clip(AppShapes.CornerL)
-                            .background(AppColors.MainGreen)
-                            .clickable { openConfirmation = true }
+                            .background(if (canMakeRecipe) AppColors.MainGreen else AppColors.MainGrey)
+                            .clickable {
+                                if (canMakeRecipe) {
+                                    openConfirmation = true
+                                }
+                            }
                     ) {
                         Text(
-                            text = "Recette réalisée",
+                            text = when {
+                                isChecking -> "Vérification..."
+                                canMakeRecipe -> "🍳 Préparer la recette"
+                                else -> "❌ Ingrédients manquants"
+                            },
                             style = AppTypo.SubTitle,
                             color = Color.White
                         )
@@ -122,24 +141,27 @@ fun RecipeStepsScreen(
                 }
             }
         }
-    }
+        if (openConfirmation) {
+            Confirmation(
+                title = "Supprimer ces aliments ?",
+                desc = "Vous allez retirer tous les ingrédients de cette recette de votre frigo. Avez vous bien réalisé cette recette ?",
+                cancelButton = "Annuler",
+                validateButton = "Retirer",
+                onConfirm = {
+                    openConfirmation = false
+                },
+                onDelete = {
+                    openConfirmation = false
+                    navController.navigate(Screen.Recipe.rout)
+                    foodDetailViewModel.prepareRecipe(recipe.ingredients) { success, message ->
+                        //SNACBAR
+                    }
+                },
+                onDismiss = {
+                    openConfirmation = false
+                }
+            )
+        }
 
-    if (openConfirmation) {
-        Confirmation(
-            title = "Supprimer ces aliments ?",
-            desc = "Vous allez retirer tous les ingrédients de cette recette de votre frigo. Avez vous bien réalisé cette recette ?",
-            cancelButton = "Annuler",
-            validateButton = "Retirer",
-            onConfirm = {
-                openConfirmation = false
-            },
-            onDelete = {
-                openConfirmation = false
-                navController.navigate(Screen.Recipe.rout)
-            },
-            onDismiss = {
-                openConfirmation = false
-            }
-        )
     }
 }

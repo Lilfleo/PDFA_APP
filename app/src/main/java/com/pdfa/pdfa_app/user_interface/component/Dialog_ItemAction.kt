@@ -30,7 +30,7 @@ fun FridgeItemActionDialog(
     onEditClick: () -> Unit,
     onDeleteClick: () -> Unit
 ) {
-    val unit = if (item.foodDetail.isWeight) "gramme${if (item.foodDetail.quantity > 1) "s" else ""}" else if (item.foodDetail.quantity > 1) "pièces" else "pièce"
+//    val unit = if (item.foodDetail.isWeight) "gramme${if (item.foodDetail.quantity > 1) "s" else ""}" else if (item.foodDetail.quantity > 1) "pièces" else "pièce"
 
     Dialog(
         onDismissRequest = onDismiss,
@@ -71,7 +71,7 @@ fun FridgeItemActionDialog(
                 ) {
                     DialogRow(
                         label = "Quantité",
-                        value = "${item.foodDetail.quantity} $unit"
+                        value = "${item.foodDetail.quantity} ${item.foodDetail.unit}"
                     )
                     DialogRow(
                         label = "Nombre de kcal",

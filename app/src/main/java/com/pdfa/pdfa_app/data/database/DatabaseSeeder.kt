@@ -24,7 +24,7 @@ class DatabaseSeeder(
 ) {
     companion object {
         private const val TAG = "DatabaseSeeder"
-        private const val FOOD_FILE_NAME = "data/food_100.json"
+        private const val FOOD_FILE_NAME = "data/food.json"
         private const val UTENSILS_FILE_NAME = "data/utensils.json"
         private const val TAGS_FILE_NAME = "data/tags.json"
         private const val DIET_FILE_NAME = "data/diet.json"

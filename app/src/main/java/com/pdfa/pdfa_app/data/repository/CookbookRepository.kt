@@ -17,7 +17,7 @@ class CookbookRepository @Inject constructor(
 
     // CRUD Cookbook
     suspend fun createCookbook(name: String, isInternal: Boolean = false): Long {
-        val cookbook = Cookbook(name = name, isInternal = isInternal)
+        val cookbook = Cookbook(name = name, isInternal = isInternal, isDeletable = true)
         return cookbookDao.insertCookbook(cookbook)
     }
 

@@ -1,30 +1,38 @@
 [
   {
     "name": "RecipeWithFood",
-    "isInternal": true
+    "isInternal": true,
+    "isDeletable": false
   },
   {
     "name": "RecipeWithoutFood",
-    "isInternal": true
+    "isInternal": true,
+    "isDeletable": false
   },
   {
     "name": "RecipeShoplist",
-    "isInternal": true
+    "isInternal": true,
+    "isDeletable": false
   },
   {
     "name": "History",
-    "isInternal": false
+    "isInternal": false,
+    "isDeletable": false
   },
   {
     "name": "Favories",
-    "isInternal": false
+    "isInternal": false,
+    "isDeletable": false
   },
   {
     "name": "Mes repas de la semaines",
-    "isInternal": false
+    "isInternal": false,
+    "isDeletable": true
+
   },
   {
     "name": "Mes Desserts",
-    "isInternal": false
+    "isInternal": false,
+    "isDeletable": true
   }
 ]

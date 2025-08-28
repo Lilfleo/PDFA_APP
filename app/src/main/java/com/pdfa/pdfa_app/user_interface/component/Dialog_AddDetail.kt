@@ -86,6 +86,10 @@ fun FoodAddDetailDialog(
     var expanded by remember { mutableStateOf(false) }
     var quantityText by remember { mutableStateOf("") }
 
+    val selectedFoodObject = selectedFoodId?.let { id ->
+        foodList.find { it.id == id }
+    }
+
     var priceText by remember { mutableStateOf("") }
     var buyingDateText by remember {
         mutableStateOf(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
@@ -110,10 +114,29 @@ fun FoodAddDetailDialog(
             quantityText = foodToEdit.foodDetail.quantity.toString()
             Log.d("DEBUG", ">>> SET quantityText = $quantityText") // ← nouveau log ici ✅
 
+            if (detail.foodDetail.unit === "pcs"){
+                val foodUnit = "pcs"
+            } else if (detail.foodDetail.unit === "cl"){
+                val foodUnit = "cl"
+            } else {
+                val foodUnit = "g"
+            }
+
             priceText = detail.foodDetail.price.toString()
-            selectedUnit = if (detail.foodDetail.isWeight) "Gramme" else "Pièce"
+//            selectedUnit = detail.food.unit
             buyingDateText = formatter.format(detail.foodDetail.buyingTime)
-            expirationDateText = formatter.format(detail.foodDetail.expirationTime)
+            expirationDateText = if (detail.foodDetail.expirationTime !=null) formatter.format(detail.foodDetail.expirationTime) else "0"
+        }
+    }
+
+    LaunchedEffect(selectedFoodId) {
+        selectedFoodObject?.let { food ->
+            if (food.unit.contains("cl") && food.unit.size == 1) {
+                selectedUnit = "cl"
+            } else if (selectedUnit == "cl" && !food.unit.contains("cl")) {
+                // Si on passe d'un food "cl" à un food sans "cl", revenir à "g"
+                selectedUnit = "g"
+            }
         }
     }
 
@@ -217,8 +240,12 @@ fun FoodAddDetailDialog(
 
                 // Etat unité
 
-                val unitOptions = listOf("Gramme", "Pièce")
-
+                val unitOptions = if (selectedFoodObject?.unit?.contains("cl") == true &&
+                    selectedFoodObject.unit.size == 1) {
+                    listOf("cl")
+                } else {
+                    listOf("g", "pcs")
+                }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
@@ -249,40 +276,59 @@ fun FoodAddDetailDialog(
                     Spacer(modifier = Modifier.width(AppSpacing.S))
 
                     // Les deux boutons
-                    Row(
-                        modifier = Modifier
-                            .height(AppSpacing.XXXLL)
-                            .background(
-                                color = Color.White,
-                                shape = AppShapes.CornerM
+                    if (unitOptions.size == 1 && unitOptions[0] == "cl") {
+                        // Bouton unique pour "cl"
+                        Box(
+                            modifier = Modifier
+                                .width(AppSpacing.XXXXL * 2) // Largeur double pour le bouton unique
+                                .height(AppSpacing.XXXLL)
+                                .background(
+                                    color = AppColors.MainGreen, // Toujours sélectionné
+                                    shape = AppShapes.CornerM
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "cl",
+                                color = Color.White
                             )
-                    ) {
-                        unitOptions.forEach { unit ->
-                            val isSelected = selectedUnit == unit
-                            Box(
-                                modifier = Modifier
-                                    .width(AppSpacing.XXXXL)
-                                    .fillMaxHeight()
-                                    .background(
-                                        color = if (isSelected) AppColors.MainGreen else Color.Transparent,
-                                        shape = AppShapes.CornerM
-                                    )
-                                    .clickable {
-                                        selectedUnit = unit
-                                        isWeight = unit == "Gramme" // <--- c’est ici que tu mets à jour la valeur
-                                    },
-
-                                        contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = if (unit == "Gramme") "g" else "Pce",
-                                    color = if (isSelected) Color.White else Color.Black
+                        }
+                    } else {
+                        // Deux boutons pour g/pcs
+                        Row(
+                            modifier = Modifier
+                                .height(AppSpacing.XXXLL)
+                                .background(
+                                    color = Color.White,
+                                    shape = AppShapes.CornerM
                                 )
+                        ) {
+                            unitOptions.forEach { unit ->
+                                val isSelected = selectedUnit == unit
+                                Box(
+                                    modifier = Modifier
+                                        .width(AppSpacing.XXXXL)
+                                        .fillMaxHeight()
+                                        .background(
+                                            color = if (isSelected) AppColors.MainGreen else Color.Transparent,
+                                            shape = AppShapes.CornerM
+                                        )
+                                        .clickable {
+                                            selectedUnit = unit
+                                            isWeight =
+                                                unit == "g" // Mise à jour selon la nouvelle logique
+                                        },
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = if (unit == "g") "g" else "Pce",
+                                        color = if (isSelected) Color.White else Color.Black
+                                    )
+                                }
                             }
                         }
                     }
                 }
-
 
 
                 Spacer(modifier = Modifier.height(AppSpacing.S))
@@ -419,7 +465,7 @@ fun FoodAddDetailDialog(
                                         foodId = foodId,
                                         quantity = quantityText.toIntOrNull() ?: 0,
                                         price = priceText.toFloatOrNull(),
-                                        isWeight = isWeight,
+                                        unit = selectedUnit, // Utiliser selectedUnit au lieu de isWeight
                                         buyingTime = sdf.parse(buyingDateText) ?: Date(),
                                         expirationTime = sdf.parse(expirationDateText) ?: Date()
                                     )
@@ -431,9 +477,9 @@ fun FoodAddDetailDialog(
                                             val mergedDetail = existing.copy(
                                                 quantity = existing.quantity + newDetail.quantity,
                                                 price = newDetail.price ?: existing.price,
-                                                isWeight = newDetail.isWeight,
+                                                unit = newDetail.unit,
                                                 buyingTime = newDetail.buyingTime,
-                                                expirationTime = newDetail?.expirationTime
+                                                expirationTime = newDetail.expirationTime
                                             )
                                             detailViewModel.upsertFoodDetail(mergedDetail)
                                             onSnackbarMessage("Quantité mise à jour !", "success")

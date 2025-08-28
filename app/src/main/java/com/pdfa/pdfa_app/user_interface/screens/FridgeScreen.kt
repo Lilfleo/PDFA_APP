@@ -417,7 +417,7 @@ fun FridgeScreen(
                                         style = MaterialTheme.typography.bodyLarge
                                     )
                                     Text(
-                                        text = "${detail.foodDetail.quantity} ${if (detail.foodDetail.isWeight) "g" else "Pce"}",
+                                        text = "${detail.foodDetail.quantity} ${detail.foodDetail.unit}",
                                         style = MaterialTheme.typography.bodyMedium
                                     )
                                 }

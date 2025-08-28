@@ -15,5 +15,6 @@ data class Cookbook(
     val id: Int = 0,
     @ColumnInfo(name = "name")
     val name: String,
-    val isInternal: Boolean
+    val isInternal: Boolean,
+    val isDeletable: Boolean
 )

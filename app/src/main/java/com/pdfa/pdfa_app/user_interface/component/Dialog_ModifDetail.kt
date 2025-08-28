@@ -83,16 +83,26 @@ fun FoodModifDialog(
         mutableStateOf(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
     }
     var expirationDateText by remember { mutableStateOf("") }
+    val selectedFoodObject = selectedFoodId?.let { id ->
+        foodList.find { it.id == id }
+    }
 
-
-    val initialUnit = if (foodToEdit?.foodDetail?.isWeight == true) "Gramme" else "Pièce"
-    var selectedUnit by remember { mutableStateOf(initialUnit) }
-    val unitOptions = listOf("Gramme", "Pièce")
+//    val initialUnit = if (foodToEdit?.foodDetail?.isWeight == true) "Gramme" else "Pièce"
+    var selectedUnit by remember { mutableStateOf("") }
+//    val unitOptions = listOf("Gramme", "Pièce")
 
     val foodList by foodViewModel.foodList.collectAsState()
     var expanded by remember { mutableStateOf(false) }
     var selectedDateText by remember { mutableStateOf("") }
 
+    val unitOptions = if (selectedFoodObject?.unit?.contains("cl") == true &&
+        selectedFoodObject.unit.size == 1) {
+        // Si le food n'a que "cl" comme unité, afficher seulement "cl"
+        listOf("cl")
+    } else {
+        // Sinon, garder les options par défaut
+        listOf("g", "pcs")
+    }
 
     LaunchedEffect(Unit) {
         snapshotFlow { quantityText }
@@ -107,9 +117,27 @@ fun FoodModifDialog(
             selectedFoodId = detail.foodDetail.foodId
             selectedFoodName = detail.food.name
             priceText = detail.foodDetail.price.toString()
-            selectedUnit = if (detail.foodDetail.isWeight) "Gramme" else "Pièce"
+
+            // Mettre à jour selectedUnit selon l'unité réelle stockée
+            selectedUnit = when (detail.foodDetail.unit) {
+                "cl" -> "cl"
+                "pcs" -> "pcs"
+                else -> "g" // par défaut pour "g" ou autres
+            }
+
             buyingDateText = formatter.format(detail.foodDetail.buyingTime)
             expirationDateText = formatter.format(detail.foodDetail.expirationTime)
+        }
+    }
+
+    LaunchedEffect(selectedFoodId) {
+        selectedFoodObject?.let { food ->
+            if (food.unit.contains("cl") && food.unit.size == 1) {
+                selectedUnit = "cl"
+            } else if (selectedUnit == "cl" && !food.unit.contains("cl")) {
+                // Si on passe d'un food "cl" à un food sans "cl", revenir à l'unité par défaut
+                selectedUnit = if (foodToEdit?.foodDetail?.unit == "g") "g" else "pcs"
+            }
         }
     }
 
@@ -166,9 +194,6 @@ fun FoodModifDialog(
                 Spacer(modifier = Modifier.height(AppSpacing.S))
 
                 // Etat unité
-
-
-
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
@@ -194,31 +219,51 @@ fun FoodModifDialog(
                     Spacer(modifier = Modifier.width(AppSpacing.S))
 
                     // Les deux boutons
-                    Row(
-                        modifier = Modifier
-                            .height(AppSpacing.XXXLL)
-                            .background(
-                                color = Color.White,
-                                shape = AppShapes.CornerM
+                    if (unitOptions.size == 1 && unitOptions[0] == "cl") {
+                        // Bouton unique pour "cl"
+                        Box(
+                            modifier = Modifier
+                                .width(AppSpacing.XXXXL * 2) // Largeur double pour le bouton unique
+                                .height(AppSpacing.XXXLL)
+                                .background(
+                                    color = AppColors.MainGreen, // Toujours sélectionné
+                                    shape = AppShapes.CornerM
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "cl",
+                                color = Color.White
                             )
-                    ) {
-                        unitOptions.forEach { unit ->
-                            val isSelected = selectedUnit == unit
-                            Box(
-                                modifier = Modifier
-                                    .width(AppSpacing.XXXXL)
-                                    .fillMaxHeight()
-                                    .background(
-                                        color = if (isSelected) AppColors.MainGreen else Color.Transparent,
-                                        shape = AppShapes.CornerM
-                                    )
-                                    .clickable { selectedUnit = unit },
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = if (unit == "Gramme") "g" else "Pce",
-                                    color = if (isSelected) Color.White else Color.Black
+                        }
+                    } else {
+                        // Deux boutons pour g/pcs
+                        Row(
+                            modifier = Modifier
+                                .height(AppSpacing.XXXLL)
+                                .background(
+                                    color = Color.White,
+                                    shape = AppShapes.CornerM
                                 )
+                        ) {
+                            unitOptions.forEach { unit ->
+                                val isSelected = selectedUnit == unit
+                                Box(
+                                    modifier = Modifier
+                                        .width(AppSpacing.XXXXL)
+                                        .fillMaxHeight()
+                                        .background(
+                                            color = if (isSelected) AppColors.MainGreen else Color.Transparent,
+                                            shape = AppShapes.CornerM
+                                        )
+                                        .clickable { selectedUnit = unit },
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Text(
+                                        text = if (unit == "g") "g" else "Pce",
+                                        color = if (isSelected) Color.White else Color.Black
+                                    )
+                                }
                             }
                         }
                     }
@@ -344,11 +389,11 @@ fun FoodModifDialog(
                                     val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
                                     val newDetail = FoodDetail(
-                                        id = foodToEdit?.foodDetail?.id ?: 0, // garde l'id existant si on modifie
+                                        id = foodToEdit?.foodDetail?.id ?: 0,
                                         foodId = selectedFoodId!!,
                                         quantity = quantityText.toIntOrNull() ?: 0,
                                         price = priceText.toFloatOrNull(),
-                                        isWeight = selectedUnit == "Gramme",
+                                        unit = selectedUnit,
                                         buyingTime = sdf.parse(buyingDateText) ?: Date(),
                                         expirationTime = sdf.parse(expirationDateText) ?: Date()
                                     )
