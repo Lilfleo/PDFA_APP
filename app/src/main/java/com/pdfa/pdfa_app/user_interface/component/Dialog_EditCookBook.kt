@@ -118,15 +118,17 @@ fun EditCookbook(
                         verticalArrangement = Arrangement.spacedBy(AppSpacing.XS)
                     ) {
                         cookbooks.forEach { (cookbook, recipes) ->
-                            EditSection(
-                                name = cookbook.name,
-                                onDelete = {
-                                    cookbookViewModel.deleteCookbook(cookbook)
-                                },
-                                onValidate = { newName ->
-                                    cookbookViewModel.updateCookbook(cookbook, newName)
-                                },
+                            if(cookbook.isDeletable) {
+                                EditSection(
+                                    name = cookbook.name,
+                                    onDelete = {
+                                        cookbookViewModel.deleteCookbook(cookbook)
+                                    },
+                                    onValidate = { newName ->
+                                        cookbookViewModel.updateCookbook(cookbook, newName)
+                                    },
                                 )
+                            }
                         }
                     }
                     ScrollbarPersonnalisee(

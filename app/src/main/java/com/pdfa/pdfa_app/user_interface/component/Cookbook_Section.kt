@@ -62,10 +62,10 @@ fun CookbookSection(
             ) {
                 Row(
                 ){
-                    Icon(
-                        imageVector = Icons.Outlined.Star,
-                        contentDescription = "Icon",
-                    )
+//                    Icon(
+//                        imageVector = Icons.Outlined.Star,
+//                        contentDescription = "Icon",
+//                    )
                     Text(
                         text = cookbookName,
                         style = AppTypo.SubTitle,

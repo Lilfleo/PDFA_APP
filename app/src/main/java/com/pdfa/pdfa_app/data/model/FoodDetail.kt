@@ -27,8 +27,8 @@ data class FoodDetail(
     @ColumnInfo(name = "food_id")
     val foodId: Int,
     val quantity: Int,
-    @ColumnInfo(name = "is_weight")
-    val isWeight: Boolean,
+    @ColumnInfo(name = "unit")
+    val unit: String,
     val price: Float?,
     @ColumnInfo(name = "buying_time")
     val buyingTime: Date,

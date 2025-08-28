@@ -37,7 +37,7 @@ class RecipeToShoplistService @Inject constructor(
 
     private suspend fun addIngredientToShoplist(ingredient: Ingredient) {
         // 1. Chercher ou créer le Food
-        val food = findOrCreateFood(ingredient.name)
+        val food = findOrCreateFood(ingredient.name, ingredient.unit)
         Log.d("RecipeToShoplist", "🍎 Food trouvé/créé: ${food.name} (ID: ${food.id})")
 
         // 2. Vérifier si l'item existe déjà dans la shoplist
@@ -66,7 +66,7 @@ class RecipeToShoplistService @Inject constructor(
         }
     }
 
-    private suspend fun findOrCreateFood(ingredientName: String): Food {
+    private suspend fun findOrCreateFood(ingredientName: String, ingredientUnit: String): Food {
         Log.d("RecipeToShoplist", "🔍 Recherche de l'aliment: $ingredientName")
 
         // Recherche par nom exact d'abord
@@ -85,10 +85,15 @@ class RecipeToShoplistService @Inject constructor(
         }
 
         // Créer un nouveau Food si aucun n'est trouvé
+        val formattedName = ingredientName.trim().replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase() else it.toString()
+        }
         Log.d("RecipeToShoplist", "➕ Création d'un nouvel aliment: $ingredientName")
         val newFood = Food(
-            name = ingredientName,
-            link = "",
+            name = formattedName,
+            link = null,
+            category = "Autre",
+            unit = listOf(ingredientUnit),
             caloriesPerKg = 0,
             caloriesPerUnit = 0
         )

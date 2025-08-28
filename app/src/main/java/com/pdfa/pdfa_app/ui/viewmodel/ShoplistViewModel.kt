@@ -132,36 +132,46 @@ class ShoplistViewModel @Inject constructor(
                     val food = shoplistItem.food
 
                     if (food != null) {
-                        // Créer le FoodDetail
-                        val newDetail = FoodDetail(
-                            foodId = shoplist.foodId,
-                            quantity = shoplist.quantity,
-                            isWeight = true,
-                            price = null,
-                            buyingTime = Date(), // Date actuelle
-                            expirationTime = null
-                        )
-
                         // Vérifier si un FoodDetail existe déjà pour ce food
                         val existing = foodDetailRepository.getByFoodId(shoplist.foodId)
 
                         if (existing != null) {
-                            // Fusionner les quantités
+                            // Fusionner les quantités avec conversion d'unité si nécessaire
+                            val existingUnit = existing.unit
+                            val newQuantity = shoplist.quantity
+                            val newUnit = shoplist.quantityType
+
+                            // Convertir la nouvelle quantité vers l'unité existante
+                            val convertedQuantity = convertQuantity(newQuantity, newUnit, existingUnit)
+
+                            Log.d("ShoplistViewModel", "🔄 Conversion: $newQuantity $newUnit vers $convertedQuantity $existingUnit")
+
                             val mergedDetail = existing.copy(
-                                quantity = existing.quantity + newDetail.quantity,
-                                price = newDetail.price ?: existing.price,
-                                isWeight = newDetail.isWeight,
-                                buyingTime = newDetail.buyingTime,
-                                expirationTime = newDetail.expirationTime ?: existing.expirationTime
+                                quantity = existing.quantity + convertedQuantity,
+                                price = existing.price, // On garde le prix existant
+                                unit = existingUnit, // On garde l'unité existante (prioritaire)
+                                buyingTime = Date(), // Date actuelle
+                                expirationTime = existing.expirationTime // On garde l'expiration existante
                             )
+
                             foodDetailRepository.update(mergedDetail)
                             updatedCount++
-                            Log.d("ShoplistViewModel", "✅ Quantité mise à jour pour ${food.name}: ${existing.quantity} + ${newDetail.quantity}")
+                            Log.d("ShoplistViewModel", "✅ Quantité mise à jour pour ${food.name}: ${existing.quantity} + $convertedQuantity $existingUnit")
+
                         } else {
-                            // Créer un nouveau FoodDetail
+                            // Créer un nouveau FoodDetail avec l'unité de la shoplist
+                            val newDetail = FoodDetail(
+                                foodId = shoplist.foodId,
+                                quantity = shoplist.quantity,
+                                unit = shoplist.quantityType, // Première unité = prioritaire
+                                price = null,
+                                buyingTime = Date(),
+                                expirationTime = null
+                            )
+
                             foodDetailRepository.insert(newDetail)
                             addedCount++
-                            Log.d("ShoplistViewModel", "✅ Nouvel élément ajouté au frigo: ${food.name}")
+                            Log.d("ShoplistViewModel", "✅ Nouvel élément ajouté au frigo: ${food.name} - ${newDetail.quantity} ${newDetail.unit}")
                         }
 
                         // Supprimer de la shoplist
@@ -194,6 +204,34 @@ class ShoplistViewModel @Inject constructor(
             }
         }
     }
+
+    // Même fonction de conversion que précédemment (à ajouter si elle n'existe pas déjà)
+    private fun convertQuantity(quantity: Int, fromUnit: String, toUnit: String): Int {
+        if (fromUnit == toUnit) return quantity
+
+        // Ratio fixe : 1 pcs = 50g = 5cl
+        val ratios = mapOf(
+            "g" to 1,
+            "pcs" to 50,
+            "cl" to 10,
+            "ml" to 1,
+            "l" to 1000,
+            "kg" to 1000,
+            "unité" to 50
+        )
+
+        val fromRatio = ratios[fromUnit] ?: 1
+        val toRatio = ratios[toUnit] ?: 1
+
+        // Convertir vers grammes puis vers l'unité cible
+        val inGrams = quantity * fromRatio
+        val convertedQuantity = inGrams / toRatio
+
+        Log.d("ShoplistViewModel", "📊 Conversion: $quantity $fromUnit = $inGrams g = $convertedQuantity $toUnit")
+
+        return convertedQuantity.coerceAtLeast(1)
+    }
+
 
     fun clearMoveToFridgeResult() {
         _moveToFridgeResult.value = null
