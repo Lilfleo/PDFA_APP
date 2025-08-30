@@ -194,4 +194,10 @@ class CookbookRepository @Inject constructor(
         }
     }
 
+    suspend fun searchUserRecipes(query: String): List<Recipe> {
+        return recipeDao.searchUserRecipes(query)
+    }
+
+    suspend fun getRecentRecipes(limit: Int): List<Recipe> = recipeDao.getRecentRecipes(limit)
+
 }

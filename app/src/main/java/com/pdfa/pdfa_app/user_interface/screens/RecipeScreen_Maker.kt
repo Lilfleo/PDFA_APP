@@ -50,6 +50,7 @@ fun RecipeMakerScreen(
     val isLoading by viewModel.isLoadingWithFood
     val isGeneratingMore by viewModel.isGeneratingMoreWithFood.collectAsState()
     val error by viewModel.errorWithFood
+    val message by viewModel.messageWithFood
 
     val scrollState = rememberScrollState()
     var showDialog by remember { mutableStateOf(false) }
@@ -126,6 +127,31 @@ fun RecipeMakerScreen(
                                 textAlign = TextAlign.Center
                             )
                         }
+                    }
+                }
+            }
+
+            message != null -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(32.dp)
+                    ) {
+                        Text(
+                            text = "⚠\uFE0F Attention",
+                            style = AppTypo.Title,
+                            color = AppColors.MainGreen
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = message!!,
+                            style = AppTypo.Body,
+                            color = AppColors.MainGreen,
+                            textAlign = TextAlign.Center
+                        )
                     }
                 }
             }

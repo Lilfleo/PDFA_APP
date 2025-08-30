@@ -53,6 +53,7 @@ fun RecipeListScreen(
     val isLoading by viewModel.isLoadingWithoutFood
     val isGeneratingMore by viewModel.isGeneratingMoreWithoutFood.collectAsState()
     val error by viewModel.errorWithoutFood
+    val message by viewModel.messageWitouthFood
 
     val scrollState = rememberScrollState()
     var showDialog by remember { mutableStateOf(false) }
@@ -114,6 +115,31 @@ fun RecipeListScreen(
                             text = error!!,
                             style = AppTypo.Body,
                             color = Color.Red,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+
+            message != null && recipesFromCookbook.isEmpty() -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(32.dp)
+                    ) {
+                        Text(
+                            text = "⚠\uFE0F Attention",
+                            style = AppTypo.Title,
+                            color = AppColors.MainGreen
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = message!!,
+                            style = AppTypo.Body,
+                            color = AppColors.MainGreen,
                             textAlign = TextAlign.Center
                         )
                     }

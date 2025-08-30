@@ -127,7 +127,7 @@ fun MainScreen() {
                     .fillMaxSize()
                     .padding(padding)
             ) {
-                composable(Screen.Home.rout) { HomeScreen() }
+                composable(Screen.Home.rout) { HomeScreen(navController) }
                 composable(Screen.Fridge.rout) {
                     FridgeScreen(onAddClick = {
                         println("Bouton Add cliqué") })

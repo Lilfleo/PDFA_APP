@@ -29,6 +29,22 @@ interface RecipeDao {
 """)
     fun getRecipesFromCookbookByName(cookbookName: String): Flow<List<Recipe>>
 
+    @Query("""
+    SELECT DISTINCT r.* FROM recipe r
+    INNER JOIN cookbook_recipe_cross_ref cr ON r.id = cr.recipeId
+    INNER JOIN cookbook c ON cr.cookbookId = c.id
+    WHERE (r.title LIKE '%' || :query || '%' 
+           OR r.subTitle LIKE '%' || :query || '%'
+           OR r.ingredients LIKE '%' || :query || '%')
+    ORDER BY r.title ASC
+""")
+    suspend fun searchUserRecipes(query: String): List<Recipe>
+
+    @Query("""
+    SELECT * FROM recipe 
+    LIMIT :limit
+""")
+    suspend fun getRecentRecipes(limit: Int = 10): List<Recipe>
 
 }
 
