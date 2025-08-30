@@ -30,21 +30,28 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.pdfa.pdfa_app.data.model.Allergy
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppShapes
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
+import com.pdfa.pdfa_app.ui.viewmodel.CookbookViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.ProfilViewModel
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
 import com.pdfa.pdfa_app.user_interface.component.AllergiesDialog
 import com.pdfa.pdfa_app.user_interface.component.DietDialog
 import com.pdfa.pdfa_app.user_interface.component.EditProfil
 import com.pdfa.pdfa_app.user_interface.component.EditTag
+import com.pdfa.pdfa_app.user_interface.component.RecipeCarousel
 import com.pdfa.pdfa_app.user_interface.component.UstensilDialog
+import com.pdfa.pdfa_app.user_interface.rooting.Screen
 
 @Composable
 fun HomeScreen(
+    navController: NavController,
     profilViewModel: ProfilViewModel = hiltViewModel(),
+    cookbookViewModel: CookbookViewModel = hiltViewModel(),
+    recipeViewModel: RecipeViewModel = hiltViewModel()
 ){
 
     var openTagDialog by remember { mutableStateOf(false) }
@@ -54,6 +61,8 @@ fun HomeScreen(
 
     val profil by profilViewModel.profil.collectAsState(initial = null)
     var showProfilDialog by remember { mutableStateOf(false) }
+
+    val recentRecipes by cookbookViewModel.recentRecipes.collectAsState()
 
     LazyColumn(
         modifier = Modifier
@@ -121,16 +130,13 @@ fun HomeScreen(
 
         item {
             // Carte vide (placeholder)
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(120.dp),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-            ) {
-                // Contenu vide pour l'instant
-            }
+            RecipeCarousel(
+                recipes = recentRecipes,
+                onRecipeClick = { recipe ->
+                    recipeViewModel.selectRecipe(recipe)
+                    navController.navigate(Screen.RecipeDetailScreen.rout)
+                }
+            )
         }
 
         item {

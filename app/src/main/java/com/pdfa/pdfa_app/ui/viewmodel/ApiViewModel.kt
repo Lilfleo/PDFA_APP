@@ -91,6 +91,12 @@ class RecipeViewModel @Inject constructor(
     private val _errorWithoutFood = mutableStateOf<String?>(null)
     val errorWithoutFood: State<String?> = _errorWithoutFood
 
+    private val _messageWithFood = mutableStateOf<String?>(null)
+    val messageWithFood: State<String?> = _messageWithFood
+
+    private val _messageWithoutFood = mutableStateOf<String?>(null)
+    val messageWitouthFood: State<String?> = _messageWithoutFood
+
     //Recette selectionner
     private val _selectedRecipe = mutableStateOf<com.pdfa.pdfa_app.data.model.Recipe?>(null)
     val selectedRecipe: State<com.pdfa.pdfa_app.data.model.Recipe?> = _selectedRecipe
@@ -365,10 +371,10 @@ class RecipeViewModel @Inject constructor(
             _errorWithFood.value = null
 
             if(requestData.prompt.ingredients.isEmpty()){
-                _errorWithFood.value = "Votre frigo est vide. Remplis le!"
+                _messageWithFood.value = "Votre frigo est vide. Remplis le!"
                 _isLoadingWithFood.value = false
             } else if (requestData.prompt.utensils.isEmpty()) {
-                _errorWithFood.value = "Vous n'avez pas d'ustensile. Difficile pour cuisiner!"
+                _messageWithFood.value = "Vous n'avez pas d'ustensile. Difficile pour cuisiner!"
                 _isLoadingWithFood.value = false
             } else {
                 Log.d(TAG, "🔄 Données envoyées: $requestData")
@@ -413,7 +419,7 @@ class RecipeViewModel @Inject constructor(
 
             Log.d(TAG, "🔄 Données envoyées: $requestData")
             if (requestData.prompt.utensils.isEmpty()){
-                _errorWithoutFood.value = "Tu n'as pas d'ustensile. Difficile pour cuisiner! Pense à ajouter des tags aussi "
+                _messageWithoutFood.value = "Tu n'as pas d'ustensile. Difficile pour cuisiner! Pense à ajouter des tags aussi "
                 _isLoadingWithoutFood.value = false
             } else {
                 try {

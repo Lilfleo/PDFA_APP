@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -73,54 +74,59 @@ fun ShoplistListScreen(
             .fillMaxWidth()
             .background(AppColors.Primary)
     ) {
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(scrollState)
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(AppSpacing.XS),
-            ) {
-                Text(
-                    text = "Ici, retrouve ta liste de course réalisée avec les recettes que tu as choisi",
-                    style = AppTypo.SubTitle,
-                    color = Color.Black
-                )
-            }
 
             // Affichage des données
             if (shoplistWithFood.isEmpty()) {
-                Row(
+                Box(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxSize()
                         .padding(AppSpacing.M),
-                    horizontalArrangement = Arrangement.Center
+                    contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = "Ta liste de course est vide.\nAjoute des recettes pour commencer !",
-                        style = AppTypo.Body,
-                        color = AppColors.MainGrey
-                    )
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(32.dp)
+                    ) {
+                        Text(
+                            text = "⚠\uFE0F Attention",
+                            style = AppTypo.Title,
+                            color = AppColors.MainGreen
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Ta liste de course est vide.\nAjoute des recettes à ta liste depuis l'onglet Recette!",
+                            style = AppTypo.Body,
+                            color = AppColors.MainGreen,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             } else {
-                shoplistWithFood.forEach { shoplistItem ->
-                    val foodName = shoplistItem.food?.name ?: "Aliment inconnu"
-                    val quantity = shoplistItem.shoplist.quantity
-                    val unit = shoplistItem.shoplist.quantityType
-                    val isSelected = selectedItems.contains(shoplistItem.shoplist.id)
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(scrollState)
+                ) {
+                    shoplistWithFood.forEach { shoplistItem ->
+                        val foodName = shoplistItem.food.name
+                        val quantity = shoplistItem.shoplist.quantity
+                        val unit = shoplistItem.shoplist.quantityType
+                        val isSelected = selectedItems.contains(shoplistItem.shoplist.id)
 
-                    ShoplistElement(
-                        name = foodName,
-                        quantity = quantity,
-                        unit = unit,
-                        isSelected = isSelected,
-                        onSelectionChanged = { isChecked ->
-                            shoplistViewModel.toggleItemSelection(shoplistItem.shoplist.id)
-                        }
-                    )
+                        ShoplistElement(
+                            name = foodName,
+                            quantity = quantity,
+                            unit = unit,
+                            isSelected = isSelected,
+                            onSelectionChanged = { isChecked ->
+                                shoplistViewModel.toggleItemSelection(shoplistItem.shoplist.id)
+                            }
+                        )
+                    }
                 }
             }
         }

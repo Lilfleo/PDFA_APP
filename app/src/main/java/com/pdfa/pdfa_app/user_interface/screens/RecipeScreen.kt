@@ -67,7 +67,7 @@ fun RecipeScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Pour mes recettes",
+                    text = "Avec mes ingrédients",
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )

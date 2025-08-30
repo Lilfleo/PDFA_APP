@@ -15,7 +15,8 @@ import javax.inject.Inject
 class CookbookViewModel @Inject constructor(
     private val cookbookRepository: CookbookRepository,
     private val shoplistRepository: ShoplistRepository,
-    private val foodRepository: FoodRepository
+    private val foodRepository: FoodRepository,
+    private val recipeRepository: CookbookRepository
 ) : ViewModel() {
 
     // État des cookbooks utilisateur (pas isInternal)
@@ -238,15 +239,54 @@ class CookbookViewModel @Inject constructor(
     }
 
 
-//    fun isRecipeInCookbook(cookbookId: Int, recipeId: Int): Boolean {
-//        viewModelScope.launch {
-//            try {
-//                val isRecipe = cookbookRepository.isRecipeInCookbook(cookbookId, recipeId)
-//            } catch (e: Exception) {
-//                _error.value = "Erreur lors du chargement du cookbook: ${e.message}"
-//            }
-//        }
-//    }
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery = _searchQuery.asStateFlow()
+
+    private val _searchResults = MutableStateFlow<List<Recipe>>(emptyList())
+    val searchResults = _searchResults.asStateFlow()
+
+    fun updateSearchQuery(query: String) {
+        _searchQuery.value = query
+        if (query.isBlank()) {
+            _searchResults.value = emptyList()
+        } else {
+            searchRecipes(query)
+        }
+    }
+
+    private fun searchRecipes(query: String) {
+        viewModelScope.launch {
+            try {
+                val results = recipeRepository.searchUserRecipes(query)
+                _searchResults.value = results
+            } catch (e: Exception) {
+                _searchResults.value = emptyList()
+            }
+        }
+    }
+
+    private val _recentRecipes = MutableStateFlow<List<Recipe>>(emptyList())
+    val recentRecipes = _recentRecipes.asStateFlow()
+
+    init {
+        loadRecentRecipes()
+    }
+
+    private fun loadRecentRecipes() {
+        viewModelScope.launch {
+            try {
+                // Récupère les 10 dernières recettes créées
+                val recipes = recipeRepository.getRecentRecipes(limit = 10)
+                _recentRecipes.value = recipes
+            } catch (e: Exception) {
+                _recentRecipes.value = emptyList()
+            }
+        }
+    }
+
+    fun refreshRecentRecipes() {
+        loadRecentRecipes()
+    }
 
     // Effacer les erreurs
     fun clearError() {
