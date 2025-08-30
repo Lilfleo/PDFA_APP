@@ -369,6 +369,7 @@ class RecipeViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoadingWithFood.value = true
             _errorWithFood.value = null
+            _messageWithFood.value = null
 
             if(requestData.prompt.ingredients.isEmpty()){
                 _messageWithFood.value = "Votre frigo est vide. Remplis le!"
@@ -416,6 +417,7 @@ class RecipeViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoadingWithoutFood.value = true
             _errorWithoutFood.value = null
+            _messageWithoutFood.value = null
 
             Log.d(TAG, "🔄 Données envoyées: $requestData")
             if (requestData.prompt.utensils.isEmpty()){
