@@ -15,17 +15,17 @@
     "isDeletable": false
   },
   {
-    "name": "History",
+    "name": "Historique",
     "isInternal": false,
     "isDeletable": false
   },
   {
-    "name": "Favories",
+    "name": "Favoris",
     "isInternal": false,
     "isDeletable": false
   },
   {
-    "name": "Mes repas de la semaines",
+    "name": "Mes Boissons",
     "isInternal": false,
     "isDeletable": true
 

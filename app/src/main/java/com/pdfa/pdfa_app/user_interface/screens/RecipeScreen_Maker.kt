@@ -269,7 +269,7 @@ fun RecipeMakerScreen(
                         }
                     } else {
                         Text(
-                            text = if (savedRecipes.isEmpty()) "Créer des recettes" else "Plus de recettes",
+                            text = if (savedRecipes.isEmpty()) "Générer des recettes" else "Plus de recettes",
                             style = AppTypo.SubTitle,
                             color = Color.White
                         )

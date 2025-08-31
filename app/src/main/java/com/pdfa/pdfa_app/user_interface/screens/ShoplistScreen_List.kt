@@ -92,13 +92,14 @@ fun ShoplistListScreen(
                         modifier = Modifier.padding(32.dp)
                     ) {
                         Text(
-                            text = "⚠\uFE0F Attention",
-                            style = AppTypo.Title,
-                            color = AppColors.MainGreen
+                            text = "Ta liste de course\nest vide",
+                            style = AppTypo.SubTitle2,
+                            color = AppColors.MainGreen,
+                            textAlign = TextAlign.Center
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Ta liste de course est vide.\nAjoute des recettes à ta liste depuis l'onglet Recette!",
+                            text = "Ajoute des recettes à ta liste depuis l'onglet Recette!",
                             style = AppTypo.Body,
                             color = AppColors.MainGreen,
                             textAlign = TextAlign.Center

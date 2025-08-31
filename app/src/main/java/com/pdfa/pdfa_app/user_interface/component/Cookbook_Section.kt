@@ -1,5 +1,6 @@
 package com.pdfa.pdfa_app.user_interface.component
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
@@ -99,21 +100,26 @@ fun CookbookSection(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .height(100.dp)
                             .padding(AppSpacing.M),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(
-                            text = "Rien ici...",
-                            style = AppTypo.Title,
-                            color = AppColors.MainGreen
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = "Pas encore de recette dans cette section du Cookbook",
-                            style = AppTypo.Body,
-                            color = AppColors.MainGreen,
-                            textAlign = TextAlign.Center
-                        )
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "Rien ici...",
+                                style = AppTypo.SubTitle2,
+                                color = AppColors.MainGreen
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = "Pas encore de recette dans cette section du Cookbook",
+                                style = AppTypo.Body,
+                                color = AppColors.MainGreen,
+                                textAlign = TextAlign.Center
+                            )
+                        }
                     }
                 } else {
                     Column(

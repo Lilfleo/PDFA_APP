@@ -144,8 +144,8 @@ class CookbookRepository @Inject constructor(
             // Récupérer les cookbooks source et destination
             val recipeWithFood = getCookbookByName("RecipeWithFood")
             val recipeWithoutFood = getCookbookByName("RecipeWithoutFood")
-            val history = getCookbookByName("History")
-
+            val history = getCookbookByName("Historique")
+            Log.e("CookbookRepository", "$history")
             if (history == null) {
                 Log.e("CookbookRepository", "Cookbook 'History' introuvable")
                 return

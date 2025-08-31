@@ -37,13 +37,13 @@ class ShoplistViewModel @Inject constructor(
     // Flow de la liste de course
     val shoplistWithFood = shoplistRepository.allFoodDetail
 
-    fun addRecipeToShoplist(recipe: com.pdfa.pdfa_app.data.model.Recipe) {
+    fun addRecipeToShoplist(recipe: com.pdfa.pdfa_app.data.model.Recipe, nbPeople: Int) {
         viewModelScope.launch {
             try {
                 _isAddingToShoplist.value = true
                 _addToShoplistResult.value = null
 
-                recipeToShoplistService.addRecipeToShoplist(recipe)
+                recipeToShoplistService.addRecipeToShoplist(recipe, nbPeople)
 
                 _addToShoplistResult.value = "✅ ${recipe.ingredients.size} ingrédients ajoutés à la liste de course"
             } catch (e: Exception) {
