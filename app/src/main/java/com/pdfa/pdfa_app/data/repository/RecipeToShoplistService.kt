@@ -15,7 +15,7 @@ class RecipeToShoplistService @Inject constructor(
     private val cookbookRepository: CookbookRepository
 ) {
 
-    suspend fun addRecipeToShoplist(recipe: com.pdfa.pdfa_app.data.model.Recipe) {
+    suspend fun addRecipeToShoplist(recipe: com.pdfa.pdfa_app.data.model.Recipe, nbPeople: Int) {
         Log.d("RecipeToShoplist", "🔄 Ajout de ${recipe.ingredients.size} ingrédients à la liste")
 
         val cookbookShoplist = cookbookRepository.getCookbookByName("RecipeShoplist")
@@ -26,7 +26,7 @@ class RecipeToShoplistService @Inject constructor(
 
         recipe.ingredients.forEach { ingredient ->
             try {
-                addIngredientToShoplist(ingredient)
+                addIngredientToShoplist(ingredient, nbPeople)
                 Log.d("RecipeToShoplist", "✅ Ingrédient ajouté: ${ingredient.name}")
             } catch (e: Exception) {
                 Log.e("RecipeToShoplist", "❌ Erreur pour ${ingredient.name}: ${e.message}", e)
@@ -35,7 +35,7 @@ class RecipeToShoplistService @Inject constructor(
         }
     }
 
-    private suspend fun addIngredientToShoplist(ingredient: Ingredient) {
+    private suspend fun addIngredientToShoplist(ingredient: Ingredient, nbPeople: Int) {
         // 1. Chercher ou créer le Food
         val food = findOrCreateFood(ingredient.name, ingredient.unit)
         Log.d("RecipeToShoplist", "🍎 Food trouvé/créé: ${food.name} (ID: ${food.id})")
@@ -43,7 +43,7 @@ class RecipeToShoplistService @Inject constructor(
         // 2. Vérifier si l'item existe déjà dans la shoplist
         val existingShoplistItem = shoplistRepository.findByFoodId(food.id)
 
-        val quantity = ingredient.quantity?.toInt() ?: 1
+        val quantity = (ingredient.quantity?.toInt() ?: 1) * nbPeople
         val unit = if (ingredient.unit.isBlank()) "unité" else ingredient.unit
 
         if (existingShoplistItem != null) {

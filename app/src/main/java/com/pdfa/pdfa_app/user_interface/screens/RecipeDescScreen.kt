@@ -375,7 +375,7 @@ fun RecipeDetailScreen(
                             .clip(AppShapes.CornerL)
                             .background(AppColors.MainGreen)
                             .clickable {
-                                shoplistViewModel.addRecipeToShoplist(recipe)
+                                shoplistViewModel.addRecipeToShoplist(recipe, nbPeople)
                                 navController.navigate(Screen.Recipe.rout)
                             }
                     ) {

@@ -237,7 +237,7 @@ fun RecipeParameter(
 
                 ) {
                     Text(
-                        text = "Nouvelle les recettes",
+                        text = "Générer",
                         style = AppTypo.SubTitle,
                         color = Color.White
                     )

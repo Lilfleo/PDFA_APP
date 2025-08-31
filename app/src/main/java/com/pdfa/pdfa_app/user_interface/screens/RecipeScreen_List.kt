@@ -120,31 +120,31 @@ fun RecipeListScreen(
                     }
                 }
             }
-//
-//            message != null && recipesFromCookbook.isEmpty() -> {
-//                Box(
-//                    modifier = Modifier.fillMaxSize(),
-//                    contentAlignment = Alignment.Center
-//                ) {
-//                    Column(
-//                        horizontalAlignment = Alignment.CenterHorizontally,
-//                        modifier = Modifier.padding(32.dp)
-//                    ) {
-//                        Text(
-//                            text = "⚠\uFE0F Attention",
-//                            style = AppTypo.Title,
-//                            color = AppColors.MainGreen
-//                        )
-//                        Spacer(modifier = Modifier.height(8.dp))
-//                        Text(
-//                            text = message!!,
-//                            style = AppTypo.Body,
-//                            color = AppColors.MainGreen,
-//                            textAlign = TextAlign.Center
-//                        )
-//                    }
-//                }
-//            }
+
+            message != null && recipesFromCookbook.isEmpty() -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(32.dp)
+                    ) {
+                        Text(
+                            text = "⚠\uFE0F Attention",
+                            style = AppTypo.Title,
+                            color = AppColors.MainGreen
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = message!!,
+                            style = AppTypo.Body,
+                            color = AppColors.MainGreen,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
 
             // ✅ Affichage des recettes (même s'il y a une erreur mais qu'on a des recettes)
             recipesFromCookbook.isNotEmpty() -> {
@@ -287,7 +287,7 @@ fun RecipeListScreen(
                         }
                     } else {
                         Text(
-                            text = if (recipesFromCookbook.isEmpty()) "Créer des recettes" else "Plus de recettes",
+                            text = if (recipesFromCookbook.isEmpty()) "Générer des recettes" else "Plus de recettes",
                             style = AppTypo.SubTitle,
                             color = Color.White
                         )
