@@ -27,7 +27,7 @@ class FoodViewModel @Inject constructor(
         viewModelScope.launch {
             repository.allFood.collect { list ->
                 println("⚠️ FOOD_VIEWMODEL : reçu ${list.size} aliments")
-                list.forEach { println("🍎 ${it.name}") }
+                list.forEach { }
             }
         }
     }
