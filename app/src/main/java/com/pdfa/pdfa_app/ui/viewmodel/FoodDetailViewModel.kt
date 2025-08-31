@@ -120,9 +120,19 @@ class FoodDetailViewModel @Inject constructor(
     suspend fun removeRecipeIngredients(ingredients: List<Ingredient>): Boolean {
         return try {
             var allSuccess = true
-
             ingredients.forEach { ingredient ->
-                val food = foodRepository.findByName(ingredient.name.replaceFirstChar { it.uppercase() })
+                // Normaliser le nom de l'ingrédient
+                val normalizedName = ingredient.name.lowercase().trim()
+
+                // Essayer d'abord avec findByName (optimisé)
+                var food = foodRepository.findByName(ingredient.name.replaceFirstChar { it.uppercase() })
+
+                // Si pas trouvé, utiliser la recherche par contenu
+                if (food == null) {
+                    food = foodRepository.findByNameContaining(normalizedName)
+                    Log.d("RecipePrep", "✅ Trouvé par correspondance: ${food?.name} pour ingrédient: ${ingredient.name}")
+                }
+
                 if (food != null) {
                     val foodDetailInFridge = repository.getByFoodId(food.id)
                     if (foodDetailInFridge != null) {
@@ -132,9 +142,7 @@ class FoodDetailViewModel @Inject constructor(
                             ingredient.unit,
                             foodDetailInFridge.unit
                         )
-
                         val newQuantity = foodDetailInFridge.quantity - quantityToRemove
-
                         if (newQuantity <= 0) {
                             // Plus d'ingrédient, supprimer complètement
                             repository.delete(foodDetailInFridge)

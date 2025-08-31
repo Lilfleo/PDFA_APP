@@ -2013,7 +2013,7 @@
         "expirationTime": null
     },
     {
-        "name": "Ail à col souple",
+        "name": "Ail",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2233,7 +2233,7 @@
         "expirationTime": null
     },
     {
-        "name": "Chou chinois (Napa cabbage)",
+        "name": "Chou chinois",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2255,7 +2255,7 @@
         "expirationTime": null
     },
     {
-        "name": "Chou cœur-de-bœuf (Oxheart)",
+        "name": "Chou cœur-de-bœuf",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2277,7 +2277,7 @@
         "expirationTime": null
     },
     {
-        "name": "Chou noir (cavolo nero)",
+        "name": "Chou noir",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2354,7 +2354,7 @@
         "expirationTime": null
     },
     {
-        "name": "Chénopode blanc (Lambsquarters)",
+        "name": "Chénopode blanc",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2365,7 +2365,7 @@
         "expirationTime": null
     },
     {
-        "name": "Ciboule (Welsh onion)",
+        "name": "Ciboule",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2387,7 +2387,7 @@
         "expirationTime": null
     },
     {
-        "name": "Courge cireuse (Wax gourd)",
+        "name": "Courge cireuse",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2409,7 +2409,7 @@
         "expirationTime": null
     },
     {
-        "name": "Courge gland (Acorn squash)",
+        "name": "Courge gland",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2420,7 +2420,7 @@
         "expirationTime": null
     },
     {
-        "name": "Courge musquée (Butternut squash)",
+        "name": "Courge musquée",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2431,7 +2431,7 @@
         "expirationTime": null
     },
     {
-        "name": "Courge patisson (Sunburst squash)",
+        "name": "Courge patisson",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2783,7 +2783,7 @@
         "expirationTime": null
     },
     {
-        "name": "Légumes bulbes (famille oignon)",
+        "name": "Légumes bulbes",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2882,7 +2882,7 @@
         "expirationTime": null
     },
     {
-        "name": "Oignon (var.)",
+        "name": "Oignons",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -5717,17 +5717,6 @@
         ],
         "caloriesPerKg": 600,
         "caloriesPerUnit": 60,
-        "expirationTime": null
-    },
-    {
-        "name": "Lait humain",
-        "link": null,
-        "category": "Produits laitiers",
-        "unit": [
-            "cl"
-        ],
-        "caloriesPerKg": 700,
-        "caloriesPerUnit": 70,
         "expirationTime": null
     },
     {
