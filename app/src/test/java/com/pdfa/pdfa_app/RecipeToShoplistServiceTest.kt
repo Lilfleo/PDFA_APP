@@ -79,12 +79,12 @@ class RecipeToShoplistServiceTest {
         coEvery { shoplistRepository.insertShoplist(any()) } just Runs
 
         // When
-        recipeToShoplistService.addRecipeToShoplist(recipe)
+        recipeToShoplistService.addRecipeToShoplist(recipe, 2)
 
         // Then
         coVerify { cookbookRepository.addRecipeToCookbook(1, 1) }
-        coVerify { shoplistRepository.insertShoplist(match { it.foodId == 1 && it.quantity == 200 }) }
-        coVerify { shoplistRepository.insertShoplist(match { it.foodId == 2 && it.quantity == 3 }) }
+        coVerify { shoplistRepository.insertShoplist(match { it.foodId == 1 && it.quantity == 400 }) } // 200 * 2 people
+        coVerify { shoplistRepository.insertShoplist(match { it.foodId == 2 && it.quantity == 6 }) } // 3 * 2 people
     }
 
     @Test
@@ -109,10 +109,10 @@ class RecipeToShoplistServiceTest {
         coEvery { shoplistRepository.updateShoplist(any()) } just Runs
 
         // When
-        recipeToShoplistService.addRecipeToShoplist(recipe)
+        recipeToShoplistService.addRecipeToShoplist(recipe, 2)
 
         // Then
-        coVerify { shoplistRepository.updateShoplist(match { it.quantity == 150 && it.quantityType == "g" }) }
+        coVerify { shoplistRepository.updateShoplist(match { it.quantity == 250 && it.quantityType == "g" }) } // 50 existing + (100 * 2 people)
         coVerify(exactly = 0) { shoplistRepository.insertShoplist(any()) }
     }
 
@@ -140,11 +140,11 @@ class RecipeToShoplistServiceTest {
         coEvery { shoplistRepository.insertShoplist(any()) } just Runs
 
         // When
-        recipeToShoplistService.addRecipeToShoplist(recipe)
+        recipeToShoplistService.addRecipeToShoplist(recipe, 2)
 
         // Then
         coVerify { foodRepository.insert(match { it.name == "Dragon Fruit" && it.category == "Autre" }) }
-        coVerify { shoplistRepository.insertShoplist(match { it.foodId == 99 && it.quantity == 1 }) }
+        coVerify { shoplistRepository.insertShoplist(match { it.foodId == 99 && it.quantity == 2 }) } // 1 * 2 people
     }
 
     @Test
@@ -168,10 +168,10 @@ class RecipeToShoplistServiceTest {
         coEvery { shoplistRepository.insertShoplist(any()) } just Runs
 
         // When
-        recipeToShoplistService.addRecipeToShoplist(recipe)
+        recipeToShoplistService.addRecipeToShoplist(recipe, 2)
 
         // Then
-        coVerify { shoplistRepository.insertShoplist(match { it.quantity == 1 && it.quantityType == "pinch" }) }
+        coVerify { shoplistRepository.insertShoplist(match { it.quantity == 2 && it.quantityType == "pinch" }) } // (null becomes 1) * 2 people
     }
 
     @Test
@@ -195,10 +195,10 @@ class RecipeToShoplistServiceTest {
         coEvery { shoplistRepository.insertShoplist(any()) } just Runs
 
         // When
-        recipeToShoplistService.addRecipeToShoplist(recipe)
+        recipeToShoplistService.addRecipeToShoplist(recipe, 2)
 
         // Then
-        coVerify { shoplistRepository.insertShoplist(match { it.quantity == 5 && it.quantityType == "unité" }) }
+        coVerify { shoplistRepository.insertShoplist(match { it.quantity == 10 && it.quantityType == "unité" }) } // 5 * 2 people
     }
 
     @Test
@@ -223,12 +223,12 @@ class RecipeToShoplistServiceTest {
         coEvery { shoplistRepository.insertShoplist(any()) } just Runs
 
         // When
-        recipeToShoplistService.addRecipeToShoplist(recipe)
+        recipeToShoplistService.addRecipeToShoplist(recipe, 2)
 
         // Then
         coVerify { foodRepository.findByName("Red Apples") }
         coVerify { foodRepository.findByNameContaining("red apples") }
-        coVerify { shoplistRepository.insertShoplist(match { it.foodId == 5 && it.quantity == 2 }) }
+        coVerify { shoplistRepository.insertShoplist(match { it.foodId == 5 && it.quantity == 4 }) } // 2 * 2 people
         coVerify(exactly = 0) { foodRepository.insert(any()) }
     }
 }
