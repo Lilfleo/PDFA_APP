@@ -39,7 +39,7 @@ RECIP'IA est une application Android native développée avec les dernières tec
 
 ### Cloner le repository
 ```bash
-git https://github.com/Lilfleo/PDFA_APP
+git clone https://github.com/Lilfleo/PDFA_APP
 cd PDFA_APP
 ```
 
