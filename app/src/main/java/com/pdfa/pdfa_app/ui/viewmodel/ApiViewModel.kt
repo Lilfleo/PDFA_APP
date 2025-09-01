@@ -220,7 +220,7 @@ class RecipeViewModel @Inject constructor(
                     Ingredient(
                         name = foodDetailItem.food.name,
                         quantity = foodDetailItem.foodDetail.quantity.toDouble(),
-                        unit =  "g"
+                        unit = foodDetailItem.foodDetail.unit
                     )
                 }
                 _ingredients.value = ingredientList
