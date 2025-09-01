@@ -15,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -22,22 +23,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppSpacing
 import com.pdfa.pdfa_app.ui.theme.AppTypo
 import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
+import com.pdfa.pdfa_app.ui.viewmodel.ShoplistViewModel
 import com.pdfa.pdfa_app.user_interface.component.RecipeCardCheck
 import com.pdfa.pdfa_app.user_interface.component.ScrollbarPersonnalisee
 
 @Composable
 fun ShoplistRecipeScreen(
     navController: NavController,
-    recipeViewModel: RecipeViewModel
+    recipeViewModel: RecipeViewModel,
+    shoplistViewModel: ShoplistViewModel = hiltViewModel()
 ) {
 
     val recipesShoplist by recipeViewModel.recipesForShoplistFromCookbook.collectAsState()
     val scrollState = rememberScrollState()
+
+    LaunchedEffect(Unit) {
+        shoplistViewModel.verifyRecipeIngredientInShoplist()
+    }
 
     Box(
         modifier = Modifier
@@ -58,13 +66,13 @@ fun ShoplistRecipeScreen(
                     modifier = Modifier.padding(32.dp)
                 ) {
                     Text(
-                        text = "⚠\uFE0F Attention",
-                        style = AppTypo.Title,
+                        text = "Rien ici",
+                        style = AppTypo.SubTitle2,
                         color = AppColors.MainGreen
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Ta liste de course est vide.\nAjoute des recettes à ta liste depuis l'onglet Recette!",
+                        text = "Ajoute des recettes à ta liste depuis l'onglet Recette!",
                         style = AppTypo.Body,
                         color = AppColors.MainGreen,
                         textAlign = TextAlign.Center

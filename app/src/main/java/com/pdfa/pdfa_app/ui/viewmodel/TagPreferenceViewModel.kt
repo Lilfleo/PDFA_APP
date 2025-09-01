@@ -28,7 +28,6 @@ class TagPreferenceViewModel @Inject constructor(
         viewModelScope.launch {
             repository.allTagPreferences.collect { list ->
                 println("⚠️ TAG_PREFERENCE_VIEWMODEL : reçu ${list.size} préférences de tags")
-                list.forEach { println("🏷️ ${it.tag.name ?: "Tag inconnu"}") }
             }
         }
     }

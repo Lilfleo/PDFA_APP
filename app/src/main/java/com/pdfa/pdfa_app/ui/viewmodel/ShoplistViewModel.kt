@@ -12,19 +12,22 @@ import com.pdfa.pdfa_app.data.repository.ShoplistRepository
 import com.pdfa.pdfa_app.api.Recipe
 import com.pdfa.pdfa_app.data.model.FoodDetail
 import com.pdfa.pdfa_app.data.model.Shoplist
+import com.pdfa.pdfa_app.data.repository.CookbookRepository
 import com.pdfa.pdfa_app.data.repository.FoodDetailRepository
 import com.pdfa.pdfa_app.data.repository.RecipeToShoplistService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.first
 import java.util.Date
 import javax.inject.Inject
+import kotlin.let
 
 @HiltViewModel
 class ShoplistViewModel @Inject constructor(
     private val foodRepository: FoodRepository,
     private val shoplistRepository: ShoplistRepository,
     private val foodDetailRepository: FoodDetailRepository,
-    private val recipeToShoplistService: RecipeToShoplistService
+    private val recipeToShoplistService: RecipeToShoplistService,
+    private val cookbookRepository: CookbookRepository
 ) : ViewModel() {
 
     // États pour l'ajout à la liste de course
@@ -232,6 +235,20 @@ class ShoplistViewModel @Inject constructor(
         return convertedQuantity.coerceAtLeast(1)
     }
 
+    suspend fun verifyRecipeIngredientInShoplist(){
+        val recipeShoplist = cookbookRepository.getCookbookByName("RecipeShoplist")
+
+        val recipeFromShoplist = recipeShoplist?.let {
+            cookbookRepository.getCookbookWithRecipes(it.id)?.recipes ?: emptyList()
+        } ?: emptyList()
+
+        recipeFromShoplist.forEach { recipe ->
+            val shoplistElement = shoplistRepository.findByRecipeId(recipe.id)
+            if (shoplistElement == null){
+                cookbookRepository.removeRecipeFromCookbook(recipeShoplist?.id ?: 3, recipe.id)
+            }
+        }
+    }
 
     fun clearMoveToFridgeResult() {
         _moveToFridgeResult.value = null
