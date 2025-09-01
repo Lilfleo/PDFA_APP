@@ -1,6 +1,6 @@
 [
     {
-        "name": "Abiyuch (fruit tropical)",
+        "name": "Abiyuch",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -8,17 +8,6 @@
         ],
         "caloriesPerKg": 700,
         "caloriesPerUnit": 100,
-        "expirationTime": null
-    },
-    {
-        "name": "Acerola (cerise des Barbades)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 330,
-        "caloriesPerUnit": 4,
         "expirationTime": null
     },
     {
@@ -44,7 +33,7 @@
         "expirationTime": null
     },
     {
-        "name": "Airelle rouge (Lingonberry)",
+        "name": "Airelle rouge",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -52,6 +41,17 @@
         ],
         "caloriesPerKg": 5000,
         "caloriesPerUnit": 50,
+        "expirationTime": null
+    },
+    {
+        "name": "Alkékenge",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 490,
+        "caloriesPerUnit": 10,
         "expirationTime": null
     },
     {
@@ -63,28 +63,6 @@
         ],
         "caloriesPerKg": 5790,
         "caloriesPerUnit": 579,
-        "expirationTime": null
-    },
-    {
-        "name": "Amour en cage (Physalis)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 490,
-        "caloriesPerUnit": 10,
-        "expirationTime": null
-    },
-    {
-        "name": "Arbre à pain (Breadfruit)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 1030,
-        "caloriesPerUnit": 103,
         "expirationTime": null
     },
     {
@@ -132,17 +110,6 @@
         "expirationTime": null
     },
     {
-        "name": "Baie de myrica (Bayberry)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5000,
-        "caloriesPerUnit": 50,
-        "expirationTime": null
-    },
-    {
         "name": "Baie de partridge",
         "link": null,
         "category": "Fruits",
@@ -162,6 +129,17 @@
         ],
         "caloriesPerKg": 4000,
         "caloriesPerUnit": 40,
+        "expirationTime": null
+    },
+    {
+        "name": "Baie de saumon",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 5200,
+        "caloriesPerUnit": 52,
         "expirationTime": null
     },
     {
@@ -228,17 +206,6 @@
         ],
         "caloriesPerKg": 1220,
         "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Boysenberry (hybride framboise-mûre)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5000,
-        "caloriesPerUnit": 50,
         "expirationTime": null
     },
     {
@@ -319,6 +286,17 @@
         "expirationTime": null
     },
     {
+        "name": "Cerise de Cayenne",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 450,
+        "caloriesPerUnit": 5,
+        "expirationTime": null
+    },
+    {
         "name": "Cerise de Nankin",
         "link": null,
         "category": "Fruits",
@@ -330,6 +308,28 @@
         "expirationTime": null
     },
     {
+        "name": "Cerise de Virginie",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 4600,
+        "caloriesPerUnit": 46,
+        "expirationTime": null
+    },
+    {
+        "name": "Cerise des Barbades",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 330,
+        "caloriesPerUnit": 4,
+        "expirationTime": null
+    },
+    {
         "name": "Cerise douce",
         "link": null,
         "category": "Fruits",
@@ -338,17 +338,6 @@
         ],
         "caloriesPerKg": 630,
         "caloriesPerUnit": 5,
-        "expirationTime": null
-    },
-    {
-        "name": "Cerisier de Virginie (Chokecherry)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 4600,
-        "caloriesPerUnit": 46,
         "expirationTime": null
     },
     {
@@ -462,7 +451,7 @@
         "expirationTime": null
     },
     {
-        "name": "Coqueret du Pérou (Groundcherry)",
+        "name": "Coqueret du Pérou",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -473,7 +462,7 @@
         "expirationTime": null
     },
     {
-        "name": "Corossol (Soursop)",
+        "name": "Corossol",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -506,6 +495,17 @@
         "expirationTime": null
     },
     {
+        "name": "Cynorhodon",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1600,
+        "caloriesPerUnit": 160,
+        "expirationTime": null
+    },
+    {
         "name": "Datte",
         "link": null,
         "category": "Fruits",
@@ -528,7 +528,7 @@
         "expirationTime": null
     },
     {
-        "name": "Faine (Beech nut)",
+        "name": "Faine",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -561,7 +561,7 @@
         "expirationTime": null
     },
     {
-        "name": "Figue de Barbarie (fruit)",
+        "name": "Figue de Barbarie",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -616,7 +616,40 @@
         "expirationTime": null
     },
     {
-        "name": "Fruit moine (Monk fruit)",
+        "name": "Fruit de Nance",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 740,
+        "caloriesPerUnit": 10,
+        "expirationTime": null
+    },
+    {
+        "name": "Fruit de Physalis",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 490,
+        "caloriesPerUnit": 10,
+        "expirationTime": null
+    },
+    {
+        "name": "Fruit de sapotier",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 830,
+        "caloriesPerUnit": 80,
+        "expirationTime": null
+    },
+    {
+        "name": "Fruit moine",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -638,18 +671,18 @@
         "expirationTime": null
     },
     {
-        "name": "Fruits à pépins (Pomes)",
+        "name": "Garcinia dulcis",
         "link": null,
         "category": "Fruits",
         "unit": [
             "pcs"
         ],
-        "caloriesPerKg": 520,
-        "caloriesPerUnit": 80,
+        "caloriesPerKg": 700,
+        "caloriesPerUnit": 70,
         "expirationTime": null
     },
     {
-        "name": "Gland (Acorn)",
+        "name": "Gland Acorn",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -671,7 +704,7 @@
         "expirationTime": null
     },
     {
-        "name": "Goyavier-fraise (Strawberry guava)",
+        "name": "Goyavier-fraise",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -679,6 +712,17 @@
         ],
         "caloriesPerKg": 680,
         "caloriesPerUnit": 40,
+        "expirationTime": null
+    },
+    {
+        "name": "Graine de Wampi",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 700,
+        "caloriesPerUnit": 70,
         "expirationTime": null
     },
     {
@@ -704,7 +748,18 @@
         "expirationTime": null
     },
     {
-        "name": "Griotte (cerise acide)",
+        "name": "Griotte",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 500,
+        "caloriesPerUnit": 50,
+        "expirationTime": null
+    },
+    {
+        "name": "Griotte",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -737,7 +792,7 @@
         "expirationTime": null
     },
     {
-        "name": "Groseillier du Missouri (Buffalo currant)",
+        "name": "Groseillier du Missouri",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -745,17 +800,6 @@
         ],
         "caloriesPerKg": 5000,
         "caloriesPerUnit": 50,
-        "expirationTime": null
-    },
-    {
-        "name": "Groseillier puant (Skunk currant)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5500,
-        "caloriesPerUnit": 55,
         "expirationTime": null
     },
     {
@@ -770,7 +814,7 @@
         "expirationTime": null
     },
     {
-        "name": "Jacquier (Jackfruit)",
+        "name": "Jacquier",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -781,7 +825,7 @@
         "expirationTime": null
     },
     {
-        "name": "Josta (hybride groseille/cassis)",
+        "name": "Josta",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -811,17 +855,6 @@
         ],
         "caloriesPerKg": 700,
         "caloriesPerUnit": 118,
-        "expirationTime": null
-    },
-    {
-        "name": "Kaki (Plaqueminier)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 700,
-        "caloriesPerUnit": 168,
         "expirationTime": null
     },
     {
@@ -858,14 +891,14 @@
         "expirationTime": null
     },
     {
-        "name": "Mamey sapote",
+        "name": "Mandarine satsuma",
         "link": null,
         "category": "Fruits",
         "unit": [
             "pcs"
         ],
-        "caloriesPerKg": 1240,
-        "caloriesPerUnit": 200,
+        "caloriesPerKg": 530,
+        "caloriesPerUnit": 40,
         "expirationTime": null
     },
     {
@@ -913,29 +946,7 @@
         "expirationTime": null
     },
     {
-        "name": "Mikan (mandarine japonaise)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 530,
-        "caloriesPerUnit": 40,
-        "expirationTime": null
-    },
-    {
-        "name": "Mundu (fruit tropical)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 700,
-        "caloriesPerUnit": 70,
-        "expirationTime": null
-    },
-    {
-        "name": "Myrica rubra (baie chinoise)",
+        "name": "Myrica rubra",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -968,7 +979,7 @@
         "expirationTime": null
     },
     {
-        "name": "Myrtille des marais (Bog bilberry)",
+        "name": "Myrtille des marais",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -990,7 +1001,7 @@
         "expirationTime": null
     },
     {
-        "name": "Myrtille du cerf (Deerberry)",
+        "name": "Myrtille du cerf",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1023,7 +1034,7 @@
         "expirationTime": null
     },
     {
-        "name": "Myrtille européenne (Bilberry)",
+        "name": "Myrtille européenne",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1046,17 +1057,6 @@
     },
     {
         "name": "Myrtille mi-haute",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5700,
-        "caloriesPerUnit": 57,
-        "expirationTime": null
-    },
-    {
-        "name": "Myrtille persistante (Evergreen)",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1144,6 +1144,17 @@
         "expirationTime": null
     },
     {
+        "name": "Mûre de Boysen",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 5000,
+        "caloriesPerUnit": 50,
+        "expirationTime": null
+    },
+    {
         "name": "Mûre de mûrier",
         "link": null,
         "category": "Fruits",
@@ -1152,6 +1163,17 @@
         ],
         "caloriesPerKg": 500,
         "caloriesPerUnit": 60,
+        "expirationTime": null
+    },
+    {
+        "name": "Mûre de Virginie",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 5000,
+        "caloriesPerUnit": 50,
         "expirationTime": null
     },
     {
@@ -1166,7 +1188,7 @@
         "expirationTime": null
     },
     {
-        "name": "Mûre noire (mûrier noir)",
+        "name": "Mûre noire",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1177,7 +1199,7 @@
         "expirationTime": null
     },
     {
-        "name": "Mûre persistante (Evergreen)",
+        "name": "Mûre persistante",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1199,7 +1221,18 @@
         "expirationTime": null
     },
     {
-        "name": "Mûre-framboise (Loganberry)",
+        "name": "Mûre sauvage",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 5200,
+        "caloriesPerUnit": 52,
+        "expirationTime": null
+    },
+    {
+        "name": "Mûre-framboise",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1221,18 +1254,7 @@
         "expirationTime": null
     },
     {
-        "name": "Nance (fruit tropical)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 740,
-        "caloriesPerUnit": 10,
-        "expirationTime": null
-    },
-    {
-        "name": "Naranjilla (fruit)",
+        "name": "Narangille",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1287,28 +1309,6 @@
         "expirationTime": null
     },
     {
-        "name": "Noix (Nuts)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 6000,
-        "caloriesPerUnit": 600,
-        "expirationTime": null
-    },
-    {
-        "name": "Noix commune",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 6540,
-        "caloriesPerUnit": 654,
-        "expirationTime": null
-    },
-    {
         "name": "Noix de cajou",
         "link": null,
         "category": "Fruits",
@@ -1317,6 +1317,17 @@
         ],
         "caloriesPerKg": 5530,
         "caloriesPerUnit": 553,
+        "expirationTime": null
+    },
+    {
+        "name": "Noix de Carya",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 6500,
+        "caloriesPerUnit": 650,
         "expirationTime": null
     },
     {
@@ -1386,18 +1397,7 @@
         "expirationTime": null
     },
     {
-        "name": "Noyer (Hickory nut)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 6500,
-        "caloriesPerUnit": 650,
-        "expirationTime": null
-    },
-    {
-        "name": "Noyer cendré (Butternut)",
+        "name": "Noyer cendré",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1430,7 +1430,7 @@
         "expirationTime": null
     },
     {
-        "name": "Néflier",
+        "name": "Nèfle",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1441,7 +1441,7 @@
         "expirationTime": null
     },
     {
-        "name": "Néflier du Japon",
+        "name": "Nèfle du Japon",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1485,17 +1485,6 @@
         "expirationTime": null
     },
     {
-        "name": "Pamplemousse (Pomelo)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 420,
-        "caloriesPerUnit": 120,
-        "expirationTime": null
-    },
-    {
         "name": "Papaye",
         "link": null,
         "category": "Fruits",
@@ -1504,17 +1493,6 @@
         ],
         "caloriesPerKg": 430,
         "caloriesPerUnit": 215,
-        "expirationTime": null
-    },
-    {
-        "name": "Physalis (Cape gooseberry)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 490,
-        "caloriesPerUnit": 10,
         "expirationTime": null
     },
     {
@@ -1540,6 +1518,17 @@
         "expirationTime": null
     },
     {
+        "name": "Pimbina",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 4700,
+        "caloriesPerUnit": 47,
+        "expirationTime": null
+    },
+    {
         "name": "Pistache",
         "link": null,
         "category": "Fruits",
@@ -1551,18 +1540,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pitanga (cerise de Cayenne)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 450,
-        "caloriesPerUnit": 5,
-        "expirationTime": null
-    },
-    {
-        "name": "Pitaya (fruit du dragon)",
+        "name": "Pitaya",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1584,7 +1562,7 @@
         "expirationTime": null
     },
     {
-        "name": "Plaqueminier commun",
+        "name": "Plaquemine",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1617,6 +1595,17 @@
         "expirationTime": null
     },
     {
+        "name": "Poire de bachelier",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 620,
+        "caloriesPerUnit": 200,
+        "expirationTime": null
+    },
+    {
         "name": "Poire Yali",
         "link": null,
         "category": "Fruits",
@@ -1625,6 +1614,17 @@
         ],
         "caloriesPerKg": 570,
         "caloriesPerUnit": 90,
+        "expirationTime": null
+    },
+    {
+        "name": "Pomelo",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 420,
+        "caloriesPerUnit": 120,
         "expirationTime": null
     },
     {
@@ -1661,7 +1661,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pomme-cannelle (Sugar apple)",
+        "name": "Pomme-cannelle",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1672,18 +1672,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pomme-mammee",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 620,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Pommier sauvage (Crab apple)",
+        "name": "Pommier sauvage",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1691,17 +1680,6 @@
         ],
         "caloriesPerKg": 520,
         "caloriesPerUnit": 55,
-        "expirationTime": null
-    },
-    {
-        "name": "Produit de fruit (autre)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 600,
-        "caloriesPerUnit": 60,
         "expirationTime": null
     },
     {
@@ -1716,7 +1694,7 @@
         "expirationTime": null
     },
     {
-        "name": "Prune de Java (Jambolan)",
+        "name": "Prune de Java",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1735,6 +1713,17 @@
         ],
         "caloriesPerKg": 600,
         "caloriesPerUnit": 60,
+        "expirationTime": null
+    },
+    {
+        "name": "Prune du Natal",
+        "link": null,
+        "category": "Fruits",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 670,
+        "caloriesPerUnit": 50,
         "expirationTime": null
     },
     {
@@ -1771,29 +1760,7 @@
         "expirationTime": null
     },
     {
-        "name": "Prunier du Natal (Natal plum)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 670,
-        "caloriesPerUnit": 50,
-        "expirationTime": null
-    },
-    {
-        "name": "Prunus (cerisier/prunier)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 500,
-        "caloriesPerUnit": 50,
-        "expirationTime": null
-    },
-    {
-        "name": "Pêche (var.)",
+        "name": "Pêche",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1837,17 +1804,6 @@
         "expirationTime": null
     },
     {
-        "name": "Raisin renard (Fox grape)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 690,
-        "caloriesPerUnit": 69,
-        "expirationTime": null
-    },
-    {
         "name": "Raisin rouge",
         "link": null,
         "category": "Fruits",
@@ -1881,7 +1837,7 @@
         "expirationTime": null
     },
     {
-        "name": "Rowal (fruit tropical rare)",
+        "name": "Rowal",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1892,62 +1848,18 @@
         "expirationTime": null
     },
     {
-        "name": "Rubus (ronce : mûre/framboise)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5200,
-        "caloriesPerUnit": 52,
-        "expirationTime": null
-    },
-    {
-        "name": "Salade de fruits",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 500,
-        "caloriesPerUnit": 50,
-        "expirationTime": null
-    },
-    {
-        "name": "Salmonberry (ronce baie orange)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5200,
-        "caloriesPerUnit": 52,
-        "expirationTime": null
-    },
-    {
-        "name": "Sapote (Sapodilla)",
+        "name": "Sapote",
         "link": null,
         "category": "Fruits",
         "unit": [
             "pcs"
         ],
-        "caloriesPerKg": 830,
-        "caloriesPerUnit": 80,
+        "caloriesPerKg": 1240,
+        "caloriesPerUnit": 200,
         "expirationTime": null
     },
     {
-        "name": "Sparkleberry (airelle américaine)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5000,
-        "caloriesPerUnit": 50,
-        "expirationTime": null
-    },
-    {
-        "name": "Sureau (Elderberry)",
+        "name": "Sureau",
         "link": null,
         "category": "Fruits",
         "unit": [
@@ -1969,50 +1881,6 @@
         "expirationTime": null
     },
     {
-        "name": "Vaccinium (Myrtille, Canneberge, Airelle)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5700,
-        "caloriesPerUnit": 57,
-        "expirationTime": null
-    },
-    {
-        "name": "Viorne trilobée (Squashberry)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 4700,
-        "caloriesPerUnit": 47,
-        "expirationTime": null
-    },
-    {
-        "name": "Wampee",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 700,
-        "caloriesPerUnit": 70,
-        "expirationTime": null
-    },
-    {
-        "name": "Églantier (Cynorrhodon)",
-        "link": null,
-        "category": "Fruits",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1600,
-        "caloriesPerUnit": 160,
-        "expirationTime": null
-    },
-    {
         "name": "Ail",
         "link": null,
         "category": "Légumes",
@@ -2024,17 +1892,6 @@
         "expirationTime": null
     },
     {
-        "name": "Arrow-root (Maranta)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 330,
-        "caloriesPerUnit": 33,
-        "expirationTime": null
-    },
-    {
         "name": "Artichaut",
         "link": null,
         "category": "Légumes",
@@ -2043,6 +1900,17 @@
         ],
         "caloriesPerKg": 470,
         "caloriesPerUnit": 60,
+        "expirationTime": null
+    },
+    {
+        "name": "Artichaut sauvage",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 170,
+        "caloriesPerUnit": 17,
         "expirationTime": null
     },
     {
@@ -2068,7 +1936,7 @@
         "expirationTime": null
     },
     {
-        "name": "Blette (Swiss chard)",
+        "name": "Blette",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2076,17 +1944,6 @@
         ],
         "caloriesPerKg": 190,
         "caloriesPerUnit": 19,
-        "expirationTime": null
-    },
-    {
-        "name": "Brassicacées (choux)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 250,
-        "caloriesPerUnit": 25,
         "expirationTime": null
     },
     {
@@ -2101,7 +1958,7 @@
         "expirationTime": null
     },
     {
-        "name": "Brocoli-rave (Rapini)",
+        "name": "Brocoli-rave",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2109,17 +1966,6 @@
         ],
         "caloriesPerKg": 220,
         "caloriesPerUnit": 22,
-        "expirationTime": null
-    },
-    {
-        "name": "Cardon",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 170,
-        "caloriesPerUnit": 17,
         "expirationTime": null
     },
     {
@@ -2153,6 +1999,17 @@
         ],
         "caloriesPerKg": 280,
         "caloriesPerUnit": 28,
+        "expirationTime": null
+    },
+    {
+        "name": "Champignon Shiitake",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 340,
+        "caloriesPerUnit": 34,
         "expirationTime": null
     },
     {
@@ -2200,7 +2057,7 @@
         "expirationTime": null
     },
     {
-        "name": "Chicorée",
+        "name": "Chicorées",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2230,6 +2087,17 @@
         ],
         "caloriesPerKg": 250,
         "caloriesPerUnit": 25,
+        "expirationTime": null
+    },
+    {
+        "name": "Chou caraïbe",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1100,
+        "caloriesPerUnit": 110,
         "expirationTime": null
     },
     {
@@ -2321,6 +2189,17 @@
         "expirationTime": null
     },
     {
+        "name": "Choux",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 250,
+        "caloriesPerUnit": 25,
+        "expirationTime": null
+    },
+    {
         "name": "Choux de Bruxelles",
         "link": null,
         "category": "Légumes",
@@ -2343,7 +2222,7 @@
         "expirationTime": null
     },
     {
-        "name": "Châtaigne d’eau (Chinese water chestnut)",
+        "name": "Châtaigne d’eau",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2387,6 +2266,17 @@
         "expirationTime": null
     },
     {
+        "name": "Corète potagère",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 250,
+        "caloriesPerUnit": 25,
+        "expirationTime": null
+    },
+    {
         "name": "Courge cireuse",
         "link": null,
         "category": "Légumes",
@@ -2420,6 +2310,17 @@
         "expirationTime": null
     },
     {
+        "name": "Courge indienne",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 210,
+        "caloriesPerUnit": 40,
+        "expirationTime": null
+    },
+    {
         "name": "Courge musquée",
         "link": null,
         "category": "Légumes",
@@ -2439,6 +2340,17 @@
         ],
         "caloriesPerKg": 180,
         "caloriesPerUnit": 50,
+        "expirationTime": null
+    },
+    {
+        "name": "Courge éponge",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 170,
+        "caloriesPerUnit": 17,
         "expirationTime": null
     },
     {
@@ -2486,6 +2398,17 @@
         "expirationTime": null
     },
     {
+        "name": "Céleri",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 160,
+        "caloriesPerUnit": 16,
+        "expirationTime": null
+    },
+    {
         "name": "Céleri branche",
         "link": null,
         "category": "Légumes",
@@ -2519,18 +2442,7 @@
         "expirationTime": null
     },
     {
-        "name": "Eddoe (taro)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 1120,
-        "caloriesPerUnit": 80,
-        "expirationTime": null
-    },
-    {
-        "name": "Enokitake",
+        "name": "Enoki",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2552,58 +2464,14 @@
         "expirationTime": null
     },
     {
-        "name": "Feuilles de chicorée",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 230,
-        "caloriesPerUnit": 23,
-        "expirationTime": null
-    },
-    {
-        "name": "Feuilles de céleri",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 160,
-        "caloriesPerUnit": 16,
-        "expirationTime": null
-    },
-    {
-        "name": "Figuier de Barbarie (raquette)",
+        "name": "Figue de Barbarie",
         "link": null,
         "category": "Légumes",
         "unit": [
             "pcs"
         ],
-        "caloriesPerKg": 410,
-        "caloriesPerUnit": 60,
-        "expirationTime": null
-    },
-    {
-        "name": "Fleur de sesbania",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 300,
-        "caloriesPerUnit": 30,
-        "expirationTime": null
-    },
-    {
-        "name": "Fougère arborescente",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 360,
-        "caloriesPerUnit": 36,
+        "caloriesPerKg": 160,
+        "caloriesPerUnit": 20,
         "expirationTime": null
     },
     {
@@ -2618,7 +2486,7 @@
         "expirationTime": null
     },
     {
-        "name": "Gombo (Okra)",
+        "name": "Gombo",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2629,18 +2497,18 @@
         "expirationTime": null
     },
     {
-        "name": "Igname",
+        "name": "Grand Pétasite",
         "link": null,
         "category": "Légumes",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 1180,
-        "caloriesPerUnit": 118,
+        "caloriesPerKg": 200,
+        "caloriesPerUnit": 20,
         "expirationTime": null
     },
     {
-        "name": "Igname de montagne",
+        "name": "Igname",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2662,29 +2530,18 @@
         "expirationTime": null
     },
     {
-        "name": "Jicama",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 380,
-        "caloriesPerUnit": 50,
-        "expirationTime": null
-    },
-    {
-        "name": "Jute (feuilles)",
+        "name": "Jeunes pousses et graines de Luzerne",
         "link": null,
         "category": "Légumes",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 250,
-        "caloriesPerUnit": 25,
+        "caloriesPerKg": 230,
+        "caloriesPerUnit": 23,
         "expirationTime": null
     },
     {
-        "name": "Kangkung (épinard d’eau asiatique)",
+        "name": "Kangkung",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2739,17 +2596,6 @@
         "expirationTime": null
     },
     {
-        "name": "Lotus (racine)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 740,
-        "caloriesPerUnit": 74,
-        "expirationTime": null
-    },
-    {
         "name": "Lotus sacré",
         "link": null,
         "category": "Légumes",
@@ -2761,73 +2607,7 @@
         "expirationTime": null
     },
     {
-        "name": "Luffa (Towel gourd)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 170,
-        "caloriesPerUnit": 17,
-        "expirationTime": null
-    },
-    {
-        "name": "Luzerne (Alfalfa)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 230,
-        "caloriesPerUnit": 23,
-        "expirationTime": null
-    },
-    {
-        "name": "Légumes bulbes",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 400,
-        "caloriesPerUnit": 40,
-        "expirationTime": null
-    },
-    {
-        "name": "Légumes racines",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 800,
-        "caloriesPerUnit": 80,
-        "expirationTime": null
-    },
-    {
-        "name": "Légumes verts",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 250,
-        "caloriesPerUnit": 25,
-        "expirationTime": null
-    },
-    {
-        "name": "Maitake",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 370,
-        "caloriesPerUnit": 37,
-        "expirationTime": null
-    },
-    {
-        "name": "Manioc (Cassava)",
+        "name": "Manioc",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2838,7 +2618,7 @@
         "expirationTime": null
     },
     {
-        "name": "Morille (champignon)",
+        "name": "Morille",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2849,7 +2629,7 @@
         "expirationTime": null
     },
     {
-        "name": "Mâche (Corn salad)",
+        "name": "Mâche",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2860,7 +2640,7 @@
         "expirationTime": null
     },
     {
-        "name": "Navet suédois (Rutabaga)",
+        "name": "Navet suédois",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2868,28 +2648,6 @@
         ],
         "caloriesPerKg": 380,
         "caloriesPerUnit": 38,
-        "expirationTime": null
-    },
-    {
-        "name": "Nopal (raquette de figuier de Barbarie)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 160,
-        "caloriesPerUnit": 20,
-        "expirationTime": null
-    },
-    {
-        "name": "Oignons",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 400,
-        "caloriesPerUnit": 40,
         "expirationTime": null
     },
     {
@@ -2915,7 +2673,7 @@
         "expirationTime": null
     },
     {
-        "name": "Oignon vert (cébette)",
+        "name": "Oignon vert",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2926,7 +2684,18 @@
         "expirationTime": null
     },
     {
-        "name": "Oreille de Judas (champignon)",
+        "name": "Oignons",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 400,
+        "caloriesPerUnit": 40,
+        "expirationTime": null
+    },
+    {
+        "name": "Oreille-de-Judas",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2948,18 +2717,7 @@
         "expirationTime": null
     },
     {
-        "name": "Oseille (Dock)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 220,
-        "caloriesPerUnit": 22,
-        "expirationTime": null
-    },
-    {
-        "name": "Oseille sanguine (Sourdock)",
+        "name": "Oseille sanguine",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -2981,7 +2739,7 @@
         "expirationTime": null
     },
     {
-        "name": "Panais",
+        "name": "Panais sauvage",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3003,51 +2761,18 @@
         "expirationTime": null
     },
     {
-        "name": "Piment (Capsicum baccatum)",
+        "name": "Petit pois",
         "link": null,
         "category": "Légumes",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 400,
-        "caloriesPerUnit": 40,
+        "caloriesPerKg": 810,
+        "caloriesPerUnit": 81,
         "expirationTime": null
     },
     {
-        "name": "Piment (Capsicum chinense)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 400,
-        "caloriesPerUnit": 40,
-        "expirationTime": null
-    },
-    {
-        "name": "Piment (Capsicum frutescens)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 400,
-        "caloriesPerUnit": 40,
-        "expirationTime": null
-    },
-    {
-        "name": "Piment (Capsicum pubescens)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 400,
-        "caloriesPerUnit": 40,
-        "expirationTime": null
-    },
-    {
-        "name": "Piment (Capsicum)",
+        "name": "Piment Aji",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3069,6 +2794,28 @@
         "expirationTime": null
     },
     {
+        "name": "Piment générique",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 400,
+        "caloriesPerUnit": 40,
+        "expirationTime": null
+    },
+    {
+        "name": "Piment Habanero",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 400,
+        "caloriesPerUnit": 40,
+        "expirationTime": null
+    },
+    {
         "name": "Piment Jalapeño",
         "link": null,
         "category": "Légumes",
@@ -3077,6 +2824,28 @@
         ],
         "caloriesPerKg": 290,
         "caloriesPerUnit": 5,
+        "expirationTime": null
+    },
+    {
+        "name": "Piment Oiseau",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 400,
+        "caloriesPerUnit": 40,
+        "expirationTime": null
+    },
+    {
+        "name": "Piment Rocoto",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 400,
+        "caloriesPerUnit": 40,
         "expirationTime": null
     },
     {
@@ -3091,7 +2860,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pleurote (Oyster mushroom)",
+        "name": "Pleurote",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3113,14 +2882,14 @@
         "expirationTime": null
     },
     {
-        "name": "Pois (petit pois)",
+        "name": "Pois patate",
         "link": null,
         "category": "Légumes",
         "unit": [
-            "g"
+            "pcs"
         ],
-        "caloriesPerKg": 810,
-        "caloriesPerUnit": 81,
+        "caloriesPerKg": 380,
+        "caloriesPerUnit": 50,
         "expirationTime": null
     },
     {
@@ -3146,17 +2915,6 @@
         "expirationTime": null
     },
     {
-        "name": "Poivron rouge doux italien",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 310,
-        "caloriesPerUnit": 40,
-        "expirationTime": null
-    },
-    {
         "name": "Poivron vert",
         "link": null,
         "category": "Légumes",
@@ -3168,7 +2926,18 @@
         "expirationTime": null
     },
     {
-        "name": "Pomme de terre au four",
+        "name": "Polypore en touffe",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 370,
+        "caloriesPerUnit": 37,
+        "expirationTime": null
+    },
+    {
+        "name": "Pomme de terre",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3179,7 +2948,73 @@
         "expirationTime": null
     },
     {
-        "name": "Potiron japonais (Kabocha)",
+        "name": "Pomme de terre Amandine",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 750,
+        "caloriesPerUnit": 75,
+        "expirationTime": null
+    },
+    {
+        "name": "Pomme de terre Bintje",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 770,
+        "caloriesPerUnit": 77,
+        "expirationTime": null
+    },
+    {
+        "name": "Pomme de terre Charlotte",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 770,
+        "caloriesPerUnit": 77,
+        "expirationTime": null
+    },
+    {
+        "name": "Pomme de terre Ratte",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 750,
+        "caloriesPerUnit": 75,
+        "expirationTime": null
+    },
+    {
+        "name": "Pomme de terre Vitelotte",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 800,
+        "caloriesPerUnit": 80,
+        "expirationTime": null
+    },
+    {
+        "name": "Pomme de terre Yukon Gold",
+        "link": null,
+        "category": "Légumes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 770,
+        "caloriesPerUnit": 77,
+        "expirationTime": null
+    },
+    {
+        "name": "Potiron japonais Kabocha",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3190,7 +3025,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pourpier",
+        "name": "Pourpier pour salade",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3212,47 +3047,14 @@
         "expirationTime": null
     },
     {
-        "name": "Produit végétal (autre)",
+        "name": "Racine de Lotus)",
         "link": null,
         "category": "Légumes",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 500,
-        "caloriesPerUnit": 50,
-        "expirationTime": null
-    },
-    {
-        "name": "Pétasite géant (Giant butterbur)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 200,
-        "caloriesPerUnit": 20,
-        "expirationTime": null
-    },
-    {
-        "name": "Racines de chicorée",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 720,
-        "caloriesPerUnit": 72,
-        "expirationTime": null
-    },
-    {
-        "name": "Raisin d’Amérique (Pokeweed)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 250,
-        "caloriesPerUnit": 25,
+        "caloriesPerKg": 740,
+        "caloriesPerUnit": 74,
         "expirationTime": null
     },
     {
@@ -3289,28 +3091,6 @@
         "expirationTime": null
     },
     {
-        "name": "Roquette",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 250,
-        "caloriesPerUnit": 25,
-        "expirationTime": null
-    },
-    {
-        "name": "Sagittaire (Arrowhead)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1000,
-        "caloriesPerUnit": 100,
-        "expirationTime": null
-    },
-    {
         "name": "Salade",
         "link": null,
         "category": "Légumes",
@@ -3333,7 +3113,7 @@
         "expirationTime": null
     },
     {
-        "name": "Scorsonère (Salsifis noir)",
+        "name": "Salsifis noirs",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3344,51 +3124,18 @@
         "expirationTime": null
     },
     {
-        "name": "Shiitake",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 340,
-        "caloriesPerUnit": 34,
-        "expirationTime": null
-    },
-    {
         "name": "Taro",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1120,
-        "caloriesPerUnit": 112,
-        "expirationTime": null
-    },
-    {
-        "name": "Tinda (courge indienne)",
         "link": null,
         "category": "Légumes",
         "unit": [
             "pcs"
         ],
-        "caloriesPerKg": 210,
-        "caloriesPerUnit": 40,
+        "caloriesPerKg": 1120,
+        "caloriesPerUnit": 80,
         "expirationTime": null
     },
     {
         "name": "Tomate",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 180,
-        "caloriesPerUnit": 18,
-        "expirationTime": null
-    },
-    {
-        "name": "Tomate (var.)",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3421,18 +3168,18 @@
         "expirationTime": null
     },
     {
-        "name": "Yampah de l’Oregon",
+        "name": "Tubercule bouilli ou séché de Sagittaire",
         "link": null,
         "category": "Légumes",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 900,
-        "caloriesPerUnit": 90,
+        "caloriesPerKg": 1000,
+        "caloriesPerUnit": 100,
         "expirationTime": null
     },
     {
-        "name": "Yau choy (brassica asiatique)",
+        "name": "Yu choy",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3440,17 +3187,6 @@
         ],
         "caloriesPerKg": 280,
         "caloriesPerUnit": 28,
-        "expirationTime": null
-    },
-    {
-        "name": "Yautia (Xanthosoma)",
-        "link": null,
-        "category": "Légumes",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1100,
-        "caloriesPerUnit": 110,
         "expirationTime": null
     },
     {
@@ -3465,7 +3201,7 @@
         "expirationTime": null
     },
     {
-        "name": "Épilobe (Fireweed)",
+        "name": "Épilobe en épi",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3498,7 +3234,7 @@
         "expirationTime": null
     },
     {
-        "name": "Épinard d’eau (Water spinach)",
+        "name": "Épinard d’eau",
         "link": null,
         "category": "Légumes",
         "unit": [
@@ -3520,14 +3256,14 @@
         "expirationTime": null
     },
     {
-        "name": "Anatidés (canards, oies, cygnes)",
+        "name": "Agneau",
         "link": null,
         "category": "Viandes",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 250,
+        "caloriesPerKg": 2900,
+        "caloriesPerUnit": 290,
         "expirationTime": null
     },
     {
@@ -3542,7 +3278,7 @@
         "expirationTime": null
     },
     {
-        "name": "Baleine boréale (Bowhead whale)",
+        "name": "Baleine boréale",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3553,7 +3289,18 @@
         "expirationTime": null
     },
     {
-        "name": "Beefalo (hybride bison/boeuf)",
+        "name": "Bavette de bœuf",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2200,
+        "caloriesPerUnit": 220,
+        "expirationTime": null
+    },
+    {
+        "name": "Beefalo",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3575,6 +3322,39 @@
         "expirationTime": null
     },
     {
+        "name": "Boudin blanc",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2600,
+        "caloriesPerUnit": 260,
+        "expirationTime": null
+    },
+    {
+        "name": "Boudin noir",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3100,
+        "caloriesPerUnit": 310,
+        "expirationTime": null
+    },
+    {
+        "name": "Boulettes",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2200,
+        "caloriesPerUnit": 220,
+        "expirationTime": null
+    },
+    {
         "name": "Buffle",
         "link": null,
         "category": "Viandes",
@@ -3586,7 +3366,7 @@
         "expirationTime": null
     },
     {
-        "name": "Béluga (cétacé)",
+        "name": "Béluga",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3597,7 +3377,7 @@
         "expirationTime": null
     },
     {
-        "name": "Bœuf/veau",
+        "name": "Bœuf",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3605,6 +3385,39 @@
         ],
         "caloriesPerKg": 2500,
         "caloriesPerUnit": 250,
+        "expirationTime": null
+    },
+    {
+        "name": "Bœuf bourguignon",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1200,
+        "caloriesPerUnit": 120,
+        "expirationTime": null
+    },
+    {
+        "name": "Bœuf haché",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2600,
+        "caloriesPerUnit": 260,
+        "expirationTime": null
+    },
+    {
+        "name": "Caille",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1700,
+        "caloriesPerUnit": 170,
         "expirationTime": null
     },
     {
@@ -3619,6 +3432,28 @@
         "expirationTime": null
     },
     {
+        "name": "Canard confit",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 4000,
+        "caloriesPerUnit": 400,
+        "expirationTime": null
+    },
+    {
+        "name": "Canard magret",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3300,
+        "caloriesPerUnit": 330,
+        "expirationTime": null
+    },
+    {
         "name": "Canard velours",
         "link": null,
         "category": "Viandes",
@@ -3627,6 +3462,17 @@
         ],
         "caloriesPerKg": 3370,
         "caloriesPerUnit": 337,
+        "expirationTime": null
+    },
+    {
+        "name": "Canard à l’orange",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2100,
+        "caloriesPerUnit": 210,
         "expirationTime": null
     },
     {
@@ -3641,7 +3487,7 @@
         "expirationTime": null
     },
     {
-        "name": "Cerf mulet (Mule deer)",
+        "name": "Cerf mulet",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3652,7 +3498,18 @@
         "expirationTime": null
     },
     {
-        "name": "Charcuterie (Cold cut)",
+        "name": "Chapon",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2000,
+        "caloriesPerUnit": 200,
+        "expirationTime": null
+    },
+    {
+        "name": "Charcuterie",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3663,7 +3520,7 @@
         "expirationTime": null
     },
     {
-        "name": "Cheval (viande)",
+        "name": "Cheval",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3671,6 +3528,28 @@
         ],
         "caloriesPerKg": 1330,
         "caloriesPerUnit": 133,
+        "expirationTime": null
+    },
+    {
+        "name": "Chevreuil",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1300,
+        "caloriesPerUnit": 130,
+        "expirationTime": null
+    },
+    {
+        "name": "Chipolatas",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2800,
+        "caloriesPerUnit": 280,
         "expirationTime": null
     },
     {
@@ -3685,18 +3564,62 @@
         "expirationTime": null
     },
     {
-        "name": "Columbidés (pigeon, colombe)",
+        "name": "Coq au vin",
         "link": null,
         "category": "Viandes",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 1750,
-        "caloriesPerUnit": 175,
+        "caloriesPerKg": 1300,
+        "caloriesPerUnit": 130,
         "expirationTime": null
     },
     {
-        "name": "Cétacés (dauphin, marsouin, baleine)",
+        "name": "Côte de bœuf",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2500,
+        "caloriesPerUnit": 250,
+        "expirationTime": null
+    },
+    {
+        "name": "Côte de veau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2100,
+        "caloriesPerUnit": 210,
+        "expirationTime": null
+    },
+    {
+        "name": "Côtelettes d’agneau en sauce",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2400,
+        "caloriesPerUnit": 240,
+        "expirationTime": null
+    },
+    {
+        "name": "Côtelettes d’agneau grillées",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3200,
+        "caloriesPerUnit": 320,
+        "expirationTime": null
+    },
+    {
+        "name": "Dauphin et marsouin",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3718,6 +3641,39 @@
         "expirationTime": null
     },
     {
+        "name": "Escalope de dinde",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1200,
+        "caloriesPerUnit": 120,
+        "expirationTime": null
+    },
+    {
+        "name": "Escalope de dinde panée",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2200,
+        "caloriesPerUnit": 220,
+        "expirationTime": null
+    },
+    {
+        "name": "Escalope de veau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1650,
+        "caloriesPerUnit": 165,
+        "expirationTime": null
+    },
+    {
         "name": "Faisan",
         "link": null,
         "category": "Viandes",
@@ -3729,7 +3685,51 @@
         "expirationTime": null
     },
     {
-        "name": "Grenouille (True frog)",
+        "name": "Faux-filet de bœuf",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2300,
+        "caloriesPerUnit": 230,
+        "expirationTime": null
+    },
+    {
+        "name": "Filet mignon de porc",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2000,
+        "caloriesPerUnit": 200,
+        "expirationTime": null
+    },
+    {
+        "name": "Foie de veau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1700,
+        "caloriesPerUnit": 170,
+        "expirationTime": null
+    },
+    {
+        "name": "Gigot d’agneau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2600,
+        "caloriesPerUnit": 260,
+        "expirationTime": null
+    },
+    {
+        "name": "Grenouille",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3737,6 +3737,94 @@
         ],
         "caloriesPerKg": 730,
         "caloriesPerUnit": 73,
+        "expirationTime": null
+    },
+    {
+        "name": "Hachis Parmentier",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1400,
+        "caloriesPerUnit": 140,
+        "expirationTime": null
+    },
+    {
+        "name": "Jambon cru",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3000,
+        "caloriesPerUnit": 300,
+        "expirationTime": null
+    },
+    {
+        "name": "Jambon cuit",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1450,
+        "caloriesPerUnit": 145,
+        "expirationTime": null
+    },
+    {
+        "name": "Jambonneau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2500,
+        "caloriesPerUnit": 250,
+        "expirationTime": null
+    },
+    {
+        "name": "Jarret de bœuf",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2000,
+        "caloriesPerUnit": 200,
+        "expirationTime": null
+    },
+    {
+        "name": "Jarret de veau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2000,
+        "caloriesPerUnit": 200,
+        "expirationTime": null
+    },
+    {
+        "name": "Joue de bœuf",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2000,
+        "caloriesPerUnit": 200,
+        "expirationTime": null
+    },
+    {
+        "name": "Lapin à la moutarde",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1600,
+        "caloriesPerUnit": 160,
         "expirationTime": null
     },
     {
@@ -3773,6 +3861,17 @@
         "expirationTime": null
     },
     {
+        "name": "Lardons",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3500,
+        "caloriesPerUnit": 350,
+        "expirationTime": null
+    },
+    {
         "name": "Lion de mer de Steller",
         "link": null,
         "category": "Viandes",
@@ -3781,6 +3880,17 @@
         ],
         "caloriesPerKg": 2000,
         "caloriesPerUnit": 200,
+        "expirationTime": null
+    },
+    {
+        "name": "Lièvre",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1300,
+        "caloriesPerUnit": 130,
         "expirationTime": null
     },
     {
@@ -3806,7 +3916,7 @@
         "expirationTime": null
     },
     {
-        "name": "Mouton (agneau, mouton)",
+        "name": "Mouton",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3825,6 +3935,39 @@
         ],
         "caloriesPerKg": 3050,
         "caloriesPerUnit": 305,
+        "expirationTime": null
+    },
+    {
+        "name": "Onglet de bœuf",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2100,
+        "caloriesPerUnit": 210,
+        "expirationTime": null
+    },
+    {
+        "name": "Paupiette de veau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2300,
+        "caloriesPerUnit": 230,
+        "expirationTime": null
+    },
+    {
+        "name": "Perdrix",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1100,
+        "caloriesPerUnit": 110,
         "expirationTime": null
     },
     {
@@ -3861,7 +4004,7 @@
         "expirationTime": null
     },
     {
-        "name": "Phoques vrais (True seal)",
+        "name": "Phoques vrais",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3872,7 +4015,18 @@
         "expirationTime": null
     },
     {
-        "name": "Pigeon (Squab)",
+        "name": "Pigeon",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1750,
+        "caloriesPerUnit": 175,
+        "expirationTime": null
+    },
+    {
+        "name": "Pigeon et Colombe",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3894,14 +4048,124 @@
         "expirationTime": null
     },
     {
-        "name": "Porc domestique",
+        "name": "Poitrine fumée",
         "link": null,
         "category": "Viandes",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 2420,
-        "caloriesPerUnit": 242,
+        "caloriesPerKg": 4000,
+        "caloriesPerUnit": 400,
+        "expirationTime": null
+    },
+    {
+        "name": "Porc",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2700,
+        "caloriesPerUnit": 270,
+        "expirationTime": null
+    },
+    {
+        "name": "Poulet basquaise",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 900,
+        "caloriesPerUnit": 90,
+        "expirationTime": null
+    },
+    {
+        "name": "Poulet rôti",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2150,
+        "caloriesPerUnit": 215,
+        "expirationTime": null
+    },
+    {
+        "name": "Poulet sauté",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2000,
+        "caloriesPerUnit": 200,
+        "expirationTime": null
+    },
+    {
+        "name": "Pâté de campagne",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3100,
+        "caloriesPerUnit": 310,
+        "expirationTime": null
+    },
+    {
+        "name": "Queue de bœuf",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1900,
+        "caloriesPerUnit": 190,
+        "expirationTime": null
+    },
+    {
+        "name": "Rillettes de porc",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 4000,
+        "caloriesPerUnit": 400,
+        "expirationTime": null
+    },
+    {
+        "name": "Rôti d’agneau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2800,
+        "caloriesPerUnit": 280,
+        "expirationTime": null
+    },
+    {
+        "name": "Rôti de fêtes",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1600,
+        "caloriesPerUnit": 160,
+        "expirationTime": null
+    },
+    {
+        "name": "Rôti de veau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1800,
+        "caloriesPerUnit": 180,
         "expirationTime": null
     },
     {
@@ -3916,6 +4180,72 @@
         "expirationTime": null
     },
     {
+        "name": "Saucisse fumée",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3200,
+        "caloriesPerUnit": 320,
+        "expirationTime": null
+    },
+    {
+        "name": "Saucisses de Toulouse",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3000,
+        "caloriesPerUnit": 300,
+        "expirationTime": null
+    },
+    {
+        "name": "Souris d’agneau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2600,
+        "caloriesPerUnit": 260,
+        "expirationTime": null
+    },
+    {
+        "name": "Souris d’agneau mijotée",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2300,
+        "caloriesPerUnit": 230,
+        "expirationTime": null
+    },
+    {
+        "name": "Steak de Bœuf",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2500,
+        "caloriesPerUnit": 250,
+        "expirationTime": null
+    },
+    {
+        "name": "T-bone de bœuf",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2600,
+        "caloriesPerUnit": 260,
+        "expirationTime": null
+    },
+    {
         "name": "Tortue verte",
         "link": null,
         "category": "Viandes",
@@ -3927,7 +4257,40 @@
         "expirationTime": null
     },
     {
-        "name": "Élan (Elk)",
+        "name": "Tournedos",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2600,
+        "caloriesPerUnit": 260,
+        "expirationTime": null
+    },
+    {
+        "name": "Travers de porc",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3000,
+        "caloriesPerUnit": 300,
+        "expirationTime": null
+    },
+    {
+        "name": "Veau",
+        "link": null,
+        "category": "Viandes",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1700,
+        "caloriesPerUnit": 170,
+        "expirationTime": null
+    },
+    {
+        "name": "Élan",
         "link": null,
         "category": "Viandes",
         "unit": [
@@ -3971,18 +4334,7 @@
         "expirationTime": null
     },
     {
-        "name": "Aiglefin (Haddock)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 740,
-        "caloriesPerUnit": 74,
-        "expirationTime": null
-    },
-    {
-        "name": "Aiguillat commun (Spiny dogfish)",
+        "name": "Aiguillat",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -3993,7 +4345,7 @@
         "expirationTime": null
     },
     {
-        "name": "Aiguille de mer (Garfish)",
+        "name": "Aiguille de mer",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4048,7 +4400,7 @@
         "expirationTime": null
     },
     {
-        "name": "Anguilles (Anguilliformes)",
+        "name": "Anguilles",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4070,7 +4422,18 @@
         "expirationTime": null
     },
     {
-        "name": "Bar japonais (Poisson)",
+        "name": "Bar argenté",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 970,
+        "caloriesPerUnit": 97,
+        "expirationTime": null
+    },
+    {
+        "name": "Bar japonais",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4092,18 +4455,29 @@
         "expirationTime": null
     },
     {
-        "name": "Beurré américain (Butterfish)",
+        "name": "Barbue de rivière",
         "link": null,
         "category": "Poissons",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 1250,
-        "caloriesPerUnit": 125,
+        "caloriesPerKg": 1050,
+        "caloriesPerUnit": 105,
         "expirationTime": null
     },
     {
-        "name": "Bigorneau (Whelk)",
+        "name": "Baudroie",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 760,
+        "caloriesPerUnit": 76,
+        "expirationTime": null
+    },
+    {
+        "name": "Bigorneau",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4114,18 +4488,7 @@
         "expirationTime": null
     },
     {
-        "name": "Bivalves (coques, moules, huîtres)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 860,
-        "caloriesPerUnit": 86,
-        "expirationTime": null
-    },
-    {
-        "name": "Brochet (Northern pike)",
+        "name": "Brochet",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4136,7 +4499,7 @@
         "expirationTime": null
     },
     {
-        "name": "Brème (Carp bream)",
+        "name": "Brème",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4144,6 +4507,17 @@
         ],
         "caloriesPerKg": 870,
         "caloriesPerUnit": 87,
+        "expirationTime": null
+    },
+    {
+        "name": "Cabillaud",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 820,
+        "caloriesPerUnit": 82,
         "expirationTime": null
     },
     {
@@ -4169,7 +4543,7 @@
         "expirationTime": null
     },
     {
-        "name": "Chinchard du Pacifique (Jack mackerel)",
+        "name": "Chinchard du Pacifique",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4180,7 +4554,7 @@
         "expirationTime": null
     },
     {
-        "name": "Chiton cuir (mollusque)",
+        "name": "Chiton",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4191,7 +4565,7 @@
         "expirationTime": null
     },
     {
-        "name": "Cisco (poisson blanc d’eau douce)",
+        "name": "Cisco",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4202,7 +4576,7 @@
         "expirationTime": null
     },
     {
-        "name": "Colin (Pollock)",
+        "name": "Colin",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4257,7 +4631,7 @@
         "expirationTime": null
     },
     {
-        "name": "Coquille Saint-Jacques (Scallop)",
+        "name": "Coques, moules et huîtres",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4268,18 +4642,18 @@
         "expirationTime": null
     },
     {
-        "name": "Coryphène (Dolphin fish, Mahi-mahi)",
+        "name": "Coquille Saint-Jacques",
         "link": null,
         "category": "Poissons",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 960,
-        "caloriesPerUnit": 96,
+        "caloriesPerKg": 860,
+        "caloriesPerUnit": 86,
         "expirationTime": null
     },
     {
-        "name": "Corégone (Whitefish)",
+        "name": "Corégone",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4323,7 +4697,7 @@
         "expirationTime": null
     },
     {
-        "name": "Crabe dormeur (Dungeness)",
+        "name": "Crabe dormeur",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4378,7 +4752,29 @@
         "expirationTime": null
     },
     {
-        "name": "Doré jaune (Walleye)",
+        "name": "Dorade",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 960,
+        "caloriesPerUnit": 96,
+        "expirationTime": null
+    },
+    {
+        "name": "Dorade américaine",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 930,
+        "caloriesPerUnit": 93,
+        "expirationTime": null
+    },
+    {
+        "name": "Doré jaune",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4401,17 +4797,6 @@
     },
     {
         "name": "Esturgeon",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1250,
-        "caloriesPerUnit": 125,
-        "expirationTime": null
-    },
-    {
-        "name": "Esturgeon commun",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4466,18 +4851,7 @@
         "expirationTime": null
     },
     {
-        "name": "Gadiformes (morues, colins)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1000,
-        "caloriesPerUnit": 100,
-        "expirationTime": null
-    },
-    {
-        "name": "Grand corégone (Broad whitefish)",
+        "name": "Grand corégone",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4485,6 +4859,17 @@
         ],
         "caloriesPerKg": 1050,
         "caloriesPerUnit": 105,
+        "expirationTime": null
+    },
+    {
+        "name": "Haddock",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 740,
+        "caloriesPerUnit": 74,
         "expirationTime": null
     },
     {
@@ -4532,7 +4917,7 @@
         "expirationTime": null
     },
     {
-        "name": "Huître (True oyster)",
+        "name": "Huître",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4565,7 +4950,18 @@
         "expirationTime": null
     },
     {
-        "name": "Lambi (Conque)",
+        "name": "Huîtres",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 700,
+        "caloriesPerUnit": 70,
+        "expirationTime": null
+    },
+    {
+        "name": "Lambi",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4587,7 +4983,7 @@
         "expirationTime": null
     },
     {
-        "name": "Langoustine (Norway lobster)",
+        "name": "Langoustine",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4598,7 +4994,7 @@
         "expirationTime": null
     },
     {
-        "name": "Lieu noir (Coalfish pollock)",
+        "name": "Lieu noir",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4609,7 +5005,7 @@
         "expirationTime": null
     },
     {
-        "name": "Limande sole (Lemon sole)",
+        "name": "Limande",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4617,17 +5013,6 @@
         ],
         "caloriesPerKg": 900,
         "caloriesPerUnit": 90,
-        "expirationTime": null
-    },
-    {
-        "name": "Lingcod (morue-lingue)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 950,
-        "caloriesPerUnit": 95,
         "expirationTime": null
     },
     {
@@ -4642,7 +5027,18 @@
         "expirationTime": null
     },
     {
-        "name": "Loquette d’Amérique (Ocean pout)",
+        "name": "Lompe",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 840,
+        "caloriesPerUnit": 84,
+        "expirationTime": null
+    },
+    {
+        "name": "Loquette d’Amérique",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4653,7 +5049,7 @@
         "expirationTime": null
     },
     {
-        "name": "Lotte (Burbot)",
+        "name": "Lotte de rivière",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4664,18 +5060,7 @@
         "expirationTime": null
     },
     {
-        "name": "Lotte (Monkfish)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 760,
-        "caloriesPerUnit": 76,
-        "expirationTime": null
-    },
-    {
-        "name": "Lotte norvégienne (Cusk)",
+        "name": "Lotte norvégienne",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4686,7 +5071,7 @@
         "expirationTime": null
     },
     {
-        "name": "Loup atlantique (Wolffish)",
+        "name": "Loup atlantique",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4694,17 +5079,6 @@
         ],
         "caloriesPerKg": 960,
         "caloriesPerUnit": 96,
-        "expirationTime": null
-    },
-    {
-        "name": "Lumpfish (Lumpsucker)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 840,
-        "caloriesPerUnit": 84,
         "expirationTime": null
     },
     {
@@ -4752,7 +5126,7 @@
         "expirationTime": null
     },
     {
-        "name": "Merlan (Whiting)",
+        "name": "Merlan",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4774,7 +5148,7 @@
         "expirationTime": null
     },
     {
-        "name": "Meunier blanc (White sucker)",
+        "name": "Meunier",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4796,18 +5170,18 @@
         "expirationTime": null
     },
     {
-        "name": "Morue (Gadus)",
+        "name": "Morue",
         "link": null,
         "category": "Poissons",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 820,
-        "caloriesPerUnit": 82,
+        "caloriesPerKg": 1000,
+        "caloriesPerUnit": 100,
         "expirationTime": null
     },
     {
-        "name": "Morue charbonnière (Sablefish)",
+        "name": "Morue charbonnière",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4840,6 +5214,17 @@
         "expirationTime": null
     },
     {
+        "name": "Morue-lingue",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 950,
+        "caloriesPerUnit": 95,
+        "expirationTime": null
+    },
+    {
         "name": "Moule bleue",
         "link": null,
         "category": "Poissons",
@@ -4862,7 +5247,7 @@
         "expirationTime": null
     },
     {
-        "name": "Mulet rayé",
+        "name": "Mulet cabot",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4895,7 +5280,7 @@
         "expirationTime": null
     },
     {
-        "name": "Omble (Charr)",
+        "name": "Omble chevalier",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4906,7 +5291,7 @@
         "expirationTime": null
     },
     {
-        "name": "Ormeau (Abalone)",
+        "name": "Ormeau",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4928,7 +5313,7 @@
         "expirationTime": null
     },
     {
-        "name": "Perche-soleil (Pumpkinseed)",
+        "name": "Perche",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4939,7 +5324,7 @@
         "expirationTime": null
     },
     {
-        "name": "Perciformes",
+        "name": "Perche-soleil",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4950,18 +5335,7 @@
         "expirationTime": null
     },
     {
-        "name": "Perciformes (perches et apparentés)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1100,
-        "caloriesPerUnit": 110,
-        "expirationTime": null
-    },
-    {
-        "name": "Plie commune (Dab)",
+        "name": "Plie commune",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4972,7 +5346,18 @@
         "expirationTime": null
     },
     {
-        "name": "Poisson diable (Devilfish)",
+        "name": "Poisson blanc arctique",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1100,
+        "caloriesPerUnit": 110,
+        "expirationTime": null
+    },
+    {
+        "name": "Poisson diable",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4983,7 +5368,7 @@
         "expirationTime": null
     },
     {
-        "name": "Poisson noir d’Alaska (Blackfish)",
+        "name": "Poisson noir d’Alaska",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -4991,6 +5376,17 @@
         ],
         "caloriesPerKg": 1050,
         "caloriesPerUnit": 105,
+        "expirationTime": null
+    },
+    {
+        "name": "Poisson-beurre",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1250,
+        "caloriesPerUnit": 125,
         "expirationTime": null
     },
     {
@@ -5005,18 +5401,7 @@
         "expirationTime": null
     },
     {
-        "name": "Poisson-chat (Channel catfish)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1050,
-        "caloriesPerUnit": 105,
-        "expirationTime": null
-    },
-    {
-        "name": "Poisson-lait (Milkfish)",
+        "name": "Poisson-lait",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5024,6 +5409,17 @@
         ],
         "caloriesPerKg": 1300,
         "caloriesPerUnit": 130,
+        "expirationTime": null
+    },
+    {
+        "name": "Poisson-tuile",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 950,
+        "caloriesPerUnit": 95,
         "expirationTime": null
     },
     {
@@ -5035,28 +5431,6 @@
         ],
         "caloriesPerKg": 1200,
         "caloriesPerUnit": 120,
-        "expirationTime": null
-    },
-    {
-        "name": "Poissons plats (Pleuronectidés)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 900,
-        "caloriesPerUnit": 90,
-        "expirationTime": null
-    },
-    {
-        "name": "Poissons plats (plie, sole, turbot)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 900,
-        "caloriesPerUnit": 90,
         "expirationTime": null
     },
     {
@@ -5104,17 +5478,6 @@
         "expirationTime": null
     },
     {
-        "name": "Produit de poisson (autre)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1000,
-        "caloriesPerUnit": 100,
-        "expirationTime": null
-    },
-    {
         "name": "Requin",
         "link": null,
         "category": "Poissons",
@@ -5126,7 +5489,7 @@
         "expirationTime": null
     },
     {
-        "name": "Sandre (Pikeperch)",
+        "name": "Sandre",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5192,29 +5555,7 @@
         "expirationTime": null
     },
     {
-        "name": "Saumons et truites (Salmonidae)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1200,
-        "caloriesPerUnit": 120,
-        "expirationTime": null
-    },
-    {
-        "name": "Scombridés (thon, maquereau, bonite)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1400,
-        "caloriesPerUnit": 140,
-        "expirationTime": null
-    },
-    {
-        "name": "Scup (poisson de l’Atlantique)",
+        "name": "Scup",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5236,29 +5577,7 @@
         "expirationTime": null
     },
     {
-        "name": "Sheefish (poisson blanc arctique)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1100,
-        "caloriesPerUnit": 110,
-        "expirationTime": null
-    },
-    {
-        "name": "Sheepshead (dorade américaine)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 930,
-        "caloriesPerUnit": 93,
-        "expirationTime": null
-    },
-    {
-        "name": "Sole commune",
+        "name": "Sole",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5280,29 +5599,7 @@
         "expirationTime": null
     },
     {
-        "name": "Sébaste du Pacifique (rockfish)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 930,
-        "caloriesPerUnit": 93,
-        "expirationTime": null
-    },
-    {
-        "name": "Tambour d’eau douce (Freshwater drum)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 970,
-        "caloriesPerUnit": 97,
-        "expirationTime": null
-    },
-    {
-        "name": "Tassergal (Bluefish)",
+        "name": "Tassergal",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5313,7 +5610,7 @@
         "expirationTime": null
     },
     {
-        "name": "Thon (genre Thunnus)",
+        "name": "Thon",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5335,7 +5632,7 @@
         "expirationTime": null
     },
     {
-        "name": "Thon blanc (Albacore)",
+        "name": "Thon blanc",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5346,7 +5643,7 @@
         "expirationTime": null
     },
     {
-        "name": "Thon listao (Skipjack)",
+        "name": "Thon listao",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5357,7 +5654,7 @@
         "expirationTime": null
     },
     {
-        "name": "Thon rouge (Bluefin)",
+        "name": "Thon rouge",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5376,17 +5673,6 @@
         ],
         "caloriesPerKg": 960,
         "caloriesPerUnit": 96,
-        "expirationTime": null
-    },
-    {
-        "name": "Tilefish (baliste atlantique)",
-        "link": null,
-        "category": "Poissons",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 950,
-        "caloriesPerUnit": 95,
         "expirationTime": null
     },
     {
@@ -5423,7 +5709,18 @@
         "expirationTime": null
     },
     {
-        "name": "Tuniciers (ascidies)",
+        "name": "Truites",
+        "link": null,
+        "category": "Poissons",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1200,
+        "caloriesPerUnit": 120,
+        "expirationTime": null
+    },
+    {
+        "name": "Tuniciers",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5440,12 +5737,12 @@
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 950,
-        "caloriesPerUnit": 95,
+        "caloriesPerKg": 900,
+        "caloriesPerUnit": 90,
         "expirationTime": null
     },
     {
-        "name": "Vivaneau (Snapper)",
+        "name": "Vivaneau",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5500,7 +5797,7 @@
         "expirationTime": null
     },
     {
-        "name": "Œufs de poisson (Roe)",
+        "name": "Œufs de poisson",
         "link": null,
         "category": "Poissons",
         "unit": [
@@ -5533,6 +5830,39 @@
         "expirationTime": null
     },
     {
+        "name": "Bleu d’Auvergne",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3600,
+        "caloriesPerUnit": 360,
+        "expirationTime": null
+    },
+    {
+        "name": "Brie de Meaux",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3200,
+        "caloriesPerUnit": 320,
+        "expirationTime": null
+    },
+    {
+        "name": "Camembert",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3000,
+        "caloriesPerUnit": 300,
+        "expirationTime": null
+    },
+    {
         "name": "Cheddar",
         "link": null,
         "category": "Produits laitiers",
@@ -5541,6 +5871,39 @@
         ],
         "caloriesPerKg": 4000,
         "caloriesPerUnit": 400,
+        "expirationTime": null
+    },
+    {
+        "name": "Comté",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 4100,
+        "caloriesPerUnit": 410,
+        "expirationTime": null
+    },
+    {
+        "name": "Cottage cheese",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1100,
+        "caloriesPerUnit": 110,
+        "expirationTime": null
+    },
+    {
+        "name": "Coulommiers",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3100,
+        "caloriesPerUnit": 310,
         "expirationTime": null
     },
     {
@@ -5555,7 +5918,7 @@
         "expirationTime": null
     },
     {
-        "name": "Crème aigre (Sour cream)",
+        "name": "Crème aigre",
         "link": null,
         "category": "Produits laitiers",
         "unit": [
@@ -5563,6 +5926,39 @@
         ],
         "caloriesPerKg": 1930,
         "caloriesPerUnit": 193,
+        "expirationTime": null
+    },
+    {
+        "name": "Emmental",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3800,
+        "caloriesPerUnit": 380,
+        "expirationTime": null
+    },
+    {
+        "name": "Feta",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2700,
+        "caloriesPerUnit": 270,
+        "expirationTime": null
+    },
+    {
+        "name": "Flan",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1400,
+        "caloriesPerUnit": 140,
         "expirationTime": null
     },
     {
@@ -5610,7 +6006,7 @@
         "expirationTime": null
     },
     {
-        "name": "Fromage frais (Cream cheese)",
+        "name": "Fromage frais",
         "link": null,
         "category": "Produits laitiers",
         "unit": [
@@ -5643,14 +6039,25 @@
         "expirationTime": null
     },
     {
-        "name": "Junket (flan lacté)",
+        "name": "Gorgonzola",
         "link": null,
         "category": "Produits laitiers",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 1400,
-        "caloriesPerUnit": 140,
+        "caloriesPerKg": 3600,
+        "caloriesPerUnit": 360,
+        "expirationTime": null
+    },
+    {
+        "name": "Gruyère",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 4000,
+        "caloriesPerUnit": 400,
         "expirationTime": null
     },
     {
@@ -5665,7 +6072,7 @@
         "expirationTime": null
     },
     {
-        "name": "Lait (autres mammifères)",
+        "name": "Lait",
         "link": null,
         "category": "Produits laitiers",
         "unit": [
@@ -5709,7 +6116,7 @@
         "expirationTime": null
     },
     {
-        "name": "Lait fermenté (autre)",
+        "name": "Lait fermenté",
         "link": null,
         "category": "Produits laitiers",
         "unit": [
@@ -5728,17 +6135,6 @@
         ],
         "caloriesPerKg": 1350,
         "caloriesPerUnit": 135,
-        "expirationTime": null
-    },
-    {
-        "name": "Laits et produits laitiers",
-        "link": null,
-        "category": "Produits laitiers",
-        "unit": [
-            "cl"
-        ],
-        "caloriesPerKg": 600,
-        "caloriesPerUnit": 60,
         "expirationTime": null
     },
     {
@@ -5764,14 +6160,69 @@
         "expirationTime": null
     },
     {
-        "name": "Petit-lait (Whey)",
+        "name": "Pecorino",
         "link": null,
         "category": "Produits laitiers",
         "unit": [
-            "cl"
+            "g"
         ],
-        "caloriesPerKg": 270,
-        "caloriesPerUnit": 27,
+        "caloriesPerKg": 3900,
+        "caloriesPerUnit": 390,
+        "expirationTime": null
+    },
+    {
+        "name": "Raclette",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3600,
+        "caloriesPerUnit": 360,
+        "expirationTime": null
+    },
+    {
+        "name": "Reblochon",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3300,
+        "caloriesPerUnit": 330,
+        "expirationTime": null
+    },
+    {
+        "name": "Ricotta",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1200,
+        "caloriesPerUnit": 120,
+        "expirationTime": null
+    },
+    {
+        "name": "Roquefort",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3700,
+        "caloriesPerUnit": 370,
+        "expirationTime": null
+    },
+    {
+        "name": "Stilton",
+        "link": null,
+        "category": "Produits laitiers",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3700,
+        "caloriesPerUnit": 370,
         "expirationTime": null
     },
     {
@@ -5797,7 +6248,7 @@
         "expirationTime": null
     },
     {
-        "name": "Ymer (yaourt danois)",
+        "name": "Ymer",
         "link": null,
         "category": "Produits laitiers",
         "unit": [
@@ -5841,7 +6292,18 @@
         "expirationTime": null
     },
     {
-        "name": "Biscotte sucrée (Zwieback)",
+        "name": "Baguette",
+        "link": null,
+        "category": "Céréales",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2700,
+        "caloriesPerUnit": 270,
+        "expirationTime": null
+    },
+    {
+        "name": "Biscotte sucrée",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -5918,7 +6380,7 @@
         "expirationTime": null
     },
     {
-        "name": "Craquelin (Cracker)",
+        "name": "Craquelin",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -5973,6 +6435,17 @@
         "expirationTime": null
     },
     {
+        "name": "Gnocchis",
+        "link": null,
+        "category": "Céréales",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 1500,
+        "caloriesPerUnit": 150,
+        "expirationTime": null
+    },
+    {
         "name": "Grits de maïs",
         "link": null,
         "category": "Céréales",
@@ -5984,7 +6457,7 @@
         "expirationTime": null
     },
     {
-        "name": "Gâteau de riz (Rice cake)",
+        "name": "Gâteau de riz",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -6017,7 +6490,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pain (autre)",
+        "name": "Pain",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -6083,7 +6556,29 @@
         "expirationTime": null
     },
     {
+        "name": "Pain de campagne",
+        "link": null,
+        "category": "Céréales",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2500,
+        "caloriesPerUnit": 250,
+        "expirationTime": null
+    },
+    {
         "name": "Pain de maïs",
+        "link": null,
+        "category": "Céréales",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2700,
+        "caloriesPerUnit": 270,
+        "expirationTime": null
+    },
+    {
+        "name": "Pain de mie",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -6138,7 +6633,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pain frit (Frybread)",
+        "name": "Pain frit",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -6160,7 +6655,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pain piki (hopi)",
+        "name": "Pain piki",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -6182,7 +6677,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pan dulce (brioche mexicaine)",
+        "name": "Pan dulce",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -6204,29 +6699,62 @@
         "expirationTime": null
     },
     {
-        "name": "Produit de céréales (autre)",
+        "name": "Polenta",
         "link": null,
         "category": "Céréales",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 3300,
-        "caloriesPerUnit": 330,
+        "caloriesPerKg": 3600,
+        "caloriesPerUnit": 360,
         "expirationTime": null
     },
     {
-        "name": "Produit de pain (autre)",
+        "name": "Pâte brisée",
         "link": null,
         "category": "Céréales",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 2600,
-        "caloriesPerUnit": 260,
+        "caloriesPerKg": 3500,
+        "caloriesPerUnit": 350,
         "expirationTime": null
     },
     {
-        "name": "Pâte crue (Dough)",
+        "name": "Pâte feuilletée",
+        "link": null,
+        "category": "Céréales",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3600,
+        "caloriesPerUnit": 360,
+        "expirationTime": null
+    },
+    {
+        "name": "Pâte filo",
+        "link": null,
+        "category": "Céréales",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3600,
+        "caloriesPerUnit": 360,
+        "expirationTime": null
+    },
+    {
+        "name": "Pâte sablée",
+        "link": null,
+        "category": "Céréales",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 4200,
+        "caloriesPerUnit": 420,
+        "expirationTime": null
+    },
+    {
+        "name": "Pâte à cookie",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -6237,7 +6765,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pâte filo",
+        "name": "Riz",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -6260,17 +6788,6 @@
     },
     {
         "name": "Riz sauvage",
-        "link": null,
-        "category": "Céréales",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 3600,
-        "caloriesPerUnit": 360,
-        "expirationTime": null
-    },
-    {
-        "name": "Riz sauvage annuel",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -6369,7 +6886,7 @@
         "expirationTime": null
     },
     {
-        "name": "Épeautre (Spelt)",
+        "name": "Épeautre",
         "link": null,
         "category": "Céréales",
         "unit": [
@@ -6380,7 +6897,7 @@
         "expirationTime": null
     },
     {
-        "name": "Albizia gummifera",
+        "name": "Albizia",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6391,7 +6908,7 @@
         "expirationTime": null
     },
     {
-        "name": "Asparagus fern (ornemental)",
+        "name": "Asparagus à grappes",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6402,7 +6919,7 @@
         "expirationTime": null
     },
     {
-        "name": "Asparagus racemosus",
+        "name": "Asperge des bois",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6410,39 +6927,6 @@
         ],
         "caloriesPerKg": 200,
         "caloriesPerUnit": 20,
-        "expirationTime": null
-    },
-    {
-        "name": "Carthame (graines)",
-        "link": null,
-        "category": "Légumineuses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5170,
-        "caloriesPerUnit": 517,
-        "expirationTime": null
-    },
-    {
-        "name": "Castanospermum australe (graine)",
-        "link": null,
-        "category": "Légumineuses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 3500,
-        "caloriesPerUnit": 350,
-        "expirationTime": null
-    },
-    {
-        "name": "Colza (graines)",
-        "link": null,
-        "category": "Légumineuses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5140,
-        "caloriesPerUnit": 514,
         "expirationTime": null
     },
     {
@@ -6457,7 +6941,7 @@
         "expirationTime": null
     },
     {
-        "name": "Fève (Grosse fève, Broad bean)",
+        "name": "Fève",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6479,6 +6963,28 @@
         "expirationTime": null
     },
     {
+        "name": "Graines de Carthame",
+        "link": null,
+        "category": "Légumineuses",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 5170,
+        "caloriesPerUnit": 517,
+        "expirationTime": null
+    },
+    {
+        "name": "Graines de Tournesol",
+        "link": null,
+        "category": "Légumineuses",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 5840,
+        "caloriesPerUnit": 584,
+        "expirationTime": null
+    },
+    {
         "name": "Haricot",
         "link": null,
         "category": "Légumineuses",
@@ -6490,7 +6996,7 @@
         "expirationTime": null
     },
     {
-        "name": "Haricot ailé (Winged bean)",
+        "name": "Haricot ailé",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6534,17 +7040,6 @@
         "expirationTime": null
     },
     {
-        "name": "Haricot commun (sec)",
-        "link": null,
-        "category": "Légumineuses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 3330,
-        "caloriesPerUnit": 333,
-        "expirationTime": null
-    },
-    {
         "name": "Haricot de Lima",
         "link": null,
         "category": "Légumineuses",
@@ -6578,7 +7073,7 @@
         "expirationTime": null
     },
     {
-        "name": "Haricot jacinthe (Hyacinth bean)",
+        "name": "Haricot jacinthe",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6589,7 +7084,7 @@
         "expirationTime": null
     },
     {
-        "name": "Haricot kilomètre (Yardlong bean)",
+        "name": "Haricot kilomètre",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6600,7 +7095,7 @@
         "expirationTime": null
     },
     {
-        "name": "Haricot mungo (Gram bean/mung)",
+        "name": "Haricot mungo",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6611,18 +7106,7 @@
         "expirationTime": null
     },
     {
-        "name": "Haricot mungo (Mung bean)",
-        "link": null,
-        "category": "Légumineuses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 3470,
-        "caloriesPerUnit": 347,
-        "expirationTime": null
-    },
-    {
-        "name": "Haricot papillon (Moth bean)",
+        "name": "Haricot papillon",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6644,7 +7128,7 @@
         "expirationTime": null
     },
     {
-        "name": "Haricots cuits (Baked beans)",
+        "name": "Haricots cuits",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6732,29 +7216,7 @@
         "expirationTime": null
     },
     {
-        "name": "Légumineuses (Pulses)",
-        "link": null,
-        "category": "Légumineuses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 3300,
-        "caloriesPerUnit": 330,
-        "expirationTime": null
-    },
-    {
-        "name": "Natto (soja fermenté)",
-        "link": null,
-        "category": "Légumineuses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2100,
-        "caloriesPerUnit": 210,
-        "expirationTime": null
-    },
-    {
-        "name": "Niébé (Cowpea)",
+        "name": "Niébé",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6762,17 +7224,6 @@
         ],
         "caloriesPerKg": 3360,
         "caloriesPerUnit": 336,
-        "expirationTime": null
-    },
-    {
-        "name": "Nénuphar jaune (Yellow pond-lily)",
-        "link": null,
-        "category": "Légumineuses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 300,
-        "caloriesPerUnit": 30,
         "expirationTime": null
     },
     {
@@ -6809,7 +7260,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pois vivace des prairies (Prairie turnip)",
+        "name": "Pois vivace",
         "link": null,
         "category": "Légumineuses",
         "unit": [
@@ -6831,25 +7282,14 @@
         "expirationTime": null
     },
     {
-        "name": "Produit de soja (autre)",
+        "name": "Rhizome de Nénuphar jaune",
         "link": null,
         "category": "Légumineuses",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 1200,
-        "caloriesPerUnit": 120,
-        "expirationTime": null
-    },
-    {
-        "name": "Sainfoin alpin (Alpine sweetvetch)",
-        "link": null,
-        "category": "Légumineuses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 3300,
-        "caloriesPerUnit": 330,
+        "caloriesPerKg": 300,
+        "caloriesPerUnit": 30,
         "expirationTime": null
     },
     {
@@ -6861,6 +7301,17 @@
         ],
         "caloriesPerKg": 4460,
         "caloriesPerUnit": 446,
+        "expirationTime": null
+    },
+    {
+        "name": "Soja fermenté",
+        "link": null,
+        "category": "Légumineuses",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2100,
+        "caloriesPerUnit": 210,
         "expirationTime": null
     },
     {
@@ -6883,17 +7334,6 @@
         ],
         "caloriesPerKg": 760,
         "caloriesPerUnit": 76,
-        "expirationTime": null
-    },
-    {
-        "name": "Tournesol (graines)",
-        "link": null,
-        "category": "Légumineuses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5840,
-        "caloriesPerUnit": 584,
         "expirationTime": null
     },
     {
@@ -6952,7 +7392,7 @@
         "expirationTime": null
     },
     {
-        "name": "Badiane (anis étoilé)",
+        "name": "Badiane",
         "link": null,
         "category": "Condiments",
         "unit": [
@@ -6960,6 +7400,17 @@
         ],
         "caloriesPerKg": 3370,
         "caloriesPerUnit": 337,
+        "expirationTime": null
+    },
+    {
+        "name": "Baie de genièvre",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 4500,
+        "caloriesPerUnit": 450,
         "expirationTime": null
     },
     {
@@ -6974,6 +7425,17 @@
         "expirationTime": null
     },
     {
+        "name": "Bouillon de bœuf",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 250,
+        "caloriesPerUnit": 25,
+        "expirationTime": null
+    },
+    {
         "name": "Bouillon de viande",
         "link": null,
         "category": "Condiments",
@@ -6982,6 +7444,17 @@
         ],
         "caloriesPerKg": 150,
         "caloriesPerUnit": 15,
+        "expirationTime": null
+    },
+    {
+        "name": "Bouillon de volaille",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "pcs"
+        ],
+        "caloriesPerKg": 250,
+        "caloriesPerUnit": 25,
         "expirationTime": null
     },
     {
@@ -7029,7 +7502,7 @@
         "expirationTime": null
     },
     {
-        "name": "Cannelle de Chine (Cassia)",
+        "name": "Cannelle de Chine",
         "link": null,
         "category": "Condiments",
         "unit": [
@@ -7048,17 +7521,6 @@
         ],
         "caloriesPerKg": 3110,
         "caloriesPerUnit": 311,
-        "expirationTime": null
-    },
-    {
-        "name": "Carvi (graines)",
-        "link": null,
-        "category": "Condiments",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 3330,
-        "caloriesPerUnit": 333,
         "expirationTime": null
     },
     {
@@ -7095,18 +7557,7 @@
         "expirationTime": null
     },
     {
-        "name": "Condiment (Relish)",
-        "link": null,
-        "category": "Condiments",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1100,
-        "caloriesPerUnit": 110,
-        "expirationTime": null
-    },
-    {
-        "name": "Coriandre (feuilles)",
+        "name": "Coriandre",
         "link": null,
         "category": "Condiments",
         "unit": [
@@ -7136,6 +7587,17 @@
         ],
         "caloriesPerKg": 3750,
         "caloriesPerUnit": 375,
+        "expirationTime": null
+    },
+    {
+        "name": "Cumin des prés)",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3330,
+        "caloriesPerUnit": 333,
         "expirationTime": null
     },
     {
@@ -7194,39 +7656,6 @@
         "expirationTime": null
     },
     {
-        "name": "Garniture (Topping)",
-        "link": null,
-        "category": "Condiments",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 3500,
-        "caloriesPerUnit": 350,
-        "expirationTime": null
-    },
-    {
-        "name": "Gentiane jaune",
-        "link": null,
-        "category": "Condiments",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 200,
-        "caloriesPerUnit": 20,
-        "expirationTime": null
-    },
-    {
-        "name": "Genévrier commun (baie de genièvre)",
-        "link": null,
-        "category": "Condiments",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 4500,
-        "caloriesPerUnit": 450,
-        "expirationTime": null
-    },
-    {
         "name": "Gingembre",
         "link": null,
         "category": "Condiments",
@@ -7246,28 +7675,6 @@
         ],
         "caloriesPerKg": 410,
         "caloriesPerUnit": 41,
-        "expirationTime": null
-    },
-    {
-        "name": "Herbes et épices",
-        "link": null,
-        "category": "Condiments",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 300,
-        "caloriesPerUnit": 30,
-        "expirationTime": null
-    },
-    {
-        "name": "Hibiscus (Roselle)",
-        "link": null,
-        "category": "Condiments",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 370,
-        "caloriesPerUnit": 37,
         "expirationTime": null
     },
     {
@@ -7315,18 +7722,7 @@
         "expirationTime": null
     },
     {
-        "name": "Marjolaine (douce)",
-        "link": null,
-        "category": "Condiments",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2700,
-        "caloriesPerUnit": 270,
-        "expirationTime": null
-    },
-    {
-        "name": "Marjolaine (pot)",
+        "name": "Marjolaine",
         "link": null,
         "category": "Condiments",
         "unit": [
@@ -7378,6 +7774,17 @@
         ],
         "caloriesPerKg": 5080,
         "caloriesPerUnit": 508,
+        "expirationTime": null
+    },
+    {
+        "name": "Moutarde de Dijon",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 660,
+        "caloriesPerUnit": 66,
         "expirationTime": null
     },
     {
@@ -7447,18 +7854,18 @@
         "expirationTime": null
     },
     {
-        "name": "Pavot somnifère (opium poppy)",
+        "name": "Oseille de Guinée",
         "link": null,
         "category": "Condiments",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 5250,
-        "caloriesPerUnit": 525,
+        "caloriesPerKg": 370,
+        "caloriesPerUnit": 37,
         "expirationTime": null
     },
     {
-        "name": "Piment de la Jamaïque (Allspice)",
+        "name": "Piment de la Jamaïque",
         "link": null,
         "category": "Condiments",
         "unit": [
@@ -7477,6 +7884,17 @@
         ],
         "caloriesPerKg": 2510,
         "caloriesPerUnit": 251,
+        "expirationTime": null
+    },
+    {
+        "name": "Relish",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1100,
+        "caloriesPerUnit": 110,
         "expirationTime": null
     },
     {
@@ -7546,6 +7964,39 @@
         "expirationTime": null
     },
     {
+        "name": "Sauce béchamel",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 1000,
+        "caloriesPerUnit": 100,
+        "expirationTime": null
+    },
+    {
+        "name": "Sauce bolognaise",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 900,
+        "caloriesPerUnit": 90,
+        "expirationTime": null
+    },
+    {
+        "name": "Sauce pesto",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 4500,
+        "caloriesPerUnit": 450,
+        "expirationTime": null
+    },
+    {
         "name": "Sauce soja",
         "link": null,
         "category": "Condiments",
@@ -7554,6 +8005,17 @@
         ],
         "caloriesPerKg": 530,
         "caloriesPerUnit": 53,
+        "expirationTime": null
+    },
+    {
+        "name": "Sauce tomate nature",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 400,
+        "caloriesPerUnit": 40,
         "expirationTime": null
     },
     {
@@ -7601,7 +8063,7 @@
         "expirationTime": null
     },
     {
-        "name": "Tartinade (Spread)",
+        "name": "Tartinade",
         "link": null,
         "category": "Condiments",
         "unit": [
@@ -7612,7 +8074,7 @@
         "expirationTime": null
     },
     {
-        "name": "Trèfle rouge",
+        "name": "Trèfle rougeâtre",
         "link": null,
         "category": "Condiments",
         "unit": [
@@ -7645,7 +8107,29 @@
         "expirationTime": null
     },
     {
-        "name": "Vinaigrette (Salad dressing)",
+        "name": "Vinaigre balsamique",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 880,
+        "caloriesPerUnit": 88,
+        "expirationTime": null
+    },
+    {
+        "name": "Vinaigre de vin",
+        "link": null,
+        "category": "Condiments",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 200,
+        "caloriesPerUnit": 20,
+        "expirationTime": null
+    },
+    {
+        "name": "Vinaigrette",
         "link": null,
         "category": "Condiments",
         "unit": [
@@ -7689,7 +8173,7 @@
         "expirationTime": null
     },
     {
-        "name": "Barre de céréales (Snack bar)",
+        "name": "Barre de céréales",
         "link": null,
         "category": "Produits sucrés",
         "unit": [
@@ -7711,7 +8195,7 @@
         "expirationTime": null
     },
     {
-        "name": "Bonbon (autre)",
+        "name": "Bonbon",
         "link": null,
         "category": "Produits sucrés",
         "unit": [
@@ -7733,7 +8217,7 @@
         "expirationTime": null
     },
     {
-        "name": "Cacao et produits cacaotés",
+        "name": "Cacao",
         "link": null,
         "category": "Produits sucrés",
         "unit": [
@@ -7744,7 +8228,7 @@
         "expirationTime": null
     },
     {
-        "name": "Caramel mou (Toffee)",
+        "name": "Caramel mou",
         "link": null,
         "category": "Produits sucrés",
         "unit": [
@@ -7763,6 +8247,17 @@
         ],
         "caloriesPerKg": 2220,
         "caloriesPerUnit": 222,
+        "expirationTime": null
+    },
+    {
+        "name": "Cassonade",
+        "link": null,
+        "category": "Produits sucrés",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3850,
+        "caloriesPerUnit": 385,
         "expirationTime": null
     },
     {
@@ -7810,6 +8305,28 @@
         "expirationTime": null
     },
     {
+        "name": "Chocolat blanc",
+        "link": null,
+        "category": "Produits sucrés",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 5400,
+        "caloriesPerUnit": 540,
+        "expirationTime": null
+    },
+    {
+        "name": "Chocolat noir",
+        "link": null,
+        "category": "Produits sucrés",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 5500,
+        "caloriesPerUnit": 550,
+        "expirationTime": null
+    },
+    {
         "name": "Confiture",
         "link": null,
         "category": "Produits sucrés",
@@ -7818,6 +8335,28 @@
         ],
         "caloriesPerKg": 2800,
         "caloriesPerUnit": 280,
+        "expirationTime": null
+    },
+    {
+        "name": "Confiture d'abricots",
+        "link": null,
+        "category": "Produits sucrés",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2500,
+        "caloriesPerUnit": 250,
+        "expirationTime": null
+    },
+    {
+        "name": "Confiture de fraises",
+        "link": null,
+        "category": "Produits sucrés",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 2500,
+        "caloriesPerUnit": 250,
         "expirationTime": null
     },
     {
@@ -7832,7 +8371,7 @@
         "expirationTime": null
     },
     {
-        "name": "Crème dessert (Custard)",
+        "name": "Crème dessert",
         "link": null,
         "category": "Produits sucrés",
         "unit": [
@@ -7843,7 +8382,7 @@
         "expirationTime": null
     },
     {
-        "name": "Dessert glacé (autre)",
+        "name": "Dessert glacé",
         "link": null,
         "category": "Produits sucrés",
         "unit": [
@@ -7920,7 +8459,7 @@
         "expirationTime": null
     },
     {
-        "name": "Glaçage (Icing)",
+        "name": "Glaçage",
         "link": null,
         "category": "Produits sucrés",
         "unit": [
@@ -7972,6 +8511,17 @@
         ],
         "caloriesPerKg": 3800,
         "caloriesPerUnit": 380,
+        "expirationTime": null
+    },
+    {
+        "name": "Miel",
+        "link": null,
+        "category": "Produits sucrés",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 3040,
+        "caloriesPerUnit": 304,
         "expirationTime": null
     },
     {
@@ -8030,17 +8580,6 @@
         "expirationTime": null
     },
     {
-        "name": "Produit de cacao (autre)",
-        "link": null,
-        "category": "Produits sucrés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5000,
-        "caloriesPerUnit": 500,
-        "expirationTime": null
-    },
-    {
         "name": "Pudding",
         "link": null,
         "category": "Produits sucrés",
@@ -8052,7 +8591,7 @@
         "expirationTime": null
     },
     {
-        "name": "Pâte d’amande (Marzipan)",
+        "name": "Pâte d’amande",
         "link": null,
         "category": "Produits sucrés",
         "unit": [
@@ -8060,17 +8599,6 @@
         ],
         "caloriesPerKg": 4500,
         "caloriesPerUnit": 450,
-        "expirationTime": null
-    },
-    {
-        "name": "Pâtisserie",
-        "link": null,
-        "category": "Produits sucrés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 4000,
-        "caloriesPerUnit": 400,
         "expirationTime": null
     },
     {
@@ -8096,18 +8624,40 @@
         "expirationTime": null
     },
     {
-        "name": "Snack (autre)",
+        "name": "Sucre blanc",
         "link": null,
         "category": "Produits sucrés",
         "unit": [
             "g"
         ],
-        "caloriesPerKg": 4500,
-        "caloriesPerUnit": 450,
+        "caloriesPerKg": 4000,
+        "caloriesPerUnit": 400,
+        "expirationTime": null
+    },
+    {
+        "name": "Sucre roux",
+        "link": null,
+        "category": "Produits sucrés",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 3900,
+        "caloriesPerUnit": 390,
         "expirationTime": null
     },
     {
         "name": "Beurre de cacao",
+        "link": null,
+        "category": "Matières grasses",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 8840,
+        "caloriesPerUnit": 884,
+        "expirationTime": null
+    },
+    {
+        "name": "Beurre de Karité",
         "link": null,
         "category": "Matières grasses",
         "unit": [
@@ -8129,7 +8679,7 @@
         "expirationTime": null
     },
     {
-        "name": "Colza (Canola)",
+        "name": "Colza",
         "link": null,
         "category": "Matières grasses",
         "unit": [
@@ -8162,7 +8712,7 @@
         "expirationTime": null
     },
     {
-        "name": "Graine de coton (Cottonseed)",
+        "name": "Graine de coton",
         "link": null,
         "category": "Matières grasses",
         "unit": [
@@ -8170,6 +8720,17 @@
         ],
         "caloriesPerKg": 4600,
         "caloriesPerUnit": 460,
+        "expirationTime": null
+    },
+    {
+        "name": "Graine de Onagre",
+        "link": null,
+        "category": "Matières grasses",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 5000,
+        "caloriesPerUnit": 500,
         "expirationTime": null
     },
     {
@@ -8184,7 +8745,7 @@
         "expirationTime": null
     },
     {
-        "name": "Graisse animale (autre)",
+        "name": "Graisse animale",
         "link": null,
         "category": "Matières grasses",
         "unit": [
@@ -8195,7 +8756,7 @@
         "expirationTime": null
     },
     {
-        "name": "Graisse animale fondue (Dripping)",
+        "name": "Graisse animale fondue",
         "link": null,
         "category": "Matières grasses",
         "unit": [
@@ -8206,7 +8767,7 @@
         "expirationTime": null
     },
     {
-        "name": "Graisse végétale (Shortening)",
+        "name": "Graisse végétale",
         "link": null,
         "category": "Matières grasses",
         "unit": [
@@ -8217,7 +8778,7 @@
         "expirationTime": null
     },
     {
-        "name": "Graisses et huiles",
+        "name": "Huile",
         "link": null,
         "category": "Matières grasses",
         "unit": [
@@ -8382,11 +8943,11 @@
         "expirationTime": null
     },
     {
-        "name": "Karité (beurre de)",
+        "name": "Huile d’olive vierge extra",
         "link": null,
         "category": "Matières grasses",
         "unit": [
-            "g"
+            "cl"
         ],
         "caloriesPerKg": 8840,
         "caloriesPerUnit": 884,
@@ -8404,18 +8965,7 @@
         "expirationTime": null
     },
     {
-        "name": "Margarine (tartinable)",
-        "link": null,
-        "category": "Matières grasses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 7170,
-        "caloriesPerUnit": 717,
-        "expirationTime": null
-    },
-    {
-        "name": "Matière grasse laitière (Butterfat)",
+        "name": "Matière grasse laitière",
         "link": null,
         "category": "Matières grasses",
         "unit": [
@@ -8423,17 +8973,6 @@
         ],
         "caloriesPerKg": 7200,
         "caloriesPerUnit": 720,
-        "expirationTime": null
-    },
-    {
-        "name": "Onagre (graines)",
-        "link": null,
-        "category": "Matières grasses",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 5000,
-        "caloriesPerUnit": 500,
         "expirationTime": null
     },
     {
@@ -8481,7 +9020,7 @@
         "expirationTime": null
     },
     {
-        "name": "Suif (Tallow)",
+        "name": "Suif",
         "link": null,
         "category": "Matières grasses",
         "unit": [
@@ -8514,7 +9053,7 @@
         "expirationTime": null
     },
     {
-        "name": "Alcool (autre)",
+        "name": "Alcool",
         "link": null,
         "category": "Boissons",
         "unit": [
@@ -8522,6 +9061,39 @@
         ],
         "caloriesPerKg": 700,
         "caloriesPerUnit": 70,
+        "expirationTime": null
+    },
+    {
+        "name": "Amaretto",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2800,
+        "caloriesPerUnit": 280,
+        "expirationTime": null
+    },
+    {
+        "name": "Anisette",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 3000,
+        "caloriesPerUnit": 300,
+        "expirationTime": null
+    },
+    {
+        "name": "Armagnac",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2300,
+        "caloriesPerUnit": 230,
         "expirationTime": null
     },
     {
@@ -8536,14 +9108,58 @@
         "expirationTime": null
     },
     {
-        "name": "Boisson (autre)",
+        "name": "Bière ambrée",
         "link": null,
         "category": "Boissons",
         "unit": [
             "cl"
         ],
-        "caloriesPerKg": 500,
-        "caloriesPerUnit": 50,
+        "caloriesPerKg": 480,
+        "caloriesPerUnit": 48,
+        "expirationTime": null
+    },
+    {
+        "name": "Bière blanche",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 450,
+        "caloriesPerUnit": 45,
+        "expirationTime": null
+    },
+    {
+        "name": "Bière blonde",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 430,
+        "caloriesPerUnit": 43,
+        "expirationTime": null
+    },
+    {
+        "name": "Bière brune",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 520,
+        "caloriesPerUnit": 52,
+        "expirationTime": null
+    },
+    {
+        "name": "Bière IPA",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 600,
+        "caloriesPerUnit": 60,
         "expirationTime": null
     },
     {
@@ -8602,7 +9218,18 @@
         "expirationTime": null
     },
     {
-        "name": "Café et produits dérivés",
+        "name": "Bénédictine",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 3000,
+        "caloriesPerUnit": 300,
+        "expirationTime": null
+    },
+    {
+        "name": "Café",
         "link": null,
         "category": "Boissons",
         "unit": [
@@ -8624,6 +9251,17 @@
         "expirationTime": null
     },
     {
+        "name": "Calvados",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2300,
+        "caloriesPerUnit": 230,
+        "expirationTime": null
+    },
+    {
         "name": "Camomille romaine",
         "link": null,
         "category": "Boissons",
@@ -8632,6 +9270,17 @@
         ],
         "caloriesPerKg": 1,
         "caloriesPerUnit": 0,
+        "expirationTime": null
+    },
+    {
+        "name": "Champagne",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 750,
+        "caloriesPerUnit": 75,
         "expirationTime": null
     },
     {
@@ -8657,6 +9306,50 @@
         "expirationTime": null
     },
     {
+        "name": "Chartreuse jaune",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 3000,
+        "caloriesPerUnit": 300,
+        "expirationTime": null
+    },
+    {
+        "name": "Chartreuse verte",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 3200,
+        "caloriesPerUnit": 320,
+        "expirationTime": null
+    },
+    {
+        "name": "Chocolat chaud",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 800,
+        "caloriesPerUnit": 80,
+        "expirationTime": null
+    },
+    {
+        "name": "Cidre",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 500,
+        "caloriesPerUnit": 50,
+        "expirationTime": null
+    },
+    {
         "name": "Cidre de pomme",
         "link": null,
         "category": "Boissons",
@@ -8665,6 +9358,28 @@
         ],
         "caloriesPerKg": 500,
         "caloriesPerUnit": 50,
+        "expirationTime": null
+    },
+    {
+        "name": "Cognac",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2300,
+        "caloriesPerUnit": 230,
+        "expirationTime": null
+    },
+    {
+        "name": "Cointreau",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2800,
+        "caloriesPerUnit": 280,
         "expirationTime": null
     },
     {
@@ -8679,6 +9394,17 @@
         "expirationTime": null
     },
     {
+        "name": "Eau-de-vie de poire",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2300,
+        "caloriesPerUnit": 230,
+        "expirationTime": null
+    },
+    {
         "name": "Gin",
         "link": null,
         "category": "Boissons",
@@ -8690,6 +9416,17 @@
         "expirationTime": null
     },
     {
+        "name": "Grand Marnier",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2800,
+        "caloriesPerUnit": 280,
+        "expirationTime": null
+    },
+    {
         "name": "Horchata",
         "link": null,
         "category": "Boissons",
@@ -8698,6 +9435,28 @@
         ],
         "caloriesPerKg": 540,
         "caloriesPerUnit": 54,
+        "expirationTime": null
+    },
+    {
+        "name": "Jus d'orange",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 450,
+        "caloriesPerUnit": 45,
+        "expirationTime": null
+    },
+    {
+        "name": "Jus de citron",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 220,
+        "caloriesPerUnit": 22,
         "expirationTime": null
     },
     {
@@ -8723,6 +9482,17 @@
         "expirationTime": null
     },
     {
+        "name": "Jus de pomme",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 460,
+        "caloriesPerUnit": 46,
+        "expirationTime": null
+    },
+    {
         "name": "Jus de raisin blanc",
         "link": null,
         "category": "Boissons",
@@ -8745,7 +9515,7 @@
         "expirationTime": null
     },
     {
-        "name": "Liqueur forte (spiritueux)",
+        "name": "Kirsch",
         "link": null,
         "category": "Boissons",
         "unit": [
@@ -8753,6 +9523,17 @@
         ],
         "caloriesPerKg": 2300,
         "caloriesPerUnit": 230,
+        "expirationTime": null
+    },
+    {
+        "name": "Limoncello",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2500,
+        "caloriesPerUnit": 250,
         "expirationTime": null
     },
     {
@@ -8778,6 +9559,17 @@
         "expirationTime": null
     },
     {
+        "name": "Pastis",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2600,
+        "caloriesPerUnit": 260,
+        "expirationTime": null
+    },
+    {
         "name": "Rhum",
         "link": null,
         "category": "Boissons",
@@ -8789,6 +9581,17 @@
         "expirationTime": null
     },
     {
+        "name": "Rooibos",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 1,
+        "caloriesPerUnit": 0,
+        "expirationTime": null
+    },
+    {
         "name": "Saké",
         "link": null,
         "category": "Boissons",
@@ -8797,6 +9600,17 @@
         ],
         "caloriesPerKg": 1340,
         "caloriesPerUnit": 134,
+        "expirationTime": null
+    },
+    {
+        "name": "Sambuca",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 3000,
+        "caloriesPerUnit": 300,
         "expirationTime": null
     },
     {
@@ -8822,6 +9636,17 @@
         "expirationTime": null
     },
     {
+        "name": "Spiritueux",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2300,
+        "caloriesPerUnit": 230,
+        "expirationTime": null
+    },
+    {
         "name": "Substitut de café",
         "link": null,
         "category": "Boissons",
@@ -8833,18 +9658,18 @@
         "expirationTime": null
     },
     {
-        "name": "Thé noir",
+        "name": "Tequila",
         "link": null,
         "category": "Boissons",
         "unit": [
             "cl"
         ],
-        "caloriesPerKg": 1,
-        "caloriesPerUnit": 0,
+        "caloriesPerKg": 2300,
+        "caloriesPerUnit": 230,
         "expirationTime": null
     },
     {
-        "name": "Thé rouge (rooibos)",
+        "name": "Thé noir",
         "link": null,
         "category": "Boissons",
         "unit": [
@@ -8899,7 +9724,7 @@
         "expirationTime": null
     },
     {
-        "name": "Tisane (Herbal tea)",
+        "name": "Tisane",
         "link": null,
         "category": "Boissons",
         "unit": [
@@ -8932,6 +9757,17 @@
         "expirationTime": null
     },
     {
+        "name": "Triple sec",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 2800,
+        "caloriesPerUnit": 280,
+        "expirationTime": null
+    },
+    {
         "name": "Vermouth",
         "link": null,
         "category": "Boissons",
@@ -8943,7 +9779,7 @@
         "expirationTime": null
     },
     {
-        "name": "Vin (autre)",
+        "name": "Vin blanc",
         "link": null,
         "category": "Boissons",
         "unit": [
@@ -8954,7 +9790,18 @@
         "expirationTime": null
     },
     {
-        "name": "Vin blanc",
+        "name": "Vin blanc Chardonnay",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 820,
+        "caloriesPerUnit": 82,
+        "expirationTime": null
+    },
+    {
+        "name": "Vin blanc Riesling",
         "link": null,
         "category": "Boissons",
         "unit": [
@@ -8962,6 +9809,17 @@
         ],
         "caloriesPerKg": 800,
         "caloriesPerUnit": 80,
+        "expirationTime": null
+    },
+    {
+        "name": "Vin blanc Sauvignon",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 820,
+        "caloriesPerUnit": 82,
         "expirationTime": null
     },
     {
@@ -9020,17 +9878,6 @@
         "expirationTime": null
     },
     {
-        "name": "Vin fortifié (Porto, Madère)",
-        "link": null,
-        "category": "Boissons",
-        "unit": [
-            "cl"
-        ],
-        "caloriesPerKg": 1600,
-        "caloriesPerUnit": 160,
-        "expirationTime": null
-    },
-    {
         "name": "Vin rosé",
         "link": null,
         "category": "Boissons",
@@ -9042,6 +9889,17 @@
         "expirationTime": null
     },
     {
+        "name": "Vin rosé Provence",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 700,
+        "caloriesPerUnit": 70,
+        "expirationTime": null
+    },
+    {
         "name": "Vin rouge",
         "link": null,
         "category": "Boissons",
@@ -9050,6 +9908,39 @@
         ],
         "caloriesPerKg": 800,
         "caloriesPerUnit": 80,
+        "expirationTime": null
+    },
+    {
+        "name": "Vin rouge Bordeaux",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 850,
+        "caloriesPerUnit": 85,
+        "expirationTime": null
+    },
+    {
+        "name": "Vin rouge Bourgogne",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 850,
+        "caloriesPerUnit": 85,
+        "expirationTime": null
+    },
+    {
+        "name": "Vin rouge Côtes-du-Rhône",
+        "link": null,
+        "category": "Boissons",
+        "unit": [
+            "cl"
+        ],
+        "caloriesPerKg": 850,
+        "caloriesPerUnit": 85,
         "expirationTime": null
     },
     {
@@ -9075,7 +9966,7 @@
         "expirationTime": null
     },
     {
-        "name": "Xérès (Sherry)",
+        "name": "Xérès",
         "link": null,
         "category": "Boissons",
         "unit": [
@@ -9086,7 +9977,7 @@
         "expirationTime": null
     },
     {
-        "name": "Agar (gélifiant)",
+        "name": "Agar-agar",
         "link": null,
         "category": "Additifs",
         "unit": [
@@ -9119,7 +10010,7 @@
         "expirationTime": null
     },
     {
-        "name": "Algue nori (Purple laver)",
+        "name": "Algue nori",
         "link": null,
         "category": "Additifs",
         "unit": [
@@ -9196,7 +10087,18 @@
         "expirationTime": null
     },
     {
-        "name": "Mousse d’Irlande (Irish moss)",
+        "name": "Laminariales",
+        "link": null,
+        "category": "Additifs",
+        "unit": [
+            "g"
+        ],
+        "caloriesPerKg": 430,
+        "caloriesPerUnit": 43,
+        "expirationTime": null
+    },
+    {
+        "name": "Mousse d’Irlande",
         "link": null,
         "category": "Additifs",
         "unit": [
@@ -9248,611 +10150,6 @@
         ],
         "caloriesPerKg": 500,
         "caloriesPerUnit": 50,
-        "expirationTime": null
-    },
-    {
-        "name": "Varech (Kelp)",
-        "link": null,
-        "category": "Additifs",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 430,
-        "caloriesPerUnit": 43,
-        "expirationTime": null
-    },
-    {
-        "name": "Édulcorant (sucre de substitution)",
-        "link": null,
-        "category": "Additifs",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 0,
-        "caloriesPerUnit": 0,
-        "expirationTime": null
-    },
-    {
-        "name": "Adobo (plat mexicain)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2100,
-        "caloriesPerUnit": 210,
-        "expirationTime": null
-    },
-    {
-        "name": "Akutaq (glace inuit)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 4000,
-        "caloriesPerUnit": 400,
-        "expirationTime": null
-    },
-    {
-        "name": "Aliment/boisson non classifié",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 0,
-        "caloriesPerUnit": 0,
-        "expirationTime": null
-    },
-    {
-        "name": "Arepa (galette de maïs)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2300,
-        "caloriesPerUnit": 180,
-        "expirationTime": null
-    },
-    {
-        "name": "Beignet de maïs (Hushpuppy)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 4000,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Boulettes de viande",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Burger de poisson",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Burger végétarien",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2200,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Burrito",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Chili",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2300,
-        "caloriesPerUnit": 230,
-        "expirationTime": null
-    },
-    {
-        "name": "Chimichanga",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Coquille comestible",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 3000,
-        "caloriesPerUnit": 150,
-        "expirationTime": null
-    },
-    {
-        "name": "Coquille de taco",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2300,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Coquille de tostada",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2300,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Crêpe (Pancake)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2200,
-        "caloriesPerUnit": 100,
-        "expirationTime": null
-    },
-    {
-        "name": "Empanada",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Enchilada",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2200,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Falafel",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 3300,
-        "caloriesPerUnit": 50,
-        "expirationTime": null
-    },
-    {
-        "name": "Farce (Stuffing)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1800,
-        "caloriesPerUnit": 180,
-        "expirationTime": null
-    },
-    {
-        "name": "Gaufre",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 3100,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Gefilte fish",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 1200,
-        "caloriesPerUnit": 100,
-        "expirationTime": null
-    },
-    {
-        "name": "Gratin de pommes de terre",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2300,
-        "caloriesPerUnit": 230,
-        "expirationTime": null
-    },
-    {
-        "name": "Hamburger",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Hot-dog",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2900,
-        "caloriesPerUnit": 300,
-        "expirationTime": null
-    },
-    {
-        "name": "Houmous",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1700,
-        "caloriesPerUnit": 170,
-        "expirationTime": null
-    },
-    {
-        "name": "Lasagnes",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2200,
-        "caloriesPerUnit": 220,
-        "expirationTime": null
-    },
-    {
-        "name": "Macaronis au fromage",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2700,
-        "caloriesPerUnit": 270,
-        "expirationTime": null
-    },
-    {
-        "name": "Macroalgues",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 350,
-        "caloriesPerUnit": 35,
-        "expirationTime": null
-    },
-    {
-        "name": "Nourriture pour bébé",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 800,
-        "caloriesPerUnit": 80,
-        "expirationTime": null
-    },
-    {
-        "name": "Pain de viande (Meatloaf)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Pain perdu",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2600,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Pizza",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2660,
-        "caloriesPerUnit": 266,
-        "expirationTime": null
-    },
-    {
-        "name": "Plat de pâtes (autre)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Plat préparé (autre)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2000,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Plat végétarien",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2000,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Pommes dauphines",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 3000,
-        "caloriesPerUnit": 150,
-        "expirationTime": null
-    },
-    {
-        "name": "Pupusa (galette farcie)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Pâte à tarte",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 4700,
-        "caloriesPerUnit": 470,
-        "expirationTime": null
-    },
-    {
-        "name": "Pâté",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2600,
-        "caloriesPerUnit": 260,
-        "expirationTime": null
-    },
-    {
-        "name": "Quesadilla",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2800,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Ragoût (Stew)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1200,
-        "caloriesPerUnit": 120,
-        "expirationTime": null
-    },
-    {
-        "name": "Ravioli",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2300,
-        "caloriesPerUnit": 120,
-        "expirationTime": null
-    },
-    {
-        "name": "Ravioli (Dumpling)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2000,
-        "caloriesPerUnit": 200,
-        "expirationTime": null
-    },
-    {
-        "name": "Rouleau de printemps (Egg roll)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2200,
-        "caloriesPerUnit": 150,
-        "expirationTime": null
-    },
-    {
-        "name": "Sandwich (autre)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Sandwich petit-déjeuner",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2800,
-        "caloriesPerUnit": 280,
-        "expirationTime": null
-    },
-    {
-        "name": "Scrapple (terrine US)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 3000,
-        "caloriesPerUnit": 300,
-        "expirationTime": null
-    },
-    {
-        "name": "Soupe",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "cl"
-        ],
-        "caloriesPerKg": 400,
-        "caloriesPerUnit": 40,
-        "expirationTime": null
-    },
-    {
-        "name": "Succotash (maïs et haricots)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 1200,
-        "caloriesPerUnit": 120,
-        "expirationTime": null
-    },
-    {
-        "name": "Taco",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "g"
-        ],
-        "caloriesPerKg": 2260,
-        "caloriesPerUnit": 226,
-        "expirationTime": null
-    },
-    {
-        "name": "Tamale",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2200,
-        "caloriesPerUnit": 250,
-        "expirationTime": null
-    },
-    {
-        "name": "Tostada",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2200,
-        "caloriesPerUnit": 150,
-        "expirationTime": null
-    },
-    {
-        "name": "Tourte salée (Pot pie)",
-        "link": null,
-        "category": "Plats préparés",
-        "unit": [
-            "pcs"
-        ],
-        "caloriesPerKg": 2500,
-        "caloriesPerUnit": 200,
         "expirationTime": null
     }
 ]
