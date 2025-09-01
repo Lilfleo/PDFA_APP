@@ -101,7 +101,7 @@ class RecipeToShoplistServiceTest {
             steps = listOf("Cook pasta")
         )
         val existingFood = Food(id = 1, name = "Pasta", link = "https://example.com/pasta", category = "Grain", unit = listOf("g"), caloriesPerKg = 1500, caloriesPerUnit = 0)
-        val existingShoplistItem = Shoplist(id = 1, foodId = 1, quantity = 50, quantityType = "g")
+        val existingShoplistItem = Shoplist(id = 1, foodId = 1, quantity = 50, quantityType = "g", recipeId = listOf())
 
         coEvery { cookbookRepository.getCookbookByName("RecipeShoplist") } returns null
         coEvery { foodRepository.findByName("Pasta") } returns existingFood

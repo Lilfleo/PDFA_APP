@@ -43,11 +43,11 @@ class ShoplistRepositoryTest {
         val food2 = Food(id = 2, name = "Bread", link = null, category = "Bakery", unit = listOf("loaf"), caloriesPerKg = 2650, caloriesPerUnit = 250)
         val expectedShoplist = listOf(
             ShoplistWithFood(
-                shoplist = Shoplist(id = 1, foodId = 1, quantity = 5, quantityType = "pieces"),
+                shoplist = Shoplist(id = 1, foodId = 1, quantity = 5, quantityType = "pieces", recipeId = listOf()),
                 food = food1
             ),
             ShoplistWithFood(
-                shoplist = Shoplist(id = 2, foodId = 2, quantity = 1, quantityType = "loaf"),
+                shoplist = Shoplist(id = 2, foodId = 2, quantity = 1, quantityType = "loaf", recipeId = listOf()),
                 food = food2
             )
         )
@@ -79,7 +79,7 @@ class ShoplistRepositoryTest {
     @Test
     fun `insertShoplist calls dao insertSholist`() = runTest {
         // Given
-        val shoplist = Shoplist(foodId = 1, quantity = 3, quantityType = "kg")
+        val shoplist = Shoplist(foodId = 1, quantity = 3, quantityType = "kg", recipeId = listOf())
         coEvery { shoplistDao.insertSholist(shoplist) } just Runs
 
         // When
@@ -92,7 +92,7 @@ class ShoplistRepositoryTest {
     @Test
     fun `updateShoplist calls dao updateShoplist`() = runTest {
         // Given
-        val shoplist = Shoplist(id = 1, foodId = 1, quantity = 5, quantityType = "pieces")
+        val shoplist = Shoplist(id = 1, foodId = 1, quantity = 5, quantityType = "pieces", recipeId = listOf())
         coEvery { shoplistDao.updateShoplist(shoplist) } just Runs
 
         // When
@@ -105,7 +105,7 @@ class ShoplistRepositoryTest {
     @Test
     fun `deleteShoplist calls dao deleteShoplist`() = runTest {
         // Given
-        val shoplist = Shoplist(id = 1, foodId = 1, quantity = 2, quantityType = "bottles")
+        val shoplist = Shoplist(id = 1, foodId = 1, quantity = 2, quantityType = "bottles", recipeId = listOf())
         coEvery { shoplistDao.deleteShoplist(shoplist) } just Runs
 
         // When
@@ -119,7 +119,7 @@ class ShoplistRepositoryTest {
     fun `findByFoodId returns shoplist when found`() = runTest {
         // Given
         val foodId = 1
-        val expectedShoplist = Shoplist(id = 1, foodId = foodId, quantity = 2, quantityType = "kg")
+        val expectedShoplist = Shoplist(id = 1, foodId = foodId, quantity = 2, quantityType = "kg", recipeId = listOf())
         coEvery { shoplistDao.findByFoodId(foodId) } returns expectedShoplist
 
         // When
@@ -147,8 +147,8 @@ class ShoplistRepositoryTest {
     @Test
     fun `multiple operations work correctly`() = runTest {
         // Given
-        val shoplist = Shoplist(foodId = 1, quantity = 2, quantityType = "pieces")
-        val insertedShoplist = Shoplist(id = 1, foodId = 1, quantity = 2, quantityType = "pieces")
+        val shoplist = Shoplist(foodId = 1, quantity = 2, quantityType = "pieces", recipeId = listOf())
+        val insertedShoplist = Shoplist(id = 1, foodId = 1, quantity = 2, quantityType = "pieces", recipeId = listOf())
         val updatedShoplist = insertedShoplist.copy(quantity = 5)
 
         coEvery { shoplistDao.insertSholist(shoplist) } just Runs
