@@ -48,6 +48,14 @@ android {
         compose = true
     }
 
+    configurations.all {
+        resolutionStrategy {
+            force("androidx.test.espresso:espresso-core:3.5.1")
+            force("androidx.test:runner:1.5.2")
+            force("androidx.test:rules:1.5.0")
+        }
+    }
+
     testOptions {
         unitTests {
             isIncludeAndroidResources = true

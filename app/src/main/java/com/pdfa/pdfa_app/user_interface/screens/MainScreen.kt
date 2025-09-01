@@ -79,17 +79,6 @@ fun MainScreen() {
         Screen.RecipeStepsScreen.rout,
         Screen.ProfilScreen.rout
     )
-
-    ModalNavigationDrawer(
-
-        drawerState = drawerState,
-        drawerContent = {
-            DrawerMenu(
-                navController = navController,
-                drawerState = drawerState)
-        }
-
-    ) {
         Scaffold(
             topBar = {
                 TopBar(
@@ -142,6 +131,6 @@ fun MainScreen() {
             }
         }
     }
-}
+
 
 

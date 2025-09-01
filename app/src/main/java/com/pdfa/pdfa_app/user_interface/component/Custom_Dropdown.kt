@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -69,7 +70,7 @@ fun CustomDropdown(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = if (selectedValue.isEmpty()) placeholder else selectedValue,
+                text = selectedValue.ifEmpty { placeholder },
                 style = AppTypo.Body,
                 color = if (selectedValue.isEmpty()) AppColors.LightGrey else Color.Black
             )
@@ -128,15 +129,38 @@ fun CustomDropdown(
                                         style = AppTypo.Body,
                                         color = Color.Black
                                     )
+                                    if (element == selectedValue ||
+                                        (selectedValue.isEmpty() && element == placeholder)) {
 
-                                    Box(
-                                        modifier = Modifier
-                                            .size(16.dp)
-                                            .background(
-                                                color = AppColors.LightGrey,
-                                                shape = AppShapes.CornerS
+                                        // Coche verte pour l'élément sélectionné
+                                        Box(
+                                            modifier = Modifier
+                                                .size(16.dp)
+                                                .background(
+                                                    color = AppColors.MainGreen,
+                                                    shape = AppShapes.CornerS
+                                                ),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Icon(
+                                                imageVector = Icons.Default.Check,
+                                                contentDescription = "Sélectionné",
+                                                tint = Color.White,
+                                                modifier = Modifier.size(12.dp)
                                             )
-                                    )
+                                        }
+                                    } else {
+                                        // Box vide pour les éléments non sélectionnés
+                                        Box(
+                                            modifier = Modifier
+                                                .size(16.dp)
+                                                .background(
+                                                    color = AppColors.LightGrey,
+                                                    shape = AppShapes.CornerS
+                                                )
+                                        )
+                                    }
+
                                 }
                             }
                         }
