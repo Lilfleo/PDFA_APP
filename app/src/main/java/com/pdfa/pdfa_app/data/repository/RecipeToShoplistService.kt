@@ -26,7 +26,7 @@ class RecipeToShoplistService @Inject constructor(
 
         recipe.ingredients.forEach { ingredient ->
             try {
-                addIngredientToShoplist(ingredient, nbPeople)
+                addIngredientToShoplist(ingredient, nbPeople, recipe.id)
                 Log.d("RecipeToShoplist", "✅ Ingrédient ajouté: ${ingredient.name}")
             } catch (e: Exception) {
                 Log.e("RecipeToShoplist", "❌ Erreur pour ${ingredient.name}: ${e.message}", e)
@@ -35,7 +35,7 @@ class RecipeToShoplistService @Inject constructor(
         }
     }
 
-    private suspend fun addIngredientToShoplist(ingredient: Ingredient, nbPeople: Int) {
+    private suspend fun addIngredientToShoplist(ingredient: Ingredient, nbPeople: Int, recipeId: Int) {
         // 1. Chercher ou créer le Food
         val food = findOrCreateFood(ingredient.name, ingredient.unit)
         Log.d("RecipeToShoplist", "🍎 Food trouvé/créé: ${food.name} (ID: ${food.id})")
@@ -51,7 +51,8 @@ class RecipeToShoplistService @Inject constructor(
             // Mettre à jour la quantité existante
             val updatedItem = existingShoplistItem.copy(
                 quantity = existingShoplistItem.quantity + quantity,
-                quantityType = unit
+                quantityType = unit,
+                recipeId = existingShoplistItem.recipeId + recipeId
             )
             shoplistRepository.updateShoplist(updatedItem)
         } else {
@@ -60,7 +61,8 @@ class RecipeToShoplistService @Inject constructor(
             val shoplistItem = Shoplist(
                 foodId = food.id,
                 quantity = quantity,
-                quantityType = unit
+                quantityType = unit,
+                recipeId = listOf(recipeId)
             )
             shoplistRepository.insertShoplist(shoplistItem)
         }

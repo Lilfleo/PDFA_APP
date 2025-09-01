@@ -69,7 +69,8 @@ fun RecipeScreen(
                 Text(
                     text = "Avec mes ingrédients",
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    color = Color.Black
                 )
             }
 

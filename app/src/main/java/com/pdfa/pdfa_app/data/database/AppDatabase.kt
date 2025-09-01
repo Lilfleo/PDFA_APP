@@ -58,7 +58,7 @@ import com.pdfa.pdfa_app.data.model.Shoplist
     Profil::class,
     Cookbook::class,
     CookbookRecipeCrossRef::class],
-    version = 2)
+    version = 3)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun foodDao(): FoodDao

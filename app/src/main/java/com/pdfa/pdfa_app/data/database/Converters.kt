@@ -6,6 +6,7 @@ import com.pdfa.pdfa_app.api.Tags
 import kotlinx.serialization.json.Json
 import java.util.Date
 
+
 class Converters {
     @TypeConverter
     fun fromTimestamp(value: Long?): Date? = value?.let { Date(it) }
@@ -41,5 +42,19 @@ class Converters {
     @TypeConverter
     fun toStringList(stringsString: String): List<String> {
         return Json.decodeFromString(stringsString)
+    }
+
+    @TypeConverter
+    fun fromIntList(value: List<Int>?): String? {
+        return value?.joinToString(",")
+    }
+
+    @TypeConverter
+    fun toIntList(value: String?): List<Int>? {
+        return if (value.isNullOrBlank()) {
+            emptyList()
+        } else {
+            value.split(",").mapNotNull { it.toIntOrNull() }
+        }
     }
 }

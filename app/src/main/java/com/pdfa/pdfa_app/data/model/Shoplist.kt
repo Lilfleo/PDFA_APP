@@ -24,5 +24,6 @@ data class Shoplist(
     val quantity: Int,
     @ColumnInfo(name = "quantity_type", index = true)
     val quantityType: String,
+    val recipeId: List<Int>
 )
 

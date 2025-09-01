@@ -95,7 +95,7 @@ fun FoodAddDetailDialog(
         mutableStateOf(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
     }
     var expirationDateText by remember { mutableStateOf("") }
-    var selectedUnit by remember { mutableStateOf(if (isWeight) "Gramme" else "Pièce") }
+    var selectedUnit by remember { mutableStateOf("") }
 
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()

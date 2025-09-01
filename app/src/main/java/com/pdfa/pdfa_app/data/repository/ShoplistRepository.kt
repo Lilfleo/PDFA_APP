@@ -24,4 +24,6 @@ class ShoplistRepository @Inject constructor(
     }
 
     suspend fun findByFoodId(foodId: Int): Shoplist? = dao.findByFoodId(foodId)
+
+    suspend fun findByRecipeId(recipeId: Int): Shoplist? = dao.findByRecipeId(recipeId)
 }

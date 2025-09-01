@@ -31,4 +31,7 @@ interface ShoplistDao {
 
     @Delete
     suspend fun deleteShoplist(shoplist: Shoplist)
+
+    @Query("SELECT * FROM shoplist WHERE recipeId = :recipeId")
+    suspend fun findByRecipeId(recipeId: Int): Shoplist?
 }
