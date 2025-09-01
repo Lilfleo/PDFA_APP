@@ -32,11 +32,6 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Tune
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
@@ -74,7 +69,9 @@ import com.pdfa.pdfa_app.user_interface.component.CustomFridgeSearchBar
 import com.pdfa.pdfa_app.user_interface.component.CustomSnackbarHost
 import com.pdfa.pdfa_app.user_interface.component.DeleteConfirmationDialog
 import com.pdfa.pdfa_app.user_interface.component.FridgeItemActionDialog
-import com.pdfa.pdfa_app.user_interface.component.SearchBar
+
+import com.pdfa.pdfa_app.user_interface.filter.FridgeFilterState
+
 
 @Composable
 fun FridgeScreen(
@@ -88,16 +85,13 @@ fun FridgeScreen(
     val foodViewModel: FoodViewModel = hiltViewModel()
     val foodList by foodViewModel.foodList.collectAsState()
 
-    var expanded by remember { mutableStateOf(false) }
-    var selectedFoodName by remember { mutableStateOf("") }
-    var selectedCategorie by remember { mutableStateOf("") }
+    //Filtrage
+    val filterState = remember { FridgeFilterState() }
 
     var searchQuery by remember { mutableStateOf("") }
     var showDialogAdd by remember { mutableStateOf(false) }
     var showFilterBox by remember { mutableStateOf(false) }
-    var filter_1 by remember { mutableStateOf(false) }
-    var filter_2 by remember { mutableStateOf(false) }
-    var filter_3 by remember { mutableStateOf(false) }
+
 
     val snackbarHostState = remember { SnackbarHostState() }
     Log.d("FridgeScreen", "SnackbarHostState created: $snackbarHostState")
@@ -127,6 +121,42 @@ fun FridgeScreen(
             val layoutInfo = listState.layoutInfo
             val lastVisibleItem = layoutInfo.visibleItemsInfo.lastOrNull()
             lastVisibleItem != null && lastVisibleItem.index == layoutInfo.totalItemsCount - 1
+        }
+    }
+
+    //Liste filtrée calculée automatiquement
+    val filteredFoodDetail by remember {
+        derivedStateOf {
+            var result = foodDetail
+
+            //Filtrage par recherche
+            if (searchQuery.isNotBlank()) {
+                result = result.filter { foodDetailWithFood ->
+                    foodDetailWithFood.food.name.contains(searchQuery, ignoreCase = true) ||
+                            foodDetailWithFood.food.category.contains(searchQuery, ignoreCase = true) ||
+                            foodDetailWithFood.foodDetail.unit.contains(searchQuery, ignoreCase = true)
+                }
+            }
+
+            //Filtrage par catégorie
+            if (filterState.selectedCategoryFood != null) {
+                result = result.filter { it.food.category == filterState.selectedCategoryFood }
+            }
+
+            //Tri
+            when {
+                filterState.sortByQuantityAsc -> result.sortedBy { it.foodDetail.quantity }
+                filterState.sortByQuantityDesc -> result.sortedByDescending { it.foodDetail.quantity }
+                filterState.sortByExpirationDate -> result.sortedBy { it.foodDetail.expirationTime }
+                else -> result
+            }
+        }
+    }
+
+    //Catégories uniques pour le dropdown
+    val uniqueCategories by remember {
+        derivedStateOf {
+            foodDetail.map { it.food.category }.distinct().sorted()
         }
     }
 
@@ -287,8 +317,8 @@ fun FridgeScreen(
                                 horizontalArrangement = Arrangement.spacedBy(3.dp)
                             ) {
                                 CustomCheckbox(
-                                    checked = filter_1,
-                                    onCheckedChange = { filter_1 = it }
+                                    checked = filterState.sortByQuantityAsc,  // ✅ Nouveau
+                                    onCheckedChange = { filterState.enableQuantityAscSort(it) }
                                 )
                                 Text(
                                     text = "Qté croissante",
@@ -301,8 +331,8 @@ fun FridgeScreen(
                                 horizontalArrangement = Arrangement.spacedBy(2.dp)
                             ) {
                                 CustomCheckbox(
-                                    checked = filter_2,
-                                    onCheckedChange = { filter_2 = it }
+                                    checked = filterState.sortByQuantityDesc,  // ✅ Nouveau
+                                    onCheckedChange = { filterState.enableQuantityDescSort(it) }
                                 )
                                 Text(
                                     text = "Qté décroissante",
@@ -315,8 +345,8 @@ fun FridgeScreen(
                                 horizontalArrangement = Arrangement.spacedBy(2.dp)
                             ) {
                                 CustomCheckbox(
-                                    checked = filter_3,
-                                    onCheckedChange = { filter_3 = it }
+                                    checked = filterState.sortByExpirationDate,  // ✅ Nouveau
+                                    onCheckedChange = { filterState.enableExpirationDateSort(it) }
                                 )
                                 Text(
                                     text = "Date de péremption",
@@ -324,6 +354,7 @@ fun FridgeScreen(
                                     color = Color.Black
                                 )
                             }
+
                         }
 
                         Text(
@@ -348,11 +379,14 @@ fun FridgeScreen(
                                     .wrapContentWidth()
                             ) {
                                 CustomDropdown(
-                                    selectedValue = selectedCategorie,
+                                    selectedValue = filterState.selectedCategoryFood ?: "",  // ✅ Nouveau
                                     placeholder = "Catégories",
                                     onItemSelected = { item ->
-                                        selectedCategorie = item },
-                                    elements = listOf("Fruits", "Légumes", "Viandes", "Poissons"),
+                                        filterState.updateSelectedCategory(  // ✅ Nouveau
+                                            if (item == "Toutes les catégories") null else item
+                                        )
+                                    },
+                                    elements = listOf("Toutes les catégories") + uniqueCategories  // ✅ Vraies catégories
                                 )
                             }
                         }
@@ -382,13 +416,13 @@ fun FridgeScreen(
                         .clip(AppShapes.CornerXL)
                         .background(Color.White)
                 ) {
-                    if (foodDetail.isNotEmpty()) {
+                    if (filteredFoodDetail.isNotEmpty()) {
                         LazyColumn(
                             state = listState,
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             items(
-                                items = foodDetail,
+                                items = filteredFoodDetail,
                                 key = { it.foodDetail.id } // 🧠 clé unique et persistante = identifiant en base
                             ) { detail ->
                                 Log.d("FridgeScreen", "🌀 Recomposition avec : ${detail.food.name}")
@@ -431,7 +465,18 @@ fun FridgeScreen(
                                 .padding(AppSpacing.L),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text("Ton frigo est vide pour l’instant")
+                            if (foodDetail.isEmpty()) {
+                                Text("Ton frigo est vide pour l'instant")
+                            } else {
+                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                    Text("Aucun résultat trouvé", style = AppTypo.Body)
+                                    Text(
+                                        "Essayez de modifier vos critères de recherche",
+                                        style = AppTypo.Body,
+                                        color = AppColors.MediumGrey
+                                    )
+                                }
+                            }
                         }
                     }
 
