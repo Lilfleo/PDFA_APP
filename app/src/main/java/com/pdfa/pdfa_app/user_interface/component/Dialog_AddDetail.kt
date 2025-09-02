@@ -385,7 +385,7 @@ fun FoodAddDetailDialog(
                     OutlinedTextField(
                         value = expirationDateText,
                         onValueChange = { expirationDateText = it },
-                        label = { Text("DLC") },
+                        label = { Text("DLC (optionnel)") }, // ✅ Juste changer le label
                         modifier = Modifier.weight(1f),
                         singleLine = true
                     )
@@ -454,7 +454,6 @@ fun FoodAddDetailDialog(
                                 if (
                                     selectedFoodId != null &&
                                     quantityText.isNotBlank() &&
-                                    expirationDateText.isNotBlank() &&
                                     buyingDateText.isNotBlank()
                                 ) {
                                     val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -467,7 +466,11 @@ fun FoodAddDetailDialog(
                                         price = priceText.toFloatOrNull(),
                                         unit = selectedUnit, // Utiliser selectedUnit au lieu de isWeight
                                         buyingTime = sdf.parse(buyingDateText) ?: Date(),
-                                        expirationTime = sdf.parse(expirationDateText) ?: Date()
+                                        expirationTime = if (expirationDateText.isNotBlank()) {
+                                            sdf.parse(expirationDateText)
+                                        } else {
+                                            null
+                                        }
                                     )
 
                                     scope.launch {
