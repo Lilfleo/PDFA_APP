@@ -10,9 +10,3 @@ data class Utensil (
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
 )
-
-// Ajouter cette classe ici
-@Serializable
-data class UtensilFromJson(
-    val name: String
-)

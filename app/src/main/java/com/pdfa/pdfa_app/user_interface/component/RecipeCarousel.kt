@@ -33,14 +33,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.pdfa.pdfa_app.data.model.Recipe
 import com.pdfa.pdfa_app.ui.theme.AppColors
 import com.pdfa.pdfa_app.ui.theme.AppTypo
+import com.pdfa.pdfa_app.ui.viewmodel.RecipeViewModel
+import com.pdfa.pdfa_app.user_interface.rooting.Screen
 
 @Composable
 fun RecipeCarousel(
+    navController: NavController,
+    recipeViewModel: RecipeViewModel,
     recipes: List<Recipe>,
-    onRecipeClick: (Recipe) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -120,7 +124,10 @@ fun RecipeCarousel(
                     items(recipes.take(10)) { recipe -> // Limite à 10 recettes
                         RecipeCarouselItem(
                             recipe = recipe,
-                            onClick = { onRecipeClick(recipe) }
+                            onClick = {
+                                recipeViewModel.selectRecipe(recipe)
+                                navController.navigate(Screen.RecipeDetailScreen.rout)
+                            }
                         )
                     }
                 }
@@ -139,9 +146,7 @@ fun RecipeCarouselItem(
         modifier = modifier
             .width(140.dp)
             .height(60.dp)
-            .clickable { onClick(
-
-            ) },
+            .clickable { onClick() },
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
             containerColor = AppColors.Primary
