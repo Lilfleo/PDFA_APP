@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/maxloris/Desktop/PDFA_APP/ui-components/src/main/AndroidManifest.xml:2:1-4:12
-INJECTED from /Users/maxloris/Desktop/PDFA_APP/ui-components/src/main/AndroidManifest.xml:2:1-4:12
+ADDED from /Users/antoineribeyre/Desktop/EPITECH/PRE-MSC/04_PROJETS/08_FINAL_YEAR_PROJECT/PDFA_APP/ui-components/src/main/AndroidManifest.xml:2:1-4:12
+INJECTED from /Users/antoineribeyre/Desktop/EPITECH/PRE-MSC/04_PROJETS/08_FINAL_YEAR_PROJECT/PDFA_APP/ui-components/src/main/AndroidManifest.xml:2:1-4:12
 	package
-		INJECTED from /Users/maxloris/Desktop/PDFA_APP/ui-components/src/main/AndroidManifest.xml
+		INJECTED from /Users/antoineribeyre/Desktop/EPITECH/PRE-MSC/04_PROJETS/08_FINAL_YEAR_PROJECT/PDFA_APP/ui-components/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/maxloris/Desktop/PDFA_APP/ui-components/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /Users/antoineribeyre/Desktop/EPITECH/PRE-MSC/04_PROJETS/08_FINAL_YEAR_PROJECT/PDFA_APP/ui-components/src/main/AndroidManifest.xml:2:11-69
 uses-sdk
-INJECTED from /Users/maxloris/Desktop/PDFA_APP/ui-components/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/maxloris/Desktop/PDFA_APP/ui-components/src/main/AndroidManifest.xml
-INJECTED from /Users/maxloris/Desktop/PDFA_APP/ui-components/src/main/AndroidManifest.xml
+INJECTED from /Users/antoineribeyre/Desktop/EPITECH/PRE-MSC/04_PROJETS/08_FINAL_YEAR_PROJECT/PDFA_APP/ui-components/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/antoineribeyre/Desktop/EPITECH/PRE-MSC/04_PROJETS/08_FINAL_YEAR_PROJECT/PDFA_APP/ui-components/src/main/AndroidManifest.xml
+INJECTED from /Users/antoineribeyre/Desktop/EPITECH/PRE-MSC/04_PROJETS/08_FINAL_YEAR_PROJECT/PDFA_APP/ui-components/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/maxloris/Desktop/PDFA_APP/ui-components/src/main/AndroidManifest.xml
+		INJECTED from /Users/antoineribeyre/Desktop/EPITECH/PRE-MSC/04_PROJETS/08_FINAL_YEAR_PROJECT/PDFA_APP/ui-components/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/maxloris/Desktop/PDFA_APP/ui-components/src/main/AndroidManifest.xml
+		INJECTED from /Users/antoineribeyre/Desktop/EPITECH/PRE-MSC/04_PROJETS/08_FINAL_YEAR_PROJECT/PDFA_APP/ui-components/src/main/AndroidManifest.xml

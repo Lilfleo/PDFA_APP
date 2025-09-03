@@ -200,7 +200,7 @@ fun RecipeListScreen(
                 }
             }
 
-            // 🔍 État vide (pas de recettes, pas de loading)
+            // État vide (pas de recettes, pas de loading)
             else -> {
                 Box(
                     modifier = Modifier.fillMaxSize(),

@@ -49,9 +49,9 @@ import com.pdfa.pdfa_app.user_interface.rooting.Screen
 @Composable
 fun HomeScreen(
     navController: NavController,
+    recipeViewModel: RecipeViewModel,
     profilViewModel: ProfilViewModel = hiltViewModel(),
     cookbookViewModel: CookbookViewModel = hiltViewModel(),
-    recipeViewModel: RecipeViewModel = hiltViewModel()
 ){
 
     var openTagDialog by remember { mutableStateOf(false) }
@@ -131,11 +131,9 @@ fun HomeScreen(
         item {
             // Carte vide (placeholder)
             RecipeCarousel(
+                navController = navController,
+                recipeViewModel = recipeViewModel,
                 recipes = recentRecipes,
-                onRecipeClick = { recipe ->
-                    recipeViewModel.selectRecipe(recipe)
-                    navController.navigate(Screen.RecipeDetailScreen.rout)
-                }
             )
         }
 
